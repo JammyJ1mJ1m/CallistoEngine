@@ -19,5 +19,9 @@ void main()
 //	{
 //		Col.w ==0;
 //	}
+	if(Col.w == 0)
+	{
+		discard;
+	}
 	FragColor = Col * vec4(newCol,0);
 }
