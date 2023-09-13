@@ -16,12 +16,7 @@
 #include "imgui_impl_opengl3.h"
 #include "Shader.h"
 #include "stb_image.h"
-
-#include "Camera.h"
-
-//#include "imgui_impl_opengl3.h"
-
-class main
+class common
 {
 };
 

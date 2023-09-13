@@ -1,7 +1,10 @@
 #include "main.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void processInput(GLFWwindow* window);
+
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 // settings
 const unsigned int SCR_WIDTH = 1366;
@@ -9,12 +12,31 @@ const unsigned int SCR_HEIGHT = 768;
 
 float color[] = { 1.0f, 0.427f,0.0f,0.0f };
 glm::vec4 vecColor = glm::vec4(0.5f, 0.3f, 0.3f, 0.0f);
+Camera cam(glm::vec3(0.0f, 0.0f, 3.0f), SCR_WIDTH, SCR_HEIGHT);
+
+float dt = 0.0f;
+float lastFrame = 0.0f;
+
+// camera rotation
+bool firstMouse = true;
+float yaw = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
+float pitch = 0.0f;
+float lastX = 800.0f / 2.0;
+float lastY = 600.0 / 2.0;
+float fov = 45.0f;
+
+bool lastState = false;
+
+void DisplayFPS(GLFWwindow* window)
+{
+	std::stringstream ss;
+	ss << "OpenGL" << " " << " [" << 1.0 / dt << " FPS]";
+	glfwSetWindowTitle(window, ss.str().c_str());
+}
 
 
 int main()
 {
-
-
 	// glfw: initialize and configure
 	// ------------------------------
 	glfwInit();
@@ -34,6 +56,10 @@ int main()
 	}
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	glfwSetCursorPosCallback(window, mouse_callback);
+
+	glfwSetKeyCallback(window, key_callback);
+
 
 	// glad: load all OpenGL function pointers
 	// ---------------------------------------
@@ -69,9 +95,6 @@ int main()
 	//	-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
 	//	-0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left 
 	//};
-
-
-
 
 	//unsigned int indices[] = {
 	//	0, 1, 3, // first triangle
@@ -159,15 +182,15 @@ int main()
 	glBindVertexArray(0);
 
 #pragma endregion
-	
-	
+
+
 
 	// build and compile our shader program
 	// ------------------------------------
 	int tex1, tex2;
 
 	tex1 = shader.LoadTexture("Textures\\container.jpg");
-	tex2 = shader.LoadTexture("Textures\\awesomeface.png",true);
+	tex2 = shader.LoadTexture("Textures\\awesomeface.png", true);
 
 	shader.use();
 
@@ -191,20 +214,25 @@ int main()
 	glm::vec3(-1.3f,  1.0f, -1.5f)
 	};
 
+	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	glEnable(GL_DEPTH_TEST);
 	// render loop
 	// -----------
 	while (!glfwWindowShouldClose(window))
 	{
-		
+		// calcualte deltatime
+		float currentFrame = glfwGetTime();
+		dt = currentFrame - lastFrame;
+		lastFrame = currentFrame;
+
+		DisplayFPS(window);
+
 		// render
 		// ------
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
-	
 		// bind textures on corresponding texture units
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, tex1);
@@ -218,29 +246,29 @@ int main()
 
 
 		// create transformations
-		glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-		glm::mat4 view = glm::mat4(1.0f);
-		glm::mat4 projection = glm::mat4(1.0f);
-		model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
-		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-		projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+		//glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+		//glm::mat4 view = glm::mat4(1.0f);
+		//glm::mat4 projection = glm::mat4(1.0f);
+		//model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
+		//view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+		//projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 		// retrieve the matrix uniform locations
 
 		//shader.setMat("model", model);
-		shader.setMat("view", view);
-		shader.setMat("projection", projection);
+		shader.setMat("view", cam.view);
+		shader.setMat("projection", cam.projection);
 
 		shader.setVec3("newCol", vecColor);
 
 		//glBindVertexArray(VAO);
-		
-		
+
+
 		glBindVertexArray(VAO);
 		for (unsigned int i = 0; i < 10; i++)
 		{
 			glm::mat4 model = glm::mat4(1.0f);
 			model = glm::translate(model, cubePositions[i]);
-			model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
+			//model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
 
 			float angle = 20.0f * i;
 			model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
@@ -250,11 +278,6 @@ int main()
 			glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
 		}
-
-		
-
-
-		
 
 		// ImGui stuff
 		// -----------
@@ -309,15 +332,58 @@ int main()
 	return 0;
 }
 
+
+
+
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
 void processInput(GLFWwindow* window)
 {
+	float camSpeed = 5.0f * dt;
+
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+	{
 		std::cout << "W pressed" << std::endl;
+		cam.MoveForward(camSpeed);
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+	{
+		std::cout << "S pressed" << std::endl;
+		cam.MoveForward(-camSpeed);
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+	{
+		std::cout << "A pressed" << std::endl;
+		cam.Strafe(-camSpeed);
+	}
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+	{
+		std::cout << "D pressed" << std::endl;
+		cam.Strafe(camSpeed);
+	}
+}
+
+bool enableMouse = false;
+
+// called every time a key is pressed/released/repeated
+// 0 = key released; 1 = key pressed; 2 = key repeated.
+// -------------------------------------------------------
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_R && action == 1)
+	{
+		enableMouse = !enableMouse;
+
+		if (enableMouse)
+			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		else if (!enableMouse)
+			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+	}
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
@@ -327,4 +393,49 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	// make sure the viewport matches the new window dimensions; note that width and 
 	// height will be significantly larger than specified on retina displays.
 	glViewport(0, 0, width, height);
+}
+
+void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
+{
+	if (enableMouse)
+	{
+
+		float xpos = static_cast<float>(xposIn);
+		float ypos = static_cast<float>(yposIn);
+
+		if (firstMouse)
+		{
+			lastX = xpos;
+			lastY = ypos;
+			firstMouse = false;
+		}
+
+		float xoffset = xpos - lastX;
+		float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+		lastX = xpos;
+		lastY = ypos;
+		//glfwSetCursorPos(window, SCR_WIDTH / 2, SCR_HEIGHT / 2);
+
+
+		float sensitivity = 0.1f; // change this value to your liking
+		xoffset *= sensitivity;
+		yoffset *= sensitivity;
+
+		yaw += xoffset;
+		pitch += yoffset;
+
+		// make sure that when pitch is out of bounds, screen doesn't get flipped
+		if (pitch > 89.0f)
+			pitch = 89.0f;
+		if (pitch < -89.0f)
+			pitch = -89.0f;
+
+		glm::vec3 front;
+		front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+		front.y = sin(glm::radians(pitch));
+		front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+		cam.cameraFront = glm::normalize(front);
+		cam.UpdateView();
+	}
+
 }
