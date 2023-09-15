@@ -269,18 +269,31 @@ int main()
 
 
 	glm::vec3 cubePositions[] = {
-	glm::vec3(0.0f,  0.0f,  0.0f),
-	glm::vec3(3.0f,  1.0f,  -5.0f),
-	
+		glm::vec3(0.0f,  0.0f,  0.0f),
+		glm::vec3(2.0f,  5.0f, -15.0f),
+		glm::vec3(-1.5f, -2.2f, -2.5f),
+		glm::vec3(-3.8f, -2.0f, -12.3f),
+		glm::vec3(2.4f, -0.4f, -3.5f),
+		glm::vec3(-1.7f,  3.0f, -7.5f),
+		glm::vec3(1.3f, -2.0f, -2.5f),
+		glm::vec3(1.5f,  2.0f, -2.5f),
+		glm::vec3(1.5f,  0.2f, -1.5f),
+		glm::vec3(-1.3f,  1.0f, -1.5f)
 	};
 
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	float pos[] = { 3.0f, 1.0f, 2.0f };
+	float pos[] = { 0.0f, 1.0f, 0.0f };
 	glm::vec3 lightPos = glm::vec3(pos[0], pos[1], pos[2]);
+	float dir[] = { 0.0f,-1.0f,0.0f };
+	glm::vec3 lightDir = glm::vec3(dir[0], dir[1], dir[2]);
 	float shininess = 0.078125f * 128;
 	float emissionBrightness = 1.0f;
+
+	float lightColour[] = { 0.5f, 0.5f, 0.5f };
+	glm::vec3 lightCol = glm::vec3(lightColour[0], lightColour[1], lightColour[2]);
+
 
 	glEnable(GL_DEPTH_TEST);
 	// render loop
@@ -314,11 +327,34 @@ int main()
 		lightShader.setFloat("material.shininess", shininess);
 		lightShader.setFloat("material.emissionBrightness", emissionBrightness);
 		
-		// light properties
-		lightShader.setVec3("light.ambient", 0.1f, 0.1f, 0.1f);
-		lightShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
-		lightShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
-		lightShader.setVec3("light.position", lightPos);
+		// point light properties
+		lightShader.setVec3("pointLight.ambient", 0.1f, 0.1f, 0.1f);
+		lightShader.setVec3("pointLight.diffuse", lightCol);
+		lightShader.setVec3("pointLight.specular", 1.0f, 1.0f, 1.0f);
+		lightShader.setVec3("pointLight.position", lightPos);
+		lightShader.setFloat("pointLight.constant", 1.0f);
+		lightShader.setFloat("pointLight.linear", 0.09f);
+		lightShader.setFloat("pointLight.quadratic", 0.032f);
+
+		// directional lights
+		lightShader.setVec3("dirLight.direction", lightDir);
+		lightShader.setVec3("dirLight.ambient", 0.1f, 0.1f, 0.1f);
+		lightShader.setVec3("dirLight.diffuse", lightCol);
+		lightShader.setVec3("dirLight.specular", 1.0f, 1.0f, 1.0f);
+
+		// spotlight
+		lightShader.setVec3("spotLight.position", lightPos);
+		lightShader.setVec3("spotLight.direction", lightDir);
+		lightShader.setVec3("spotLight.ambient", 0.1f, 0.1f, 0.1f);
+		lightShader.setVec3("spotLight.diffuse", lightCol);
+		lightShader.setVec3("spotLight.specular", 1.0f, 1.0f, 1.0f);
+
+		lightShader.setFloat("spotLight.constant", 1.0f);
+		lightShader.setFloat("spotLight.linear", 0.09f);
+		lightShader.setFloat("spotLight.quadratic", 0.032f);
+
+		lightShader.setFloat("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
+		lightShader.setFloat("spotLight.outerCutOff", glm::cos(glm::radians(16.5f)));
 
 		
 
@@ -343,8 +379,21 @@ int main()
 		glBindTexture(GL_TEXTURE_2D, tex3);
 
 		// render the cube
+		//glBindVertexArray(cubeVAO);
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
 		glBindVertexArray(cubeVAO);
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (unsigned int i = 0; i < 10; i++)
+		{
+			// calculate the model matrix for each object and pass it to shader before drawing
+			glm::mat4 model = glm::mat4(1.0f);
+			model = glm::translate(model, cubePositions[i]);
+			float angle = 20.0f * i;
+			model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+			lightShader.setMat("model", model);
+
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
 
 		// also draw the lamp object
 		lightCubeShader.use();
@@ -352,11 +401,13 @@ int main()
 		lightCubeShader.setMat("view", view);
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, lightPos);
-		model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
+		model = glm::scale(model, glm::vec3(0.05f)); // a smaller cube
 		lightCubeShader.setMat("model", model);
 
 		glBindVertexArray(lightCubeVAO);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		
 
 		
 		emissionBrightness = sin(glfwGetTime() * 1.0f) + 1.1f;
@@ -370,17 +421,24 @@ int main()
 		ImGui::Begin("Debug Window");
 		ImGui::Text("Hello there!");
 		ImGui::Checkbox("Wireframe mode", &enable);
-		ImGui::SliderFloat("SliderX", &pos[0], -5.0f, 5.0f);
-		ImGui::SliderFloat("SliderY", &pos[1], -5.0f, 5.0f);
-		ImGui::SliderFloat("SliderZ", &pos[2], -5.0f, 5.0f);
+		ImGui::SliderFloat3("Light Pos", pos, -5.0f, 5.0f);
+		ImGui::SliderFloat3("Light Dir", dir, -1.0f, 1.0f);
 		ImGui::SliderFloat("Specular shininess", &shininess, 1.0f, 512.0f); 
 		//ImGui::SliderFloat("Emission shininess", &emissionBrightness, 0.0f, 5.0f);
-		ImGui::ColorEdit4("Color", color);
+		ImGui::ColorEdit4("Color", lightColour);
 		ImGui::End();
 
 		lightPos.x = pos[0];
 		lightPos.y = pos[1];
 		lightPos.z = pos[2];
+
+		lightDir.x = dir[0];
+		lightDir.y = dir[1];
+		lightDir.z = dir[2];
+
+		lightCol.x = lightColour[0];
+		lightCol.y = lightColour[1];
+		lightCol.z = lightColour[2];
 		
 
 		if (enable)
