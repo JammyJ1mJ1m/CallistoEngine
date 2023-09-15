@@ -126,5 +126,20 @@
     <Image Include="Textures\awesomeface.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Textures\box.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Textures\box_specular.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Textures\box_specular2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Textures\box2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Textures\box_emission.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

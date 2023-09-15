@@ -173,6 +173,11 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\awesomeface.png" />
+    <Image Include="Textures\box.png" />
+    <Image Include="Textures\box2.png" />
+    <Image Include="Textures\box_emission.png" />
+    <Image Include="Textures\box_specular.png" />
+    <Image Include="Textures\box_specular2.png" />
     <Image Include="Textures\container.jpg" />
     <Image Include="Textures\rockwall.png" />
   </ItemGroup>
