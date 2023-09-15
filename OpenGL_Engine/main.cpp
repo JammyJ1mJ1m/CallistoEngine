@@ -5,12 +5,15 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void processInput(GLFWwindow* window);
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+void Draw(Shader pShader, int pTex1, int pTex2, float pTestFloat, unsigned int VAO, glm::vec3 pPositions[]);
+
+
 
 // settings
 const unsigned int SCR_WIDTH = 1366;
 const unsigned int SCR_HEIGHT = 768;
 
-float color[] = { 1.0f, 0.427f,0.0f,0.0f };
+float color[] = { 1.0f, 1.0f,1.0f,0.0f };
 glm::vec4 vecColor = glm::vec4(0.5f, 0.3f, 0.3f, 0.0f);
 Camera cam(glm::vec3(0.0f, 0.0f, 3.0f), SCR_WIDTH, SCR_HEIGHT);
 
@@ -85,105 +88,164 @@ int main()
 
 #pragma region Shader stuff
 
-	Shader shader("Shaders/vertShader.glsl", "Shaders/fragShader.glsl");
-	// set up vertex data (and buffer(s)) and configure vertex attributes
-	//------------------------------------------------------------------
-	//float vertices[] = {
-	//	// positions          // colors           // texture coords
-	//	 0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-	//	 0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-	//	-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-	//	-0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left 
-	//};
-
-	//unsigned int indices[] = {
-	//	0, 1, 3, // first triangle
-	//	1, 2, 3  // second triangle
-	//};
-
-
-
+	Shader shader("Shaders/default.vert", "Shaders/default.frag");
+	Shader lightShader("Shaders/Lighting/basicLight.vert", "Shaders/Lighting/basicLight.frag");
+	Shader lightCubeShader("Shaders/light_cube.vert", "Shaders/light_cube.frag");
+	
+	
+	// standard cube verts
 	float vertices[] = {
-		-0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 0.0f,  // A 0
-		0.5f, -0.5f, -0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 0.0f,  // B 1
-		0.5f,  0.5f, -0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 1.0f,  // C 2
-		-0.5f,  0.5f, -0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 1.0f,  // D 3
-		-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 0.0f,  // E 4
-		0.5f, -0.5f,  0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 0.0f,   // F 5
-		0.5f,  0.5f,  0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 1.0f,   // G 6
-		-0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 1.0f,   // H 7
+	   -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	   -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	   -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
-		-0.5f,  0.5f, -0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 0.0f,  // D 8
-		-0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 0.0f,  1.0f, 0.0f,  // A 9
-		-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 0.0f,  1.0f, 1.0f,  // E 10
-		-0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 1.0f,  // H 11
-		0.5f, -0.5f, -0.5f,		1.0f, 0.0f, 0.0f,  0.0f, 0.0f,   // B 12
-		0.5f,  0.5f, -0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 0.0f,   // C 13
-		0.5f,  0.5f,  0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 1.0f,   // G 14
-		0.5f, -0.5f,  0.5f,		1.0f, 0.0f, 0.0f,  0.0f, 1.0f,   // F 15
+	   -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+	   -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+	   -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
 
-		-0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 0.0f,  // A 16
-		0.5f, -0.5f, -0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 0.0f,   // B 17
-		0.5f, -0.5f,  0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 1.0f,   // F 18
-		-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 1.0f,  // E 19
-		0.5f,  0.5f, -0.5f,		1.0f, 0.0f, 0.0f,   0.0f, 0.0f,  // C 20
-		-0.5f,  0.5f, -0.5f,	1.0f, 0.0f, 0.0f,  1.0f, 0.0f,  // D 21
-		-0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 0.0f,  1.0f, 1.0f,  // H 22
-		0.5f,  0.5f,  0.5f,		1.0f, 0.0f, 0.0f,  0.0f, 1.0f,  // G 23
+	   -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+	   -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+	   -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+	   -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+	   -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+	   -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+
+		0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+
+	   -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+		0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+		0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+	   -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+	   -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+
+	   -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+		0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+		0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+	   -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+	   -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 	};
-	// index data
-	unsigned int indices[] = {
-		// front and back
-		0, 3, 2,
-		2, 1, 0,
-		4, 5, 6,
-		6, 7 ,4,
-		// left and right
-		11, 8, 9,
-		9, 10, 11,
-		12, 13, 14,
-		14, 15, 12,
-		// bottom and top
-		16, 17, 18,
-		18, 19, 16,
-		20, 21, 22,
-		22, 23, 20
-	};
-
-	unsigned int VBO, VAO, EBO;
-	glGenVertexArrays(1, &VAO);
+	// first, configure the cube's VAO (and VBO)
+	unsigned int VBO, cubeVAO;
+	glGenVertexArrays(1, &cubeVAO);
 	glGenBuffers(1, &VBO);
-	glGenBuffers(1, &EBO);
-
-	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	glBindVertexArray(cubeVAO);
 
 	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
-	// color attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	// normal attribute
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
-	// texture coord attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-	glEnableVertexAttribArray(2);
+
+	// second, configure the light's VAO (VBO stays the same; the vertices are the same for the light object which is also a 3D cube)
+	unsigned int lightCubeVAO;
+	glGenVertexArrays(1, &lightCubeVAO);
+	glBindVertexArray(lightCubeVAO);
+
+	// we only need to bind to the VBO (to link it with glVertexAttribPointer), no need to fill it; the VBO's data already contains all we need (it's already bound, but we do it again for educational purposes)
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
+#pragma region TexturedCube
+	//float vertices[] = {
+	//	-0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 0.0f,  // A 0
+	//	0.5f, -0.5f, -0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 0.0f,  // B 1
+	//	0.5f,  0.5f, -0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 1.0f,  // C 2
+	//	-0.5f,  0.5f, -0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 1.0f,  // D 3
+	//	-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 0.0f,  // E 4
+	//	0.5f, -0.5f,  0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 0.0f,   // F 5
+	//	0.5f,  0.5f,  0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 1.0f,   // G 6
+	//	-0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 1.0f,   // H 7
+
+	//	-0.5f,  0.5f, -0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 0.0f,  // D 8
+	//	-0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 0.0f,  1.0f, 0.0f,  // A 9
+	//	-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 0.0f,  1.0f, 1.0f,  // E 10
+	//	-0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 1.0f,  // H 11
+	//	0.5f, -0.5f, -0.5f,		1.0f, 0.0f, 0.0f,  0.0f, 0.0f,   // B 12
+	//	0.5f,  0.5f, -0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 0.0f,   // C 13
+	//	0.5f,  0.5f,  0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 1.0f,   // G 14
+	//	0.5f, -0.5f,  0.5f,		1.0f, 0.0f, 0.0f,  0.0f, 1.0f,   // F 15
+
+	//	-0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 0.0f,  // A 16
+	//	0.5f, -0.5f, -0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 0.0f,   // B 17
+	//	0.5f, -0.5f,  0.5f,		1.0f, 0.0f, 0.0f,  1.0f, 1.0f,   // F 18
+	//	-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 0.0f,  0.0f, 1.0f,  // E 19
+	//	0.5f,  0.5f, -0.5f,		1.0f, 0.0f, 0.0f,   0.0f, 0.0f,  // C 20
+	//	-0.5f,  0.5f, -0.5f,	1.0f, 0.0f, 0.0f,  1.0f, 0.0f,  // D 21
+	//	-0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 0.0f,  1.0f, 1.0f,  // H 22
+	//	0.5f,  0.5f,  0.5f,		1.0f, 0.0f, 0.0f,  0.0f, 1.0f,  // G 23
+	//};
+	//// index data
+	//unsigned int indices[] = {
+	//	// front and back
+	//	0, 3, 2,
+	//	2, 1, 0,
+	//	4, 5, 6,
+	//	6, 7 ,4,
+	//	// left and right
+	//	11, 8, 9,
+	//	9, 10, 11,
+	//	12, 13, 14,
+	//	14, 15, 12,
+	//	// bottom and top
+	//	16, 17, 18,
+	//	18, 19, 16,
+	//	20, 21, 22,
+	//	22, 23, 20
+	//};
+
+	//unsigned int VBO, VAO, EBO;
+	//glGenVertexArrays(1, &VAO);
+	//glGenBuffers(1, &VBO);
+	//glGenBuffers(1, &EBO);
+
+	//glBindVertexArray(VAO);
+
+	//glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+	//// position attribute
+	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+	//glEnableVertexAttribArray(0);
+	//// color attribute
+	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	//glEnableVertexAttribArray(1);
+	//// texture coord attribute
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	//glEnableVertexAttribArray(2);
 
 
-	// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
+	//glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
-	// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
-	glBindVertexArray(0);
-
+	//// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
+	//// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
+	//glBindVertexArray(0);
 #pragma endregion
 
-
+#pragma endregion
 
 	// build and compile our shader program
 	// ------------------------------------
@@ -201,20 +263,19 @@ int main()
 	bool enable = false;
 
 
+
 	glm::vec3 cubePositions[] = {
 	glm::vec3(0.0f,  0.0f,  0.0f),
-	glm::vec3(2.0f,  5.0f, -15.0f),
-	glm::vec3(-1.5f, -2.2f, -2.5f),
-	glm::vec3(-3.8f, -2.0f, -12.3f),
-	glm::vec3(2.4f, -0.4f, -3.5f),
-	glm::vec3(-1.7f,  3.0f, -7.5f),
-	glm::vec3(1.3f, -2.0f, -2.5f),
-	glm::vec3(1.5f,  2.0f, -2.5f),
-	glm::vec3(1.5f,  0.2f, -1.5f),
-	glm::vec3(-1.3f,  1.0f, -1.5f)
+	glm::vec3(3.0f,  1.0f,  -5.0f),
+	
 	};
 
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	
+	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	float pos[] = { 3.0f, 1.0f, 2.0f };
+	glm::vec3 lightPos = glm::vec3(pos[0], pos[1], pos[2]);
+	float shininess = 0.078125f * 128;
 
 	glEnable(GL_DEPTH_TEST);
 	// render loop
@@ -228,56 +289,56 @@ int main()
 
 		DisplayFPS(window);
 
-		// render
-		// ------
+ 		// Draw(lightShader, tex1,tex2,testFloat,VAO,cubePositions);
+		
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// bind textures on corresponding texture units
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, tex1);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, tex2);
+		lightShader.use();
+		//lightShader.setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
+		//lightShader.setVec3("lightColor", glm::vec3( 1.0f, 1.0f, 1.0f));
+		//lightShader.setVec3("lightPos", lightPos);
 
-		// render container
-		shader.use();
-		shader.setFloat("mixAmount", testFloat);
-		glm::mat4 trans = glm::mat4(1.0f);
+		lightShader.setVec3("material.ambient", 0.0f,	0.05f,	0.05f);
+		lightShader.setVec3("material.diffuse", 0.4f,	0.5f,	0.5f);
+		lightShader.setVec3("material.specular", 0.04f,	0.7f,	0.7f);
+		lightShader.setFloat("material.shininess", shininess);
 
-
-		// create transformations
-		//glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-		//glm::mat4 view = glm::mat4(1.0f);
-		//glm::mat4 projection = glm::mat4(1.0f);
-		//model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
-		//view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-		//projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-		// retrieve the matrix uniform locations
-
-		//shader.setMat("model", model);
-		shader.setMat("view", cam.view);
-		shader.setMat("projection", cam.projection);
-
-		shader.setVec3("newCol", vecColor);
-
-		//glBindVertexArray(VAO);
+		lightShader.setVec3("light.ambient", 0.1f, 0.1f, 0.1f);
+		lightShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
+		lightShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+		lightShader.setVec3("light.position", lightPos);
 
 
-		glBindVertexArray(VAO);
-		for (unsigned int i = 0; i < 10; i++)
-		{
-			glm::mat4 model = glm::mat4(1.0f);
-			model = glm::translate(model, cubePositions[i]);
-			//model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
+		// view/projection transformations
+		glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+		glm::mat4 view = cam.view;
+		lightShader.setMat("projection", projection);
+		lightShader.setMat("view", view);
+		
 
-			float angle = 20.0f * i;
-			model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-			shader.setMat("model", model);
+		// world transformation
+		glm::mat4 model = glm::mat4(1.0f);
+		lightShader.setMat("model", model);
+		lightShader.setVec3("viewPos", cam.cameraPos);
 
-			//glDrawArrays(GL_TRIANGLES, 0, 36);
-			glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+		// render the cube
+		glBindVertexArray(cubeVAO);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		}
+		// also draw the lamp object
+		lightCubeShader.use();
+		lightCubeShader.setMat("projection", projection);
+		lightCubeShader.setMat("view", view);
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, lightPos);
+		model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
+		lightCubeShader.setMat("model", model);
+
+		glBindVertexArray(lightCubeVAO);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
 
 		// ImGui stuff
 		// -----------
@@ -288,9 +349,17 @@ int main()
 		ImGui::Begin("Debug Window");
 		ImGui::Text("Hello there!");
 		ImGui::Checkbox("Wireframe mode", &enable);
-		ImGui::SliderFloat("Slider", &testFloat, 0.0f, 1.0f);
+		ImGui::SliderFloat("SliderX", &pos[0], -5.0f, 5.0f);
+		ImGui::SliderFloat("SliderY", &pos[1], -5.0f, 5.0f);
+		ImGui::SliderFloat("SliderZ", &pos[2], -5.0f, 5.0f);
+		ImGui::SliderFloat("Specular shininess", &shininess, 1.0f, 512.0f);
 		ImGui::ColorEdit4("Color", color);
 		ImGui::End();
+
+		lightPos.x = pos[0];
+		lightPos.y = pos[1];
+		lightPos.z = pos[2];
+		
 
 		if (enable)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -322,9 +391,15 @@ int main()
 	ImGui::DestroyContext();
 
 	// de allocate resources
-	glDeleteVertexArrays(1, &VAO);
+	//glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
 	glDeleteProgram(shader.ID);
+
+	glDeleteVertexArrays(1, &cubeVAO);
+	glDeleteVertexArrays(1, &lightCubeVAO);
+	glDeleteBuffers(1, &VBO);
+
+	// 
 
 	// glfw: terminate, clearing all previously allocated GLFW resources.
 	// ------------------------------------------------------------------
@@ -333,6 +408,49 @@ int main()
 }
 
 
+void Draw(Shader pShader, int pTex1, int pTex2, float pTestFloat, unsigned int VAO, glm::vec3 pPositions[])
+{
+	// render
+		// ------
+	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// bind textures on corresponding texture units
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, pTex1);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, pTex2);
+
+	// render container
+	pShader.use();
+	pShader.setFloat("mixAmount", pTestFloat);
+	glm::mat4 trans = glm::mat4(1.0f);
+
+	//shader.setMat("model", model);
+	pShader.setMat("view", cam.view);
+	pShader.setMat("projection", cam.projection);
+
+	pShader.setVec3("newCol", vecColor);
+
+	//glBindVertexArray(VAO);
+
+
+	glBindVertexArray(VAO);
+	for (unsigned int i = 0; i < 10; i++)
+	{
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::translate(model, pPositions[i]);
+		//model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
+
+		float angle = 0.0f * i;
+		model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+		pShader.setMat("model", model);
+
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+	}
+}
 
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly

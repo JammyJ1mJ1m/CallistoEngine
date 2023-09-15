@@ -164,8 +164,12 @@
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\fragShader.glsl" />
-    <None Include="Shaders\vertShader.glsl" />
+    <None Include="Shaders\light_cube.frag" />
+    <None Include="Shaders\light_cube.vert" />
+    <None Include="Shaders\default.frag" />
+    <None Include="Shaders\default.vert" />
+    <None Include="Shaders\Lighting\basicLight.frag" />
+    <None Include="Shaders\Lighting\basicLight.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\awesomeface.png" />
