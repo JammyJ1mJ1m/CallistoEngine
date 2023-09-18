@@ -23,6 +23,8 @@ struct DirectionalLight {
 };
 uniform DirectionalLight dirLight;
 
+#define NR_POINT_LIGHTS 4
+
 struct PointLight {
     vec3 position;
 
@@ -34,7 +36,7 @@ struct PointLight {
     float linear;
     float quadratic;
 };
-uniform PointLight pointLight;
+uniform PointLight pointLight[NR_POINT_LIGHTS];
 
 struct SpotLight {
     vec3 position;
@@ -102,26 +104,26 @@ vec4 calculateSpotLight()
         return final;
     }
 }
-vec4 calculatePointLight()
+vec4 calculatePointLight(int i)
 {
     // ambient
-    vec3 ambient = pointLight.ambient * texture(material.diffuse, TexCoords).rgb;
+    vec3 ambient = pointLight[i].ambient * texture(material.diffuse, TexCoords).rgb;
   	
     // diffuse 
     vec3 norm = normalize(Normal);
-    vec3 lightDir = normalize(pointLight.position - FragPos);
+    vec3 lightDir = normalize(pointLight[i].position - FragPos);
     float diff = max(dot(norm, lightDir), 0.0);
-    vec3 diffuse = pointLight.diffuse * diff * texture(material.diffuse, TexCoords).rgb;  
+    vec3 diffuse = pointLight[i].diffuse * diff * texture(material.diffuse, TexCoords).rgb;  
     
     // specular
     vec3 viewDir = normalize(viewPos - FragPos);
     vec3 reflectDir = reflect(-lightDir, norm);  
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-    vec3 specular = pointLight.specular * spec * texture(material.specular, TexCoords).rgb;  
+    vec3 specular = pointLight[i].specular * spec * texture(material.specular, TexCoords).rgb;  
     
     // attenuation
-    float distance    = length(pointLight.position - FragPos);
-    float attenuation = 1.0 / (pointLight.constant + pointLight.linear * distance + pointLight.quadratic * (distance * distance));    
+    float distance    = length(pointLight[i].position - FragPos);
+    float attenuation = 1.0 / (pointLight[i].constant + pointLight[i].linear * distance + pointLight[i].quadratic * (distance * distance));    
 
     ambient  *= attenuation;  
     diffuse   *= attenuation;
@@ -165,8 +167,12 @@ void main()
 {
 vec4 total = vec4(0);
 
-    total = calculateDirLight();
-    total += calculatePointLight();
-    total += calculateSpotLight();
+    //total = calculateDirLight();
+
+    for(int i = 0; i < NR_POINT_LIGHTS; i++)
+    {
+        total += calculatePointLight(i);
+    }
+    //total += calculateSpotLight();
     FragColor = total;
 } 

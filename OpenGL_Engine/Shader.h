@@ -16,28 +16,8 @@
 class Shader
 {
 private:
-    unsigned int TexID;
-    unsigned int TexID2;
-
 public:
-    int GetTexID()
-    {
-        return TexID;
-    }
-    int GetTexID2()
-    {
-        return TexID2;
-    }
-
-    void SetTexID(const int pID)
-    {
-        TexID = pID;
-    }
-
-    void SetTexID2(const int pID)
-    {
-        TexID2 = pID;
-    }
+    
 
     // the program ID
     unsigned int ID;
@@ -185,6 +165,7 @@ public:
 
     void setVec3(const std::string& name, glm::vec3 value) const
     {
+        
         glUniform3fv(glGetUniformLocation(ID, name.c_str()),1, glm::value_ptr( value));
     }
 
