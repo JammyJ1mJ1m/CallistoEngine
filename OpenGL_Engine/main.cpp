@@ -2,6 +2,7 @@
 #include "Components/PointLight.h"
 #include "Components/SpotLight.h"
 #include "Components/DirectionalLight.h"
+#include "model.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -244,7 +245,7 @@ int main()
 
 	DirectionalLight sun = DirectionalLight(glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(1.0f, 0.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f), lightDir);
 
-
+	Model model1 = Model("Resources\\Geometry\\backpack\\Survival_BackPack_2.fbx");
 	int frame = 0;
 	glEnable(GL_DEPTH_TEST);
 	// render loop
@@ -326,7 +327,7 @@ int main()
 		model = glm::scale(model, glm::vec3(50.0f, 0.1f, 50.0f));
 		lightShader.setMat("model", model);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
-
+		model1.Draw(lightShader);
 
 		// also draw the lamp object
 		lightCubeShader.use();

@@ -3,16 +3,12 @@
 
 #include <glad/glad.h> 
 
-#include "common.h"
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-
 #include "stb_image.h"
-
-#include "Include/assimp/assimp/Importer.hpp"
-#include "Include/assimp/assimp/Scene.h"
-#include "Include/assimp/assimp/postprocess.h"
+#include "assimp/assimp/Importer.hpp"
+#include "assimp/assimp/scene.h"
+#include "assimp/assimp/postprocess.h"
 
 #include "mesh.h"
 #include "Shader.h"
