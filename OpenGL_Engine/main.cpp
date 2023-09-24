@@ -217,6 +217,8 @@ int main()
 
 	// first pointlight
 
+	float innerOuter[] = { 0.0f,-1.0f };
+	glm::vec2 innerOuterV = glm::vec2(innerOuter[0], innerOuter[1]);
 
 
 	glm::vec3 pointLightPositions[] = {
@@ -234,10 +236,10 @@ int main()
 	};
 
 	SpotLight spotLights[] = {
-		SpotLight(glm::vec3(0.1f, 0.1f, 0.1f),glm::vec3(1.0f, 1.0f, 1.0f),glm::vec3(1.0f, 1.0f, 1.0f),lightShader,pointLightPositions[0],12.5f,16.5f,lightDir),
-		SpotLight(glm::vec3(0.1f, 0.1f, 0.1f),glm::vec3(1.0f, 1.0f, 1.0f),glm::vec3(0.5f, 1.0f, 1.0f),lightShader,pointLightPositions[1],12.5f,16.5f,lightDir),
-		SpotLight(glm::vec3(0.1f, 0.1f, 0.1f),glm::vec3(1.0f, 1.0f, 1.0f),glm::vec3(0.5f, 1.0f, 1.0f),lightShader,pointLightPositions[2],12.5f,16.5f,lightDir),
-		SpotLight(glm::vec3(0.1f, 0.1f, 0.1f),glm::vec3(1.0f, 1.0f, 1.0f),glm::vec3(0.5f, 1.0f, 1.0f),lightShader,pointLightPositions[3],12.5f,16.5f,lightDir)
+		SpotLight(glm::vec3(0.1f, 0.1f, 0.1f),glm::vec3(1.0f, 1.0f, 1.0f),glm::vec3(1.0f, 1.0f, 1.0f),lightShader,pointLightPositions[0],12.5f,17.5f,lightDir),
+		SpotLight(glm::vec3(0.1f, 0.1f, 0.1f),glm::vec3(1.0f, 1.0f, 1.0f),glm::vec3(0.5f, 1.0f, 1.0f),lightShader,pointLightPositions[1],12.5f,17.5f,lightDir),
+		SpotLight(glm::vec3(0.1f, 0.1f, 0.1f),glm::vec3(1.0f, 1.0f, 1.0f),glm::vec3(0.5f, 1.0f, 1.0f),lightShader,pointLightPositions[2],12.5f,17.5f,lightDir),
+		SpotLight(glm::vec3(0.1f, 0.1f, 0.1f),glm::vec3(1.0f, 1.0f, 1.0f),glm::vec3(0.5f, 1.0f, 1.0f),lightShader,pointLightPositions[3],12.5f,17.5f,lightDir)
 	};
 
 	DirectionalLight sun = DirectionalLight(glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(1.0f, 0.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f), lightDir);
@@ -273,6 +275,8 @@ int main()
 			//lights[i].position = pointLightPositions[i];
 			lights[i].Run(pointLightPositions[i], i, &lightShader);
 			spotLights[i].Run(pointLightPositions[i], i, &lightShader);
+			spotLights[i].innerCutoff = glm::cos(glm::radians( innerOuter[0]));
+			spotLights[i].outerCutoff = glm::cos(glm::radians(innerOuter[1]));
 		}
 
 		sun.Run(pointLightPositions[0], 0, &lightShader);
@@ -375,6 +379,7 @@ int main()
 		}
 
 		ImGui::SliderFloat3("Light Dir", dir, -1.0f, 1.0f);
+		ImGui::SliderFloat2("falloff", innerOuter, 0.1f, 45.0f);
 		ImGui::SliderFloat("Specular shininess", &shininess, 1.0f, 512.0f);
 		//ImGui::SliderFloat("Emission shininess", &emissionBrightness, 0.0f, 5.0f);
 		ImGui::ColorEdit4("Color", lightColour);
@@ -383,6 +388,14 @@ int main()
 		lightDir.x = dir[0];
 		lightDir.y = dir[1];
 		lightDir.z = dir[2];
+
+
+		innerOuterV.x = innerOuter[1];
+		innerOuterV.y = innerOuter[0];
+		if (innerOuter[1] >= innerOuter[0])
+		{
+			innerOuter[0] = innerOuter[1];
+		}
 
 		if (enable)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

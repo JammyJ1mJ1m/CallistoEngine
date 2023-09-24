@@ -87,7 +87,7 @@ vec4 calculateSpotLight(int i)
         // diffuse 
         vec3 norm = normalize(Normal);
         float diff = max(dot(norm, lightDir), 0.0);
-        vec3 diffuse = spotLight[i].diffuse * diff * texture(material.diffuse, TexCoords).rgb * 2;  
+        vec3 diffuse = spotLight[i].diffuse * diff * texture(material.diffuse, TexCoords).rgb ;  
         
         // specular
         vec3 viewDir = normalize(viewPos - FragPos);
@@ -95,13 +95,20 @@ vec4 calculateSpotLight(int i)
         float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
         vec3 specular = spotLight[i].specular * spec * texture(material.specular, TexCoords).rgb;  
         
-        // attenuation
+        theta = dot(lightDir, normalize(-spotLight[i].direction)); 
+        //float theta     = dot(lightDir, normalize(-light.direction));
+        float epsilon = (spotLight[i].outerCutOff - spotLight[i].cutOff);
+        float intensity = clamp((theta - spotLight[i].cutOff) / epsilon, 0.0, 1.0);
+        diffuse  *= intensity;
+        specular *= intensity;
+       
+       // attenuation
         float distance    = length(spotLight[i].position - FragPos);
         float attenuation = 1.0 / (spotLight[i].constant + spotLight[i].linear * distance + spotLight[i].quadratic * (distance * distance));    
 
         // ambient  *= attenuation; // remove attenuation from ambient, as otherwise at large distances the light would be darker inside than outside the spotlight due the ambient term in the else branch
-        diffuse   *= attenuation;
-        specular *= attenuation;
+       // diffuse   *= attenuation;
+       // specular *= attenuation;
             
             // emission
         vec3 emission = vec3(texture(material.emission, TexCoords));
@@ -185,12 +192,12 @@ void main()
 {
 vec4 total = vec4(0);
 
-    total = calculateDirLight();
-
-    for(int i = 0; i < NR_POINT_LIGHTS; i++)
-    {
-        total += calculatePointLight(i);
-    }
+//    total = calculateDirLight();
+//
+//    for(int i = 0; i < NR_POINT_LIGHTS; i++)
+//    {
+//        total += calculatePointLight(i);
+//    }
 
     for(int i = 0; i < NR_SPOT_LIGHTS; i++)
     {
@@ -198,7 +205,7 @@ vec4 total = vec4(0);
     }
 
     // draw the emission last as it is a "light" output so other lights shouldnt intefer with it
-    total += calculateEmission(0);
+    //total += calculateEmission(0);
     //total += calculateSpotLight(0) * 3;
     FragColor = total;
 } 
