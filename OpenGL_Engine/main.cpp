@@ -217,7 +217,7 @@ int main()
 
 	// first pointlight
 
-	float innerOuter[] = { 0.0f,-1.0f };
+	float innerOuter[] = { 17.5f,12.5f };
 	glm::vec2 innerOuterV = glm::vec2(innerOuter[0], innerOuter[1]);
 
 
