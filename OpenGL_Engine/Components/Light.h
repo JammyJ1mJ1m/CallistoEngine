@@ -8,6 +8,7 @@ public:
 	~Light();
 
 	virtual void Run(glm::vec3 pos, int i, Shader* pShader);
+	std::string InsertVar(const char* first, const char* second, int var);
 
 	glm::vec3 ambient;
 	glm::vec3 diffuse;
@@ -15,6 +16,8 @@ public:
 
 	Shader* shader;
 
+	const char* name;
 private:
+
 };
 

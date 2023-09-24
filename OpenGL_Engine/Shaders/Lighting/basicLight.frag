@@ -38,6 +38,8 @@ struct PointLight {
 };
 uniform PointLight pointLight[NR_POINT_LIGHTS];
 
+#define NR_SPOT_LIGHTS 4
+
 struct SpotLight {
     vec3 position;
     vec3 direction;
@@ -53,7 +55,7 @@ struct SpotLight {
     float cutOff;
     float outerCutOff;
 };
-uniform SpotLight spotLight;
+uniform SpotLight spotLight[NR_SPOT_LIGHTS];
 
 in vec3 FragPos;  
 in vec3 Normal; 
@@ -61,46 +63,58 @@ in vec2 TexCoords;
   
 uniform vec3 viewPos;
 
-vec4 calculateSpotLight()
+vec4 calculateEmission(int i)
+{
+    vec3 emission = vec3(texture(material.emission, TexCoords));
+    emission = emission * material.emissionBrightness;
+    return vec4(emission,0);
+}
+
+
+vec4 calculateSpotLight(int i)
 {
     vec4 final = vec4(0);
-    vec3 lightDir = normalize(spotLight.position - FragPos);
+    vec3 lightDir = normalize(spotLight[i].position - FragPos);
     
     // check if lighting is inside the spotlight cone
-    float theta = dot(lightDir, normalize(-spotLight.direction)); 
+    float theta = dot(lightDir, normalize(-spotLight[i].direction)); 
     
-    if(theta > spotLight.cutOff) // remember that we're working with angles as cosines instead of degrees so a '>' is used.
+    if(theta > spotLight[i].cutOff) // remember that we're working with angles as cosines instead of degrees so a '>' is used.
     {    
         // ambient
-        vec3 ambient = spotLight.ambient * texture(material.diffuse, TexCoords).rgb;
+        vec3 ambient = spotLight[i].ambient * texture(material.diffuse, TexCoords).rgb;
         
         // diffuse 
         vec3 norm = normalize(Normal);
         float diff = max(dot(norm, lightDir), 0.0);
-        vec3 diffuse = spotLight.diffuse * diff * texture(material.diffuse, TexCoords).rgb;  
+        vec3 diffuse = spotLight[i].diffuse * diff * texture(material.diffuse, TexCoords).rgb * 2;  
         
         // specular
         vec3 viewDir = normalize(viewPos - FragPos);
         vec3 reflectDir = reflect(-lightDir, norm);  
         float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-        vec3 specular = spotLight.specular * spec * texture(material.specular, TexCoords).rgb;  
+        vec3 specular = spotLight[i].specular * spec * texture(material.specular, TexCoords).rgb;  
         
         // attenuation
-        float distance    = length(spotLight.position - FragPos);
-        float attenuation = 1.0 / (spotLight.constant + spotLight.linear * distance + spotLight.quadratic * (distance * distance));    
+        float distance    = length(spotLight[i].position - FragPos);
+        float attenuation = 1.0 / (spotLight[i].constant + spotLight[i].linear * distance + spotLight[i].quadratic * (distance * distance));    
 
         // ambient  *= attenuation; // remove attenuation from ambient, as otherwise at large distances the light would be darker inside than outside the spotlight due the ambient term in the else branch
         diffuse   *= attenuation;
-        specular *= attenuation;   
+        specular *= attenuation;
             
-        vec3 result = ambient + diffuse + specular;
+            // emission
+        vec3 emission = vec3(texture(material.emission, TexCoords));
+        emission = emission * material.emissionBrightness;
+
+        vec3 result = ambient + diffuse + specular ;//+ emission;
         final = vec4(result, 1.0);
         return final;
     }
     else 
     {
         // else, use ambient light so scene isn't completely dark outside the spotspotLight.
-        final = vec4(spotLight.ambient * texture(material.diffuse, TexCoords).rgb, 1.0);
+        final = vec4(spotLight[i].ambient * texture(material.diffuse, TexCoords).rgb, 1.0);
         return final;
     }
 }
@@ -129,7 +143,11 @@ vec4 calculatePointLight(int i)
     diffuse   *= attenuation;
     specular *= attenuation;   
         
-    vec3 result = ambient + diffuse + specular;
+   // emission
+    vec3 emission = vec3(texture(material.emission, TexCoords));
+    emission = emission * material.emissionBrightness;
+        
+    vec3 result = ambient + diffuse + specular;// + emission;
     vec4 colour = vec4(result, 1.0);
     return colour;
 }
@@ -158,7 +176,7 @@ vec4 calculateDirLight()
     vec3 emission = vec3(texture(material.emission, TexCoords));
     emission = emission * material.emissionBrightness;
         
-    vec3 result = ambient + diffuse + specular + emission;
+    vec3 result = ambient + diffuse + specular ;
     vec4 colour = vec4(result, 1.0);
     return colour;
 }
@@ -167,12 +185,20 @@ void main()
 {
 vec4 total = vec4(0);
 
-    //total = calculateDirLight();
+    total = calculateDirLight();
 
     for(int i = 0; i < NR_POINT_LIGHTS; i++)
     {
         total += calculatePointLight(i);
     }
-    //total += calculateSpotLight();
+
+    for(int i = 0; i < NR_SPOT_LIGHTS; i++)
+    {
+        total += calculateSpotLight(i);
+    }
+
+    // draw the emission last as it is a "light" output so other lights shouldnt intefer with it
+    total += calculateEmission(0);
+    //total += calculateSpotLight(0) * 3;
     FragColor = total;
 } 

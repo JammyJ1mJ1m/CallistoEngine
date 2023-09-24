@@ -10,6 +10,11 @@ PointLight::PointLight(glm::vec3 amb, glm::vec3 diff, glm::vec3 spec, Shader pSh
 	shader = &pShader;
 	position = pos;
 	//std::cout << "This is the derived class" << std::endl;
+	name = "pointLight[";
+}
+
+PointLight::PointLight()
+{
 }
 
 PointLight::~PointLight()
@@ -18,51 +23,23 @@ PointLight::~PointLight()
 
 void PointLight::Run(glm::vec3 pos, int i, Shader* pShader)
 {
-	Shader* loc;
-	loc = pShader;
-	std::cout << "passed   ptr: " << loc << std::endl;
+	pShader->setVec3(InsertVar(name, "].ambient\0", i), 0.05f, 0.05f, 0.05f);
+	pShader->setVec3(InsertVar(name, "].diffuse\0", i), diffuse);
+	pShader->setVec3(InsertVar(name, "].specular\0", i), diffuse);
+	pShader->setVec3(InsertVar(name, "].position\0", i), position);
+	pShader->setFloat(InsertVar(name, "].constant\0", i), 1.0f);
+	pShader->setFloat(InsertVar(name, "].linear\0", i), 0.022f);
+	pShader->setFloat(InsertVar(name, "].quadratic\0",i) , 0.0019f);
 
-	
-	//position = pos;
-	//std::cout << "This is running in derived run" << std::endl;
+}
 
-	std::stringstream ss;
-	ss << "pointLight[" << i << "].ambient\0";
-	std::string am = ss.str();
-	ss.str("");
 
-	ss << "pointLight[" << i << "].diffuse\0";
-	std::string di = ss.str();
-	ss.str("");
 
-	ss << "pointLight[" << i << "].specular\0";
-	std::string sp = ss.str();
-	ss.str("");
+void PointLight::SetPosition(float x, float y, float z)
+{
+	position.x = x;
+	position.y = y;
+	position.z = z;
 
-	ss << "pointLight[" << i << "].position\0";
-	std::string po = ss.str();
-	ss.str("");
-
-	ss << "pointLight[" << i << "].constant\0";
-	std::string co = ss.str();
-	ss.str("");
-
-	ss << "pointLight[" << i << "].linear\0";
-	std::string li = ss.str();
-	ss.str("");
-
-	ss << "pointLight[" << i << "].quadratic\0";
-	std::string qu = ss.str();
-
-	ss.str("");
-
-	//std::cout << "position "<< i <<" = " << position.x << position.y << position.z << std::endl;
-
-	pShader->setVec3(am, 0.05f, 0.05f, 0.05f);
-	pShader->setVec3(di, diffuse);
-	pShader->setVec3(sp, 1.0f, 1.0f, 1.0f);
-	pShader->setVec3(po, position);
-	pShader->setFloat(co, 1.0f);
-	pShader->setFloat(li, 0.022f);
-	pShader->setFloat(qu, 0.0019f);
+	//std::cout << position.x << position.y << position.z << std::endl;
 }

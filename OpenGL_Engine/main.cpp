@@ -1,5 +1,7 @@
 #include "main.h"
 #include "Components/PointLight.h"
+#include "Components/SpotLight.h"
+#include "Components/DirectionalLight.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -92,8 +94,8 @@ int main()
 	Shader shader("Shaders/default.vert", "Shaders/default.frag");
 	Shader lightShader("Shaders/Lighting/basicLight.vert", "Shaders/Lighting/basicLight.frag");
 	Shader lightCubeShader("Shaders/light_cube.vert", "Shaders/light_cube.frag");
-	
-	
+
+
 	float vertices[] = {
 		// positions          // normals           // texture coords
 		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
@@ -171,7 +173,7 @@ int main()
 	// ------------------------------------
 	int tex1, tex2, tex3;
 
-	tex1 = lightShader.LoadTexture("Textures\\box.png",true);
+	tex1 = lightShader.LoadTexture("Textures\\box.png", true);
 	tex2 = lightShader.LoadTexture("Textures\\box_specular.png", true);
 	tex3 = lightShader.LoadTexture("Textures\\box_emission.png", true);
 
@@ -187,8 +189,6 @@ int main()
 
 	bool enable = false;
 
-
-
 	glm::vec3 cubePositions[] = {
 		glm::vec3(0.0f,  0.0f,  0.0f),
 		glm::vec3(2.0f,  5.0f, -15.0f),
@@ -203,10 +203,10 @@ int main()
 	};
 
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	
+
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	float pos[] = { 0.0f, 1.0f, 0.0f };
-	glm::vec3 lightPos = glm::vec3(pos[0], pos[1], pos[2]);
+	/*float pos[] = { 0.0f, 1.0f, 0.0f };
+	glm::vec3 lightPos = glm::vec3(pos[0], pos[1], pos[2]);*/
 	float dir[] = { 0.0f,-1.0f,0.0f };
 	glm::vec3 lightDir = glm::vec3(dir[0], dir[1], dir[2]);
 	float shininess = 0.078125f * 128;
@@ -217,20 +217,32 @@ int main()
 
 	// first pointlight
 
-	PointLight lights[] = {
-		PointLight (glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f), lightShader, lightPos),
-		PointLight(glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(1.0f,0.0f,0.0f), glm::vec3(1.0f, 1.0f, 1.0f), lightShader, lightPos),
-		PointLight(glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(0.0f,1.0f,0.0f), glm::vec3(1.0f, 1.0f, 1.0f), lightShader, lightPos),
-		PointLight (glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(1.0f,0.0f,1.0f), glm::vec3(1.0f, 1.0f, 1.0f), lightShader, lightPos)
-	};
+
 
 	glm::vec3 pointLightPositions[] = {
-		glm::vec3(-5.0f,0.0f,1.0f),
-		glm::vec3(-0.0f,0.0f,1.0f),
-		glm::vec3(5.0f,0.0f,1.0f),
-		glm::vec3(5.0f,5.0f,1.0f)
-		
+	   glm::vec3(0.0f,  1.0f,  0.0f),
+	   glm::vec3(2.3f, -3.3f, -4.0f),
+	   glm::vec3(-4.0f,  2.0f, -12.0f),
+	   glm::vec3(0.0f,  0.0f, -3.0f)
 	};
+
+	PointLight lights[] = {
+		PointLight(glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f), lightShader, pointLightPositions[0]),
+		PointLight(glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(1.0f,1.0f,1.0f), glm::vec3(1.0f, 1.0f, 1.0f), lightShader, pointLightPositions[1]),
+		PointLight(glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(1.0f,1.0f,1.0f), glm::vec3(1.0f, 1.0f, 1.0f), lightShader, pointLightPositions[2]),
+		PointLight(glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(1.0f,1.0f,1.0f), glm::vec3(1.0f, 1.0f, 1.0f), lightShader, pointLightPositions[3])
+	};
+
+	SpotLight spotLights[] = {
+		SpotLight(glm::vec3(0.1f, 0.1f, 0.1f),glm::vec3(1.0f, 1.0f, 1.0f),glm::vec3(1.0f, 1.0f, 1.0f),lightShader,pointLightPositions[0],12.5f,16.5f,lightDir),
+		SpotLight(glm::vec3(0.1f, 0.1f, 0.1f),glm::vec3(1.0f, 1.0f, 1.0f),glm::vec3(0.5f, 1.0f, 1.0f),lightShader,pointLightPositions[1],12.5f,16.5f,lightDir),
+		SpotLight(glm::vec3(0.1f, 0.1f, 0.1f),glm::vec3(1.0f, 1.0f, 1.0f),glm::vec3(0.5f, 1.0f, 1.0f),lightShader,pointLightPositions[2],12.5f,16.5f,lightDir),
+		SpotLight(glm::vec3(0.1f, 0.1f, 0.1f),glm::vec3(1.0f, 1.0f, 1.0f),glm::vec3(0.5f, 1.0f, 1.0f),lightShader,pointLightPositions[3],12.5f,16.5f,lightDir)
+	};
+
+	DirectionalLight sun = DirectionalLight(glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(1.0f, 0.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f), lightDir);
+
+
 	int frame = 0;
 	glEnable(GL_DEPTH_TEST);
 	// render loop
@@ -245,64 +257,32 @@ int main()
 
 		DisplayFPS(window);
 
- 		// Draw(lightShader, tex1,tex2,testFloat,VAO,cubePositions);
-		
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
 		lightShader.use();
-		//lightShader.setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
-		//lightShader.setVec3("lightColor", glm::vec3( 1.0f, 1.0f, 1.0f));
-		//lightShader.setVec3("lightPos", lightPos);
-
 
 		// material properties
 		lightShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
 		lightShader.setFloat("material.shininess", shininess);
 		lightShader.setFloat("material.emissionBrightness", emissionBrightness);
-		
-		
-
-		Shader* loc;
-		loc = &lightShader;
-		std::cout << "original ptr: " << loc << " || " << "Frame: " << frame <<std::endl;
 
 		// 4 point lights
 		for (int i = 0; i < 4; i++)
 		{
-			lights[i].position = pointLightPositions[i];
-			lights[i].Run(lightPos, i, &lightShader);
+			//lights[i].position = pointLightPositions[i];
+			lights[i].Run(pointLightPositions[i], i, &lightShader);
+			spotLights[i].Run(pointLightPositions[i], i, &lightShader);
 		}
 
-		// directional lights
-		//lightShader.setVec3("dirLight.direction", lightDir);
-		//lightShader.setVec3("dirLight.ambient", 0.1f, 0.1f, 0.1f);
-		//lightShader.setVec3("dirLight.diffuse", lightCol);
-		//lightShader.setVec3("dirLight.specular", 1.0f, 1.0f, 1.0f);
-
-		//// spotlight
-		//lightShader.setVec3("spotLight.position", lightPos);
-		//lightShader.setVec3("spotLight.direction", lightDir);
-		//lightShader.setVec3("spotLight.ambient", 0.1f, 0.1f, 0.1f);
-		//lightShader.setVec3("spotLight.diffuse", lightCol);
-		//lightShader.setVec3("spotLight.specular", 1.0f, 1.0f, 1.0f);
-
-		//lightShader.setFloat("spotLight.constant", 1.0f);
-		//lightShader.setFloat("spotLight.linear", 0.09f);
-		//lightShader.setFloat("spotLight.quadratic", 0.032f);
-
-		//lightShader.setFloat("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
-		//lightShader.setFloat("spotLight.outerCutOff", glm::cos(glm::radians(16.5f)));
-
-		
+		sun.Run(pointLightPositions[0], 0, &lightShader);
 
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 		glm::mat4 view = cam.view;
 		lightShader.setMat("projection", projection);
 		lightShader.setMat("view", view);
-		
+
 
 		// world transformation
 		glm::mat4 model = glm::mat4(1.0f);
@@ -322,34 +302,44 @@ int main()
 		//glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		glBindVertexArray(cubeVAO);
-		for (unsigned int i = 0; i < 1; i++)
+		for (unsigned int i = 0; i < 20; i++)
 		{
 			// calculate the model matrix for each object and pass it to shader before drawing
 			glm::mat4 model = glm::mat4(1.0f);
 			model = glm::translate(model, cubePositions[i]);
 			float angle = 20.0f * i;
 			model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-			model = glm::scale(model, glm::vec3(15.0f,15.0f,1.0f));
+			model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 			lightShader.setMat("model", model);
 
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
 
-		// also draw the lamp object
-		lightCubeShader.use();
-		lightCubeShader.setMat("projection", projection);
-		lightCubeShader.setMat("view", view);
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, lightPos);
-		model = glm::scale(model, glm::vec3(0.05f)); // a smaller cube
-		lightCubeShader.setMat("model", model);
+		model = glm::translate(model, glm::vec3(0.0f, -5.0f, 0.0f));
 
-		glBindVertexArray(lightCubeVAO);
+
+		model = glm::scale(model, glm::vec3(50.0f, 0.1f, 50.0f));
+		lightShader.setMat("model", model);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		
 
-		
+		// also draw the lamp object
+		lightCubeShader.use();
+		for (int i = 0; i < 4; i++)
+		{
+			lightCubeShader.setMat("projection", projection);
+			lightCubeShader.setMat("view", view);
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, pointLightPositions[i]);
+			model = glm::scale(model, glm::vec3(0.05f)); // a smaller cube
+			lightCubeShader.setMat("model", model);
+
+			glBindVertexArray(lightCubeVAO);
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+
+
 		emissionBrightness = sin(glfwGetTime() * 1.0f) + 1.1f;
 		//std::cout << emissionBrightness << std::endl;
 		// ImGui stuff
@@ -361,25 +351,38 @@ int main()
 		ImGui::Begin("Debug Window");
 		ImGui::Text("Hello there!");
 		ImGui::Checkbox("Wireframe mode", &enable);
-		ImGui::SliderFloat3("Light Pos", pos, -5.0f, 5.0f);
+
+		for (int i = 0; i < sizeof(lights) / sizeof(lights[0]); i++)
+		{
+			float pos[] = { lights[i].position.x, lights[i].position.y, lights[i].position.z };
+			std::stringstream ss;
+			ss << "Light Pos: " << i;
+			std::string s = ss.str();
+
+			const char* output = s.c_str();
+
+			ImGui::SliderFloat3(output, pos, -5.0f, 5.0f);
+			lights[i].SetPosition(pos[0], pos[1], pos[2]);
+			spotLights[i].SetPosition(pos[0], pos[1], pos[2]);
+
+			pointLightPositions[i].x = pos[0];
+			pointLightPositions[i].y = pos[1];
+			pointLightPositions[i].z = pos[2];
+
+			spotLights[i].direction.x = dir[0];
+			spotLights[i].direction.y = dir[1];
+			spotLights[i].direction.z = dir[2];
+		}
+
 		ImGui::SliderFloat3("Light Dir", dir, -1.0f, 1.0f);
-		ImGui::SliderFloat("Specular shininess", &shininess, 1.0f, 512.0f); 
+		ImGui::SliderFloat("Specular shininess", &shininess, 1.0f, 512.0f);
 		//ImGui::SliderFloat("Emission shininess", &emissionBrightness, 0.0f, 5.0f);
 		ImGui::ColorEdit4("Color", lightColour);
 		ImGui::End();
 
-		lightPos.x = pos[0];
-		lightPos.y = pos[1];
-		lightPos.z = pos[2];
-
 		lightDir.x = dir[0];
 		lightDir.y = dir[1];
 		lightDir.z = dir[2];
-
-		lightCol.x = lightColour[0];
-		lightCol.y = lightColour[1];
-		lightCol.z = lightColour[2];
-		
 
 		if (enable)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -418,8 +421,6 @@ int main()
 	glDeleteVertexArrays(1, &cubeVAO);
 	glDeleteVertexArrays(1, &lightCubeVAO);
 	glDeleteBuffers(1, &VBO);
-
-	// 
 
 	// glfw: terminate, clearing all previously allocated GLFW resources.
 	// ------------------------------------------------------------------
@@ -484,24 +485,20 @@ void processInput(GLFWwindow* window)
 
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 	{
-		std::cout << "W pressed" << std::endl;
 		cam.MoveForward(camSpeed);
 	}
 
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 	{
-		std::cout << "S pressed" << std::endl;
 		cam.MoveForward(-camSpeed);
 	}
 
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 	{
-		std::cout << "A pressed" << std::endl;
 		cam.Strafe(-camSpeed);
 	}
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 	{
-		std::cout << "D pressed" << std::endl;
 		cam.Strafe(camSpeed);
 	}
 }
