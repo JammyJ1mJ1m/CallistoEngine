@@ -75,6 +75,12 @@
     <ClCompile Include="Components\DirectionalLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -131,6 +137,12 @@
     <ClInclude Include="Components\DirectionalLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\default.frag" />
@@ -139,6 +151,7 @@
     <None Include="Shaders\Lighting\basicLight.vert" />
     <None Include="Shaders\light_cube.frag" />
     <None Include="Shaders\light_cube.vert" />
+    <None Include="x64\Debug\assimp-vc142-mt.dll" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\rockwall.png">
@@ -163,6 +176,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Textures\box_emission.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Geometry\SpaceShip\diffuse.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Geometry\SpaceShip\Intergalactic_Spaceship_nmap_2_Tris.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Geometry\SpaceShip\Intergalactic_Spaceship_rough.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

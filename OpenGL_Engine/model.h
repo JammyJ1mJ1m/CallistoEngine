@@ -6,12 +6,12 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "stb_image.h"
-#include "assimp/assimp/Importer.hpp"
-#include "assimp/assimp/scene.h"
-#include "assimp/assimp/postprocess.h"
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
-#include "mesh.h"
+#include <assimp/Importer.hpp>
 #include "Shader.h"
+#include "mesh.h"
 
 #include <string>
 #include <fstream>
@@ -21,7 +21,7 @@
 #include <vector>
 using namespace std;
 
-unsigned int TextureFromFile(const char* path, const string& directory, bool gamma = false);
+static unsigned int TextureFromFile(const char* path, const string& directory, bool gamma = false);
 
 class Model
 {

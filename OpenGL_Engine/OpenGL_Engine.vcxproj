@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);libs</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);include;$(ProjectDir)include\assimp;</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);lib;$(ProjectDir)lib\assimp;$(ProjectDir)lib\irrKlang;</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -108,12 +108,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>imgui</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>imgui;$(ProjectDir)libs\assimp;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;assimp.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -147,6 +147,8 @@
     <ClCompile Include="Components\Light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Components\PointLight.cpp" />
+    <ClCompile Include="mesh.cpp" />
+    <ClCompile Include="model.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Components\SpotLight.cpp" />
     <ClCompile Include="stb_image.cpp" />
@@ -167,6 +169,8 @@
     <ClInclude Include="Components\Light.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Components\PointLight.h" />
+    <ClInclude Include="mesh.h" />
+    <ClInclude Include="model.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Components\SpotLight.h" />
     <ClInclude Include="stb_image.h" />
@@ -178,8 +182,18 @@
     <None Include="Shaders\default.vert" />
     <None Include="Shaders\Lighting\basicLight.frag" />
     <None Include="Shaders\Lighting\basicLight.vert" />
+    <None Include="x64\Debug\assimp-vc142-mt.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resources\Geometry\SpaceShip\diffuse.jpg">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="Resources\Geometry\SpaceShip\Intergalactic_Spaceship_nmap_2_Tris.jpg">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="Resources\Geometry\SpaceShip\Intergalactic_Spaceship_rough.jpg">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
     <Image Include="Textures\awesomeface.png" />
     <Image Include="Textures\box.png" />
     <Image Include="Textures\box2.png" />
