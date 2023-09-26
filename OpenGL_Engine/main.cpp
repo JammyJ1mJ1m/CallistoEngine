@@ -95,7 +95,17 @@ int main()
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 460");
 
-	Shader shader("Shaders/default.vert", "Shaders/default.frag");
+	//Shader shader("Shaders/default.vert", "Shaders/default.frag");
+	Shader shader("Shaders/Lighting/basicLight.vert", "Shaders/Lighting/basicLight.frag");
+
+	PointLight point1 = PointLight(
+		glm::vec3(0.1f, 0.1f, 0.1f),
+		glm::vec3(1.0f, 1.0f, 1.0f),
+		glm::vec3(1.0f, 1.0f, 1.0f),
+		shader,
+		glm::vec3(5.0f,6.0f,0.0f)
+		);
+
 
 #pragma region Light stuff
 
@@ -140,9 +150,12 @@ int main()
 #pragma endregion
 
 	Model model1 = Model("resources/geometry/backpack/backpack.obj");
+	//Model model1 = Model("resources/geometry/TCube/TCube.obj");
 	int frame = 0;
 	
 	glEnable(GL_DEPTH_TEST);
+
+	float pos[] = { point1.position.x,point1.position.y, point1.position.z };
 
 	bool enable = false;
 	// render loop
@@ -173,12 +186,16 @@ int main()
 		shader.setMat("projection", projection);
 		shader.setMat("view", view);
 
+
 		// render the loaded model
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f)); // translate it down so it's at the center of the scene
+		
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
 		shader.setMat("model", model);
 		model1.Draw(shader);
+		point1.Run(glm::vec3(0.5f, 0.5f, 0.5f), 0, &shader);
 
 		// ImGui stuff
 		// -----------
@@ -191,13 +208,16 @@ int main()
 		ImGui::Checkbox("Wireframe mode", &enable);
 		
 
-		//ImGui::SliderFloat3("Light Dir", dir, -1.0f, 1.0f);
+		ImGui::SliderFloat3("Light Pos", pos, -10.0f, 10.0f);
 		//ImGui::SliderFloat2("falloff", innerOuter, 0.1f, 45.0f);
 		//ImGui::SliderFloat("Specular shininess", &shininess, 1.0f, 512.0f);
 		////ImGui::SliderFloat("Emission shininess", &emissionBrightness, 0.0f, 5.0f);
 		//ImGui::ColorEdit4("Color", lightColour);
 		ImGui::End();
 
+		point1.position.x = pos[0];
+		point1.position.y = pos[1];
+		point1.position.z = pos[2];
 
 		if (enable)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -218,9 +238,9 @@ int main()
 		glfwPollEvents();
 	}
 
-	//ImGui_ImplOpenGL3_Shutdown();
-	//ImGui_ImplGlfw_Shutdown();
-	//ImGui::DestroyContext();
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 
 	// de allocate resources
 

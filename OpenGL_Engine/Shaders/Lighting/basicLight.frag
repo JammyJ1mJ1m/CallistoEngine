@@ -23,7 +23,7 @@ struct DirectionalLight {
 };
 uniform DirectionalLight dirLight;
 
-#define NR_POINT_LIGHTS 4
+#define NR_POINT_LIGHTS 1
 
 struct PointLight {
     vec3 position;
@@ -192,20 +192,20 @@ void main()
 {
 vec4 total = vec4(0);
 
-//    total = calculateDirLight();
-//
-//    for(int i = 0; i < NR_POINT_LIGHTS; i++)
-//    {
-//        total += calculatePointLight(i);
-//    }
+    total = calculateDirLight();
 
-    for(int i = 0; i < NR_SPOT_LIGHTS; i++)
+    for(int i = 0; i < NR_POINT_LIGHTS; i++)
     {
-        total += calculateSpotLight(i);
+        total += calculatePointLight(i);
     }
 
+//    for(int i = 0; i < NR_SPOT_LIGHTS; i++)
+//    {
+//        total += calculateSpotLight(i);
+//    }
+
     // draw the emission last as it is a "light" output so other lights shouldnt intefer with it
-    //total += calculateEmission(0);
-    //total += calculateSpotLight(0) * 3;
+    total += calculateEmission(0);
+    total += calculateSpotLight(0) * 3;
     FragColor = total;
 } 
