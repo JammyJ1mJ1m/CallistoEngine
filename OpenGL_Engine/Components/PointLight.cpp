@@ -25,7 +25,7 @@ void PointLight::Run(glm::vec3 pos, int i, Shader* pShader)
 {
 	pShader->setVec3(InsertVar(name, "].ambient\0", i), 0.05f, 0.05f, 0.05f);
 	pShader->setVec3(InsertVar(name, "].diffuse\0", i), diffuse);
-	pShader->setVec3(InsertVar(name, "].specular\0", i), diffuse);
+	pShader->setVec3(InsertVar(name, "].specular\0", i), specular);
 	pShader->setVec3(InsertVar(name, "].position\0", i), position);
 	pShader->setFloat(InsertVar(name, "].constant\0", i), 1.0f);
 	pShader->setFloat(InsertVar(name, "].linear\0", i), 0.022f);

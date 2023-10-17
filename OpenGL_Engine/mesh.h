@@ -71,25 +71,25 @@ public:
             // retrieve texture number (the N in diffuse_textureN)
             string number;
             string name = textures[i].type;
-            if (name == "material.diffuse")
+            if (name == "diffuse")
                 number = std::to_string(diffuseNr++);
-            else if (name == "material.specular")
+            else if (name == "specular")
                 number = std::to_string(specularNr++); // transfer unsigned int to string
-            else if (name == "material.normal")
+            else if (name == "normal")
                 number = std::to_string(normalNr++); // transfer unsigned int to string
-            else if (name == "material.height")
+            else if (name == "height")
                 number = std::to_string(heightNr++); // transfer unsigned int to string
-            else if (name == "material.emission")
+            else if (name == "emission")
                 number = std::to_string(emissionNr++); // transfer unsigned int to string
  
             // now set the sampler to the correct texture unit
-            glUniform1i(glGetUniformLocation(shader.ID, (name).c_str()), i);
+            glUniform1i(glGetUniformLocation(shader.ID, ("material."+name).c_str()), i);
             // and finally bind the texture
             glBindTexture(GL_TEXTURE_2D, textures[i].id);
         }
 
         shader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
-        shader.setFloat("material.shininess", 32.0f);
+        shader.setFloat("material.shininess", 128.0f);
         shader.setFloat("material.emissionBrightness", 1.0f);
 
         // draw mesh

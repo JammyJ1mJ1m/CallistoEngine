@@ -142,13 +142,13 @@ vec4 calculatePointLight(int i)
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
     vec3 specular = pointLight[i].specular * spec * texture(material.specular, TexCoords).rgb;  
     
-    // attenuation
+    
+     // attenuation
     float distance    = length(pointLight[i].position - FragPos);
     float attenuation = 1.0 / (pointLight[i].constant + pointLight[i].linear * distance + pointLight[i].quadratic * (distance * distance));    
-
-    ambient  *= attenuation;  
+    ambient  *= attenuation; 
     diffuse   *= attenuation;
-    specular *= attenuation;   
+    specular *= attenuation;  
         
    // emission
     vec3 emission = vec3(texture(material.emission, TexCoords));
@@ -192,7 +192,7 @@ void main()
 {
 vec4 total = vec4(0);
 
-    total = calculateDirLight();
+   // total = calculateDirLight();
 
     for(int i = 0; i < NR_POINT_LIGHTS; i++)
     {
@@ -205,7 +205,7 @@ vec4 total = vec4(0);
 //    }
 
     // draw the emission last as it is a "light" output so other lights shouldnt intefer with it
-    total += calculateEmission(0);
-    total += calculateSpotLight(0) * 3;
+    //total += calculateEmission(0);
+    //total += calculateSpotLight(0) * 3;
     FragColor = total;
 } 

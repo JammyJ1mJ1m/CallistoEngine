@@ -101,9 +101,9 @@ int main()
 	PointLight point1 = PointLight(
 		glm::vec3(0.1f, 0.1f, 0.1f),
 		glm::vec3(1.0f, 1.0f, 1.0f),
-		glm::vec3(1.0f, 1.0f, 1.0f),
+		glm::vec3(1.0f, 0.0f, 1.0f),
 		shader,
-		glm::vec3(5.0f,6.0f,0.0f)
+		glm::vec3(5.0f,-3.5f,4.0f)
 		);
 
 
@@ -149,7 +149,8 @@ int main()
 	//DirectionalLight sun = DirectionalLight(glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(1.0f, 0.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f), lightDir);
 #pragma endregion
 
-	Model model1 = Model("resources/geometry/backpack/backpack.obj");
+	Model model1 = Model("resources/geometry/TCube/TCube.obj");
+	Model model2 = Model("resources/geometry/backpack/backpack.obj");
 	//Model model1 = Model("resources/geometry/TCube/TCube.obj");
 	int frame = 0;
 	
@@ -174,7 +175,7 @@ int main()
 
 		// render
 		// ------
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// don't forget to enable shader before setting uniforms
@@ -185,16 +186,26 @@ int main()
 		glm::mat4 view = cam.view;
 		shader.setMat("projection", projection);
 		shader.setMat("view", view);
+		shader.setVec3("viewPos", cam.cameraPos);
 
 
 		// render the loaded model
 		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f)); // translate it down so it's at the center of the scene
-		
-		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+		model *= glm::translate(model, glm::vec3(0.0f, -1.0f, 0.0f)); // translate it down so it's at the center of the scene
+		model *= glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f)); // translate it down so it's at the center of the scene
+		model *= glm::scale(model, glm::vec3(5.0f, 1.0f, 5.0f));	// it's a bit too big for our scene, so scale it down		
 		shader.setMat("model", model);
 		model1.Draw(shader);
+
+
+		model = glm::mat4(1.0f);
+		model *= glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+		model *= glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f)); // translate it down so it's at the center of the scene
+		shader.setMat("model", model);
+
+		model2.Draw(shader);
+
+		//model2.Draw(shader);
 		point1.Run(glm::vec3(0.5f, 0.5f, 0.5f), 0, &shader);
 
 		// ImGui stuff
@@ -203,7 +214,7 @@ int main()
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
-		ImGui::Begin("Debug Window");
+		ImGui::Begin("Debug Window");	
 		ImGui::Text("Hello there!");
 		ImGui::Checkbox("Wireframe mode", &enable);
 		
