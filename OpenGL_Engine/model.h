@@ -26,6 +26,8 @@ static unsigned int TextureFromFile(const char* path, const string& directory, b
 class Model
 {
 public:
+    unsigned int depthMap;
+
     // model data 
     vector<Texture> textures_loaded;	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
     vector<Mesh>    meshes;
@@ -42,7 +44,7 @@ public:
     void Draw(Shader& shader)
     {
         for (unsigned int i = 0; i < meshes.size(); i++)
-            meshes[i].Draw(shader);
+            meshes[i].Draw(shader, depthMap);
     }
 
 private:

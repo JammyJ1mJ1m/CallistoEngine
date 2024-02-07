@@ -57,7 +57,7 @@ public:
     }
 
     // render the mesh
-    void Draw(Shader& shader)
+    void Draw(Shader& shader, const unsigned int depthMap)
     {
         // bind appropriate textures
         unsigned int diffuseNr = 1;
@@ -65,8 +65,10 @@ public:
         unsigned int normalNr = 1;
         unsigned int heightNr = 1;
         unsigned int emissionNr = 1;
-        for (unsigned int i = 0; i < textures.size(); i++)
+        int offset = 0;
+        for (unsigned int i = 0; i < 1; i++)
         {
+            offset = i;
             glActiveTexture(GL_TEXTURE0 + i); // active proper texture unit before binding
             // retrieve texture number (the N in diffuse_textureN)
             string number;
@@ -83,14 +85,16 @@ public:
                 number = std::to_string(emissionNr++); // transfer unsigned int to string
  
             // now set the sampler to the correct texture unit
-            glUniform1i(glGetUniformLocation(shader.ID, ("material."+name).c_str()), i);
+           // glUniform1i(glGetUniformLocation(shader.ID, ("material."+name).c_str()), i);
             // and finally bind the texture
             glBindTexture(GL_TEXTURE_2D, textures[i].id);
         }
 
-        shader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+        glActiveTexture(GL_TEXTURE0 + offset + 1);
+        glBindTexture(GL_TEXTURE_2D, depthMap);
+        /*shader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
         shader.setFloat("material.shininess", 128.0f);
-        shader.setFloat("material.emissionBrightness", 1.0f);
+        shader.setFloat("material.emissionBrightness", 1.0f);*/
 
         // draw mesh
         glBindVertexArray(VAO);

@@ -192,12 +192,12 @@ void main()
 {
 vec4 total = vec4(0);
 
-   // total = calculateDirLight();
+    total = calculateDirLight();
 
-    for(int i = 0; i < NR_POINT_LIGHTS; i++)
-    {
-        total += calculatePointLight(i);
-    }
+//    for(int i = 0; i < NR_POINT_LIGHTS; i++)
+//    {
+//        total += calculatePointLight(i);
+//    }
 
 //    for(int i = 0; i < NR_SPOT_LIGHTS; i++)
 //    {

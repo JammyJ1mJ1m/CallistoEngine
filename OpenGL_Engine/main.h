@@ -19,9 +19,14 @@
 
 #include "Camera.h"
 
+#include "model.h"
+
+
 //#include "imgui_impl_opengl3.h"
 
 class main
 {
-};
+public:
+	void renderScene(Shader& shader, Model& boxModel);
 
+};
