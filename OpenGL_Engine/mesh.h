@@ -66,6 +66,8 @@ public:
         unsigned int heightNr = 1;
         unsigned int emissionNr = 1;
         int offset = 0;
+
+        // change 1 to textures.size() when implemented the material on the shader
         for (unsigned int i = 0; i < 1; i++)
         {
             offset = i;
