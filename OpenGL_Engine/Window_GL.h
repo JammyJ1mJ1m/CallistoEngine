@@ -12,7 +12,7 @@ class Window_GL : public Window
 public:
 
 	Window_GL(Game* game, const int width, const int height);
-	virtual int Initialise();
+	virtual int Initialise(const char* pTitle);
 
 	//virtual void OnResize( int width, int height) override;
 
@@ -22,6 +22,7 @@ public:
 	virtual void Close();
 
 	virtual void Update();
+	virtual void SetTitle(const char* pTitle);
 
 	virtual ~Window_GL();
 };

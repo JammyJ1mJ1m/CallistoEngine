@@ -12,7 +12,10 @@ int main()
 	Game* game;
 
 	Window_GL* _window = new Window_GL(new ShooterGame(), 800, 800);
-	_window->Initialise();
+
+
+	_window->Initialise("Gamey game");
+
 
 	game = _window->GetGame();
 	game->Initialise(_window);

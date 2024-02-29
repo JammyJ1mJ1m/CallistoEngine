@@ -9,8 +9,9 @@ Window_GL::Window_GL(Game* game, const int width, const int height)
     _game = game;
 }
 
-int Window_GL::Initialise()
+int Window_GL::Initialise(const char* pTitle)
 {
+    SetTitle(pTitle);
     _renderer = new Renderer_GL();
 
     void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -25,7 +26,7 @@ int Window_GL::Initialise()
 
     // glfw window creation
     // --------------------
-    _window = glfwCreateWindow(_width, _height, "LearnOpenGL", NULL, NULL);
+    _window = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
     if (_window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -86,6 +87,11 @@ void Window_GL::Update()
 
      glfwSwapBuffers(_window);
      glfwPollEvents();
+}
+
+void Window_GL::SetTitle(const char* pTitle)
+{
+    _title = pTitle;
 }
 
 Window_GL::~Window_GL()

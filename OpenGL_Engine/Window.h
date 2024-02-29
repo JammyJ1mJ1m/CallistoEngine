@@ -1,7 +1,11 @@
 #pragma once
+#include <string>
+
 class Game;
 class Renderer;
 
+
+// not entirely sure what this is doing here
 enum GameState
 {
 	Playing,
@@ -13,7 +17,10 @@ enum GameState
 
 class Window
 {
-	// Constants and statics
+
+protected:
+	std::string _title;
+
 public:
 
 	static Window* TheWindow;
@@ -38,8 +45,9 @@ public:
 	Renderer* GetRenderer() const { return _renderer; }
 
 	virtual void Update() = 0;
+	virtual void SetTitle(const char* pTitle) = 0;
 
-	virtual int Initialise() = 0;
+	virtual int Initialise(const char* pTitle) = 0;
 	//virtual void OnResize(int width, int height) = 0;
 	virtual void Close() = 0;
 
