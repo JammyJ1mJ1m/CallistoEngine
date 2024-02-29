@@ -2,7 +2,7 @@
 
 void Renderer_GL::ClearScreen()
 {
-	glClearColor(_clearColour.GetX(), _clearColour.GetX(), _clearColour.GetX(), _clearColour.GetX());
+	glClearColor(_clearColour.GetX(), _clearColour.GetY(), _clearColour.GetZ(), _clearColour.GetW());
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
