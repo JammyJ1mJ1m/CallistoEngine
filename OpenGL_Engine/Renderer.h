@@ -7,6 +7,8 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
+#include "Vector4.h"
+
 // Forward declarations
 class GameObject;
 
@@ -16,7 +18,7 @@ class Renderer
 {
 	// Data
 protected:
-	// Colour	_clearColour;
+	 Vector4 _clearColour;
 public:
 
 	// Structors

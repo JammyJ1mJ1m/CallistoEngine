@@ -11,17 +11,25 @@ int main()
 #if OPENGL	
 	Game* game;
 
+	Window_GL* _window = new Window_GL(new ShooterGame(), 800, 800);
+	_window->Initialise();
 
+	game = _window->GetGame();
+	game->Initialise(_window);
 
-	Window_GL _window = Window_GL(new ShooterGame(), 800, 800);
-	game = _window.GetGame();
-	game->Run();
+	while (true)
+	{
+		_window->Update();
+		game->Run();
+	}
 
 	/*_window->Initialise();
 
 	SceneManager* sceneManager = new SceneManager(800,800);
 	sceneManager->Run();
 	delete sceneManager;*/
+
+	delete _window;
 #endif
 
 #if DIRECTX

@@ -11,6 +11,8 @@ Window_GL::Window_GL(Game* game, const int width, const int height)
 
 int Window_GL::Initialise()
 {
+    _renderer = new Renderer_GL();
+
     void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
     // glfw: initialize and configure
@@ -23,15 +25,15 @@ int Window_GL::Initialise()
 
     // glfw window creation
     // --------------------
-    GLFWwindow* window = glfwCreateWindow(_width, _height, "LearnOpenGL", NULL, NULL);
-    if (window == NULL)
+    _window = glfwCreateWindow(_width, _height, "LearnOpenGL", NULL, NULL);
+    if (_window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         return -1;
     }
-    glfwMakeContextCurrent(window);
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwMakeContextCurrent(_window);
+    glfwSetFramebufferSizeCallback(_window, framebuffer_size_callback);
 
     // glad: load all OpenGL function pointers
     // ---------------------------------------
@@ -41,27 +43,30 @@ int Window_GL::Initialise()
         return -1;
     }
 
-    while (!glfwWindowShouldClose(window))
-    {
-        // input
-        // -----
-        processInput(window);
+    //while (!glfwWindowShouldClose(window))
+    //{
+    //    // input
+    //    // -----
+    //    processInput(window);
 
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    }
+    //    // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+    //    // -------------------------------------------------------------------------------
+    //    glfwSwapBuffers(window);
+    //    glfwPollEvents();
+    //}
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
-    glfwTerminate();
+    // glfwTerminate();
 }
 
 void Window_GL::processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    {
         glfwSetWindowShouldClose(window, true);
+        Close();
+    }
 }
 
 
@@ -70,6 +75,20 @@ void Window_GL::framebuffer_size_callback(GLFWwindow* window, int width, int hei
     glViewport(0, 0, width, height);
 }
 
+void Window_GL::Close()
+{
+    glfwTerminate();
+}
+
+void Window_GL::Update()
+{
+    processInput(_window);
+
+     glfwSwapBuffers(_window);
+     glfwPollEvents();
+}
+
 Window_GL::~Window_GL()
 {
+    delete _renderer;
 }

@@ -37,8 +37,11 @@ public:
 	Game* GetGame() const { return _game; }
 	Renderer* GetRenderer() const { return _renderer; }
 
+	virtual void Update() = 0;
+
 	virtual int Initialise() = 0;
 	//virtual void OnResize(int width, int height) = 0;
+	virtual void Close() = 0;
 
 };
 

@@ -59,6 +59,10 @@ void ShooterGame::Run()
 	{
 		// game logic here
 	}
+	if (_gameState == Quit)
+	{
+		_window->Close();
+	}
 
 	Render();
 }

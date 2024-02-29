@@ -227,11 +227,13 @@
     <ClCompile Include="model.cpp" />
     <ClCompile Include="OGmain.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Renderer_GL.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Components\SpotLight.cpp" />
     <ClCompile Include="ShooterGame.cpp" />
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="Vector4.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Window_GL.cpp" />
   </ItemGroup>
@@ -256,11 +258,13 @@
     <ClInclude Include="model.h" />
     <ClInclude Include="OGmain.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Renderer_GL.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Components\SpotLight.h" />
     <ClInclude Include="ShooterGame.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Vector4.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="Window_GL.h" />
   </ItemGroup>

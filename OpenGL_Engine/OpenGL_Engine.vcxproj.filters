@@ -111,6 +111,12 @@
     <ClCompile Include="ShooterGame.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Vector4.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer_GL.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -193,6 +199,12 @@
     </ClInclude>
     <ClInclude Include="ShooterGame.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer_GL.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
