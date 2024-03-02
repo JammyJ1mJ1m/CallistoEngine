@@ -42,4 +42,5 @@ void Renderer_GL::Initialise(int width, int height)
 
 void Renderer_GL::SwapBuffers()
 {
+
 }

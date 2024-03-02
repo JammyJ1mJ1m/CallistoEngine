@@ -16,11 +16,10 @@ int main()
 
 	_window->Initialise("Gamey game");
 
-
 	game = _window->GetGame();
-	game->Initialise(_window);
+ 	game->Initialise(_window);
 
-	while (true)
+	while (game->IsRunning())
 	{
 		_window->Update();
 		game->Run();

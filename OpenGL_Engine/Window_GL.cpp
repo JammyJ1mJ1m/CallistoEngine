@@ -8,17 +8,16 @@ void Window_GL::framebuffer_size_callback(GLFWwindow* window, int width, int hei
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	Window_GL* instance = static_cast<Window_GL*>(glfwGetWindowUserPointer(window));
-	if (instance == nullptr) { return; }
+	//Window::TheWindow->SetLastKey(key);
+	Window_GL* instance = dynamic_cast<Window_GL*>(Window::TheWindow);
+	// Window_GL* instance = dynamic_cast<Window_GL*>((Window*)glfwGetWindowUserPointer(window));
+	if (instance == nullptr) { return throw; }
 
 	if (action == GLFW_PRESS) {
 		instance->SetLastKey(key);
+		instance->OnKeyboard(key);
 		std::cout << "Key pressed: " << key << std::endl;
 	}
-
-	//    // lastPressedKey = key;
-	//    SetLastKey(key);
-	//    std::cout << "Key pressed: " << key << std::endl;
 }
 
 Window_GL::Window_GL(Game* game, const int width, const int height)
@@ -27,6 +26,7 @@ Window_GL::Window_GL(Game* game, const int width, const int height)
 	_height = height;
 	_game = game;
 	lastPressedKey = -1;
+	// TheWindow = this;
 }
 
 int Window_GL::Initialise(const char* pTitle)
@@ -43,25 +43,26 @@ int Window_GL::Initialise(const char* pTitle)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	// glfw window creation
 	// --------------------
-	_window = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
-	if (_window == NULL)
+	_GlfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
+	if (_GlfwWindow == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
 		return -1;
 	}
 	void key_callback(GLFWwindow * window, int key, int scancode, int action, int mods);
-	glfwSetKeyCallback(_window, key_callback);
+	glfwSetKeyCallback(_GlfwWindow, key_callback);
 
-	glfwSetWindowUserPointer(_window, this);
+	glfwSetWindowUserPointer(_GlfwWindow, this);
 
 
-	glfwMakeContextCurrent(_window);
+	glfwMakeContextCurrent(_GlfwWindow);
 	// TheWindow = static_cast<Window_GL*>(glfwGetWindowUserPointer(_window));
+	// Window::TheWindow = this;
 
 	void framebuffer_size_callback(GLFWwindow * window, int width, int height);
 
-	glfwSetFramebufferSizeCallback(_window, framebuffer_size_callback);
+	glfwSetFramebufferSizeCallback(_GlfwWindow, framebuffer_size_callback);
 
 
 	// glad: load all OpenGL function pointers
@@ -89,14 +90,15 @@ int Window_GL::Initialise(const char* pTitle)
 	// glfwTerminate();
 }
 
-void Window_GL::OnKeyboard(GLFWwindow* window)
+void Window_GL::OnKeyboard(int key)
 {
+	_game->OnKeyboard(key, false);
 
-	if (glfwGetKey(window, 256) == 1)
+	/*if (glfwGetKey(window, 256) == 1)
 	{
 		glfwSetWindowShouldClose(window, true);
 		Close();
-	}
+	}*/
 }
 
 
@@ -112,7 +114,7 @@ void Window_GL::Update()
 {
 	// OnKeyboard(_window);
 
-	glfwSwapBuffers(_window);
+	glfwSwapBuffers(_GlfwWindow);
 	glfwPollEvents();
 }
 

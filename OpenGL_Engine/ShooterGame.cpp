@@ -14,6 +14,11 @@ void ShooterGame::Initialise(Window* w)
 
 void ShooterGame::OnKeyboard(int key, bool down)
 {
+	if (key >= sizeof(_keyStates))
+	{
+		std::cout << "Key code out of keystate bounds" << std::endl;
+	}
+
 	_keyStates[key] = down;
 
 	if (down) return; // Ignore key down events
@@ -21,7 +26,7 @@ void ShooterGame::OnKeyboard(int key, bool down)
 	// Switch key presses
 	switch (key)
 	{
-	case 27: // Esc
+	case 256: // Esc
 		_gameState = Quit;
 		break;
 	case 80: // P
@@ -55,12 +60,19 @@ void ShooterGame::Run()
 	_deltaTime = (temp_time - _lastFrameTime) / CLOCKS_PER_SEC;
 	_lastFrameTime = temp_time;
 
+	std::cout << _window << std::endl;
+
 	if (_gameState != Paused)
+	{
+		// game logic here
+	}
+	if (_gameState == Playing)
 	{
 		// game logic here
 	}
 	if (_gameState == Quit)
 	{
+		ShooterGame* game = this;
 		_window->Close();
 	}
 

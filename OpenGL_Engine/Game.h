@@ -5,7 +5,7 @@ class Game
 {
 protected:
 	double _deltaTime;
-	bool _keyStates[256];
+	bool _keyStates[512];
 	Window* _window;
 	Renderer* _renderer;
 	double _lastFrameTime;

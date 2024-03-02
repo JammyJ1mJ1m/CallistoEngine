@@ -5,11 +5,13 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "Renderer_GL.h"
+#include "Game.h"
 
 class Window_GL : public Window
 {
-	GLFWwindow* _window;
+	GLFWwindow* _GlfwWindow;
 	int lastPressedKey;
+
 public:
 	void SetLastKey(int pKey ) { lastPressedKey = pKey; }
 
@@ -18,7 +20,7 @@ public:
 
 	//virtual void OnResize( int width, int height) override;
 
-	void OnKeyboard(GLFWwindow* window);
+	void OnKeyboard(int key );
 
 	void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
