@@ -15,7 +15,7 @@ public:
 	virtual void Render();
 
 	// main game loop
-	virtual void Run();
+	virtual void Run(double dt);
 
 	bool IsRunning() override { return _gameState != GameState::Quit; }
 };

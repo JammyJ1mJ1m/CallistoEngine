@@ -53,14 +53,10 @@ void ShooterGame::Render()
 	_renderer->SwapBuffers();
 }
 
-void ShooterGame::Run()
+void ShooterGame::Run(double dt)
 {
-	// Get delta time
-	double temp_time = clock();
-	_deltaTime = (temp_time - _lastFrameTime) / CLOCKS_PER_SEC;
-	_lastFrameTime = temp_time;
-
-	std::cout << _window << std::endl;
+	// prints the window pointer
+	// std::cout << _window << std::endl;
 
 	if (_gameState != Paused)
 	{

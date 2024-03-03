@@ -126,4 +126,5 @@ void Window_GL::SetTitle(const char* pTitle)
 Window_GL::~Window_GL()
 {
 	delete _renderer;
+	delete _game
 }
