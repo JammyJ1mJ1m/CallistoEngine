@@ -225,7 +225,6 @@
     <ClCompile Include="Components\PointLight.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="model.cpp" />
-    <ClCompile Include="OGmain.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Renderer_GL.cpp" />
     <ClCompile Include="SceneManager.cpp" />

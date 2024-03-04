@@ -46,6 +46,7 @@ void ShooterGame::OnKeyboard(int key, bool down)
 void ShooterGame::Render()
 {
 	_renderer->ClearScreen();
+		_renderer->Render();
 
 	// other draw related logic
 
@@ -64,6 +65,7 @@ void ShooterGame::Run(double dt)
 	}
 	if (_gameState == Playing)
 	{
+		Render();
 		// game logic here
 	}
 	if (_gameState == Quit)
@@ -72,5 +74,4 @@ void ShooterGame::Run(double dt)
 		_window->Close();
 	}
 
-	Render();
 }

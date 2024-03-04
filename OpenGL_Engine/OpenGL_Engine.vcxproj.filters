@@ -31,6 +31,12 @@
     <Filter Include="Game">
       <UniqueIdentifier>{20c64de8-a91b-4125-8fcd-2c3e653b1d9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Shaders">
+      <UniqueIdentifier>{286db044-f7ed-4c10-9193-9e4b6d16b78d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Shaders\GL">
+      <UniqueIdentifier>{e7cb13bd-567c-4de0-8b2a-e8a646311912}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -88,9 +94,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OGmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
@@ -215,12 +218,6 @@
     <None Include="Shaders\Lighting\basicLight.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shaders\default.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\default.vert">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="Shaders\light_cube.frag">
       <Filter>Shaders</Filter>
     </None>
@@ -241,6 +238,12 @@
     </None>
     <None Include="Shaders\3.1.3.shadow_mapping_depth.vert">
       <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\default.vert">
+      <Filter>Engine\Shaders\GL</Filter>
+    </None>
+    <None Include="Shaders\default.frag">
+      <Filter>Engine\Shaders\GL</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

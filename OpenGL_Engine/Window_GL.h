@@ -11,7 +11,7 @@ class Window_GL : public Window
 {
 	GLFWwindow* _GlfwWindow;
 	int lastPressedKey;
-	void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+	// void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 public:
 	void SetLastKey(int pKey ) { lastPressedKey = pKey; }

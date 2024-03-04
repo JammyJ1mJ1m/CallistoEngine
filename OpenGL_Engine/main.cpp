@@ -18,18 +18,7 @@ double calculateDeltaTime(double& lastFrameTime)
 void CalculateFPS(std::chrono::steady_clock::time_point& time, float& fps, int frameCount)
 {
 	//check if time is greater than 1 second using the variable time
-	auto newTime = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<float> time_span = std::chrono::duration_cast<std::chrono::duration<float>>(newTime - time);
-	if (time_span.count() > 1.0f)
-	{
-		fps = frameCount / time_span.count();
-
-		std::cout << "FPS: " << fps << std::endl;
-		/*
-		fps = 1.0f / deltaTime;
-		time = newTime;
-		*/
-	}
+	
 }
 
 // this is part of the game
@@ -60,7 +49,18 @@ int main()
 		game->Run(deltaTime);
 
 		deltaTime = calculateDeltaTime(lastFrameTime);
-		CalculateFPS(time, fps, frameCount);
+		auto newTime = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<float> time_span = std::chrono::duration_cast<std::chrono::duration<float>>(newTime - time);
+		if (time_span.count() > 1.0f)
+		{
+			fps = frameCount / time_span.count();
+
+			std::cout << "FPS: " << fps << std::endl;
+			/*
+			fps = 1.0f / deltaTime;
+			time = newTime;
+			*/
+		}
 	}
 
 	/*_window->Initialise();

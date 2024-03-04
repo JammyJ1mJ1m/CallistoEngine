@@ -1,7 +1,7 @@
 #include "Window_GL.h"
 #include <iostream>
 
-void Window_GL::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
 }
@@ -73,6 +73,8 @@ int Window_GL::Initialise(const char* pTitle)
 		return -1;
 	}
 
+	_renderer->Initialise(0, 0);
+
 	//while (!glfwWindowShouldClose(window))
 	//{
 	//    // input
@@ -126,5 +128,5 @@ void Window_GL::SetTitle(const char* pTitle)
 Window_GL::~Window_GL()
 {
 	delete _renderer;
-	delete _game
+	delete _game;
 }
