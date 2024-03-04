@@ -29,9 +29,9 @@ void Renderer_GL::Initialise(int width, int height)
 	_fragmentShader = new ShaderObject_GL("shader.frag", GL_FRAGMENT_SHADER);*/
 
 	float vertices[] = {
-	-0.5f, -0.5f, 0.0f,
-	 0.5f, -0.5f, 0.0f,
-	 0.0f,  0.5f, 0.0f
+	-0.5f, -0.5f, 0.0f,		1.0f, 0.0f, 0.0f,
+	 0.5f, -0.5f, 0.0f,		0.0f, 1.0f, 0.0f,
+	 0.0f,  0.5f, 0.0f,		0.0f, 0.0f, 1.0f
 	};
 
 	unsigned int VBO;

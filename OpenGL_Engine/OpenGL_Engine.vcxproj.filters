@@ -37,6 +37,24 @@
     <Filter Include="Engine\Shaders\GL">
       <UniqueIdentifier>{e7cb13bd-567c-4de0-8b2a-e8a646311912}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Components">
+      <UniqueIdentifier>{9e73736f-97a0-4bc2-87db-b174bd5c2093}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Geometry">
+      <UniqueIdentifier>{3775e92d-0c75-4f76-ab57-1d2641c04f74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GL">
+      <UniqueIdentifier>{be746d17-6555-4a9c-8c98-5baa2f022dc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\DX">
+      <UniqueIdentifier>{c372b015-b1e1-4b93-98ac-c028b426d75e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Base classes">
+      <UniqueIdentifier>{376721ad-66d6-4873-b758-714c690f840e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\MathsHelpers">
+      <UniqueIdentifier>{1962c07a-a92b-43d9-a1c4-dae68abf3748}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -78,16 +96,16 @@
     <ClCompile Include="common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Components\PointLight.cpp">
+    <ClCompile Include="misc\PointLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Light.cpp">
+    <ClCompile Include="misc\Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Components\SpotLight.cpp">
+    <ClCompile Include="misc\SpotLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Components\DirectionalLight.cpp">
+    <ClCompile Include="misc\DirectionalLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mesh.cpp">
@@ -102,23 +120,38 @@
     <ClCompile Include="Window.cpp">
       <Filter>Engine\Window</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Window_GL.cpp">
-      <Filter>Engine\Window</Filter>
-    </ClCompile>
     <ClCompile Include="ShooterGame.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Vector4.cpp">
-      <Filter>Engine</Filter>
+    <ClCompile Include="Engine\Components\TransformComponent.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\IComponent.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Geometry\Material.cpp">
+      <Filter>Engine\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Window_GL.cpp">
+      <Filter>Engine\GL</Filter>
     </ClCompile>
     <ClCompile Include="Renderer_GL.cpp">
-      <Filter>Engine</Filter>
+      <Filter>Engine\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Engine\Base classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Engine\Base classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector4.cpp">
+      <Filter>Engine\MathsHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentModel.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,16 +197,16 @@
     <ClInclude Include="common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Components\PointLight.h">
+    <ClInclude Include="misc\PointLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Light.h">
+    <ClInclude Include="misc\Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Components\SpotLight.h">
+    <ClInclude Include="misc\SpotLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Components\DirectionalLight.h">
+    <ClInclude Include="misc\DirectionalLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mesh.h">
@@ -191,23 +224,38 @@
     <ClInclude Include="Window.h">
       <Filter>Engine\Window</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Window_GL.h">
-      <Filter>Engine\Window</Filter>
-    </ClInclude>
     <ClInclude Include="ShooterGame.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Vector4.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="Entity.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\IComponent.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\TransformComponent.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Geometry\Material.h">
+      <Filter>Engine\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Window_GL.h">
+      <Filter>Engine\GL</Filter>
     </ClInclude>
     <ClInclude Include="Renderer_GL.h">
-      <Filter>Engine</Filter>
+      <Filter>Engine\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Engine\Base classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Engine\Base classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>Engine\MathsHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentModel.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,8 +15,10 @@ public:
 	virtual void Render();
 
 	// main game loop
-	virtual void Run(double dt);
+	virtual void Run(const double dt);
 
 	bool IsRunning() override { return _gameState != GameState::Quit; }
+
+	virtual ~ShooterGame();
 };
 

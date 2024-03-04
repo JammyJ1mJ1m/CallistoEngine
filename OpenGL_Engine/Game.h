@@ -1,6 +1,10 @@
 #pragma once
 #include "Window.h"
 #include "Renderer.h"
+#include "Entity.h"
+#include "Engine/Components/ModelComponent.h"
+#include <vector>
+
 class Game
 {
 protected:
@@ -9,7 +13,7 @@ protected:
 	Window* _window;
 	Renderer* _renderer;
 	double _lastFrameTime;
-
+	std::vector<Entity*> _entities;
 
 public:
 	virtual ~Game() {};
@@ -18,6 +22,6 @@ public:
 	virtual void Initialise(Window* w) = 0;
 	virtual void OnKeyboard(int key, bool down) = 0;
 	virtual void Render() = 0;
-	virtual void Run(double dt) = 0;
+	virtual void Run(const double dt) = 0;
 	virtual bool IsRunning() = 0;
 };

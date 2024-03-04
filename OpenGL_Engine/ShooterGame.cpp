@@ -6,9 +6,25 @@ void ShooterGame::Initialise(Window* w)
 	_renderer = w->GetRenderer();
 
 	// other game setup logic
-
-
 	_gameState = Playing;
+
+	// Set up key states
+	for (int i = 0; i < sizeof(_keyStates); i++)
+	{
+		_keyStates[i] = false;
+	}
+
+	// Set up entities
+	Entity* triangle = new Entity();
+
+	// Add a model component to the entity
+	ModelComponent* model = new ModelComponent();
+
+	triangle->AddComponent(model);
+
+	_entities.push_back(triangle);
+
+
 
 }
 
@@ -74,4 +90,11 @@ void ShooterGame::Run(double dt)
 		_window->Close();
 	}
 
+}
+
+ShooterGame::~ShooterGame()
+{
+	for (Entity* entity : _entities)
+		delete entity;
+	
 }
