@@ -57,9 +57,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="imgui\imgui.cpp">
       <Filter>Source Files\imgui</Filter>
     </ClCompile>
@@ -84,16 +81,16 @@
     <ClCompile Include="..\..\..\..\..\..\dependencies\src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
+    <ClCompile Include="Engine\Rendering\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stb_image.cpp">
+    <ClCompile Include="misc\stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
+    <ClCompile Include="misc\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="common.cpp">
+    <ClCompile Include="misc\common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="misc\PointLight.cpp">
@@ -108,25 +105,22 @@
     <ClCompile Include="misc\DirectionalLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mesh.cpp">
+    <ClCompile Include="misc\mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="model.cpp">
+    <ClCompile Include="misc\model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
+    <ClCompile Include="Engine\Managers\SceneManager.cpp">
       <Filter>Engine\Window</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
+    <ClCompile Include="Engine\Windowing\Window.cpp">
       <Filter>Engine\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="ShooterGame.cpp">
-      <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Components\TransformComponent.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
+    <ClCompile Include="Engine\Components\Entity.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Components\IComponent.cpp">
@@ -135,29 +129,26 @@
     <ClCompile Include="Engine\Geometry\Material.cpp">
       <Filter>Engine\Geometry</Filter>
     </ClCompile>
-    <ClCompile Include="Window_GL.cpp">
+    <ClCompile Include="Engine\Windowing\Window_GL.cpp">
       <Filter>Engine\GL</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer_GL.cpp">
+    <ClCompile Include="Engine\Rendering\Renderer_GL.cpp">
       <Filter>Engine\GL</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
+    <ClCompile Include="Engine\Rendering\Renderer.cpp">
       <Filter>Engine\Base classes</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Engine\Base classes</Filter>
     </ClCompile>
-    <ClCompile Include="Vector4.cpp">
+    <ClCompile Include="Engine\MathsHelpers\Vector4.cpp">
       <Filter>Engine\MathsHelpers</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentModel.cpp">
+    <ClCompile Include="Engine\Components\ComponentModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="imgui\imconfig.h">
       <Filter>Header Files\imgui</Filter>
     </ClInclude>
@@ -185,16 +176,16 @@
     <ClInclude Include="imgui\imstb_truetype.h">
       <Filter>Header Files\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
+    <ClInclude Include="Engine\Rendering\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="stb_image.h">
+    <ClInclude Include="misc\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="misc\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="common.h">
+    <ClInclude Include="misc\common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="misc\PointLight.h">
@@ -209,25 +200,22 @@
     <ClInclude Include="misc\DirectionalLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mesh.h">
+    <ClInclude Include="misc\mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="model.h">
+    <ClInclude Include="misc\model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OGmain.h">
+    <ClInclude Include="misc\OGmain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
+    <ClInclude Include="Engine\Managers\SceneManager.h">
       <Filter>Engine\Window</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
+    <ClInclude Include="Engine\Windowing\Window.h">
       <Filter>Engine\Window</Filter>
     </ClInclude>
-    <ClInclude Include="ShooterGame.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
+    <ClInclude Include="Engine\Components\Entity.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Components\IComponent.h">
@@ -239,22 +227,22 @@
     <ClInclude Include="Engine\Geometry\Material.h">
       <Filter>Engine\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Window_GL.h">
+    <ClInclude Include="Engine\Windowing\Window_GL.h">
       <Filter>Engine\GL</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer_GL.h">
+    <ClInclude Include="Engine\Rendering\Renderer_GL.h">
       <Filter>Engine\GL</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
+    <ClInclude Include="Engine\Rendering\Renderer.h">
       <Filter>Engine\Base classes</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Engine\Base classes</Filter>
     </ClInclude>
-    <ClInclude Include="Vector4.h">
+    <ClInclude Include="Engine\MathsHelpers\Vector4.h">
       <Filter>Engine\MathsHelpers</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentModel.h">
+    <ClInclude Include="Engine\Components\ComponentModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -293,41 +281,6 @@
     <None Include="Shaders\default.frag">
       <Filter>Engine\Shaders\GL</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Textures\rockwall.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\container.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\awesomeface.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\box.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\box_specular.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\box_specular2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\box2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\box_emission.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Geometry\SpaceShip\diffuse.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Geometry\SpaceShip\Intergalactic_Spaceship_nmap_2_Tris.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Geometry\SpaceShip\Intergalactic_Spaceship_rough.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Shaders\3.1.1.debug_quad.vert">

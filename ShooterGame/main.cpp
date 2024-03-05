@@ -1,3 +1,4 @@
+#pragma comment (lib, "CallistoEngine.lib")
 #include "main.h"
 #include "ShooterGame.h"
 #include "time.h"

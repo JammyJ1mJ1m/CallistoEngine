@@ -63,7 +63,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -210,14 +210,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\dependencies\src\glad.c" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="common.cpp" />
-    <ClCompile Include="ComponentModel.cpp" />
+    <ClCompile Include="misc\Camera.cpp" />
+    <ClCompile Include="misc\common.cpp" />
+    <ClCompile Include="Engine\Components\ComponentModel.cpp" />
     <ClCompile Include="Engine\Geometry\Material.cpp" />
     <ClCompile Include="misc\DirectionalLight.cpp" />
     <ClCompile Include="Engine\Components\IComponent.cpp" />
     <ClCompile Include="Engine\Components\TransformComponent.cpp" />
-    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Engine\Components\Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
@@ -227,30 +227,28 @@
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="misc\Light.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="misc\PointLight.cpp" />
-    <ClCompile Include="mesh.cpp" />
-    <ClCompile Include="model.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="Renderer_GL.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="misc\mesh.cpp" />
+    <ClCompile Include="misc\model.cpp" />
+    <ClCompile Include="Engine\Rendering\Renderer.cpp" />
+    <ClCompile Include="Engine\Rendering\Renderer_GL.cpp" />
+    <ClCompile Include="Engine\Managers\SceneManager.cpp" />
+    <ClCompile Include="Engine\Rendering\Shader.cpp" />
     <ClCompile Include="misc\SpotLight.cpp" />
-    <ClCompile Include="ShooterGame.cpp" />
-    <ClCompile Include="stb_image.cpp" />
-    <ClCompile Include="Vector4.cpp" />
-    <ClCompile Include="Window.cpp" />
-    <ClCompile Include="Window_GL.cpp" />
+    <ClCompile Include="misc\stb_image.cpp" />
+    <ClCompile Include="Engine\MathsHelpers\Vector4.cpp" />
+    <ClCompile Include="Engine\Windowing\Window.cpp" />
+    <ClCompile Include="Engine\Windowing\Window_GL.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="common.h" />
-    <ClInclude Include="ComponentModel.h" />
+    <ClInclude Include="misc\Camera.h" />
+    <ClInclude Include="misc\common.h" />
+    <ClInclude Include="Engine\Components\ComponentModel.h" />
     <ClInclude Include="Engine\Geometry\Material.h" />
     <ClInclude Include="misc\DirectionalLight.h" />
     <ClInclude Include="Engine\Components\IComponent.h" />
     <ClInclude Include="Engine\Components\TransformComponent.h" />
-    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Engine\Components\Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />
@@ -262,21 +260,19 @@
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="misc\Light.h" />
-    <ClInclude Include="main.h" />
     <ClInclude Include="misc\PointLight.h" />
-    <ClInclude Include="mesh.h" />
-    <ClInclude Include="model.h" />
-    <ClInclude Include="OGmain.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Renderer_GL.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Shader.h" />
+    <ClInclude Include="misc\mesh.h" />
+    <ClInclude Include="misc\model.h" />
+    <ClInclude Include="misc\OGmain.h" />
+    <ClInclude Include="Engine\Rendering\Renderer.h" />
+    <ClInclude Include="Engine\Rendering\Renderer_GL.h" />
+    <ClInclude Include="Engine\Managers\SceneManager.h" />
+    <ClInclude Include="Engine\Rendering\Shader.h" />
     <ClInclude Include="misc\SpotLight.h" />
-    <ClInclude Include="ShooterGame.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="Vector4.h" />
-    <ClInclude Include="Window.h" />
-    <ClInclude Include="Window_GL.h" />
+    <ClInclude Include="misc\stb_image.h" />
+    <ClInclude Include="Engine\MathsHelpers\Vector4.h" />
+    <ClInclude Include="Engine\Windowing\Window.h" />
+    <ClInclude Include="Engine\Windowing\Window_GL.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Shaders\3.1.1.debug_quad.vert">
@@ -294,25 +290,6 @@
     <None Include="Shaders\Lighting\basicLight.frag" />
     <None Include="Shaders\Lighting\basicLight.vert" />
     <None Include="x64\Debug\assimp-vc142-mt.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Resources\Geometry\SpaceShip\diffuse.jpg">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Resources\Geometry\SpaceShip\Intergalactic_Spaceship_nmap_2_Tris.jpg">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Resources\Geometry\SpaceShip\Intergalactic_Spaceship_rough.jpg">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="Textures\awesomeface.png" />
-    <Image Include="Textures\box.png" />
-    <Image Include="Textures\box2.png" />
-    <Image Include="Textures\box_emission.png" />
-    <Image Include="Textures\box_specular.png" />
-    <Image Include="Textures\box_specular2.png" />
-    <Image Include="Textures\container.jpg" />
-    <Image Include="Textures\rockwall.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,6 @@
 #pragma once
+#pragma comment (lib, "CallistoEngine.lib")
+
 #include "Game.h"
 class ShooterGame : public Game
 {
