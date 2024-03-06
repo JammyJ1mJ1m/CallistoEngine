@@ -208,11 +208,11 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\dependencies\src\glad.c" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="common.cpp" />
     <ClCompile Include="Components\DirectionalLight.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="glad.c" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
