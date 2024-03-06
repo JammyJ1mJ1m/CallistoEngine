@@ -1,7 +1,10 @@
 #include "main.h"
+#pragma comment(lib, "CallistoEngine.lib")
+
 #include "ShooterGame.h"
 #include "time.h"
 #include "chrono"
+
 
 #if OPENGL
 #include "Window_GL.h"

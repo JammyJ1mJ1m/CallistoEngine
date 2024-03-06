@@ -2,9 +2,14 @@
 #if OPENGL
 
 #include "Window.h"
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+//#include "GLFW/glfw3.h"
+//#include "glad/glad.h"
+
+//#include <glad/glad.h>
+//#include <GLFW/glfw3.h>
 #include "Renderer_GL.h"
+#include <glad/glad.h>
+#include "GLFW/glfw3.h"
 #include "Game.h"
 
 class Window_GL : public Window

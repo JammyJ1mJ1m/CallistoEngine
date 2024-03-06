@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CallistoEngine", "CallistoEngine\CallistoEngine.vcxproj", "{5DA90770-4043-4BEB-9655-33991BDD77E1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShooterGame", "ShooterGame\ShooterGame.vcxproj", "{B0D549E6-DB76-48D0-B377-43996DC9E265}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5DA90770-4043-4BEB-9655-33991BDD77E1} = {5DA90770-4043-4BEB-9655-33991BDD77E1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -41,6 +41,9 @@ int Window_GL::Initialise(const char* pTitle)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#ifdef __APPLE__
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
 	// glfw window creation
 	// --------------------
 	_GlfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
@@ -74,7 +77,7 @@ int Window_GL::Initialise(const char* pTitle)
 	}
 
 	_renderer->Initialise(0, 0);
-
+	return 0;
 	//while (!glfwWindowShouldClose(window))
 	//{
 	//    // input

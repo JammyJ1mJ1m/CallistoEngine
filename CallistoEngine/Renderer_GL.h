@@ -1,5 +1,11 @@
 #pragma once
 #include "Renderer.h"
+// #define GLFW_INCLUDE_NONE
+//#define GLFW_EXPOSE_NATIVE_X11
+#include <glad/glad.h>
+#include "GLFW/glfw3.h"
+
+
 class Renderer_GL : public Renderer
 {
 	unsigned int shaderProgram;
