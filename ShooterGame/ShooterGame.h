@@ -1,6 +1,4 @@
 #pragma once
-#pragma comment (lib, "CallistoEngine.lib")
-
 #include "Game.h"
 class ShooterGame : public Game
 {
@@ -17,10 +15,8 @@ public:
 	virtual void Render();
 
 	// main game loop
-	virtual void Run(const double dt);
+	virtual void Run(double dt);
 
 	bool IsRunning() override { return _gameState != GameState::Quit; }
-
-	virtual ~ShooterGame();
 };
 

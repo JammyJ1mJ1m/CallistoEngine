@@ -1,4 +1,3 @@
-#pragma comment (lib, "CallistoEngine.lib")
 #include "main.h"
 #include "ShooterGame.h"
 #include "time.h"
@@ -28,7 +27,9 @@ int main()
 	double deltaTime = 0.0f;
 	double lastFrameTime = 0.0f;
 	float fps = 0.0f;
-	int frameCount = 0.0f;
+	int frameCount = 0;
+	int lastFrameCount = 0;
+	
 
 
 	std::chrono::high_resolution_clock::time_point time = std::chrono::high_resolution_clock::now();
@@ -38,7 +39,6 @@ int main()
 
 	Window_GL* _window = new Window_GL(new ShooterGame(), 800, 800);
 
-
 	_window->Initialise("Gamey game");
 
 	game = _window->GetGame();
@@ -46,29 +46,22 @@ int main()
 
 	while (game->IsRunning())
 	{
+		++frameCount;
 		_window->Update();
 		game->Run(deltaTime);
 
 		deltaTime = calculateDeltaTime(lastFrameTime);
 		auto newTime = std::chrono::high_resolution_clock::now();
 		std::chrono::duration<float> time_span = std::chrono::duration_cast<std::chrono::duration<float>>(newTime - time);
+
 		if (time_span.count() > 1.0f)
 		{
-			fps = frameCount / time_span.count();
-
-			std::cout << "FPS: " << fps << std::endl;
-			/*
-			fps = 1.0f / deltaTime;
+			fps = frameCount - lastFrameCount;
+			lastFrameCount = frameCount;
 			time = newTime;
-			*/
+			std::cout << "FPS: " << fps << std::endl;
 		}
 	}
-
-	/*_window->Initialise();
-
-	SceneManager* sceneManager = new SceneManager(800,800);
-	sceneManager->Run();
-	delete sceneManager;*/
 
 	delete _window;
 #endif
