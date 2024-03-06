@@ -19,7 +19,6 @@
         https://glad.dav1d.de/#profile=core&language=c&specification=gl&loader=on&api=gl%3D4.6
 */
 
-
 #ifndef __glad_h_
 #define __glad_h_
 
@@ -86,7 +85,8 @@ GLAPI int gladLoadGL(void);
 
 GLAPI int gladLoadGLLoader(GLADloadproc);
 
-#include <KHR/khrplatform.h>
+#include "../KHR/khrplatform.h"
+
 typedef unsigned int GLenum;
 typedef unsigned char GLboolean;
 typedef unsigned int GLbitfield;

@@ -137,6 +137,19 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="ShooterGame.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Geometry\SpaceShip\diffuse.jpg" />
+    <Image Include="Resources\Geometry\SpaceShip\Intergalactic_Spaceship_nmap_2_Tris.jpg" />
+    <Image Include="Resources\Geometry\SpaceShip\Intergalactic_Spaceship_rough.jpg" />
+    <Image Include="Textures\awesomeface.png" />
+    <Image Include="Textures\box.png" />
+    <Image Include="Textures\box2.png" />
+    <Image Include="Textures\box_emission.png" />
+    <Image Include="Textures\box_specular.png" />
+    <Image Include="Textures\box_specular2.png" />
+    <Image Include="Textures\container.jpg" />
+    <Image Include="Textures\rockwall.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
