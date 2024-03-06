@@ -1,12 +1,11 @@
 #pragma once
+#if OPENGL
 
 #include "Window.h"
-//#include <glad/glad.h>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
-// #include "GLFW/glfw3.h"
 #include "Renderer_GL.h"
 #include "Game.h"
-#include "Include/glad/glad.h"
 
 class Window_GL : public Window
 {
@@ -25,5 +24,4 @@ public:
 	virtual ~Window_GL();
 };
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
-#if OPENGL
 #endif // OPENGL

@@ -1,12 +1,11 @@
 #pragma once
 
-// GLM
-//#include "glm/glm.hpp"
-#include "Include/glm/glm.hpp"
-//#include <glm/glm.hpp>
-#include "Include/glm/gtc/matrix_transform.hpp"
-#include "Include/glm/gtc/type_ptr.hpp"
+#include "Mesh.h"
 
+// GLM
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
 
 #include "Vector4.h"
 
