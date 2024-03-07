@@ -13,6 +13,7 @@ private:
 	bool mLocked;	// True once we've made the VBO; can no longer add vertices etc unless reset
 	VBO* mVbo;
 	std::vector<Vertex> mVertices;
+	std::vector<int> mIndices;
 
 	// Constructors etc
 public:
@@ -30,6 +31,8 @@ public:
 public:
 	VBO* CreateVBO();
 	bool AddVertex(Vertex v);
+	bool AddIndex(int i);
+	bool AddIndex(int pIndices[], int pSize);
 	bool Clear();
 	bool DeleteVertex(int i);
 

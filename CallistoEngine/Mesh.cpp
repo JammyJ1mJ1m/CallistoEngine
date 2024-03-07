@@ -5,6 +5,7 @@
 #endif
 #if OPENGL
 #include "VBO_GL.h"
+
 #endif
 
 /******************************************************************************************************************/
@@ -31,6 +32,36 @@ bool Mesh::AddVertex(Vertex v)
 	if (!mLocked)
 	{
 		mVertices.push_back(v);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Mesh::AddIndex(int i)
+{
+	if (!mLocked)
+	{
+		mIndices.push_back(i);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Mesh::AddIndex(int pIndices[], int pSize)
+{
+	if (!mLocked)
+	{
+		// int size = sizeof(pIndices);// / sizeof(pIndices[0]);
+		for (size_t i = 0; i < pSize; i++)
+		{
+			mIndices.push_back(pIndices[i]);
+		}
 		return true;
 	}
 	else
@@ -87,7 +118,7 @@ VBO* Mesh::CreateVBO()
 	mVbo = new VBO_GL();
 #endif
 
-	mVbo->Create(mVertices.data(), NumVertices());
+	mVbo->Create(mVertices.data(), NumVertices(), mIndices.data(), mIndices.size());
 
 	return mVbo;
 }

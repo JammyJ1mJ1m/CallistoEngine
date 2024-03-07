@@ -14,35 +14,7 @@ void Renderer_GL::Destroy()
 
 void Renderer_GL::Initialise(int width, int height)
 {
-	// Setup projection
-	// _PM = glm::ortho(-1, +1, -1, +1, -1, +1);
-
-	// Setup viewport and enable depth testing
-	//glViewport(0, 0, width, height);
-	//glEnable(GL_DEPTH_TEST);
-
-
-	/////////////////////////////
-	// Setup shaders
-
-	// Create shader objects (and compile them)
-	/*_vertexShader = new ShaderObject_GL("shader.vert", GL_VERTEX_SHADER);
-	_fragmentShader = new ShaderObject_GL("shader.frag", GL_FRAGMENT_SHADER);*/
-
-	//float vertices[] = {
-	//-0.5f, -0.5f, 0.0f,
-	// 0.5f, -0.5f, 0.0f,
-	// 0.0f,  0.5f, 0.0f
-	//};
-
-	//unsigned int VBO;
-	//glGenBuffers(1, &VBO);
-	//glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-
-
-	const char* vertexShaderSource = "#version 330 core\n"
+ 	const char* vertexShaderSource = "#version 330 core\n"
 		"layout (location = 0) in vec3 aPos;\n"
 		"void main()\n"
 		"{\n"
@@ -98,36 +70,6 @@ void Renderer_GL::Initialise(int width, int height)
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
-//	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-//	glEnableVertexAttribArray(0);
-//
-//	glGenVertexArrays(1, &VAO);
-//
-//	// ..:: Initialization code (done once (unless your object frequently changes)) :: ..
-//// 1. bind Vertex Array Object
-//	glBindVertexArray(VAO);
-//	// 2. copy our vertices array in a buffer for OpenGL to use
-//	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-//	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-//	// 3. then set our vertex attributes pointers
-//	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-//	glEnableVertexAttribArray(0);
-
-
-
-
-
-
-	//// Create shader program and attach shader objects
-	//_shader = new ShaderProgram_GL();
-	//_shader->attachShader(_vertexShader);
-	//_shader->attachShader(_fragmentShader);
-
-	//// Link and use the shader
-	//_shader->link();
-	//_shader->use();
-
-	//_shader->setUniformMatrix("PM", 4, 1, false, glm::value_ptr(_PM));
 }
 
 void Renderer_GL::SwapBuffers()
@@ -137,11 +79,8 @@ void Renderer_GL::SwapBuffers()
 
 void Renderer_GL::Render(Entity* entity)
 {
+	glUseProgram(shaderProgram);
 
 	ComponentModel* model = entity->GetComponent <ComponentModel>();
-	model->GetMesh().GetVBO()->Draw();
-
-	/*glUseProgram(shaderProgram);
-	glBindVertexArray(VAO);
-	glDrawArrays(GL_TRIANGLES, 0, 3);*/
+	model->GetMesh()->GetVBO()->Draw();
 }

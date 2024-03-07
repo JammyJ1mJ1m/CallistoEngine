@@ -1,18 +1,17 @@
 #include "ComponentModel.h"
 
-ComponentModel::ComponentModel()
+ComponentModel::ComponentModel(Mesh* pMesh)
 {
+	SetMesh(pMesh);
 	/*
 
 	-0.5f, -0.5f, 0.0f,
 		0.5f, -0.5f, 0.0f,
 		0.0f, 0.5f, 0.0f
 	*/
-	mMesh.AddVertex({ Vector3(-0.5f, -0.5f, 0.0f) });
-	mMesh.AddVertex({ Vector3(0.5f, -0.5f, 0.0f) });
-	mMesh.AddVertex({ Vector3(0.0f, 0.5f, 0.0f) });
 
-	mMesh.CreateVBO();
+
+	mMesh->CreateVBO();
 }
 
 IComponent::ComponentTypes ComponentModel::GetType() const

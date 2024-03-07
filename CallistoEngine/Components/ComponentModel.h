@@ -5,12 +5,13 @@
 
 class ComponentModel : public IComponent
 {
-	Mesh mMesh;
+	Mesh* mMesh;
 public:
-	ComponentModel();
+	ComponentModel(Mesh* pMesh);
 	// ComponentModel(const std::string pFilePath);
 	~ComponentModel() = default;
 	virtual ComponentTypes GetType() const;
-	const Mesh& GetMesh() { return mMesh; } ;
+	const Mesh* GetMesh() { return mMesh; };
+	void SetMesh(Mesh* pMesh) { mMesh = pMesh; } ;
 };
 

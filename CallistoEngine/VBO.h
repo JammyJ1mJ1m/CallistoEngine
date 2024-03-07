@@ -13,7 +13,7 @@ public:
 	virtual ~VBO();
 
 	// Functions
-	virtual void Create(Vertex vertices[], int numVertices) = 0;
+	virtual void Create(Vertex pVertices[], int pNumVertices, int pIndices[], int pSize) = 0;
 	virtual void Draw() = 0;
 };
 

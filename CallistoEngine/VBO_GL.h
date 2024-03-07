@@ -10,6 +10,7 @@ private:
 	GLuint mVboID;
 
 	int mNumVertices;
+	int mNumIndices;
 
 	// Constructors
 public:
@@ -18,7 +19,7 @@ public:
 
 	// Functions
 public:
-	virtual void Create(Vertex vertices[], int numVertices);
+	virtual void Create(Vertex pVertices[], int pNumVertices, int pIndices[], int pSize);
 	virtual void Draw();
 private:
 	void DrawVBO();

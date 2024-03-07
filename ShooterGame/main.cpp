@@ -63,8 +63,5 @@ int main()
 #if DIRECTX
 	// set up directx window
 #endif
-	static ShooterGame Shooters;
-
-
 	return 0;
 }
