@@ -1,4 +1,6 @@
 #include "ShooterGame.h"
+#include "Components/Entity.h"
+#include "Components/ComponentModel.h"
 
 void ShooterGame::Initialise(Window* w)
 {
@@ -9,6 +11,9 @@ void ShooterGame::Initialise(Window* w)
 
 
 	_gameState = Playing;
+
+	Entity ent1 = Entity();
+	ent1.AddComponent(new ComponentModel());
 
 }
 

@@ -5,7 +5,6 @@
 #include "time.h"
 #include "chrono"
 
-
 #if OPENGL
 #include "Window_GL.h"
 #endif
@@ -18,12 +17,6 @@ double calculateDeltaTime(double& lastFrameTime)
 	return deltaTime;
 }
 
-void CalculateFPS(std::chrono::steady_clock::time_point& time, float& fps, int frameCount)
-{
-	//check if time is greater than 1 second using the variable time
-	
-}
-
 // this is part of the game
 int main()
 {
@@ -32,8 +25,6 @@ int main()
 	float fps = 0.0f;
 	int frameCount = 0;
 	int lastFrameCount = 0;
-	
-
 
 	std::chrono::high_resolution_clock::time_point time = std::chrono::high_resolution_clock::now();
 

@@ -246,7 +246,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Components\ComponentModel.cpp" />
+    <ClCompile Include="Components\IComponent.cpp" />
     <ClCompile Include="Dependencies\inc\GLM\core\dummy.cpp" />
+    <ClCompile Include="Components\Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Renderer.cpp" />
@@ -257,6 +260,8 @@
     <ClCompile Include="Window_GL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\ComponentModel.h" />
+    <ClInclude Include="Components\IComponent.h" />
     <ClInclude Include="Dependencies\glad\glad.h" />
     <ClInclude Include="Dependencies\inc\glad\glad.h" />
     <ClInclude Include="Dependencies\inc\GLFW\glfw3.h" />
@@ -380,6 +385,7 @@
     <ClInclude Include="Dependencies\inc\GLM\gtx\wrap.hpp" />
     <ClInclude Include="Dependencies\inc\GLM\virtrev\xstream.hpp" />
     <ClInclude Include="Dependencies\inc\KHR\khrplatform.h" />
+    <ClInclude Include="Components\Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Renderer_GL.h" />
