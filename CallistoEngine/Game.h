@@ -1,6 +1,9 @@
 #pragma once
 #include "Window.h"
 #include "Renderer.h"
+#include <vector>
+#include "Components/Entity.h"
+
 class Game
 {
 protected:
@@ -9,6 +12,7 @@ protected:
 	Window* _window;
 	Renderer* _renderer;
 	double _lastFrameTime;
+	std::vector<Entity*> mEntities;
 
 
 public:

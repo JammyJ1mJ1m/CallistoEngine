@@ -44,10 +44,10 @@ public:
 
 
 	template<class T>
-	inline T GetComponent() const
+	inline T* GetComponent() const
 	{
 		for ( IComponent* b : mComponentList)
-			if (T c = std::dynamic_pointer_cast<T>(b))
+			if (T* c = dynamic_cast<T*>(b))
 				return c;
 
 		return nullptr;

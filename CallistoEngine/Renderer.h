@@ -10,7 +10,7 @@
 #include "Vector4.h"
 
 // Forward declarations
-class GameObject;
+class Entity;
 
 // Platform independent renderer base class
 // Basically represents a graphics context and its active shaders
@@ -34,7 +34,7 @@ public:
 	// virtual void Draw(const Mesh* mesh, glm::mat4 MVM) = 0;
 	// virtual void Draw(GameObject* gob, glm::mat4 MVM);
 
-	virtual void Render() = 0;
+	virtual void Render(Entity* entity) = 0;
 	virtual void Initialise(int width, int height) = 0;
 	virtual void Destroy() = 0;
 	virtual void ClearScreen() = 0;

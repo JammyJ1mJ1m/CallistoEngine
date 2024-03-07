@@ -252,9 +252,13 @@
     <ClCompile Include="Components\Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Renderer_GL.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="VBO.cpp" />
+    <ClCompile Include="VBO_GL.cpp" />
+    <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="Vector4.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Window_GL.cpp" />
@@ -387,10 +391,15 @@
     <ClInclude Include="Dependencies\inc\KHR\khrplatform.h" />
     <ClInclude Include="Components\Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Renderer_GL.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="VBO.h" />
+    <ClInclude Include="VBO_GL.h" />
+    <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vector4.h" />
+    <ClInclude Include="Vertex.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="Window_GL.h" />
   </ItemGroup>

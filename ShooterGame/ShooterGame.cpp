@@ -1,6 +1,7 @@
 #include "ShooterGame.h"
 #include "Components/Entity.h"
 #include "Components/ComponentModel.h"
+#include "Vector4.h"
 
 void ShooterGame::Initialise(Window* w)
 {
@@ -12,8 +13,10 @@ void ShooterGame::Initialise(Window* w)
 
 	_gameState = Playing;
 
-	Entity ent1 = Entity();
-	ent1.AddComponent(new ComponentModel());
+	Entity* ent1 = new Entity();
+	ent1->AddComponent(new ComponentModel());
+
+	mEntities.push_back(ent1);
 
 }
 
@@ -24,6 +27,7 @@ void ShooterGame::OnKeyboard(int key, bool down)
 		std::cout << "Key code out of keystate bounds" << std::endl;
 	}
 
+	
 	_keyStates[key] = down;
 
 	if (down) return; // Ignore key down events
@@ -51,9 +55,14 @@ void ShooterGame::OnKeyboard(int key, bool down)
 void ShooterGame::Render()
 {
 	_renderer->ClearScreen();
-		_renderer->Render();
+		// _renderer->Render();
 
 	// other draw related logic
+		for (size_t i = 0; i < mEntities.size(); i++)
+		{
+
+			_renderer->Render(mEntities[i]);
+		}	
 
 	// Swap buffers
 	_renderer->SwapBuffers();

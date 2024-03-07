@@ -4,6 +4,8 @@
 //#define GLFW_EXPOSE_NATIVE_X11
 #include <glad/glad.h>
 #include "GLFW/glfw3.h"
+#include "Components/Entity.h"
+
 
 
 class Renderer_GL : public Renderer
@@ -17,6 +19,6 @@ public:
 	// virtual void Draw(const Mesh* mesh, glm::mat4 MVM, const Colour& colour);
 	virtual void Initialise(int width, int height);
 	virtual void SwapBuffers();
-	virtual void Render();
+	virtual void Render(Entity* entity);
 };
 
