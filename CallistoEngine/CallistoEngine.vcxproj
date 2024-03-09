@@ -117,7 +117,7 @@
     <LibraryPath>..\CSLib\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - debug|x64'">
-    <IncludePath>$(ProjectDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(ProjectDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)Objects;$(ProjectDir)Components</IncludePath>
     <LibraryPath>$(ProjectDir)Dependencies\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DirectX|x64'">
@@ -246,6 +246,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Components\ComponentShader.cpp" />
     <ClCompile Include="Components\ComponentModel.cpp" />
     <ClCompile Include="Components\IComponent.cpp" />
     <ClCompile Include="Dependencies\inc\GLM\core\dummy.cpp" />
@@ -256,6 +257,8 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Renderer_GL.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Objects\ShaderObject.cpp" />
+    <ClCompile Include="Objects\ShaderObject_GL.cpp" />
     <ClCompile Include="VBO.cpp" />
     <ClCompile Include="VBO_GL.cpp" />
     <ClCompile Include="Vector3.cpp" />
@@ -264,6 +267,7 @@
     <ClCompile Include="Window_GL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\ComponentShader.h" />
     <ClInclude Include="Components\ComponentModel.h" />
     <ClInclude Include="Components\IComponent.h" />
     <ClInclude Include="Dependencies\glad\glad.h" />
@@ -395,6 +399,8 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Renderer_GL.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Objects\ShaderObject.h" />
+    <ClInclude Include="Objects\ShaderObject_GL.h" />
     <ClInclude Include="VBO.h" />
     <ClInclude Include="VBO_GL.h" />
     <ClInclude Include="Vector3.h" />

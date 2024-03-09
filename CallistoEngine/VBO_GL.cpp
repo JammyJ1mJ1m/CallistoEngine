@@ -47,8 +47,8 @@ void VBO_GL::Create(Vertex pVertices[], int pNumVertices, int pIndices[], int pS
 	glBindVertexArray(0);
 
 	// sets culling mode
+	 glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
 void VBO_GL::Draw()

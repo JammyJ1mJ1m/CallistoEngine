@@ -1,6 +1,7 @@
 #include "ShooterGame.h"
 #include "Components/Entity.h"
 #include "Components/ComponentModel.h"
+#include "Components/ComponentShader.h"
 #include "Vector4.h"
 
 void ShooterGame::Initialise(Window* w)
@@ -30,8 +31,31 @@ void ShooterGame::Initialise(Window* w)
 
 	Entity* ent1 = new Entity();
 	ent1->AddComponent(new ComponentModel(mesh));
+	ent1->AddComponent(new ComponentShader());
+
+
+
+	Mesh* mesh2 = new Mesh();
+	mesh2->AddVertex({ 0.8f,  0.8f, 0.0f, });
+	mesh2->AddVertex({ 0.8f, -0.2f, 0.0f });
+	mesh2->AddVertex({ -0.2f, -0.2f, 0.0f });
+	mesh2->AddIndex(indices, size);
+
+
+	int indices2[] = {
+		0, 1, 2,
+		
+	};
+
+	size = sizeof(indices2) / sizeof(indices2[0]);
+
+
+	Entity* ent2 = new Entity();
+	ent2->AddComponent(new ComponentModel(mesh2));
+	ent2->AddComponent(new ComponentShader());
 
 	mEntities.push_back(ent1);
+	mEntities.push_back(ent2);
 
 }
 
