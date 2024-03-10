@@ -15,10 +15,10 @@ void ShooterGame::Initialise(Window* w)
 	_gameState = Playing;
 
 	Mesh* mesh = new Mesh();
-	mesh->AddVertex({ 0.5f,  0.5f, 0.0f, });
-	mesh->AddVertex({ 0.5f, -0.5f, 0.0f });
-	mesh->AddVertex({ -0.5f, -0.5f, 0.0f });
-	mesh->AddVertex({ -0.5f,  0.5f, 0.0f });
+	mesh->AddVertex({ 0.5f,  0.5f, 0.0f,	1.0f,  0.0f, 0.0f });
+	mesh->AddVertex({ 0.5f, -0.5f, 0.0f ,	0.0f,  1.0f, 0.0f });
+	mesh->AddVertex({ -0.5f, -0.5f, 0.0f,	0.0f,  0.0f, 1.0f });
+	mesh->AddVertex({ -0.5f,  0.5f, 0.0f,	1.0f,  0.0f, 1.0f });
 	
 	int indices[] = {  
 		0, 1, 3,  
@@ -34,20 +34,18 @@ void ShooterGame::Initialise(Window* w)
 	ent1->AddComponent(new ComponentShader());
 
 
-
 	Mesh* mesh2 = new Mesh();
-	mesh2->AddVertex({ 0.8f,  0.8f, 0.0f, });
-	mesh2->AddVertex({ 0.8f, -0.2f, 0.0f });
-	mesh2->AddVertex({ -0.2f, -0.2f, 0.0f });
-	mesh2->AddIndex(indices, size);
+	mesh2->AddVertex({ 0.8f,  0.8f, 0.0f,	1.0f,  0.0f, 0.0f });
+	mesh2->AddVertex({ 0.8f, -0.2f, 0.0f,	1.0f,  0.0f, 0.0f });
+	mesh2->AddVertex({ -0.8f, -0.2f, 0.0f,	0.0f,  0.0f, 1.0f });
 
 
 	int indices2[] = {
 		0, 1, 2,
-		
 	};
 
 	size = sizeof(indices2) / sizeof(indices2[0]);
+	mesh2->AddIndex(indices2, size);
 
 
 	Entity* ent2 = new Entity();

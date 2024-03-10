@@ -1,4 +1,9 @@
 #pragma once
+#include <fstream>
+#include <iostream>
+
+
+
 class ShaderObject
 {
 	public:
@@ -8,5 +13,6 @@ class ShaderObject
 
 	// virtual void Create(const char* pVertexShader, const char* pFragmentShader);
 	virtual void Render() = 0;
+	virtual void LoadShader(const char* pFile) = 0;
 };
 

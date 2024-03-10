@@ -14,5 +14,7 @@ public:
 
 	// virtual void Create(const char* pVertexShader, const char* pFragmentShader);
 	virtual void Render();
+	virtual void LoadShader(const char* pFile);
+
 };
 

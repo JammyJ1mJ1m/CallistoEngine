@@ -80,6 +80,7 @@ void Renderer_GL::SwapBuffers()
 
 void Renderer_GL::Render(Entity* entity)
 {
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	 entity->GetComponent <ComponentShader>()->UseProgram();
 	// glUseProgram(shaderProgram);
 

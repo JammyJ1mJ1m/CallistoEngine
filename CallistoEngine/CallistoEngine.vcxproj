@@ -256,6 +256,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Renderer_GL.cpp" />
+    <ClCompile Include="Managers\ResourceManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Objects\ShaderObject.cpp" />
     <ClCompile Include="Objects\ShaderObject_GL.cpp" />
@@ -398,6 +399,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Renderer_GL.h" />
+    <ClInclude Include="Managers\ResourceManager.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Objects\ShaderObject.h" />
     <ClInclude Include="Objects\ShaderObject_GL.h" />
