@@ -14,6 +14,6 @@ public:
 
 	// Functions
 	virtual void Create(Vertex pVertices[], int pNumVertices, int pIndices[], int pSize) = 0;
-	virtual void Draw() = 0;
+	virtual void Draw(int tex) = 0;
 };
 

@@ -2,7 +2,7 @@
 #include "Components/Entity.h"
 #include "Components/ComponentModel.h"
 #include "Components/ComponentShader.h"
-#include "Vector4.h"
+#include "Vector.h"
 
 void ShooterGame::Initialise(Window* w)
 {
@@ -12,13 +12,16 @@ void ShooterGame::Initialise(Window* w)
 	// other game setup logic
 
 
+	Vector2f v2 = { 1.0f, 2.0f, 3.0f, 4.0f };
+
 	_gameState = Playing;
 
 	Mesh* mesh = new Mesh();
-	mesh->AddVertex({ 0.5f,  0.5f, 0.0f,	1.0f,  0.0f, 0.0f });
-	mesh->AddVertex({ 0.5f, -0.5f, 0.0f ,	0.0f,  1.0f, 0.0f });
-	mesh->AddVertex({ -0.5f, -0.5f, 0.0f,	0.0f,  0.0f, 1.0f });
-	mesh->AddVertex({ -0.5f,  0.5f, 0.0f,	1.0f,  0.0f, 1.0f });
+	mesh->LoadTexture("Resources/textures/container.jpg");
+	mesh->AddVertex({ 0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, });
+	mesh->AddVertex({ 0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, });
+	mesh->AddVertex({ -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, });
+	mesh->AddVertex({ -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f });
 	
 	int indices[] = {  
 		0, 1, 3,  
@@ -35,9 +38,11 @@ void ShooterGame::Initialise(Window* w)
 
 
 	Mesh* mesh2 = new Mesh();
-	mesh2->AddVertex({ 0.8f,  0.8f, 0.0f,	1.0f,  0.0f, 0.0f });
-	mesh2->AddVertex({ 0.8f, -0.2f, 0.0f,	1.0f,  0.0f, 0.0f });
-	mesh2->AddVertex({ -0.8f, -0.2f, 0.0f,	0.0f,  0.0f, 1.0f });
+	mesh2->LoadTexture("Resources/textures/Default.png");
+
+	mesh2->AddVertex({ 0.8f,  0.8f, 0.0f,	1.0f,  0.0f, 0.0f,	1.0f, 1.0f, });
+	mesh2->AddVertex({ 0.8f, -0.2f, 0.0f,	1.0f,  0.0f, 0.0f, 1.0f, 0.0f, });
+	mesh2->AddVertex({ -0.8f, -0.2f, 0.0f,	0.0f,  0.0f, 1.0f, 0.0f, 0.0f, });
 
 
 	int indices2[] = {

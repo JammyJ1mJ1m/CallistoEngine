@@ -1,5 +1,5 @@
 #pragma once
-#include "Vector3.h"
+
 #include "VBO.h"
 #include <vector>
 
@@ -14,6 +14,7 @@ private:
 	VBO* mVbo;
 	std::vector<Vertex> mVertices;
 	std::vector<int> mIndices;
+	int textures;
 
 	// Constructors etc
 public:
@@ -35,6 +36,8 @@ public:
 	bool AddIndex(int pIndices[], int pSize);
 	bool Clear();
 	bool DeleteVertex(int i);
+	void LoadTexture(std::string pFile);
+	void Draw() const;
 
 	// Unlocks the mesh but also deletes the VBO
 	void Reset();

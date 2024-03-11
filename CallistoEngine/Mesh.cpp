@@ -5,7 +5,7 @@
 #endif
 #if OPENGL
 #include "VBO_GL.h"
-
+#include "../Managers/ResourceManager.h"
 #endif
 
 /******************************************************************************************************************/
@@ -83,6 +83,20 @@ bool Mesh::DeleteVertex(int i)
 	{
 		return false;
 	}
+}
+
+void Mesh::LoadTexture(std::string pFile)
+{
+	ResourceManager& manager = ResourceManager::getInstance();
+
+	textures = manager.LoadTexture(pFile.c_str());
+	// const char* vertexShaderSource = vshaderSrc.c_str();
+}
+
+void Mesh::Draw() const
+{
+	GetVBO()->Draw(textures);
+
 }
 
 /******************************************************************************************************************/

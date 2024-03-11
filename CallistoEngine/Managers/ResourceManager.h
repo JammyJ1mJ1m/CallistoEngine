@@ -3,9 +3,12 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <unordered_map>
 
 class ResourceManager
 {
+
+	std::unordered_map <int, std::string> mTextures;
 
 	// credits https://stackoverflow.com/a/1008289/12954717
 	// singleton class that is thread safe and lazy initialized
@@ -43,41 +46,9 @@ public:
 	//       before deleted status
 
 
-	std::string LoadShader(const char* pFile)
-	{
-		// 1. retrieve the vertex/fragment source code from filePath
-		std::string shaderCode;
+	std::string LoadShader(const char* pFile);
 
-		std::ifstream shaderFileStream;
-
-		// ensure ifstream objects can throw exceptions:
-		shaderFileStream.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-
-		try
-		{
-			// open files
-			shaderFileStream.open(pFile);
-
-			std::stringstream shaderStringStream;
-			// read file's buffer contents into streams
-			shaderStringStream << shaderFileStream.rdbuf();
-
-			// close file handlers
-			shaderFileStream.close();
-
-			// convert stream into string
-			shaderCode = shaderStringStream.str();
-			return shaderCode;
-
-		}
-		catch (std::ifstream::failure e)
-		{
-			std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
-			std::string emp = "empty";
-			return emp;
-		}
-	}
-
+	int LoadTexture(const std::string pFile);
 
 };
 

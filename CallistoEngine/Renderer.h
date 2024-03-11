@@ -7,7 +7,7 @@
 //#include "glm/gtc/matrix_transform.hpp"
 //#include "glm/gtc/type_ptr.hpp"
 
-#include "Vector4.h"
+#include "Vector.h"
 
 // Forward declarations
 class Entity;
@@ -18,7 +18,7 @@ class Renderer
 {
 	// Data
 protected:
-	 Vector4 _clearColour;
+	 Vector4f _clearColour;
 public:
 
 	// Structors

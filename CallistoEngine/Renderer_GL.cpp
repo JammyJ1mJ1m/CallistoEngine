@@ -86,5 +86,7 @@ void Renderer_GL::Render(Entity* entity)
 
 
 	ComponentModel* model = entity->GetComponent <ComponentModel>();
-	model->GetMesh()->GetVBO()->Draw();
+	const Mesh* mesh = model->GetMesh();
+	mesh->Draw();
+
 }

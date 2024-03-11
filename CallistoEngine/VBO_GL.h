@@ -20,9 +20,9 @@ public:
 	// Functions
 public:
 	virtual void Create(Vertex pVertices[], int pNumVertices, int pIndices[], int pSize);
-	virtual void Draw();
+	virtual void Draw(int tex);
 private:
 	void DrawVBO();
-	void DrawVAO();
+	void DrawVAO(int tex);
 };
 

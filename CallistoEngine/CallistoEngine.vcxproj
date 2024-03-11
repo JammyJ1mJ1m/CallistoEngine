@@ -260,10 +260,9 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Objects\ShaderObject.cpp" />
     <ClCompile Include="Objects\ShaderObject_GL.cpp" />
+    <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="VBO.cpp" />
     <ClCompile Include="VBO_GL.cpp" />
-    <ClCompile Include="Vector3.cpp" />
-    <ClCompile Include="Vector4.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Window_GL.cpp" />
   </ItemGroup>
@@ -403,10 +402,10 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Objects\ShaderObject.h" />
     <ClInclude Include="Objects\ShaderObject_GL.h" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="VBO.h" />
     <ClInclude Include="VBO_GL.h" />
-    <ClInclude Include="Vector3.h" />
-    <ClInclude Include="Vector4.h" />
+    <ClInclude Include="Vector.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="Window_GL.h" />
