@@ -15,7 +15,9 @@ private:
 	VBO* mVbo;
 	std::vector<Vertex> mVertices;
 	std::vector<int> mIndices;
+
 	int textures;
+
 	Material* material;
 
 	// Constructors etc

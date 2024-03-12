@@ -111,3 +111,9 @@ void ShaderObject_GL::LoadShader(const char* pFile)
 		std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
 	}
 }
+
+void ShaderObject_GL::SetWorldMatrix(const char* pName, glm::mat4 pMatrix)
+{
+	unsigned int transformLoc = glGetUniformLocation(shaderProgram, "transform");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(pMatrix));
+}

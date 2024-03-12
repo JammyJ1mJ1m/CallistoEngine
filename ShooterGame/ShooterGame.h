@@ -1,8 +1,19 @@
 #pragma once
 #include "Game.h"
+#include "Components/Entity.h"
+#include "Components/ComponentModel.h"
+#include "Components/ComponentShader.h"
+#include "Components/ComponentTransform.h"
+#include "Vector.h"
+
+#include "Material.h"
+
+#include "Systems/SystemRender.h"
+
 class ShooterGame : public Game
 {
 	GameState _gameState;
+	SystemRender* mRenderSystem;
 public:
 
 	// sets the game up

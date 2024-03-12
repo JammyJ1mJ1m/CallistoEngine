@@ -21,5 +21,6 @@ public:
 
 	// void Create(const char* pVertexShader, const char* pFragmentShader);
 	virtual ~ComponentShader();
+	void Update(glm::mat4 pMat);
 };
 

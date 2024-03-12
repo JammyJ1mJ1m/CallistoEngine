@@ -1,10 +1,5 @@
 #include "ShooterGame.h"
-#include "Components/Entity.h"
-#include "Components/ComponentModel.h"
-#include "Components/ComponentShader.h"
-#include "Vector.h"
 
-#include "Material.h"
 
 void ShooterGame::Initialise(Window* w)
 {
@@ -12,11 +7,6 @@ void ShooterGame::Initialise(Window* w)
 	_renderer = w->GetRenderer();
 
 	// other game setup logic
-
-	// Material mat = Material("Resources/textures/TestCube.mtl");
-
-	Vector2f v2 = { 1.0f, 2.0f, 3.0f, 4.0f };
-
 	_gameState = Playing;
 
 	Mesh* mesh = new Mesh("Resources/textures/TestCube.mtl");
@@ -38,6 +28,7 @@ void ShooterGame::Initialise(Window* w)
 	Entity* ent1 = new Entity();
 	ent1->AddComponent(new ComponentModel(mesh));
 	ent1->AddComponent(new ComponentShader());
+	ent1->AddComponent(new ComponentTransform( glm::vec3(0.0f,0.0f,0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f) ) );
 
 
 	Mesh* mesh2 = new Mesh("Resources/textures/Default.mtl");
@@ -59,9 +50,14 @@ void ShooterGame::Initialise(Window* w)
 	Entity* ent2 = new Entity();
 	ent2->AddComponent(new ComponentModel(mesh2));
 	ent2->AddComponent(new ComponentShader());
+	ent2->AddComponent(new ComponentTransform(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f)));
+
 
 	mEntities.push_back(ent1);
 	mEntities.push_back(ent2);
+
+
+	mRenderSystem = new SystemRender();
 
 }
 
@@ -99,6 +95,12 @@ void ShooterGame::OnKeyboard(int key, bool down)
 
 void ShooterGame::Render()
 {
+	for (Entity* ent : mEntities)
+	{
+		mRenderSystem->Run(ent);
+	}
+
+
 	_renderer->ClearScreen();
 	// _renderer->Render();
 

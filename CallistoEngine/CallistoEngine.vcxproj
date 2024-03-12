@@ -249,10 +249,12 @@
     <ClCompile Include="Components\ComponentShader.cpp" />
     <ClCompile Include="Components\ComponentModel.cpp" />
     <ClCompile Include="Components\IComponent.cpp" />
+    <ClCompile Include="Components\ComponentTransform.cpp" />
     <ClCompile Include="Dependencies\inc\GLM\core\dummy.cpp" />
     <ClCompile Include="Components\Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="Systems\ISystem.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -262,6 +264,7 @@
     <ClCompile Include="Objects\ShaderObject.cpp" />
     <ClCompile Include="Objects\ShaderObject_GL.cpp" />
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="Systems\SystemRender.cpp" />
     <ClCompile Include="VBO.cpp" />
     <ClCompile Include="VBO_GL.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -271,6 +274,7 @@
     <ClInclude Include="Components\ComponentShader.h" />
     <ClInclude Include="Components\ComponentModel.h" />
     <ClInclude Include="Components\IComponent.h" />
+    <ClInclude Include="Components\ComponentTransform.h" />
     <ClInclude Include="Dependencies\glad\glad.h" />
     <ClInclude Include="Dependencies\inc\glad\glad.h" />
     <ClInclude Include="Dependencies\inc\GLFW\glfw3.h" />
@@ -396,6 +400,7 @@
     <ClInclude Include="Dependencies\inc\KHR\khrplatform.h" />
     <ClInclude Include="Components\Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Systems\ISystem.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Renderer.h" />
@@ -405,6 +410,7 @@
     <ClInclude Include="Objects\ShaderObject.h" />
     <ClInclude Include="Objects\ShaderObject_GL.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Systems\SystemRender.h" />
     <ClInclude Include="VBO.h" />
     <ClInclude Include="VBO_GL.h" />
     <ClInclude Include="Vector.h" />

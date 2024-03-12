@@ -40,7 +40,7 @@ public:
 
 	// methods
 	void AddComponent(IComponent* pComponent);
-	const IComponent::ComponentTypes& GetMask() const { return mMask; }
+	const IComponent::ComponentTypes GetMask() const { return mMask; }
 
 
 	template<class T>

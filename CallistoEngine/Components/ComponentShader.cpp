@@ -28,3 +28,10 @@ ComponentShader::~ComponentShader()
 {
 	delete mShaderObject;
 }
+
+void ComponentShader::Update(glm::mat4 pMat)
+{
+	mShaderObject->SetWorldMatrix("transform", pMat);
+}
+
+
