@@ -2,6 +2,7 @@
 #include "VBO.h"
 #include <glad/glad.h>
 #include "GLFW/glfw3.h"
+
 class VBO_GL : public VBO
 {
 	// Data
@@ -20,9 +21,9 @@ public:
 	// Functions
 public:
 	virtual void Create(Vertex pVertices[], int pNumVertices, int pIndices[], int pSize);
-	virtual void Draw(int tex);
+	virtual void Draw(Material* mat);
 private:
 	void DrawVBO();
-	void DrawVAO(int tex);
+	void DrawVAO(Material* mat);
 };
 

@@ -62,9 +62,9 @@ void VBO_GL::Create(Vertex pVertices[], int pNumVertices, int pIndices[], int pS
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
-void VBO_GL::Draw(int tex)
+void VBO_GL::Draw(Material* mat)
 {
-	DrawVAO(tex);
+	DrawVAO(mat);
 }
 
 void VBO_GL::DrawVBO()
@@ -94,10 +94,13 @@ void VBO_GL::DrawVBO()
 	//glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void VBO_GL::DrawVAO(int tex)
+void VBO_GL::DrawVAO(Material* mat)
 {
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, tex);
+	glBindTexture(GL_TEXTURE_2D, mat->GetDiffuseMap());
+
+	//glActiveTexture(GL_TEXTURE1);
+	//glBindTexture(GL_TEXTURE_2D, mat->GetNormalMap());
 
 	glBindVertexArray(mVaoID);
 	// Draw

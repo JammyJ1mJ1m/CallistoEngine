@@ -10,10 +10,15 @@
 
 /******************************************************************************************************************/
 
-Mesh::Mesh()
+Mesh::Mesh(std::string pFile)
 	: mLocked(false),
 	mVbo(NULL)
 
+{
+	material = new Material(pFile);
+}
+
+Mesh::Mesh() : mLocked(false), mVbo(NULL)
 {
 }
 
@@ -23,6 +28,7 @@ Mesh::~Mesh()
 {
 	delete mVbo;
 	mVbo = NULL;
+	delete material;
 }
 
 /******************************************************************************************************************/
@@ -95,7 +101,7 @@ void Mesh::LoadTexture(std::string pFile)
 
 void Mesh::Draw() const
 {
-	GetVBO()->Draw(textures);
+	GetVBO()->Draw(material);
 
 }
 

@@ -4,6 +4,8 @@
 #include "Components/ComponentShader.h"
 #include "Vector.h"
 
+#include "Material.h"
+
 void ShooterGame::Initialise(Window* w)
 {
 	_window = w;
@@ -11,12 +13,13 @@ void ShooterGame::Initialise(Window* w)
 
 	// other game setup logic
 
+	// Material mat = Material("Resources/textures/TestCube.mtl");
 
 	Vector2f v2 = { 1.0f, 2.0f, 3.0f, 4.0f };
 
 	_gameState = Playing;
 
-	Mesh* mesh = new Mesh();
+	Mesh* mesh = new Mesh("Resources/textures/TestCube.mtl");
 	mesh->LoadTexture("Resources/textures/container.jpg");
 	mesh->AddVertex({ 0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, });
 	mesh->AddVertex({ 0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, });
@@ -37,7 +40,7 @@ void ShooterGame::Initialise(Window* w)
 	ent1->AddComponent(new ComponentShader());
 
 
-	Mesh* mesh2 = new Mesh();
+	Mesh* mesh2 = new Mesh("Resources/textures/Default.mtl");
 	mesh2->LoadTexture("Resources/textures/Default.png");
 
 	mesh2->AddVertex({ 0.8f,  0.8f, 0.0f,	1.0f,  0.0f, 0.0f,	1.0f, 1.0f, });

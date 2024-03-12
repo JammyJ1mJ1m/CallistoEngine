@@ -2,6 +2,7 @@
 
 #include "VBO.h"
 #include <vector>
+#include "Material.h"
 
 
 class Mesh final
@@ -15,9 +16,11 @@ private:
 	std::vector<Vertex> mVertices;
 	std::vector<int> mIndices;
 	int textures;
+	Material* material;
 
 	// Constructors etc
 public:
+	Mesh(std::string pFile);
 	Mesh();
 	~Mesh();
 
