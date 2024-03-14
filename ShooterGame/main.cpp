@@ -38,11 +38,12 @@ int main()
 	game = _window->GetGame();
  	game->Initialise(_window);
 
+
 	while (game->IsRunning())
 	{
 		++frameCount;
-		_window->Update();
 		game->Run(deltaTime);
+		_window->Update(); 
 
 		deltaTime = calculateDeltaTime(lastFrameTime);
 		auto newTime = std::chrono::high_resolution_clock::now();

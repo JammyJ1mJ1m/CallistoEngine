@@ -29,5 +29,16 @@ public:
 	virtual void Run(double dt);
 
 	bool IsRunning() override { return _gameState != GameState::Quit; }
+
+	virtual ~ShooterGame()
+	{
+		delete mRenderSystem;
+		// delete all dynamically allocated memory
+		for (auto e : mEntities)
+		{
+			delete e;
+		}
+
+	}
 };
 

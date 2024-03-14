@@ -32,7 +32,7 @@ void ComponentTransform::Translate(glm::vec3 pTranslation)
 
 void ComponentTransform::Rotate(glm::vec3 pAxis)
 {
-	modelMatrix = glm::rotate(modelMatrix, glm::radians(90.0f), pAxis);
+	modelMatrix = glm::rotate(modelMatrix, glm::radians(0.0f), pAxis);
 }
 
 void ComponentTransform::Scale(glm::vec3 pScale)

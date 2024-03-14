@@ -59,6 +59,23 @@ bool Mesh::AddIndex(int i)
 	}
 }
 
+bool Mesh::AddIndex(std::vector<int> pIndices)
+{
+	if (!mLocked)
+	{
+		// int size = sizeof(pIndices);// / sizeof(pIndices[0]);
+		for (size_t i = 0; i < pIndices.size(); i++)
+		{
+			mIndices.push_back(pIndices[i]);
+		}
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 bool Mesh::AddIndex(int pIndices[], int pSize)
 {
 	if (!mLocked)
