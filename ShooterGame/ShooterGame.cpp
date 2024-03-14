@@ -1,6 +1,5 @@
 #include "ShooterGame.h"
 
-
 void ShooterGame::Initialise(Window* w)
 {
 	_window = w;
@@ -10,17 +9,63 @@ void ShooterGame::Initialise(Window* w)
 	// other game setup logic
 	_gameState = Playing;
 
+	mCamera = new Camera(glm::vec3(0.0f, 0.0f, 3.0f), _window->GetWindowWidth(), _window->GetWindowHeight());
+
+	std::vector<Vertex> vertices = {
+	{-0.5f, -0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 0.0f},
+	{ 0.5f, -0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 0.0f},
+	{ 0.5f,  0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 1.0f},
+	{ 0.5f,  0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 1.0f},
+	{-0.5f,  0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 1.0f},
+	{-0.5f, -0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 0.0f},
+							 
+	{-0.5f, -0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 0.0f},
+	{ 0.5f, -0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 0.0f},
+	{ 0.5f,  0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 1.0f},
+	{ 0.5f,  0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 1.0f},
+	{-0.5f,  0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 1.0f},
+	{-0.5f, -0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 0.0f},
+							 
+	{-0.5f,  0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 0.0f},
+	{-0.5f,  0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 1.0f},
+	{-0.5f, -0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 1.0f},
+	{-0.5f, -0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 1.0f},
+	{-0.5f, -0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 0.0f},
+	{-0.5f,  0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 0.0f},
+							 	
+	{ 0.5f,  0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 0.0f},
+	{ 0.5f,  0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 1.0f},
+	{ 0.5f, -0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 1.0f},
+	{ 0.5f, -0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 1.0f},
+	{ 0.5f, -0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 0.0f},
+	{ 0.5f,  0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 0.0f},
+							 	
+	{-0.5f, -0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 1.0f},
+	{ 0.5f, -0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 1.0f},
+	{ 0.5f, -0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 0.0f},
+	{ 0.5f, -0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 0.0f},
+	{-0.5f, -0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 0.0f},
+	{-0.5f, -0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 1.0f},
+						 
+	{-0.5f,  0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 1.0f},
+	{ 0.5f,  0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 1.0f},
+	{ 0.5f,  0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 0.0f},
+	{ 0.5f,  0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  1.0f, 0.0f},
+	{-0.5f,  0.5f,  0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 0.0f},
+	{-0.5f,  0.5f, -0.5f,	 1.0f, 0.0f, 0.0f,	  0.0f, 1.0f}
+	};
 
 
 	// ####################################################################### square
 	Mesh* mesh = new Mesh("Resources/textures/TestCube.mtl");
 	mesh->LoadTexture("Resources/textures/container.jpg");
-	mesh->AddVertex({ 0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, });
+	mesh->AddVertices(vertices);
+	/*mesh->AddVertex({ 0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, });
 	mesh->AddVertex({ 0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, });
 	mesh->AddVertex({ -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, });
-	mesh->AddVertex({ -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f });
-	std::vector<int> indices = { 0, 1, 3, 1, 2, 3 };
-	mesh->AddIndex(indices);
+	mesh->AddVertex({ -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f });*/
+	// std::vector<int> indices = { 0, 1, 3, 1, 2, 3 };
+	//mesh->AddIndex(indices);
 
 	Entity* squar = new Entity();
 	squar->AddComponent(new ComponentModel(mesh));
@@ -44,7 +89,7 @@ void ShooterGame::Initialise(Window* w)
 	tri->AddComponent(new ComponentModel(mesh2));
 	tri->AddComponent(new ComponentShader());
 	tri->AddComponent(new ComponentTransform(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.5f, 2.0f, 1.0f)));
-	mEntities.push_back(tri);
+	// mEntities.push_back(tri);
 
 	// ####################################################################### 
 

@@ -246,6 +246,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Components\ComponentShader.cpp" />
     <ClCompile Include="Components\ComponentModel.cpp" />
     <ClCompile Include="Components\IComponent.cpp" />
@@ -271,6 +272,7 @@
     <ClCompile Include="Window_GL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Components\ComponentShader.h" />
     <ClInclude Include="Components\ComponentModel.h" />
     <ClInclude Include="Components\IComponent.h" />

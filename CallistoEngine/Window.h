@@ -47,6 +47,9 @@ public:
 	virtual void Update() = 0;
 	virtual void SetTitle(const char* pTitle) = 0;
 
+	virtual int GetWindowWidth() = 0;
+	virtual int GetWindowHeight() = 0;
+
 	virtual int Initialise(const char* pTitle) = 0;
 	//virtual void OnResize(int width, int height) = 0;
 	virtual void Close() = 0;

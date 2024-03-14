@@ -105,7 +105,8 @@ void VBO_GL::DrawVAO(Material* mat)
 	glBindVertexArray(mVaoID);
 	// Draw
 	// glDrawArrays(GL_TRIANGLES, 0, mNumVertices);
-	glDrawElements(GL_TRIANGLES, mNumIndices, GL_UNSIGNED_INT, 0);
+	// glDrawElements(GL_TRIANGLES, mNumIndices, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, 0, GL_UNSIGNED_INT, 0);
 
 	glBindVertexArray(0);
 }

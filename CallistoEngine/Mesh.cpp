@@ -46,6 +46,23 @@ bool Mesh::AddVertex(Vertex v)
 	}
 }
 
+bool Mesh::AddVertices(std::vector<Vertex> v)
+{
+	if (!mLocked)
+	{
+		// int size = sizeof(pIndices);// / sizeof(pIndices[0]);
+		for (size_t i = 0; i < v.size(); i++)
+		{
+			mVertices.push_back(v[i]);
+		}
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 bool Mesh::AddIndex(int i)
 {
 	if (!mLocked)

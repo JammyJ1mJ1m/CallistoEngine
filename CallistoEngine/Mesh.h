@@ -37,6 +37,7 @@ public:
 public:
 	VBO* CreateVBO();
 	bool AddVertex(Vertex v);
+	bool AddVertices(std::vector<Vertex> v);
 	bool AddIndex(int i);
 	bool AddIndex(std::vector<int> pIndices);
 	bool AddIndex(int pIndices[], int pSize);

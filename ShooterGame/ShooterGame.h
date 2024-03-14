@@ -10,10 +10,15 @@
 
 #include "Systems/SystemRender.h"
 
+#include "Camera.h"
+
+
 class ShooterGame : public Game
 {
 	GameState _gameState;
 	SystemRender* mRenderSystem;
+	Camera* mCamera;
+
 public:
 
 	// sets the game up
@@ -32,6 +37,7 @@ public:
 
 	virtual ~ShooterGame()
 	{
+		delete mCamera;
 		delete mRenderSystem;
 		// delete all dynamically allocated memory
 		for (auto e : mEntities)
