@@ -20,7 +20,7 @@ public:
 	virtual void Render();
 	virtual void LoadShader(const char* pFile);
 
-	void SetWorldMatrix(const char* pName, glm::mat4 pMatrix);
+	void SetWorldMatrix(const char* pName, glm::mat4 pMatrix, const Camera* pCam);
 
 };
 

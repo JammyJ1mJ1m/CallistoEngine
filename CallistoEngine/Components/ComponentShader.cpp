@@ -1,8 +1,8 @@
 #include "ComponentShader.h"
 
-ComponentShader::ComponentShader()
+ComponentShader::ComponentShader( Camera* pCam)
 {
-
+	mCamera = pCam;
 #if OPENGL
 	mShaderObject = new ShaderObject_GL();
 #elif DIRECTX
@@ -31,7 +31,7 @@ ComponentShader::~ComponentShader()
 
 void ComponentShader::Update(glm::mat4 pMat)
 {
-	mShaderObject->SetWorldMatrix("transform", pMat);
+	mShaderObject->SetWorldMatrix("transform", pMat, mCamera);
 }
 
 

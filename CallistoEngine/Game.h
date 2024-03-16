@@ -24,4 +24,5 @@ public:
 	virtual void Render() = 0;
 	virtual void Run(double dt) = 0;
 	virtual bool IsRunning() = 0;
+	virtual bool HandleInput() = 0;
 };

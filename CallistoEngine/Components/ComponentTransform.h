@@ -31,7 +31,9 @@ public:
 	void UpdateModelMatrix();
 
 	void Translate(glm::vec3 pTranslation);
-	void Rotate(glm::vec3 pAxis);
+	void RotateX(const float pAngle);
+	void RotateY(const float pAngle);
+	void RotateZ(const float pAngle);
 	void Scale(glm::vec3 pScale);
 
 	virtual ComponentTypes GetType() const;

@@ -4,6 +4,7 @@
 
 #if OPENGL
 #include "../Objects/ShaderObject_GL.h"
+#include "../Camera.h"
 #elif DIRECTX
 #include "../Objects/ShaderObject_DX.h"
 #endif
@@ -11,10 +12,11 @@
 class ComponentShader : public IComponent
 {
 	ShaderObject* mShaderObject;
+	Camera* mCamera;
 
 
 public:
-	ComponentShader();
+	ComponentShader(Camera* pCam);
 	virtual ComponentTypes GetType() const;
 	void Render();
 	const virtual void UseProgram();

@@ -21,7 +21,7 @@ ComponentTransform::ComponentTransform(glm::vec3 pPos, glm::vec3 pRot, glm::vec3
 void ComponentTransform::UpdateModelMatrix()
 {
 	Translate(position);
-	Rotate(rotation);
+	// RotateX(rotation);
 	Scale(scale);
 }
 
@@ -30,9 +30,19 @@ void ComponentTransform::Translate(glm::vec3 pTranslation)
 	modelMatrix = glm::translate(modelMatrix, pTranslation);
 }
 
-void ComponentTransform::Rotate(glm::vec3 pAxis)
+void ComponentTransform::RotateX(const float pAngle)
 {
-	modelMatrix = glm::rotate(modelMatrix, glm::radians(0.0f), pAxis);
+	modelMatrix = glm::rotate(modelMatrix, glm::radians(pAngle), glm::vec3(1,0,0));
+}
+
+void ComponentTransform::RotateY(const float pAngle)
+{
+	modelMatrix = glm::rotate(modelMatrix, glm::radians(pAngle), glm::vec3(0, 1, 0));
+}
+
+void ComponentTransform::RotateZ(const float pAngle)
+{
+	modelMatrix = glm::rotate(modelMatrix, glm::radians(pAngle), glm::vec3(0, 0, 1));
 }
 
 void ComponentTransform::Scale(glm::vec3 pScale)

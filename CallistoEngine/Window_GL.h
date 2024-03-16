@@ -22,7 +22,7 @@ public:
 	void SetLastKey(int pKey ) { lastPressedKey = pKey; }
 	Window_GL(Game* game, const int width, const int height);
 	virtual int Initialise(const char* pTitle);
-	void OnKeyboard(int key );
+	void OnKeyboard(int key, bool ispress );
 	virtual void Close();
 	virtual void Update();
 	virtual void SetTitle(const char* pTitle);

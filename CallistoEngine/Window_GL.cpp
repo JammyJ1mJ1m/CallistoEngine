@@ -16,8 +16,13 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 	if (action == GLFW_PRESS) {
 		instance->SetLastKey(key);
-		instance->OnKeyboard(key);
+		instance->OnKeyboard(key, true);
 		std::cout << "Key pressed: " << key << std::endl;
+	}
+	else if (action == GLFW_RELEASE) {
+		instance->SetLastKey(-1);
+		instance->OnKeyboard(key, false);
+		std::cout << "Key released: " << key << std::endl;
 	}
 }
 
@@ -96,9 +101,9 @@ int Window_GL::Initialise(const char* pTitle)
 	// glfwTerminate();
 }
 
-void Window_GL::OnKeyboard(int key)
+void Window_GL::OnKeyboard(int key, bool ispress)
 {
-	_game->OnKeyboard(key, false);
+	_game->OnKeyboard(key, ispress);
 
 	/*if (glfwGetKey(window, 256) == 1)
 	{

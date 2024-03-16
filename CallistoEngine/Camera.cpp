@@ -1,6 +1,7 @@
 #include "Camera.h"
+#include <iostream>
 
-Camera::Camera(glm::vec3 pPos, float pWidth, float pHeight)
+Camera::Camera(const glm::vec3 pPos, const float pWidth, const float pHeight)
 {
 	cameraPos = pPos;
 	cameraDir = glm::vec3(0.0f, 0.0f, -1.0f);
@@ -14,18 +15,20 @@ Camera::Camera(glm::vec3 pPos, float pWidth, float pHeight)
 
 	view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 
+	projection = glm::perspective(glm::radians(45.0f), (float)pWidth / (float)pHeight, 0.1f, 100.0f);
 	UpdateView();
 
-	projection = glm::perspective(glm::radians(45.0f), (float)pWidth / (float)pHeight, 0.1f, 100.0f);
+
+	// mInstance = this;
 }
 
-void Camera::MoveForward(float pMoveAmount)
+void Camera::MoveForward(const float pMoveAmount)
 {
 	cameraPos += cameraFront * pMoveAmount;
 	UpdateView();
 }
 
-void Camera::Strafe(float pMoveAmount)
+void Camera::Strafe(const float pMoveAmount)
 {
 	cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * pMoveAmount;
 	UpdateView();
@@ -34,6 +37,7 @@ void Camera::Strafe(float pMoveAmount)
 
 void Camera::UpdateView()
 {
+	std::cout << cameraPos.x << " " << cameraPos.y << " " << cameraPos.z << std::endl;
 	cameraTarget = cameraPos + cameraDir;
 	view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }

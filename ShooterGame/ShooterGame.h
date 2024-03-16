@@ -33,6 +33,9 @@ public:
 	// main game loop
 	virtual void Run(double dt);
 
+	virtual bool HandleInput();
+
+
 	bool IsRunning() override { return _gameState != GameState::Quit; }
 
 	virtual ~ShooterGame()

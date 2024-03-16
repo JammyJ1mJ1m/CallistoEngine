@@ -2,6 +2,7 @@
 // include string stream
 #include <sstream>
 #include "../Managers/ResourceManager.h"
+#include "../Camera.h"
 
 ShaderObject_GL::ShaderObject_GL()
 {
@@ -67,6 +68,8 @@ ShaderObject_GL::ShaderObject_GL()
 
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
+
+	glEnable(GL_DEPTH_TEST);
 }
 
 const void ShaderObject_GL::UseProgram()
@@ -112,8 +115,17 @@ void ShaderObject_GL::LoadShader(const char* pFile)
 	}
 }
 
-void ShaderObject_GL::SetWorldMatrix(const char* pName, glm::mat4 pMatrix)
+void ShaderObject_GL::SetWorldMatrix(const char* pName, glm::mat4 pMatrix, const Camera* pCam)
 {
-	unsigned int transformLoc = glGetUniformLocation(shaderProgram, "transform");
+	unsigned int transformLoc = glGetUniformLocation(shaderProgram, "model");
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(pMatrix));
+	
+	glm::mat4 vi = pCam->GetView();
+	unsigned int viewLoc = glGetUniformLocation(shaderProgram, "view");
+	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(vi));
+
+
+	unsigned int projLoc = glGetUniformLocation(shaderProgram, "projection");
+	glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(pCam->GetProjection()));
+
 }
