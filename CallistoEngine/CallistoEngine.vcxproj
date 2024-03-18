@@ -204,7 +204,7 @@
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;assimp.lib</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3_mt.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw3_mt.lib;assimp-vc143-mt.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)Dependencies\lib</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>

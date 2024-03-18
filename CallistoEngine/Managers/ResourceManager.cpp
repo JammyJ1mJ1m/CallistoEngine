@@ -1,6 +1,7 @@
 #include "ResourceManager.h"
 #include <../stb_image.h>
 
+
 std::string ResourceManager::LoadShader(const char* pFile)
 {
 	// 1. retrieve the vertex/fragment source code from filePath
@@ -84,5 +85,61 @@ int ResourceManager::LoadTexture(const std::string pFile)
 		}
 		stbi_image_free(data);
 	}
+}
+int ResourceManager::LoadMesh(const std::string pFile)
+{
+	Assimp::Importer importer;
+
+	const aiScene* const scene = importer.ReadFile("models\\" + pFile,
+		aiProcess_Triangulate | aiProcess_CalcTangentSpace);
+	try
+	{
+		if (scene == nullptr)
+			throw std::runtime_error("Error reading file, perhaps the path is incorrect");
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+		return 0;
+	}
+	for (size_t i = 0; i < scene->mNumMeshes; i++)
+	{
+		const aiMesh* const mesh = scene->mMeshes[i];
+
+		for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+		{
+			/*SimpleVertex vertex;
+			vertex.Pos.x = mesh->mVertices[i].x;
+			vertex.Pos.y = mesh->mVertices[i].y;
+			vertex.Pos.z = mesh->mVertices[i].z;
+
+			vertex.Normal.x = mesh->mNormals[i].x;
+			vertex.Normal.y = mesh->mNormals[i].y;
+			vertex.Normal.z = mesh->mNormals[i].z;
+
+			vertex.TexCoord.x = mesh->mTextureCoords[0][i].x;
+			vertex.TexCoord.y = mesh->mTextureCoords[0][i].y;
+
+			vertex.Binormal.x = mesh->mBitangents[i].x;
+			vertex.Binormal.y = mesh->mBitangents[i].y;
+			vertex.Binormal.z = mesh->mBitangents[i].z;
+
+			vertex.Tangent.x = mesh->mTangents[i].x;
+			vertex.Tangent.y = mesh->mTangents[i].y;
+			vertex.Tangent.z = mesh->mTangents[i].z;
+
+			mVertices.push_back(vertex);*/
+		}
+
+		//for (int i = 0; i < mesh->mNumFaces; i++)
+		//{
+		//	const aiFace face = mesh->mFaces[i];
+		//	for (int j = 0; j < face.mNumIndices; j++)
+		//		mIndices.push_back(face.mIndices[j]);
+		//}
+	}
+
+	// mStartIndex = mVertices.size();
+	return 0;
 }
 #endif

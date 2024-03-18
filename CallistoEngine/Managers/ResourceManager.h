@@ -5,6 +5,10 @@
 #include <string>
 #include <unordered_map>
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 class ResourceManager
 {
 
@@ -49,6 +53,7 @@ public:
 	std::string LoadShader(const char* pFile);
 
 	int LoadTexture(const std::string pFile);
+	int LoadMesh(const std::string pFile);
 
 };
 
