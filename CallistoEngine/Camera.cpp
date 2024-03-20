@@ -15,7 +15,7 @@ Camera::Camera(const glm::vec3 pPos, const float pWidth, const float pHeight)
 
 	view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 
-	projection = glm::perspective(glm::radians(45.0f), (float)pWidth / (float)pHeight, 0.1f, 100.0f);
+	projection = glm::perspective(glm::radians(45.0f), (float)pWidth / (float)pHeight, 0.1f, 500.0f);
 	UpdateView();
 
 

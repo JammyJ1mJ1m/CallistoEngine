@@ -1,13 +1,15 @@
 #pragma once
 #include "IComponent.h"
 #include <string>
-#include "../Mesh.h"
+ #include "../Mesh.h"
+// #include "../Managers/ResourceManager.h"
 
 class ComponentModel : public IComponent
 {
 	Mesh* mMesh;
 public:
 	ComponentModel(Mesh* pMesh);
+	ComponentModel(std::string pMesh, std::string pMat);
 	// ComponentModel(const std::string pFilePath);
 	~ComponentModel() = default;
 	virtual ComponentTypes GetType() const;

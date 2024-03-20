@@ -80,7 +80,7 @@ void ShooterGame::Initialise(Window* w)
 	squar->AddComponent(new ComponentModel(mesh));
 	squar->AddComponent(new ComponentShader(mCamera));
 	squar->AddComponent(new ComponentTransform(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.2f, 0.2f, 0.2f)));
-	mEntities.push_back(squar);
+	// mEntities.push_back(squar);
 
 
 	// ####################################################################### triangle
@@ -95,10 +95,10 @@ void ShooterGame::Initialise(Window* w)
 
 
 	Entity* tri = new Entity();
-	tri->AddComponent(new ComponentModel(mesh2));
+	tri->AddComponent(new ComponentModel("Resources/Geometry/test/AwesomeAxolotls_1.obj", "Resources/Geometry/test/AwesomeAxolotls_1.mtl"));
 	tri->AddComponent(new ComponentShader(mCamera));
-	tri->AddComponent(new ComponentTransform(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.5f, 2.0f, 1.0f)));
-	// mEntities.push_back(tri);
+	tri->AddComponent(new ComponentTransform(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f)));
+	 mEntities.push_back(tri);
 
 	// ####################################################################### 
 

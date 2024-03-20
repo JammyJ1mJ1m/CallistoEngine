@@ -9,10 +9,13 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+class Mesh;
+
 class ResourceManager
 {
 
 	std::unordered_map <int, std::string> mTextures;
+	std::unordered_map <Mesh*, std::string> mMeshs;
 
 	// credits https://stackoverflow.com/a/1008289/12954717
 	// singleton class that is thread safe and lazy initialized
@@ -53,7 +56,7 @@ public:
 	std::string LoadShader(const char* pFile);
 
 	int LoadTexture(const std::string pFile);
-	int LoadMesh(const std::string pFile);
+	Mesh* LoadMesh(const std::string pFile);
 
 };
 

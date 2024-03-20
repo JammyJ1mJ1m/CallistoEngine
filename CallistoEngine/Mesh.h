@@ -38,8 +38,10 @@ public:
 	VBO* CreateVBO();
 	bool AddVertex(Vertex v);
 	bool AddVertices(std::vector<Vertex> v);
+	bool AddVertices(Vertex v);
 	bool AddIndex(int i);
 	bool AddIndex(std::vector<int> pIndices);
+	bool AddMaterial(std::string pMat);
 	bool AddIndex(int pIndices[], int pSize);
 	bool Clear();
 	bool DeleteVertex(int i);

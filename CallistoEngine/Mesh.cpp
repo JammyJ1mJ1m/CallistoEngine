@@ -63,6 +63,19 @@ bool Mesh::AddVertices(std::vector<Vertex> v)
 	}
 }
 
+bool Mesh::AddVertices(Vertex v)
+{
+	if (!mLocked)
+	{
+		mVertices.push_back(v);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 bool Mesh::AddIndex(int i)
 {
 	if (!mLocked)
@@ -91,6 +104,13 @@ bool Mesh::AddIndex(std::vector<int> pIndices)
 	{
 		return false;
 	}
+}
+
+bool Mesh::AddMaterial(std::string pMat)
+{
+	material = new Material(pMat);
+
+	return false;
 }
 
 bool Mesh::AddIndex(int pIndices[], int pSize)

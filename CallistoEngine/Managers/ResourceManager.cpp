@@ -1,6 +1,7 @@
 #include "ResourceManager.h"
 #include <../stb_image.h>
 
+#include "../Mesh.h"
 
 std::string ResourceManager::LoadShader(const char* pFile)
 {
@@ -86,60 +87,81 @@ int ResourceManager::LoadTexture(const std::string pFile)
 		stbi_image_free(data);
 	}
 }
-int ResourceManager::LoadMesh(const std::string pFile)
+
+
+Mesh* ResourceManager::LoadMesh(const std::string pFile)
 {
-	Assimp::Importer importer;
 
-	const aiScene* const scene = importer.ReadFile("models\\" + pFile,
-		aiProcess_Triangulate | aiProcess_CalcTangentSpace);
-	try
-	{
-		if (scene == nullptr)
-			throw std::runtime_error("Error reading file, perhaps the path is incorrect");
+	bool fileExists = false;
+	// Search for a specific value
+	for (const auto& pair : mMeshs) {
+		if (pair.second == pFile) {
+			std::cout << "Model  ::  " << pFile << " :: already loaded :: model = " << pair.first << std::endl;
+			return pair.first;  // Assuming each value is unique, exit loop if found
+		}
 	}
-	catch (const std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-		return 0;
-	}
-	for (size_t i = 0; i < scene->mNumMeshes; i++)
-	{
-		const aiMesh* const mesh = scene->mMeshes[i];
 
-		for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+	if (!fileExists)
+	{
+
+		Assimp::Importer importer;
+
+		const aiScene* const scene = importer.ReadFile( pFile,
+			aiProcess_Triangulate | aiProcess_CalcTangentSpace);
+		try
 		{
-			/*SimpleVertex vertex;
-			vertex.Pos.x = mesh->mVertices[i].x;
-			vertex.Pos.y = mesh->mVertices[i].y;
-			vertex.Pos.z = mesh->mVertices[i].z;
-
-			vertex.Normal.x = mesh->mNormals[i].x;
-			vertex.Normal.y = mesh->mNormals[i].y;
-			vertex.Normal.z = mesh->mNormals[i].z;
-
-			vertex.TexCoord.x = mesh->mTextureCoords[0][i].x;
-			vertex.TexCoord.y = mesh->mTextureCoords[0][i].y;
-
-			vertex.Binormal.x = mesh->mBitangents[i].x;
-			vertex.Binormal.y = mesh->mBitangents[i].y;
-			vertex.Binormal.z = mesh->mBitangents[i].z;
-
-			vertex.Tangent.x = mesh->mTangents[i].x;
-			vertex.Tangent.y = mesh->mTangents[i].y;
-			vertex.Tangent.z = mesh->mTangents[i].z;
-
-			mVertices.push_back(vertex);*/
+			if (scene == nullptr)
+				throw std::runtime_error("Error reading file, perhaps the path is incorrect");
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+			return nullptr;
 		}
 
-		//for (int i = 0; i < mesh->mNumFaces; i++)
-		//{
-		//	const aiFace face = mesh->mFaces[i];
-		//	for (int j = 0; j < face.mNumIndices; j++)
-		//		mIndices.push_back(face.mIndices[j]);
-		//}
+		Mesh* MeshModel = new Mesh();
+
+		for (size_t i = 0; i < scene->mNumMeshes; i++)
+		{
+			const aiMesh* const mesh = scene->mMeshes[i];
+
+			for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+			{
+				Vertex vertex;
+				vertex.x = mesh->mVertices[i].x;
+				vertex.y = mesh->mVertices[i].y;
+				vertex.z = mesh->mVertices[i].z;
+
+
+				vertex.u = mesh->mTextureCoords[0][i].x;
+				vertex.v = mesh->mTextureCoords[0][i].y;
+
+				/*vertex.Normal.x = mesh->mNormals[i].x;
+				vertex.Normal.y = mesh->mNormals[i].y;
+				vertex.Normal.z = mesh->mNormals[i].z;
+
+				vertex.Binormal.x = mesh->mBitangents[i].x;
+				vertex.Binormal.y = mesh->mBitangents[i].y;
+				vertex.Binormal.z = mesh->mBitangents[i].z;
+
+				vertex.Tangent.x = mesh->mTangents[i].x;
+				vertex.Tangent.y = mesh->mTangents[i].y;
+				vertex.Tangent.z = mesh->mTangents[i].z;*/
+
+				MeshModel->AddVertices(vertex);
+			}
+
+			for (int i = 0; i < mesh->mNumFaces; i++)
+			{
+				const aiFace face = mesh->mFaces[i];
+				for (int j = 0; j < face.mNumIndices; j++)
+					MeshModel->AddIndex(face.mIndices[j]);
+			}
+		}
+
+		// mStartIndex = mVertices.size();
+		return MeshModel;
 	}
 
-	// mStartIndex = mVertices.size();
-	return 0;
 }
 #endif
