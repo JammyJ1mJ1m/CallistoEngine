@@ -31,6 +31,7 @@ ComponentShader::~ComponentShader()
 
 void ComponentShader::Update(glm::mat4 pMat)
 {
+	UseProgram();
 	mShaderObject->SetWorldMatrix("transform", pMat, mCamera);
 }
 

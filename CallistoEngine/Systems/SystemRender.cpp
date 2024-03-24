@@ -12,13 +12,13 @@ void SystemRender::Run(Entity* pEntity)
 	IComponent::ComponentTypes t = pEntity->GetMask();
 	if ((t & mMask) == mMask)
 	{
-		mRenderer->Render(pEntity);
 
 		ComponentTransform* transform = pEntity->GetComponent<ComponentTransform>();
 		glm::mat4 modelMatrix = transform->GetModelMatrix(); 
 
 		ComponentShader* shader = pEntity->GetComponent<ComponentShader>();
-		shader->UseProgram();
+		// shader->UseProgram();
 		shader->Update(modelMatrix);
+		mRenderer->Render(pEntity);
 	}
 }

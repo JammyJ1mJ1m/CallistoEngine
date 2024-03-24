@@ -9,7 +9,7 @@ void ShooterGame::Initialise(Window* w)
 	// other game setup logic
 	_gameState = Playing;
 
-	mCamera = new Camera(glm::vec3(0.0f, 0.0f, 3.0f), _window->GetWindowWidth(), _window->GetWindowHeight());
+	mCamera = new Camera(glm::vec3(0.0f, 0.0f, 15.0f), _window->GetWindowWidth(), _window->GetWindowHeight());
 	// ####################################################################### triangle
 
 	Entity* tri = new Entity();
@@ -17,6 +17,12 @@ void ShooterGame::Initialise(Window* w)
 	tri->AddComponent(new ComponentShader(mCamera));
 	tri->AddComponent(new ComponentTransform(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f)));
 	 mEntities.push_back(tri);
+
+	 Entity* tri2 = new Entity();
+	 tri2->AddComponent(new ComponentModel("Resources/Geometry/test/Tester.obj", "Resources/textures/Tester.mtl"));
+	 tri2->AddComponent(new ComponentShader(mCamera));
+	 tri2->AddComponent(new ComponentTransform(glm::vec3(5.0f, 0.0f, -8.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f)));
+	 mEntities.push_back(tri2);
 }
 
 void ShooterGame::OnKeyboard(int key, bool down)
@@ -38,6 +44,7 @@ void ShooterGame::Render()
 		//_renderer->Render(ent);
 	}
 
+	mEntities[0]->GetComponent<ComponentTransform>()->RotateX(0.01f);
 }
 
 void ShooterGame::Run(double dt)
