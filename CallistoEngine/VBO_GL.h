@@ -20,7 +20,7 @@ public:
 
 	// Functions
 public:
-	virtual void Create(Vertex pVertices[], int pNumVertices, int pIndices[], int pSize);
+	virtual void Create(Vertex pVertices[], int pNumVertices, int* pIndices, int pSize);
 	virtual void Draw(Material* mat);
 private:
 	void DrawVBO();

@@ -8,14 +8,9 @@ ShaderObject_GL::ShaderObject_GL()
 {
 	ResourceManager& manager = ResourceManager::getInstance();
 
-	std::string vshaderSrc = manager.LoadShader("../CallistoEngine/Shaders/default.vert");
+	std::string vshaderSrc = manager.LoadShader("Resources/Shaders/default.vert");
 	const char* vertexShaderSource = vshaderSrc.c_str();
-	/*const char* vertexShaderSource = "#version 330 core\n"
-		"layout (location = 0) in vec3 aPos;\n"
-		"void main()\n"
-		"{\n"
-		"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-		"}\0";*/
+
 
 	unsigned int vertexShader;
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -31,16 +26,10 @@ ShaderObject_GL::ShaderObject_GL()
 		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
 
-	std::string fShaderSrc = manager.LoadShader("../CallistoEngine/Shaders/default.frag");
+	std::string fShaderSrc = manager.LoadShader("Resources/Shaders/default.frag");
 	const char* fragmentShaderSource = fShaderSrc.c_str();
 
-	/*const char* fragmentShaderSource = "#version 330 core\n"
-		"out vec4 FragColor;\n"
 
-		"void main()\n"
-		"{\n"
-		"FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-		"}\0";*/
 
 	unsigned int fragmentShader;
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);

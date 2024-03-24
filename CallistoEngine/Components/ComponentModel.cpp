@@ -3,16 +3,7 @@
 
 ComponentModel::ComponentModel(Mesh* pMesh)
 {
-
 	SetMesh(pMesh);
-	/*
-
-	-0.5f, -0.5f, 0.0f,
-		0.5f, -0.5f, 0.0f,
-		0.0f, 0.5f, 0.0f
-	*/
-
-
 	mMesh->CreateVBO();
 }
 

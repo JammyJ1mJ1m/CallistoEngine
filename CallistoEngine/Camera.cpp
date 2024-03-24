@@ -15,7 +15,18 @@ Camera::Camera(const glm::vec3 pPos, const float pWidth, const float pHeight)
 
 	view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 
-	projection = glm::perspective(glm::radians(45.0f), (float)pWidth / (float)pHeight, 0.1f, 500.0f);
+	float aspect = 800 / 800;
+	float fov = glm::radians(45.0f);
+	float near = 0.1f;
+	float far = 100.0f;
+
+	projection = glm::mat4(1.0f);
+		projection = glm::perspective(fov, aspect, near, far);
+
+
+	//glm::mat4 projection2 = glm::perspective(glm::radians(45.0f), (float)800 / (float)800, 0.1f, 500.0f);
+	//projection = projection2;
+	
 	UpdateView();
 
 

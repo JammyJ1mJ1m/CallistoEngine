@@ -26,13 +26,14 @@ std::string ResourceManager::LoadShader(const char* pFile)
 		shaderFileStream.close();
 
 		// convert stream into string
-		shaderCode = shaderStringStream.str();
+		shaderCode = shaderStringStream.str() + "\0";
 		return shaderCode;
 
 	}
 	catch (std::ifstream::failure e)
 	{
 		std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
+		std::cout << e.what() << std::endl;
 		std::string emp = "empty";
 		return emp;
 	}
@@ -128,13 +129,22 @@ Mesh* ResourceManager::LoadMesh(const std::string pFile)
 			for (unsigned int i = 0; i < mesh->mNumVertices; i++)
 			{
 				Vertex vertex;
-				vertex.x = mesh->mVertices[i].x;
-				vertex.y = mesh->mVertices[i].y;
-				vertex.z = mesh->mVertices[i].z;
+
+				//vertex.position.SetX(mesh->mVertices[i].x);
+				//vertex.position.SetY(mesh->mVertices[i].y);
+				//vertex.position.SetZ(mesh->mVertices[i].z);
 
 
-				vertex.u = mesh->mTextureCoords[0][i].x;
-				vertex.v = mesh->mTextureCoords[0][i].y;
+				//vertex.texCoords.SetX(mesh->mTextureCoords[0][i].x);
+				//vertex.texCoords.SetY(mesh->mTextureCoords[0][i].y);
+
+				vertex.Position.x = mesh->mVertices[i].x;
+				vertex.Position.y = mesh->mVertices[i].y;
+				vertex.Position.z = mesh->mVertices[i].z;
+
+
+				vertex.TexCoords.x = mesh->mTextureCoords[0][i].x;
+				vertex.TexCoords.y = mesh->mTextureCoords[0][i].y;
 
 				/*vertex.Normal.x = mesh->mNormals[i].x;
 				vertex.Normal.y = mesh->mNormals[i].y;

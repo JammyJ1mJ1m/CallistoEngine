@@ -25,8 +25,8 @@ public:
 
 	static Window* TheWindow;
 
-	int _width;
-	int _height;
+	float _width;
+	float _height;
 
 	Game* _game;
 	Renderer* _renderer;

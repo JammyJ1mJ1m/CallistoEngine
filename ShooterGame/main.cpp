@@ -4,6 +4,7 @@
 #include "ShooterGame.h"
 #include "time.h"
 #include "chrono"
+#include <sstream>
 
 #if OPENGL
 #include "Window_GL.h"
@@ -55,6 +56,10 @@ int main()
 			lastFrameCount = frameCount;
 			time = newTime;
 			std::cout << "FPS: " << fps << std::endl;
+
+			std::stringstream ss;
+			ss << "Gamey game :: " << fps << " FPS";
+			_window->SetTitle(ss.str().c_str());	
 		}
 	}
 

@@ -1,4 +1,4 @@
-#include "Window_GL.h"
+﻿#include "Window_GL.h"
 #include <iostream>
 
 
@@ -9,9 +9,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	//Window::TheWindow->SetLastKey(key);
 	Window_GL* instance = dynamic_cast<Window_GL*>(Window::TheWindow);
-	// Window_GL* instance = dynamic_cast<Window_GL*>((Window*)glfwGetWindowUserPointer(window));
 	if (instance == nullptr) { return throw; }
 
 	if (action == GLFW_PRESS) {
@@ -32,7 +30,6 @@ Window_GL::Window_GL(Game* game, const int width, const int height)
 	_height = height;
 	_game = game;
 	lastPressedKey = -1;
-	// TheWindow = this;
 }
 
 int Window_GL::Initialise(const char* pTitle)
@@ -48,10 +45,13 @@ int Window_GL::Initialise(const char* pTitle)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 #ifdef __APPLE__
+	glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 	// glfw window creation
 	// --------------------
+	
+	// _GlfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), glfwGetPrimaryMonitor(), NULL); // fullscreen
 	_GlfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
 	if (_GlfwWindow == NULL)
 	{
@@ -66,8 +66,9 @@ int Window_GL::Initialise(const char* pTitle)
 
 
 	glfwMakeContextCurrent(_GlfwWindow);
-	// TheWindow = static_cast<Window_GL*>(glfwGetWindowUserPointer(_window));
-	// Window::TheWindow = this;
+
+	glfwSwapInterval(0); // disable vsync
+
 
 	void framebuffer_size_callback(GLFWwindow * window, int width, int height);
 
@@ -84,37 +85,13 @@ int Window_GL::Initialise(const char* pTitle)
 
 	_renderer->Initialise(0, 0);
 	return 0;
-	//while (!glfwWindowShouldClose(window))
-	//{
-	//    // input
-	//    // -----
-	//    processInput(window);
 
-	//    // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-	//    // -------------------------------------------------------------------------------
-	//    glfwSwapBuffers(window);
-	//    glfwPollEvents();
-	//}
-
-	// glfw: terminate, clearing all previously allocated GLFW resources.
-	// ------------------------------------------------------------------
-	// glfwTerminate();
 }
 
 void Window_GL::OnKeyboard(int key, bool ispress)
 {
 	_game->OnKeyboard(key, ispress);
-
-	/*if (glfwGetKey(window, 256) == 1)
-	{
-		glfwSetWindowShouldClose(window, true);
-		Close();
-	}*/
 }
-
-
-
-
 
 void Window_GL::Close()
 {
@@ -123,8 +100,6 @@ void Window_GL::Close()
 
 void Window_GL::Update()
 {
-	// OnKeyboard(_window);
-
 	glfwSwapBuffers(_GlfwWindow);
 	glfwPollEvents();
 }
@@ -132,6 +107,7 @@ void Window_GL::Update()
 void Window_GL::SetTitle(const char* pTitle)
 {
 	_title = pTitle;
+	glfwSetWindowTitle(_GlfwWindow, pTitle);
 }
 
 Window_GL::~Window_GL()

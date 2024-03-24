@@ -1,5 +1,7 @@
 #if OPENGL
 #include "VBO_GL.h"
+#include "stddef.h"
+#include "cstddef"
 typedef unsigned char byte;
 
 VBO_GL::VBO_GL()
@@ -15,19 +17,16 @@ VBO_GL::~VBO_GL()
 }
 
 
-void VBO_GL::Create(Vertex pVertices[], int pNumVertices, int pIndices[], int pSize)
+void VBO_GL::Create(Vertex pVertices[], int pNumVertices, int* pIndices, int pSize)
 {
 	mNumVertices = pNumVertices;
 	mNumIndices = pSize;
 
-	int s = sizeof(Vertex);
-	int sf = sizeof(float);
-
 	unsigned int VBO, VAO, EBO;
-	glGenBuffers(1, &EBO);
-
 	glGenVertexArrays(1, &mVaoID);
+	glGenBuffers(1, &EBO);
 	glGenBuffers(1, &mVboID);
+
 	// bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
 	glBindVertexArray(mVaoID);
 
@@ -36,19 +35,20 @@ void VBO_GL::Create(Vertex pVertices[], int pNumVertices, int pIndices[], int pS
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * pNumVertices, pVertices, GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(pIndices) * mNumIndices, pIndices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * mNumIndices, &pIndices[0], GL_STATIC_DRAW);
 
 	// position 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,  sizeof(Vertex), (void*)0);
-	glEnableVertexAttribArray(0);
 
-	// colors
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,  sizeof(Vertex), (void*)0);
+
+	//// colors
+	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	//glEnableVertexAttribArray(1);
 
 	// textures
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-	glEnableVertexAttribArray(2);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)offsetof(Vertex,TexCoords));
 
 	// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
