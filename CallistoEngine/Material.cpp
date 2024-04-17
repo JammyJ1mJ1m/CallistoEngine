@@ -21,6 +21,13 @@ void Material::LoadMaterial(std::string pFile)
 	std::ifstream fileStram;
 
 	fileStram.open(pFile);
+
+	if (!fileStram)
+	{
+		std::cout << "Error opening file: " << pFile << std::endl;
+		fileStram.clear();
+		fileStram.open("Resources/Textures/Default.mtl");
+	};
 	std::string line;
 	ResourceManager& manager = ResourceManager::getInstance();
 
