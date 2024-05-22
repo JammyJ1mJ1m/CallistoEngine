@@ -1,19 +1,55 @@
 #include "SceneManager.h"
+#include "Scene.h"
 
+/******************************************************************************************************************/
+// Structors
+/******************************************************************************************************************/
 
-SceneManager::SceneManager(const int pWidth, const int pHeight)  
+SceneManager::SceneManager(Game* game)
+	: _game(game)
 {
-	_width = pWidth;
-	_height = pHeight;
-	_window = nullptr;
 }
 
-void SceneManager::Run()
+/******************************************************************************************************************/
+
+SceneManager::~SceneManager()
 {
+}
 
-#if OPENGL
-	/*_window = new Window_GL(new shootergame  _width, _height);
-	_window->Initialise();*/
-#endif // OPENGL
 
+/******************************************************************************************************************/
+
+void SceneManager::OnKeyboard(int key, bool down)
+{
+	Scene* currentScene = GetCurrentScene();
+	if (currentScene)
+	{
+		currentScene->OnKeyboard(key, down);
+	}
+}
+
+void SceneManager::Update(double deltaTime)
+{
+	Scene* currentScene = GetCurrentScene();
+	if (currentScene)
+	{
+		currentScene->Update(deltaTime);
+	}
+}
+
+/// Render current scene
+void SceneManager::Render(SystemRender* renderer)
+{
+	Scene* currentScene = GetCurrentScene();
+	if (currentScene)
+	{
+		currentScene->Render(renderer);
+	}
+}
+
+void SceneManager::PushScene(Scene* s)
+{
+	_scenes.push(s);
+	s->SetSceneManager(this);
+	s->Initialise();
 }

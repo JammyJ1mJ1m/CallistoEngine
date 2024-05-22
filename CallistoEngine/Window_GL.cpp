@@ -1,4 +1,6 @@
-﻿#include "Window_GL.h"
+﻿#if OPENGL
+
+#include "Window_GL.h"
 #include <iostream>
 
 
@@ -115,3 +117,4 @@ Window_GL::~Window_GL()
 	delete _renderer;
 	delete _game;
 }
+#endif // OPENGL

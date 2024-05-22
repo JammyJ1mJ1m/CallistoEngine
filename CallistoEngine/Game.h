@@ -3,20 +3,38 @@
 #include "Renderer.h"
 #include <vector>
 #include "Components/Entity.h"
+#include "Mesh.h"
+#include <map>
+// #include "RenderSystem.h"
+#include "SceneManager.h"
 
+#include "Systems/SystemRender.h"
 class Game
 {
 protected:
-	double _deltaTime;
+	// DT stuff
+	double mDeltaTime;
+	double mLastFrameTime;
+	
+
 	bool _keyStates[512];
-	Window* _window;
-	Renderer* _renderer;
-	double _lastFrameTime;
+	Renderer* mRenderer;
+	Window* mWindow;
+	std::map<std::string, Mesh*> mMeshes;
+//	RenderSystem mRenderSystem;
+
+	SystemRender* mRenderSystem;
+
+	SceneManager mSceneManager;
+
 	std::vector<Entity*> mEntities;
 
 
 public:
+	Game();
 	virtual ~Game() {};
+
+	void AddMesh(std::string name, Mesh* mesh) { mMeshes[name] = mesh; }
 
 	// methods
 	virtual void Initialise(Window* w) = 0;

@@ -7,17 +7,18 @@
 #include "Vector.h"
 
 #include "Material.h"
-
-#include "Systems/SystemRender.h"
-
 #include "Camera.h"
+
+#include "SceneManager.h"
 
 
 class ShooterGame : public Game
 {
-	GameState _gameState;
+	GameState mGameState;
 	SystemRender* mRenderSystem;
 	Camera* mCamera;
+
+
 
 public:
 
@@ -36,7 +37,10 @@ public:
 	virtual bool HandleInput();
 
 
-	bool IsRunning() override { return _gameState != GameState::Quit; }
+	bool IsRunning() override { return mGameState != GameState::Quit; }
+
+	
+
 
 	virtual ~ShooterGame()
 	{

@@ -10,6 +10,7 @@
 #include "Window_GL.h"
 #endif
 
+#if OPENGL	
 double calculateDeltaTime(double& lastFrameTime)
 {
 	double temp_time = clock();
@@ -29,7 +30,6 @@ int main()
 
 	std::chrono::high_resolution_clock::time_point time = std::chrono::high_resolution_clock::now();
 
-#if OPENGL	
 	Game* game;
 
 	Window_GL* _window = new Window_GL(new ShooterGame(), 800, 800);
@@ -37,14 +37,14 @@ int main()
 	_window->Initialise("Gamey game");
 
 	game = _window->GetGame();
- 	game->Initialise(_window);
+	game->Initialise(_window);
 
 
 	while (game->IsRunning())
 	{
 		++frameCount;
 		game->Run(deltaTime);
-		_window->Update(); 
+		_window->Update();
 
 		deltaTime = calculateDeltaTime(lastFrameTime);
 		auto newTime = std::chrono::high_resolution_clock::now();
@@ -59,15 +59,11 @@ int main()
 
 			std::stringstream ss;
 			ss << "Gamey game :: " << fps << " FPS";
-			_window->SetTitle(ss.str().c_str());	
+			_window->SetTitle(ss.str().c_str());
 		}
 	}
 
 	delete _window;
-#endif
-
-#if DIRECTX
-	// set up directx window
-#endif
 	return 0;
 }
+#endif

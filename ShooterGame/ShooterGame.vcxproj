@@ -137,10 +137,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ShooterGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="ShooterGame.h" />
   </ItemGroup>

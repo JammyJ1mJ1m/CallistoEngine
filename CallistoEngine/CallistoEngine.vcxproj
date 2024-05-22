@@ -256,6 +256,8 @@
     <ClCompile Include="Components\Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="System.cpp" />
     <ClCompile Include="Systems\ISystem.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -403,6 +405,8 @@
     <ClInclude Include="Dependencies\inc\KHR\khrplatform.h" />
     <ClInclude Include="Components\Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="System.h" />
     <ClInclude Include="Systems\ISystem.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
