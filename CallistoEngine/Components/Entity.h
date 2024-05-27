@@ -3,7 +3,8 @@
 #include <vector>
 #include <memory>
 
-class Entity final
+
+class Entity
 {
 	std::vector<  IComponent*> mComponentList;
 
@@ -15,6 +16,10 @@ class Entity final
 		mComponentList = other.mComponentList;
 		mMask = other.mMask;
 	}
+
+	virtual void start() = 0;
+
+
 public:
 
 	// structors
@@ -29,7 +34,7 @@ public:
 		return *this;
 	}
 
-	~Entity() 
+	~Entity()
 	{
 		for (size_t i = 0; i < mComponentList.size(); i++)
 		{
@@ -46,7 +51,7 @@ public:
 	template<class T>
 	inline T* GetComponent() const
 	{
-		for ( IComponent* b : mComponentList)
+		for (IComponent* b : mComponentList)
 			if (T* c = dynamic_cast<T*>(b))
 				return c;
 
@@ -56,6 +61,8 @@ public:
 	void UpdateMask(IComponent::ComponentTypes componentType) {
 		mMask = static_cast<IComponent::ComponentTypes>(static_cast<int>(mMask) | static_cast<int>(componentType));
 	}
+
+
 };
 
 

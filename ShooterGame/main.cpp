@@ -55,7 +55,7 @@ int main()
 			fps = frameCount - lastFrameCount;
 			lastFrameCount = frameCount;
 			time = newTime;
-			std::cout << "FPS: " << fps << std::endl;
+			//std::cout << "FPS: " << fps << std::endl;
 
 			std::stringstream ss;
 			ss << "Gamey game :: " << fps << " FPS";

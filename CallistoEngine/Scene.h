@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
+#include "Components/Entity.h"
 
-class GameObject;
 class SystemRender;
 class SceneManager;
 
@@ -11,14 +11,14 @@ class Scene
 {
 protected:
 	SceneManager* _sceneManager;
-	std::vector<GameObject*>		_gameObjects;		// The list of game objects
+	std::vector<Entity*>		mEntities;		// The list of game objects
 
 public:
 	Scene();
 	virtual ~Scene();
 
-	std::vector<GameObject*>& GetGameObjects() { return _gameObjects; }
-	void AddGameObject(GameObject* obj) { _gameObjects.push_back(obj); }
+	std::vector<Entity*>& GetEntities() { return mEntities; }
+	void AddEntity(Entity* obj) { mEntities.push_back(obj); }
 
 	void SetSceneManager(SceneManager* s) { _sceneManager = s; }
 	SceneManager* GetSceneManager()	const { return _sceneManager; }

@@ -5,13 +5,18 @@
 #include "Components/Entity.h"
 #include "Mesh.h"
 #include <map>
+
+#include "Camera.h"
+
 // #include "RenderSystem.h"
 #include "SceneManager.h"
 
 #include "Systems/SystemRender.h"
 class Game
 {
+
 protected:
+	Camera* mCamera;
 	// DT stuff
 	double mDeltaTime;
 	double mLastFrameTime;
@@ -29,8 +34,12 @@ protected:
 
 	std::vector<Entity*> mEntities;
 
+	static Game* theGame;  // Static instance pointer
 
 public:
+	static Camera* GetGameCamera();
+
+
 	Game();
 	virtual ~Game() {};
 
@@ -44,3 +53,4 @@ public:
 	virtual bool IsRunning() = 0;
 	virtual bool HandleInput() = 0;
 };
+

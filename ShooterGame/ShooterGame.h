@@ -5,23 +5,15 @@
 #include "Components/ComponentShader.h"
 #include "Components/ComponentTransform.h"
 #include "Vector.h"
-
 #include "Material.h"
-#include "Camera.h"
-
 #include "SceneManager.h"
-
 
 class ShooterGame : public Game
 {
 	GameState mGameState;
 	SystemRender* mRenderSystem;
-	Camera* mCamera;
-
-
 
 public:
-
 	// sets the game up
 	virtual void Initialise(Window* w);
 
@@ -36,11 +28,7 @@ public:
 
 	virtual bool HandleInput();
 
-
 	bool IsRunning() override { return mGameState != GameState::Quit; }
-
-	
-
 
 	virtual ~ShooterGame()
 	{
@@ -54,4 +42,3 @@ public:
 
 	}
 };
-

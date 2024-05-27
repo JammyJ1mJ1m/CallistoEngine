@@ -48,7 +48,7 @@ void Camera::Strafe(const float pMoveAmount)
 
 void Camera::UpdateView()
 {
-	std::cout << cameraPos.x << " " << cameraPos.y << " " << cameraPos.z << std::endl;
+	// std::cout << cameraPos.x << " " << cameraPos.y << " " << cameraPos.z << std::endl;
 	cameraTarget = cameraPos + cameraDir;
 	view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }

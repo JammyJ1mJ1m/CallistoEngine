@@ -6,11 +6,11 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-	for (size_t i = 0; i < _gameObjects.size(); i++)
+	for (size_t i = 0; i < mEntities.size(); i++)
 	{
-		delete _gameObjects[i];
+		delete mEntities[i];
 	}
-	_gameObjects.clear();
+	mEntities.clear();
 }
 
 void Scene::Update(double deltaTime)

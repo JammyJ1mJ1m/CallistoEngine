@@ -4,6 +4,8 @@
 
 void ShooterGame::Initialise(Window* w)
 {
+	//theGame = this;
+
 	mWindow = w;
 	mRenderer = w->GetRenderer();
 	mRenderSystem = new SystemRender(mRenderer);
