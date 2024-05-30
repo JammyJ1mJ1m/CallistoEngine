@@ -39,6 +39,5 @@ public:
 		{
 			delete e;
 		}
-
 	}
 };

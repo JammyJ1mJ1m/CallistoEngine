@@ -69,29 +69,6 @@ void VBO_GL::Draw(Material* mat)
 
 void VBO_GL::DrawVBO()
 {
-	//glBindBuffer(GL_ARRAY_BUFFER, mVboID);
-
-	//// Enable that vertex attrib array
-	//int vertexLocation = 0;
-	//int colourLocation = 1;
-	//glEnableVertexAttribArray(vertexLocation);
-	//glEnableVertexAttribArray(colourLocation);
-
-	//// Set vertex data
-	//glVertexAttribPointer(vertexLocation, 3, GL_FLOAT, false, sizeof(Vertex), 0);
-
-	//// Set colour data
-	//glVertexAttribPointer(colourLocation, 4, GL_FLOAT, false, sizeof(Vertex), (byte*)16);
-
-	//// Draw
-	//glDrawArrays(GL_LINE_STRIP, 0, mNumVertices);
-
-	//// Disable vertex attrib array
-	//glDisableVertexAttribArray(vertexLocation);
-	//glDisableVertexAttribArray(colourLocation);
-
-	//// Unbind buffers
-	//glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void VBO_GL::DrawVAO(Material* mat)

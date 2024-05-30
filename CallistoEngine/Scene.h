@@ -27,7 +27,7 @@ public:
 
 	virtual void OnKeyboard(int key, bool down) = 0;
 
-	virtual void Update(double deltaTime);
+	virtual void Update(double deltaTime) = 0;
 
 	virtual void Render(SystemRender* renderer) = 0;
 };

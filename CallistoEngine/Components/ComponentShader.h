@@ -9,20 +9,24 @@
 #include "../Objects/ShaderObject_DX.h"
 #endif
 
+
+
+// default engine shader component, no lights and will attempt textures
 class ComponentShader : public IComponent
 {
+protected:
 	ShaderObject* mShaderObject;
 	Camera* mCamera;
 
-
+	const virtual void UseProgram();
 public:
 	ComponentShader(Camera* pCam);
 	virtual ComponentTypes GetType() const;
 	void Render();
-	const virtual void UseProgram();
 
 	// void Create(const char* pVertexShader, const char* pFragmentShader);
 	virtual ~ComponentShader();
 	void Update(glm::mat4 pMat);
+
 };
 

@@ -4,7 +4,7 @@ ComponentShader::ComponentShader( Camera* pCam)
 {
 	mCamera = pCam;
 #if OPENGL
-	mShaderObject = new ShaderObject_GL();
+	mShaderObject = new ShaderObject_GL("Resources/Shaders/default.vert", "Resources/Shaders/default.frag");
 #elif DIRECTX
 	mShaderObject = new ShaderObject_DX();
 #endif
@@ -31,8 +31,17 @@ ComponentShader::~ComponentShader()
 
 void ComponentShader::Update(glm::mat4 pMat)
 {
+	//mShaderObject->SetWorldMatrix("transform", pMat, mCamera);
+	// use program
 	UseProgram();
-	mShaderObject->SetWorldMatrix("transform", pMat, mCamera);
+
+	// set model
+	mShaderObject->SetMat4("model", pMat);
+
+	// set view
+	mShaderObject->SetMat4("view", mCamera->GetView());
+
+	// set projection
+	mShaderObject->SetMat4("projection", mCamera->GetProjection());
+
 }
-
-

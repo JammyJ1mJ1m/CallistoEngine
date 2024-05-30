@@ -12,8 +12,3 @@ Scene::~Scene()
 	}
 	mEntities.clear();
 }
-
-void Scene::Update(double deltaTime)
-{
-
-}

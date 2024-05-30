@@ -12,15 +12,14 @@ class ShaderObject_GL : public ShaderObject
 {
 	int shaderProgram;
 public:
-	ShaderObject_GL();
+	const int GetShaderProgram() const { return shaderProgram; }
+
+	ShaderObject_GL(const char* pVertexPath, const char* pFragPath);
 	virtual ~ShaderObject_GL() = default;
 	const virtual void UseProgram();
-
-	// virtual void Create(const char* pVertexShader, const char* pFragmentShader);
 	virtual void Render();
-	virtual void LoadShader(const char* pFile);
 
-	void SetWorldMatrix(const char* pName, glm::mat4 pMatrix, const Camera* pCam);
+	virtual void SetMat4(const char* pName, glm::mat4 pMatrix);
+	virtual void SetVec3(const char* pName, glm::vec3 pVec);
 
 };
-

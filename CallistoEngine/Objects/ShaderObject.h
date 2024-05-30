@@ -16,7 +16,8 @@ class ShaderObject
 
 	// virtual void Create(const char* pVertexShader, const char* pFragmentShader);
 	virtual void Render() = 0;
-	virtual void LoadShader(const char* pFile) = 0;
-	virtual void SetWorldMatrix(const char* pName, glm::mat4 pMatrix, const Camera* pCam) = 0;
+	virtual void SetMat4(const char* pName, glm::mat4 pMatrix) = 0;
+	virtual void SetVec3(const char* pName, glm::vec3 pVec) = 0;
+
 };
 

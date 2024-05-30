@@ -9,13 +9,11 @@ void ShooterGame::Initialise(Window* w)
 	mWindow = w;
 	mRenderer = w->GetRenderer();
 	mRenderSystem = new SystemRender(mRenderer);
-//	mSceneManager = SceneManager(this);
 
 	// other game setup logic
 	mGameState = Playing;
 
 	mCamera = new Camera(glm::vec3(0.0f, 0.0f, 15.0f), mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
-
 
 	ResourceManager& RM = ResourceManager::getInstance();
 	Mesh* shipMesh = RM.LoadMesh("Resources/Geometry/test/Intergalactic_Spaceship.obj");
@@ -29,22 +27,10 @@ void ShooterGame::Initialise(Window* w)
 	if (tester != nullptr)
 	{
 		tester->AddMaterial("Resources/textures/Tester.mtl");
-		AddMesh("ship", tester);
+		AddMesh("tester", tester);
 	}
 
 	mSceneManager.PushScene(new GameScene());
-
-	/*Entity* tri = new Entity();
-	tri->AddComponent(new ComponentModel("Resources/Geometry/test/Intergalactic_Spaceship.obj", "Resources/textures/TestCube.mtl"));
-	tri->AddComponent(new ComponentShader(mCamera));
-	tri->AddComponent(new ComponentTransform(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f)));
-	 mEntities.push_back(tri);
-
-	 Entity* tri2 = new Entity();
-	 tri2->AddComponent(new ComponentModel("Resources/Geometry/test/Tester.obj", "Resources/textures/Tester.mtl"));
-	 tri2->AddComponent(new ComponentShader(mCamera));
-	 tri2->AddComponent(new ComponentTransform(glm::vec3(5.0f, 0.0f, -8.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f)));
-	 mEntities.push_back(tri2);*/
 }
 
 void ShooterGame::OnKeyboard(int key, bool down)
@@ -63,15 +49,6 @@ void ShooterGame::Render()
 	mRenderer->ClearScreen();
 
 	mSceneManager.Render(mRenderSystem);
-
-
-	//for (Entity* ent : mEntities)
-	//{
-	//	mRenderSystem->Run(ent);
-	//	//_renderer->Render(ent);
-	//}
-
-	// mEntities[0]->GetComponent<ComponentTransform>()->RotateX(0.01f);
 }
 
 void ShooterGame::Run(double dt)
@@ -94,7 +71,6 @@ void ShooterGame::Run(double dt)
 		ShooterGame* game = this;
 		mWindow->Close();
 	}
-
 }
 
 bool ShooterGame::HandleInput()

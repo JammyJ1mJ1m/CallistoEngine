@@ -20,6 +20,9 @@ GameScene::~GameScene()
 {
 }
 
+/// <summary>
+/// All game objects are created here and members are initialised
+/// </summary>
 void GameScene::Initialise()
 {
 	Player* player = new Player();
@@ -27,7 +30,6 @@ void GameScene::Initialise()
 
 	Enemy* enemy = new Enemy();
 	AddEntity(enemy);
-
 }
 
 void GameScene::OnKeyboard(int key, bool down)
@@ -36,15 +38,12 @@ void GameScene::OnKeyboard(int key, bool down)
 
 void GameScene::Update(double deltaTime)
 {
-
 }
 
 void GameScene::Render(SystemRender* renderer)
 {
-	// TODO - renderer->Run(/* GameObjects */);
 	for (auto& enti : mEntities)
-	{
-		renderer->Run(enti/* GameObjects */);
-		//enti->Render(renderer);
-	}
+	//{
+	 renderer->Run(enti);
+	//}
 }

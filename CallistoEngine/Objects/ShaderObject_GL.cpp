@@ -4,11 +4,12 @@
 #include "../Managers/ResourceManager.h"
 #include "../Camera.h"
 
-ShaderObject_GL::ShaderObject_GL()
+ShaderObject_GL::ShaderObject_GL(const char* pVertexPath, const char* pFragPath)
 {
 	ResourceManager& manager = ResourceManager::getInstance();
 
-	std::string vshaderSrc = manager.LoadShader("Resources/Shaders/default.vert");
+	// load and configure vertex shader
+	std::string vshaderSrc = manager.LoadShader(pVertexPath);
 	const char* vertexShaderSource = vshaderSrc.c_str();
 
 
@@ -26,7 +27,9 @@ ShaderObject_GL::ShaderObject_GL()
 		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
 
-	std::string fShaderSrc = manager.LoadShader("Resources/Shaders/default.frag");
+
+	// load and configure frag shader
+	std::string fShaderSrc = manager.LoadShader(pFragPath);
 	const char* fragmentShaderSource = fShaderSrc.c_str();
 
 
@@ -42,6 +45,8 @@ ShaderObject_GL::ShaderObject_GL()
 		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
 
+
+	// creating shader program
 	shaderProgram = glCreateProgram();
 
 	glAttachShader(shaderProgram, vertexShader);
@@ -72,49 +77,12 @@ void ShaderObject_GL::Render()
 {
 }
 
-void ShaderObject_GL::LoadShader(const char* pFile)
+void ShaderObject_GL::SetMat4(const char* pName, glm::mat4 pMatrix)
 {
-	// 1. retrieve the vertex/fragment source code from filePath
-	std::string shaderCode;
-	
-	std::ifstream shaderFileStream;
-	
-	// ensure ifstream objects can throw exceptions:
-	shaderFileStream.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-	
-	try
-	{
-		// open files
-		shaderFileStream.open(pFile);
-		
-		std::stringstream shaderStringStream;
-		// read file's buffer contents into streams
-		shaderStringStream << shaderFileStream.rdbuf();
-		
-		// close file handlers
-		shaderFileStream.close();
-		
-		// convert stream into string
-		shaderCode = shaderStringStream.str();
-		
-	}
-	catch (std::ifstream::failure e)
-	{
-		std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
-	}
+	unsigned int transformLoc = glGetUniformLocation(shaderProgram, pName);
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(pMatrix));
 }
 
-void ShaderObject_GL::SetWorldMatrix(const char* pName, glm::mat4 pMatrix, const Camera* pCam)
+void ShaderObject_GL::SetVec3(const char* pName, glm::vec3 pVec)
 {
-	unsigned int transformLoc = glGetUniformLocation(shaderProgram, "model");
-	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(pMatrix));
-	
-	glm::mat4 vi = pCam->GetView();
-	unsigned int viewLoc = glGetUniformLocation(shaderProgram, "view");
-	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(vi));
-
-
-	unsigned int projLoc = glGetUniformLocation(shaderProgram, "projection");
-	glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(pCam->GetProjection()));
-
 }
