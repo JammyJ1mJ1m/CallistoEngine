@@ -17,7 +17,8 @@ void SystemRender::Run(Entity* pEntity)
 		glm::mat4 modelMatrix = transform->GetModelMatrix(); 
 
 		ComponentShader* shader = pEntity->GetComponent<ComponentShader>();
-		// shader->UseProgram();
+
+		// sends over the uniforms, MVP etc
 		shader->Update(modelMatrix);
 		mRenderer->Render(pEntity);
 	}

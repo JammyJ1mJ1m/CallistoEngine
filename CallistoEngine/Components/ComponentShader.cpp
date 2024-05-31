@@ -1,10 +1,10 @@
 #include "ComponentShader.h"
 
-ComponentShader::ComponentShader( Camera* pCam)
+ComponentShader::ComponentShader( Camera* pCam, const char* pVert, const char* pFrag)
 {
 	mCamera = pCam;
 #if OPENGL
-	mShaderObject = new ShaderObject_GL("Resources/Shaders/default.vert", "Resources/Shaders/default.frag");
+	mShaderObject = new ShaderObject_GL(pVert, pFrag);
 #elif DIRECTX
 	mShaderObject = new ShaderObject_DX();
 #endif
@@ -31,9 +31,11 @@ ComponentShader::~ComponentShader()
 
 void ComponentShader::Update(glm::mat4 pMat)
 {
+
 	//mShaderObject->SetWorldMatrix("transform", pMat, mCamera);
 	// use program
 	UseProgram();
+
 
 	// set model
 	mShaderObject->SetMat4("model", pMat);

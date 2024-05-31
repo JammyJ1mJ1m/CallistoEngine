@@ -73,8 +73,8 @@ void VBO_GL::DrawVBO()
 
 void VBO_GL::DrawVAO(Material* mat)
 {
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, mat->GetDiffuseMap());
+	//glActiveTexture(GL_TEXTURE0);
+	//glBindTexture(GL_TEXTURE_2D, mat->GetDiffuseMap());
 
 	//glActiveTexture(GL_TEXTURE1);
 	//glBindTexture(GL_TEXTURE_2D, mat->GetNormalMap());

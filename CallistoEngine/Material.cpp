@@ -47,6 +47,35 @@ void Material::LoadMaterial(std::string pFile)
 
 }
 
+
+void Material::LoadCubemap(std::string pFile)
+{
+	std::ifstream fileStram;
+	fileStram.open(pFile);
+	if (!fileStram)
+	{
+		std::cout << "Error opening file: " << pFile << std::endl;
+		fileStram.clear();
+		fileStram.open("Resources/Textures/Default.mtl");
+	};
+	std::string line;
+	ResourceManager& manager = ResourceManager::getInstance();
+
+	std::vector<std::string> faces;
+	while (getline(fileStram, line)) {
+
+		AddFace(line, faces, "ktop");
+		AddFace(line, faces, "kleft");
+		AddFace(line, faces, "kfront");
+		AddFace(line, faces, "kright");
+		AddFace(line, faces, "kback");
+		AddFace(line, faces, "kbottom");
+	}
+
+
+	mCubemap = manager.LoadCubemap(faces);
+}
+
 bool Material::CheckLine(std::string& pLine, std::string pSearch)
 {
 	if (!pLine.find(pSearch))
@@ -59,14 +88,45 @@ bool Material::CheckLine(std::string& pLine, std::string pSearch)
 	return false;
 }
 
-Material::Material(std::string pFile)
+void Material::AddFace(std::string& pFace, std::vector<std::string>& pFaces, std::string pLineToCheck)
 {
-	LoadMaterial(pFile);
+	if (CheckLine(pFace, pLineToCheck))
+		pFaces.push_back(pFace);
 }
 
-void Material::Draw() const
+Material::Material(std::string pFile, const bool pIsCubemap)
+{
+	mIsCubemap = pIsCubemap;
+
+	if (mIsCubemap)
+	{
+		LoadCubemap(pFile);
+	}
+	else
+		LoadMaterial(pFile);
+
+}
+
+void Material::Draw()
 {
 #if OPENGL
 
+	if (mIsCubemap)
+	{
+		glDepthMask(GL_FALSE);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, GetCubemap());
+		/*glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, GetCubemap());*/
+		glDepthMask(GL_TRUE);
+	}
+	else
+	{
+		if (GetDiffuseMap() != 0)
+		{
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, GetDiffuseMap());
+		}
+	}
 #endif
 }

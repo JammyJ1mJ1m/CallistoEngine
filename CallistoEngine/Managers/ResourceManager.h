@@ -8,6 +8,7 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
+#include <vector>
 
 class Mesh;
 
@@ -56,6 +57,7 @@ public:
 	std::string LoadShader(const char* pFile);
 
 	int LoadTexture(const std::string pFile);
+	int LoadCubemap(const std::vector<std::string> pFaces);
 	Mesh* LoadMesh(const std::string pFile);
 
 };

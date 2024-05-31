@@ -112,6 +112,12 @@ bool Mesh::AddMaterial(std::string pMat)
 
 	return false;
 }
+bool Mesh::AddMaterial(std::string pMat, const bool pIsCubemap)
+{
+	material = new Material(pMat, pIsCubemap);
+
+	return false;
+}
 
 bool Mesh::AddIndex(int pIndices[], int pSize)
 {
@@ -155,6 +161,7 @@ void Mesh::LoadTexture(std::string pFile)
 
 void Mesh::Draw() const
 {
+	material->Draw();
 	GetVBO()->Draw(material);
 
 }

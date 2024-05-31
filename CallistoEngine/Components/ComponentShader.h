@@ -20,7 +20,7 @@ protected:
 
 	const virtual void UseProgram();
 public:
-	ComponentShader(Camera* pCam);
+	ComponentShader(Camera* pCam, const char* pVert, const char* pFrag);
 	virtual ComponentTypes GetType() const;
 	void Render();
 

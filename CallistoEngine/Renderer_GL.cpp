@@ -29,9 +29,13 @@ void Renderer_GL::Render(Entity* entity)
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	// glUseProgram(shaderProgram);
 
+	// set textures here, saves doing it in the VBO
+	
+	//glActiveTexture(GL_TEXTURE0);
+	//glBindTexture(GL_TEXTURE_2D, mat->GetDiffuseMap());
 
 	ComponentModel* model = entity->GetComponent <ComponentModel>();
-	const Mesh* mesh = model->GetMesh();
-	mesh->Draw();
+	/*const Mesh* mesh =*/ model->GetMesh()->Draw();
+	//mesh->Draw();
 
 }

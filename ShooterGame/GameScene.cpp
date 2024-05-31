@@ -11,6 +11,7 @@
 
 #include "Player.h"
 #include "Enemy.h"
+#include "SkyBox.h"
 
 GameScene::GameScene()
 {
@@ -30,6 +31,9 @@ void GameScene::Initialise()
 
 	Enemy* enemy = new Enemy();
 	AddEntity(enemy);
+
+	SkyBox* skybox = new SkyBox();
+	AddEntity(skybox);
 }
 
 void GameScene::OnKeyboard(int key, bool down)

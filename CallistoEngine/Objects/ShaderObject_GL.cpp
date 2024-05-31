@@ -72,7 +72,6 @@ const void ShaderObject_GL::UseProgram()
 }
 
 
-
 void ShaderObject_GL::Render()
 {
 }

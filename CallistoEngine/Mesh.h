@@ -42,6 +42,7 @@ public:
 	bool AddIndex(int i);
 	bool AddIndex(std::vector<int> pIndices);
 	bool AddMaterial(std::string pMat);
+	bool AddMaterial(std::string pMat, const bool pIsCubemap);
 	bool AddIndex(int pIndices[], int pSize);
 	bool Clear();
 	bool DeleteVertex(int i);
