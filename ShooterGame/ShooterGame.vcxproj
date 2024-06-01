@@ -137,6 +137,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ComponentShaderDefault.cpp" />
+    <ClCompile Include="ComponentShaderSkybox.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -145,6 +147,8 @@
     <ClCompile Include="SkyBox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ComponentShaderDefault.h" />
+    <ClInclude Include="ComponentShaderSkybox.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="main.h" />

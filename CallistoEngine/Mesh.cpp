@@ -163,6 +163,7 @@ void Mesh::Draw() const
 {
 	material->Draw();
 	GetVBO()->Draw(material);
+	glDepthMask(GL_TRUE);
 
 }
 

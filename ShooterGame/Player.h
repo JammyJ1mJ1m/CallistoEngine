@@ -1,7 +1,8 @@
 #pragma once
 #include "Components\Entity.h"
 #include "Components/ComponentModel.h"
-#include "Components/ComponentShader.h"
+#include "ComponentShaderDefault.h"
+
 #include "Components/ComponentTransform.h"
 
 class Player : public Entity

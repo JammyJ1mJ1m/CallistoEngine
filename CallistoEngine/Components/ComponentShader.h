@@ -18,15 +18,16 @@ protected:
 	ShaderObject* mShaderObject;
 	Camera* mCamera;
 
-	const virtual void UseProgram();
-public:
-	ComponentShader(Camera* pCam, const char* pVert, const char* pFrag);
+	const void UseProgram();
 	virtual ComponentTypes GetType() const;
-	void Render();
+	//ComponentShader() = default;
 
-	// void Create(const char* pVertexShader, const char* pFragmentShader);
-	virtual ~ComponentShader();
-	void Update(glm::mat4 pMat);
+public:
+	//virtual ComponentShader(Camera* pCam, const char* pVert, const char* pFrag) = 0;
+
+	
+	virtual ~ComponentShader() = default;
+	virtual void Render() = 0;
+	virtual void Update(glm::mat4 pMat) = 0;
 
 };
-

@@ -118,7 +118,7 @@ void Material::Draw()
 		glBindTexture(GL_TEXTURE_CUBE_MAP, GetCubemap());
 		/*glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, GetCubemap());*/
-		glDepthMask(GL_TRUE);
+		//glDepthMask(GL_TRUE);
 	}
 	else
 	{
