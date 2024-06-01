@@ -200,9 +200,6 @@ VBO* Mesh::CreateVBO()
 	mVbo = new VBO_GL();
 #endif
 
-	int* i = mIndices.data();
-
 	mVbo->Create(mVertices.data(), NumVertices(), mIndices.data(), mIndices.size());
-
 	return mVbo;
 }
