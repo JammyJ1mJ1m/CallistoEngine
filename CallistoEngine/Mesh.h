@@ -22,6 +22,7 @@ private:
 
 	// Constructors etc
 public:
+	Mesh(const Mesh& other);
 	Mesh(std::string pFile);
 	Mesh();
 	~Mesh();

@@ -27,6 +27,7 @@ GameScene::~GameScene()
 void GameScene::Initialise()
 {
 
+
 	SkyBox* skybox = new SkyBox();
 	AddEntity(skybox);
 	Player* player = new Player();

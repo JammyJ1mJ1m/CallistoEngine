@@ -42,7 +42,16 @@ void Material::LoadMaterial(std::string pFile)
 			mNormalMap = manager.LoadTexture(line.c_str());
 		}
 	}
+	// if none of the textures are found, load the default texture
 
+
+	if (mDiffuseMap == -1)
+	{
+		std::cout << "Texture :: Diffuse not loaded :: mtl = " << pFile << std::endl;
+		fileStram.clear();
+		fileStram.open("Resources/Textures/Default.mtl");
+		mDiffuseMap = manager.LoadTexture("Resources/Textures/Default.png");
+	}
 	fileStram.close();
 
 }
@@ -116,9 +125,7 @@ void Material::Draw()
 		glDepthMask(GL_FALSE);
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, GetCubemap());
-		/*glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_CUBE_MAP, GetCubemap());*/
-		//glDepthMask(GL_TRUE);
+
 	}
 	else
 	{

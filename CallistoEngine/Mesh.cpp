@@ -10,6 +10,17 @@
 
 /******************************************************************************************************************/
 
+
+Mesh::Mesh(const Mesh& other)
+	: mLocked(other.mLocked),
+	mVbo(other.mVbo),                // Point to the same VBO
+	mVertices(other.mVertices),
+	mIndices(other.mIndices),
+	textures(other.textures)
+{
+	material = nullptr;
+}
+
 Mesh::Mesh(std::string pFile)
 	: mLocked(false),
 	mVbo(NULL)

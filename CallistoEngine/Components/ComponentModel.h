@@ -9,7 +9,7 @@ class ComponentModel : public IComponent
 	Mesh* mMesh;
 public:
 	ComponentModel(Mesh* pMesh);
-	ComponentModel(std::string pMesh, std::string pMat, const bool pIsCubemap = false );
+	ComponentModel(Mesh* pMesh, std::string pMat, const bool pIsCubemap = false );
 	// ComponentModel(const std::string pFilePath);
 	~ComponentModel() = default;
 	virtual ComponentTypes GetType() const;

@@ -12,6 +12,10 @@
 #include "SceneManager.h"
 
 #include "Systems/SystemRender.h"
+
+using MeshMap = std::map<std::string, Mesh*>;
+using MeshMapIterator = MeshMap::iterator;
+
 class Game
 {
 
@@ -25,7 +29,7 @@ protected:
 	bool _keyStates[512];
 	Renderer* mRenderer;
 	Window* mWindow;
-	std::map<std::string, Mesh*> mMeshes;
+	MeshMap mMeshes;
 //	RenderSystem mRenderSystem;
 
 	SystemRender* mRenderSystem;
@@ -38,11 +42,14 @@ protected:
 
 public:
 	static Camera* GetGameCamera();
+	static Game* GetGame()				{ return theGame; }
+
 
 
 	Game();
 	virtual ~Game() {};
 
+	Mesh* GetMesh(std::string name);
 	void AddMesh(std::string name, Mesh* mesh) { mMeshes[name] = mesh; }
 
 	// methods
@@ -54,3 +61,14 @@ public:
 	virtual bool HandleInput() = 0;
 };
 
+inline Mesh* Game::GetMesh(std::string name)
+{
+	// Found
+	MeshMapIterator i = mMeshes.find(name);
+	if (i != mMeshes.end())
+	{
+		return i->second;
+	}
+	// Not found
+	return NULL;
+}

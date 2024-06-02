@@ -7,12 +7,12 @@ ComponentModel::ComponentModel(Mesh* pMesh)
 	mMesh->CreateVBO();
 }
 
-ComponentModel::ComponentModel(std::string pMesh, std::string pMat, const bool pIsCubemap)
+ComponentModel::ComponentModel(Mesh* pMesh, std::string pMat, const bool pIsCubemap)
 {
 		// mMesh = ResourceManager::GetMesh(pMesh);
 	ResourceManager& manager = ResourceManager::getInstance();
 
-	Mesh* mesh = manager.LoadMesh(pMesh.c_str());
+	Mesh* mesh = new Mesh(*pMesh);
 	mesh->AddMaterial(pMat, pIsCubemap);
 	SetMesh(mesh);
 	mMesh->CreateVBO();

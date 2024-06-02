@@ -19,15 +19,22 @@ void ShooterGame::Initialise(Window* w)
 	Mesh* shipMesh = RM.LoadMesh("Resources/Geometry/test/Intergalactic_Spaceship.obj");
 	if (shipMesh != nullptr)
 	{
-		shipMesh->AddMaterial("Resources/textures/TestCube.mtl");
+		shipMesh->AddMaterial("Resources/textures/TCube.mtl");
 		AddMesh("ship", shipMesh);
 	}
 
 	Mesh* tester = RM.LoadMesh("Resources/Geometry/test/Tester.obj");
 	if (tester != nullptr)
 	{
-		tester->AddMaterial("Resources/textures/Tester.mtl");
+		tester->AddMaterial("Resources/textures/TCube.mtl");
 		AddMesh("tester", tester);
+	}
+
+	Mesh* cube = RM.LoadMesh("Resources/Geometry/test/TCube.obj");
+	if (cube != nullptr)
+	{
+		cube->AddMaterial("Resources/textures/TCube.mtl");
+		AddMesh("cube", cube);
 	}
 
 	mSceneManager.PushScene(new GameScene());

@@ -14,6 +14,11 @@ class ShooterGame : public Game
 	SystemRender* mRenderSystem;
 
 public:
+
+	Mesh* GetMesh(std::string pMesh)
+	{
+	}
+
 	// sets the game up
 	virtual void Initialise(Window* w);
 

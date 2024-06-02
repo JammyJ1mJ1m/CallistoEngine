@@ -51,7 +51,7 @@ int ResourceManager::LoadTexture(const std::string pFile)
 	// Search for a specific value
 	for (const auto& pair : mTextures) {
 		if (pair.second == pFile) {
-			std::cout << "Texture ::  " << pFile << " :: already loaded :: unit = " << pair.first << std::endl;
+			std::cout << "Texture :: " << pFile << " :: already loaded :: unit = " << pair.first << std::endl;
 			return pair.first;  // Assuming each value is unique, exit loop if found
 		}
 	}
@@ -84,7 +84,7 @@ int ResourceManager::LoadTexture(const std::string pFile)
 		}
 		else
 		{
-			std::cout << "Failed to load texture" << std::endl;
+			std::cout << "Texture :: Failed to load texture :: file = " << pFile << std::endl;
 			return -1;
 		}
 		stbi_image_free(data);
@@ -144,7 +144,7 @@ Mesh* ResourceManager::LoadMesh(const std::string pFile)
 	// Search for a specific value
 	for (const auto& pair : mMeshs) {
 		if (pair.second == pFile) {
-			std::cout << "Model  ::  " << pFile << " :: already loaded :: model = " << pair.first << std::endl;
+			std::cout << "Model :: " << pFile << " :: already loaded :: model = " << pair.first << std::endl;
 			return pair.first;  // Assuming each value is unique, exit loop if found
 		}
 	}
