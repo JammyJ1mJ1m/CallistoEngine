@@ -28,14 +28,14 @@
     <Filter Include="Engine\Window">
       <UniqueIdentifier>{50ba4357-9df1-49a1-a220-319459178e22}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{20c64de8-a91b-4125-8fcd-2c3e653b1d9e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Shaders">
       <UniqueIdentifier>{286db044-f7ed-4c10-9193-9e4b6d16b78d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Shaders\GL">
       <UniqueIdentifier>{e7cb13bd-567c-4de0-8b2a-e8a646311912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{cdc2eb00-4f1c-422a-849b-c6ee3734267e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +116,9 @@
     </ClCompile>
     <ClCompile Include="System.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -565,6 +568,9 @@
     </ClInclude>
     <ClInclude Include="System.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

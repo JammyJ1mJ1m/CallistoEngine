@@ -28,13 +28,13 @@ void GameScene::Initialise()
 {
 
 
-	SkyBox* skybox = new SkyBox();
-	AddEntity(skybox);
+	/*SkyBox* skybox = new SkyBox();
+	AddEntity(skybox);*/
 	Player* player = new Player();
 	AddEntity(player);
 
-	Enemy* enemy = new Enemy();
-	AddEntity(enemy);
+	//Enemy* enemy = new Enemy();
+	//AddEntity(enemy);
 }
 
 void GameScene::OnKeyboard(int key, bool down)

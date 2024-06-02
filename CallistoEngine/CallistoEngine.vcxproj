@@ -21,6 +21,14 @@
       <Configuration>OpenGL - debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="OpenGL - release|Win32">
+      <Configuration>OpenGL - release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="OpenGL - release|x64">
+      <Configuration>OpenGL - release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -55,6 +63,12 @@
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -69,6 +83,12 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
@@ -99,6 +119,9 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -106,6 +129,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -117,6 +143,10 @@
     <LibraryPath>..\CSLib\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - debug|x64'">
+    <IncludePath>$(ProjectDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)Objects;$(ProjectDir)Components</IncludePath>
+    <LibraryPath>$(ProjectDir)Dependencies\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - release|x64'">
     <IncludePath>$(ProjectDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)Objects;$(ProjectDir)Components</IncludePath>
     <LibraryPath>$(ProjectDir)Dependencies\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
   </PropertyGroup>
@@ -152,6 +182,18 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -176,6 +218,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -205,7 +248,27 @@
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;assimp.lib</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3_mt.lib;assimp-vc143-mt.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw3_mt.lib;assimp-vc143-mt.lib;BulletCollision.lib;BulletCollision_Debug.lib;BulletDynamics.lib;BulletDynamics_Debug.lib;LinearMath.lib;LinearMath_Debug.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Dependencies\lib</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>OPENGL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;assimp.lib</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>glfw3_mt.lib;assimp-vc143-mt.lib;BulletCollision.lib;BulletCollision_Debug.lib;BulletDynamics.lib;BulletDynamics_Debug.lib;LinearMath.lib;LinearMath_Debug.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)Dependencies\lib</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -219,6 +282,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -256,6 +320,7 @@
     <ClCompile Include="Components\Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="System.cpp" />
     <ClCompile Include="Systems\ISystem.cpp" />
@@ -405,6 +470,7 @@
     <ClInclude Include="Dependencies\inc\KHR\khrplatform.h" />
     <ClInclude Include="Components\Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Systems\ISystem.h" />

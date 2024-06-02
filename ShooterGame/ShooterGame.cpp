@@ -16,7 +16,7 @@ void ShooterGame::Initialise(Window* w)
 	mCamera = new Camera(glm::vec3(0.0f, 0.0f, 15.0f), mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
 
 	ResourceManager& RM = ResourceManager::getInstance();
-	Mesh* shipMesh = RM.LoadMesh("Resources/Geometry/test/Intergalactic_Spaceship.obj");
+	Mesh* shipMesh = RM.LoadMesh("Resources/Geometry/Floor/Floor.obj");
 	if (shipMesh != nullptr)
 	{
 		shipMesh->AddMaterial("Resources/textures/TCube.mtl");
