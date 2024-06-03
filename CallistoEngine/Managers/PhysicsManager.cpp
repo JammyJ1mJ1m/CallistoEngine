@@ -1,6 +1,9 @@
 #include "PhysicsManager.h"
+#include "Bullet/BulletCollision/CollisionDispatch/btGhostObject.h"
 
 const float PhysicsManager::mTimeStep = 1.0f / 60.0f;
+
+PhysicsManager* PhysicsManager::mInstance = nullptr;
 
 PhysicsManager::PhysicsManager(float pGrav)
 	: mGravity(pGrav)
@@ -10,7 +13,9 @@ PhysicsManager::PhysicsManager(float pGrav)
 	mBroadphase = new btDbvtBroadphase();
 	mSolver = new btSequentialImpulseConstraintSolver();
 	mDynamicsWorld = new btDiscreteDynamicsWorld(mDispatcher, mBroadphase, mSolver, mCollisionConfiguration);
-	mDynamicsWorld->setGravity(btVector3(0, mGravity, 0));
+	mDynamicsWorld->setGravity(btVector3(0,-0.98, 0));
+
+	//mBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
 }
 
 
@@ -20,7 +25,7 @@ void PhysicsManager::Initialise()
 
 void PhysicsManager::Update(double deltaTime)
 {
-		mDynamicsWorld->stepSimulation(mTimeStep, 10);
+	mDynamicsWorld->stepSimulation(mTimeStep, 10);
 }
 
 

@@ -3,6 +3,8 @@
 #include "Components/ComponentModel.h"
 #include "Components/ComponentShader.h"
 #include "Components/ComponentTransform.h"
+#include "Components/ComponentRigidBody.h"
+
 #include "Vector.h"
 
 #include "Material.h"
@@ -13,6 +15,8 @@
 #include "Enemy.h"
 #include "SkyBox.h"
 
+#include "Managers/PhysicsManager.h"
+Enemy* enemy;
 GameScene::GameScene()
 {
 }
@@ -28,13 +32,14 @@ void GameScene::Initialise()
 {
 
 
+	/*Player* player = new Player();
+	AddEntity(player);*/
+
+	enemy = new Enemy();
+	AddEntity(enemy);
+
 	/*SkyBox* skybox = new SkyBox();
 	AddEntity(skybox);*/
-	Player* player = new Player();
-	AddEntity(player);
-
-	//Enemy* enemy = new Enemy();
-	//AddEntity(enemy);
 }
 
 void GameScene::OnKeyboard(int key, bool down)
@@ -43,6 +48,13 @@ void GameScene::OnKeyboard(int key, bool down)
 
 void GameScene::Update(double deltaTime)
 {
+	PhysicsManager::GetInstance().Update(deltaTime);
+
+	btTransform pos;
+	enemy->GetComponent<ComponentRigidBody>()->GetMotionState()->getWorldTransform(pos);
+	std::cout << pos.getOrigin().x() << " " << pos.getOrigin().y() << " " << pos.getOrigin().z() << std::endl;
+	enemy->GetComponent<ComponentRigidBody>()->SyncWithTransform(enemy->GetComponent<ComponentTransform>());
+
 }
 
 void GameScene::Render(SystemRender* renderer)

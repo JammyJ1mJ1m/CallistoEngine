@@ -1,4 +1,5 @@
 #include "ComponentTransform.h"
+#include "GLM/gtx/quaternion.hpp"
 
 ComponentTransform::ComponentTransform()
 {
@@ -20,9 +21,7 @@ ComponentTransform::ComponentTransform(glm::vec3 pPos, glm::vec3 pRot, glm::vec3
 
 void ComponentTransform::UpdateModelMatrix()
 {
-	Translate(position);
-	// RotateX(rotation);
-	Scale(scale);
+	GetWorld();
 }
 
 void ComponentTransform::Translate(glm::vec3 pTranslation)
@@ -48,6 +47,19 @@ void ComponentTransform::RotateZ(const float pAngle)
 void ComponentTransform::Scale(glm::vec3 pScale)
 {
 	modelMatrix = glm::scale(modelMatrix, pScale);
+}
+
+void ComponentTransform::GetWorld()
+{
+	//TODO re implement this with a returned mat4
+
+	modelMatrix = glm::mat4(1.0f);
+	modelMatrix += glm::translate(modelMatrix, position);
+	modelMatrix *= glm::mat4(glm::quat(rotation));
+	//modelMatrix *= glm::scale(modelMatrix, scale);
+
+	
+
 }
 
 

@@ -1,11 +1,13 @@
 #include "ShooterGame.h"
 #include "Managers/ResourceManager.h"
 #include "GameScene.h"
+#include "Managers/PhysicsManager.h"
 
 void ShooterGame::Initialise(Window* w)
 {
 	//theGame = this;
 
+	PhysicsManager::GetInstance();
 	mWindow = w;
 	mRenderer = w->GetRenderer();
 	mRenderSystem = new SystemRender(mRenderer);
@@ -70,6 +72,10 @@ void ShooterGame::Run(double dt)
 	{
 		Render();
 		HandleInput();
+
+
+		// run current scene update loop
+mSceneManager.Update(dt);
 
 		// game logic here
 	}

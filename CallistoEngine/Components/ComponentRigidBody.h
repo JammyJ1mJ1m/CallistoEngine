@@ -11,8 +11,6 @@ class ComponentRigidBody : public IComponent
 	btCollisionShape* mCollisionShape;
 	btDefaultMotionState* mMotionState;
 	btScalar mMass;
-	btVector3 mInertia;
-	btVector3 mLocalInertia;
 	btTransform mTransform;
 
 	public:
@@ -24,8 +22,6 @@ class ComponentRigidBody : public IComponent
 		inline btCollisionShape* GetCollisionShape() { return mCollisionShape; }
 		inline btDefaultMotionState* GetMotionState() { return mMotionState; }
 		inline btScalar GetMass() { return mMass; }
-		inline btVector3 GetInertia() { return mInertia; }
-		inline btVector3 GetLocalInertia() { return mLocalInertia; }
 		inline btTransform GetTransform() { return mTransform; }
 
 		inline void SetRigidBody(btRigidBody* pRigidBody) { mRigidBody = pRigidBody; }

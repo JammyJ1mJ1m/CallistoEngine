@@ -114,9 +114,6 @@
     <ClCompile Include="System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PhysicsManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
     <ClCompile Include="Components\ComponentRigidBody.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -571,9 +568,6 @@
     </ClInclude>
     <ClInclude Include="System.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsManager.h">
-      <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="Components\ComponentRigidBody.h">
       <Filter>Header Files</Filter>

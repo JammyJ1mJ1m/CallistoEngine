@@ -122,7 +122,7 @@ void Material::Draw()
 
 	if (mIsCubemap)
 	{
-		glDepthMask(GL_FALSE);
+		glDepthFunc(GL_LEQUAL);
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, GetCubemap());
 

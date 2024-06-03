@@ -172,9 +172,10 @@ void Mesh::LoadTexture(std::string pFile)
 
 void Mesh::Draw() const
 {
+	glDepthFunc(GL_TRUE);
 	material->Draw();
 	GetVBO()->Draw(material);
-	glDepthMask(GL_TRUE);
+	glDepthFunc(GL_LESS);
 
 }
 

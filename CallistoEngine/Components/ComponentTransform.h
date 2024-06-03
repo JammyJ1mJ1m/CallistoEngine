@@ -22,9 +22,9 @@ public:
 	inline const glm::vec3& GetRotation() { return rotation; }
 	inline const glm::vec3& GetScale() { return scale; }
 
-	inline void SetPosition(glm::vec3 pPosition) { position = pPosition; }
-	inline void SetRotation(glm::vec3 pRotation) { rotation = pRotation; }
-	inline void SetScale(glm::vec3 pScale) { scale = pScale; }
+	inline void SetPosition(glm::vec3 pPosition) { position = pPosition; UpdateModelMatrix(); }
+	inline void SetRotation(glm::vec3 pRotation) { rotation = pRotation; UpdateModelMatrix(); }
+	inline void SetScale(glm::vec3 pScale) { scale = pScale; UpdateModelMatrix(); }
 
 	inline const glm::mat4 GetModelMatrix() { return modelMatrix; }
 	inline void SetModelMatrix(glm::mat4 pModelMatrix) { modelMatrix = pModelMatrix; }
@@ -35,6 +35,8 @@ public:
 	void RotateY(const float pAngle);
 	void RotateZ(const float pAngle);
 	void Scale(glm::vec3 pScale);
+
+	void GetWorld();
 
 	virtual ComponentTypes GetType() const;
 };

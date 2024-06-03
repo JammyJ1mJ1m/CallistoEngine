@@ -15,10 +15,26 @@ class PhysicsManager
 	float timeAccumulator = 0.0f;
 	float mGravity;
 
-public:
-	static const float mTimeStep;
+	static PhysicsManager* mInstance;
 
 	PhysicsManager(float pGrav = -9.8f);
+
+public:
+
+	static PhysicsManager& GetInstance()
+	{
+		if (mInstance == nullptr)
+			mInstance = new PhysicsManager();
+
+		return *mInstance;
+	}
+
+	void AddRigidBody(btRigidBody* pBody) { mDynamicsWorld->addRigidBody(pBody); };
+	
+
+	static const float mTimeStep;
+
+	//PhysicsManager(float pGrav = -9.8f);
 	~PhysicsManager();
 
 	void SetGravity(float gravity) { mGravity = gravity; }
