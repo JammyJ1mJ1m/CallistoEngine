@@ -60,9 +60,6 @@
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Dependencies\inc\GLM\core\dummy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Components\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -119,6 +116,12 @@
     </ClCompile>
     <ClCompile Include="PhysicsManager.cpp">
       <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\ComponentRigidBody.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\PhysicsManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -571,6 +574,12 @@
     </ClInclude>
     <ClInclude Include="PhysicsManager.h">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ComponentRigidBody.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\PhysicsManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

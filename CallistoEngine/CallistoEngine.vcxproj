@@ -143,8 +143,8 @@
     <LibraryPath>..\CSLib\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - debug|x64'">
-    <IncludePath>$(ProjectDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)Objects;$(ProjectDir)Components</IncludePath>
-    <LibraryPath>$(ProjectDir)Dependencies\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)Objects;$(ProjectDir)Components</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - release|x64'">
     <IncludePath>$(ProjectDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)Objects;$(ProjectDir)Components</IncludePath>
@@ -248,8 +248,8 @@
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;assimp.lib</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3_mt.lib;assimp-vc143-mt.lib;BulletCollision.lib;BulletCollision_Debug.lib;BulletDynamics.lib;BulletDynamics_Debug.lib;LinearMath.lib;LinearMath_Debug.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)Dependencies\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glfw3_mt.lib;assimp-vc143-mt.lib;BulletCollision.lib;BulletCollision_Debug.lib;BulletDynamics.lib;BulletDynamics_Debug.lib;LinearMath.lib;LinearMath_Debug.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\lib</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - release|x64'">
@@ -312,14 +312,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Components\ComponentRigidBody.cpp" />
     <ClCompile Include="Components\ComponentShader.cpp" />
     <ClCompile Include="Components\ComponentModel.cpp" />
     <ClCompile Include="Components\IComponent.cpp" />
     <ClCompile Include="Components\ComponentTransform.cpp" />
-    <ClCompile Include="Dependencies\inc\GLM\core\dummy.cpp" />
     <ClCompile Include="Components\Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="Managers\PhysicsManager.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="System.cpp" />
@@ -341,6 +342,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Components\ComponentRigidBody.h" />
     <ClInclude Include="Components\ComponentShader.h" />
     <ClInclude Include="Components\ComponentModel.h" />
     <ClInclude Include="Components\IComponent.h" />
@@ -470,6 +472,7 @@
     <ClInclude Include="Dependencies\inc\KHR\khrplatform.h" />
     <ClInclude Include="Components\Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Managers\PhysicsManager.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="System.h" />
