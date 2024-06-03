@@ -7,7 +7,7 @@ public:
         COMPONENT_TRANSFORM = 1 << 0,
         COMPONENT_MODEL = 1 << 2,
         COMPONENT_SHADER = 1 << 4,
-        COMPONENT_ANIMATION = 1 << 8,
+        COMPONENT_RIGIDBODY = 1 << 8,
     };
 
     virtual ComponentTypes GetType() const = 0;
