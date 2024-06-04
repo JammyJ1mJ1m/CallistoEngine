@@ -70,12 +70,12 @@ void ShooterGame::Run(double dt)
 	}
 	if (mGameState == Playing)
 	{
+		mSceneManager.Update(dt);
 		Render();
 		HandleInput();
 
 
 		// run current scene update loop
-mSceneManager.Update(dt);
 
 		// game logic here
 	}
@@ -89,7 +89,7 @@ mSceneManager.Update(dt);
 bool ShooterGame::HandleInput()
 {
 	float moveSensitivity = 16.0f * mDeltaTime;
-	
+
 	if (_keyStates[256])  // Esc
 		mGameState = Quit;
 	if (_keyStates[80])  // P

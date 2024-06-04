@@ -13,7 +13,7 @@ PhysicsManager::PhysicsManager(float pGrav)
 	mBroadphase = new btDbvtBroadphase();
 	mSolver = new btSequentialImpulseConstraintSolver();
 	mDynamicsWorld = new btDiscreteDynamicsWorld(mDispatcher, mBroadphase, mSolver, mCollisionConfiguration);
-	mDynamicsWorld->setGravity(btVector3(0,-0.98, 0));
+	mDynamicsWorld->setGravity(btVector3(0,-9.8, 0));
 
 	//mBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
 }
@@ -25,7 +25,7 @@ void PhysicsManager::Initialise()
 
 void PhysicsManager::Update(double deltaTime)
 {
-	mDynamicsWorld->stepSimulation(mTimeStep, 10);
+	mDynamicsWorld->stepSimulation(deltaTime, 10);
 }
 
 

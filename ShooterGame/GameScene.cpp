@@ -16,7 +16,7 @@
 #include "SkyBox.h"
 
 #include "Managers/PhysicsManager.h"
-Enemy* enemy;
+Player* player;
 GameScene::GameScene()
 {
 }
@@ -32,10 +32,10 @@ void GameScene::Initialise()
 {
 
 
-	/*Player* player = new Player();
-	AddEntity(player);*/
+	 player = new Player();
+	AddEntity(player);
 
-	enemy = new Enemy();
+	Enemy* enemy = new Enemy();
 	AddEntity(enemy);
 
 	/*SkyBox* skybox = new SkyBox();
@@ -50,17 +50,20 @@ void GameScene::Update(double deltaTime)
 {
 	PhysicsManager::GetInstance().Update(deltaTime);
 
-	btTransform pos;
-	enemy->GetComponent<ComponentRigidBody>()->GetMotionState()->getWorldTransform(pos);
-	std::cout << pos.getOrigin().x() << " " << pos.getOrigin().y() << " " << pos.getOrigin().z() << std::endl;
-	enemy->GetComponent<ComponentRigidBody>()->SyncWithTransform(enemy->GetComponent<ComponentTransform>());
+	//btTransform pos;
+	//player->GetComponent<ComponentRigidBody>()->GetMotionState()->getWorldTransform(pos);
+	//std::cout << pos.getOrigin().x() << " " << pos.getOrigin().y() << " " << pos.getOrigin().z() << std::endl;
+	//player->GetComponent<ComponentRigidBody>()->SyncWithTransform(player->GetComponent<ComponentTransform>());
 
 }
 
 void GameScene::Render(SystemRender* renderer)
 {
 	for (auto& enti : mEntities)
-	//{
-	 renderer->Run(enti);
-	//}
+	{
+		if (enti->GetComponent<ComponentRigidBody>())
+			enti->GetComponent<ComponentRigidBody>()->SyncWithTransform(enti->GetComponent<ComponentTransform>());
+
+		renderer->Run(enti);
+	}
 }
