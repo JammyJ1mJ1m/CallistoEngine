@@ -126,6 +126,19 @@ bool ShooterGame::HandleInput()
 			// Move forward
 			mCamera->MoveForward(moveSensitivity);
 		}
+
+	if(_keyStates[81]) // Q
+		if (mGameState == Playing)
+		{
+			
+			mCamera->Rotate(50 * mDeltaTime);
+		}
+	if (_keyStates[69]) // E
+		if (mGameState == Playing)
+		{
+			
+			mCamera->Rotate(-50 * mDeltaTime);
+		}
 	return false;
 }
 

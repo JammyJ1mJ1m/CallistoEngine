@@ -8,7 +8,7 @@ void Player::start()
 	AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(),"Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
 
 	glm::vec3 pos = glm::vec3(0.0f, -5.0f, 0.0f);
-	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.2f), glm::vec3(2.0f, 2.0f, 2.0f)));
+	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f, 2.0f, 2.0f)));
 	//mEntities.push_back(tri);
 
 

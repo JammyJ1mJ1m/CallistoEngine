@@ -38,8 +38,8 @@ void GameScene::Initialise()
 	Enemy* enemy = new Enemy();
 	AddEntity(enemy);
 
-	/*SkyBox* skybox = new SkyBox();
-	AddEntity(skybox);*/
+	SkyBox* skybox = new SkyBox();
+	AddEntity(skybox);
 }
 
 void GameScene::OnKeyboard(int key, bool down)
