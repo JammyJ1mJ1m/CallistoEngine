@@ -2,7 +2,7 @@
 #include "IComponent.h"
 //#include "../Dependencies/inc/Bullet/btBulletCollisionCommon.h"
 
-#include "C:\Users\jamwi\source\repos\OpenGL_Engine\CallistoEngine\Dependencies\inc\Bullet/btBulletDynamicsCommon.h"
+#include "Bullet/btBulletDynamicsCommon.h"
 #include "ComponentTransform.h"
 
 class ComponentRigidBody : public IComponent
@@ -15,8 +15,8 @@ class ComponentRigidBody : public IComponent
 
 	public:
 		ComponentRigidBody();
-		ComponentRigidBody(btCollisionShape* pShape, btScalar pMass, btVector3 pInertia, btTransform pTransform);
-		~ComponentRigidBody() = default;
+		ComponentRigidBody(btCollisionShape* pShape, btScalar pMass, const btVector3& pInertia, const btTransform& pTransform);
+		~ComponentRigidBody() ;
 
 		inline btRigidBody* GetRigidBody() { return mRigidBody; }
 		inline btCollisionShape* GetCollisionShape() { return mCollisionShape; }

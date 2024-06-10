@@ -33,6 +33,8 @@ public:
 	int NumVertices()		const { return (int)mVertices.size(); }
 	Vertex GetVertex(int i)	const { return mVertices[i]; }
 	Vertex& GetVertexRef(int i) { return mVertices[i]; }
+	std::vector<Vertex>& GetVertices() { return mVertices; }
+	std::vector<int>& GetIndices() { return mIndices; }
 
 	// Functions
 public:

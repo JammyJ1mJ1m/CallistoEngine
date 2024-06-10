@@ -2,9 +2,12 @@
 #include "Managers/ResourceManager.h"
 #include "GameScene.h"
 #include "Managers/PhysicsManager.h"
+#include "BulletDebugDraw.h"
+static BulletDebugDrawer_OpenGL* bulletDebugDraw;
 
 void ShooterGame::Initialise(Window* w)
 {
+	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
 	//theGame = this;
 
 	PhysicsManager::GetInstance();
@@ -15,7 +18,7 @@ void ShooterGame::Initialise(Window* w)
 	// other game setup logic
 	mGameState = Playing;
 
-	mCamera = new Camera(glm::vec3(0.0f, 0.0f, 15.0f), mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
+	mCamera = new Camera(glm::vec3(0.0f, 0.0f, 45.0f), mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
 
 	ResourceManager& RM = ResourceManager::getInstance();
 	Mesh* shipMesh = RM.LoadMesh("Resources/Geometry/Floor/Floor.obj");
@@ -58,6 +61,9 @@ void ShooterGame::Render()
 	mRenderer->ClearScreen();
 
 	mSceneManager.Render(mRenderSystem);
+
+	PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
+	PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
 }
 
 void ShooterGame::Run(double dt)

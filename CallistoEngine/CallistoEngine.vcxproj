@@ -340,6 +340,7 @@
     <ClCompile Include="Window_GL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BulletDebugDraw.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Components\ComponentRigidBody.h" />
     <ClInclude Include="Components\ComponentShader.h" />
