@@ -49,8 +49,9 @@ void Player::start()
 	transform.setIdentity();
 	transform.setOrigin(btVector3(pos.x, pos.y, pos.z)); // Starting at position (2.0f, 0.0f, 0.0f)
 
-	const btVector3 inertia(0, 0, 0);
+	btVector3 inertia(0, 1, 0);
 	int mass = 0;
+	//meshShape->calculateLocalInertia(mass, inertia);
 
 	ComponentRigidBody* rb = new ComponentRigidBody(meshShape, mass, inertia, transform);
 	AddComponent(rb);
