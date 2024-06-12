@@ -312,6 +312,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Components\ComponentCollider.cpp" />
     <ClCompile Include="Components\ComponentRigidBody.cpp" />
     <ClCompile Include="Components\ComponentShader.cpp" />
     <ClCompile Include="Components\ComponentModel.cpp" />
@@ -342,6 +343,7 @@
   <ItemGroup>
     <ClInclude Include="BulletDebugDraw.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Components\ComponentCollider.h" />
     <ClInclude Include="Components\ComponentRigidBody.h" />
     <ClInclude Include="Components\ComponentShader.h" />
     <ClInclude Include="Components\ComponentModel.h" />

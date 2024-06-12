@@ -4,28 +4,29 @@
 
 #include "Bullet/btBulletDynamicsCommon.h"
 #include "ComponentTransform.h"
+#include "componentCollider.h"
 
 class ComponentRigidBody : public IComponent
 {
 	btRigidBody* mRigidBody;
-	btCollisionShape* mCollisionShape;
+	//btCollisionShape* mCollisionShape;
 	btDefaultMotionState* mMotionState;
 	btScalar mMass;
 	btTransform mTransform;
+	btVector3 mInertia;
 
 	public:
 		ComponentRigidBody();
-		ComponentRigidBody(btCollisionShape* pShape, btScalar pMass, const btVector3& pInertia, const btTransform& pTransform);
+		//ComponentRigidBody(btCollisionShape* pShape, btScalar pMass, const btVector3& pInertia, const btTransform& pTransform);
+		ComponentRigidBody(ComponentCollider* pCollider, btScalar pMass,  const glm::vec3& pPos);
 		~ComponentRigidBody() ;
 
 		inline btRigidBody* GetRigidBody() { return mRigidBody; }
-		inline btCollisionShape* GetCollisionShape() { return mCollisionShape; }
 		inline btDefaultMotionState* GetMotionState() { return mMotionState; }
 		inline btScalar GetMass() { return mMass; }
 		inline btTransform GetTransform() { return mTransform; }
 
 		inline void SetRigidBody(btRigidBody* pRigidBody) { mRigidBody = pRigidBody; }
-		inline void SetCollisionShape(btCollisionShape* pCollisionShape) { mCollisionShape = pCollisionShape; }
 		inline void SetMotionState(btDefaultMotionState* pMotionState) { mMotionState = pMotionState; }
 		inline void SetMass(btScalar pMass) { mMass = pMass; }
 
