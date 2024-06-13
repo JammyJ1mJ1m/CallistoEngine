@@ -193,11 +193,11 @@ Mesh* ResourceManager::LoadMesh(const std::string pFile)
 				vertex.TexCoords.x = mesh->mTextureCoords[0][i].x;
 				vertex.TexCoords.y = mesh->mTextureCoords[0][i].y;
 
-				/*vertex.Normal.x = mesh->mNormals[i].x;
+				vertex.Normal.x = mesh->mNormals[i].x;
 				vertex.Normal.y = mesh->mNormals[i].y;
 				vertex.Normal.z = mesh->mNormals[i].z;
 
-				vertex.Binormal.x = mesh->mBitangents[i].x;
+				/*vertex.Binormal.x = mesh->mBitangents[i].x;
 				vertex.Binormal.y = mesh->mBitangents[i].y;
 				vertex.Binormal.z = mesh->mBitangents[i].z;
 

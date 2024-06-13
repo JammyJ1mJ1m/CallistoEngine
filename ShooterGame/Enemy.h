@@ -9,11 +9,10 @@
 class Enemy : public Entity
 {
 	virtual void start();
+	void SetPosition() override;
 
 public:
 	Enemy();
 	~Enemy() = default;
-
-
+	 void SetPosition(glm::vec3 pPos);
 };
-

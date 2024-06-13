@@ -13,7 +13,15 @@ void SkyBox::start()
 
 }
 
+void SkyBox::SetPosition()
+{
+}
+
 SkyBox::SkyBox()
 {
 	start();
+}
+
+void SkyBox::SetPosition(glm::vec3 pPos)
+{
 }

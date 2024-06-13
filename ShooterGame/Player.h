@@ -8,10 +8,13 @@
 class Player : public Entity
 {
 	virtual void start();
+	void SetPosition() override;
 
 	public:
 		Player();
 		~Player() = default;
+
+		void SetPosition(glm::vec3 pPos);
 
 
 };

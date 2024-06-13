@@ -53,6 +53,18 @@ void ComponentRigidBody::SyncWithTransform(ComponentTransform* pTransform)
 	pTransform->SetRotation(glm::vec3(trans.getRotation().x() * 2, trans.getRotation().y() * 2, trans.getRotation().z() * 2));
 }
 
+void ComponentRigidBody::SetPosition(glm::vec3 pPos)
+{
+	btTransform
+		transform;
+	transform.setIdentity();
+	transform.setOrigin(btVector3(pPos.x, pPos.y, pPos.z));
+	mRigidBody->setWorldTransform(transform);
+	mRigidBody->getMotionState()->setWorldTransform(transform);
+
+}
+
+
 IComponent::ComponentTypes ComponentRigidBody::GetType() const
 {
 	return ComponentTypes::COMPONENT_RIGIDBODY;

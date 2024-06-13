@@ -48,7 +48,12 @@ void VBO_GL::Create(Vertex pVertices[], int pNumVertices, int* pIndices, int pSi
 
 	// textures
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)offsetof(Vertex,TexCoords));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex,TexCoords));
+
+	// normals
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex,Normal));
+
 
 	// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -73,12 +78,6 @@ void VBO_GL::DrawVBO()
 
 void VBO_GL::DrawVAO(Material* mat)
 {
-	//glActiveTexture(GL_TEXTURE0);
-	//glBindTexture(GL_TEXTURE_2D, mat->GetDiffuseMap());
-
-	//glActiveTexture(GL_TEXTURE1);
-	//glBindTexture(GL_TEXTURE_2D, mat->GetNormalMap());
-
 	glBindVertexArray(mVaoID);
 	// Draw
 	// glDrawArrays(GL_TRIANGLES, 0, mNumVertices);

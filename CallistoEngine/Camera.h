@@ -26,7 +26,7 @@ private:
 
 public:
 
-	
+
 	Camera(const Camera&) = delete;
 	Camera& operator=(const Camera&) = delete;
 
@@ -39,6 +39,7 @@ public:
 
 	Camera(const glm::vec3 pPos, const float pWidth, const float pHeight);
 	void MoveForward(const float pMoveAmount);
+	void MoveUp(const float pMoveAmount);
 	void Strafe(const float pMoveAmount);
 	void UpdateView();
 	void Rotate(const float pYaw);

@@ -21,7 +21,7 @@ void ShooterGame::Initialise(Window* w)
 	mCamera = new Camera(glm::vec3(0.0f, 0.0f, 45.0f), mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
 
 	ResourceManager& RM = ResourceManager::getInstance();
-	Mesh* shipMesh = RM.LoadMesh("Resources/Geometry/Floor/Floor.obj");
+	Mesh* shipMesh = RM.LoadMesh("Resources/Geometry/Floor/FloorTwo.obj");
 	if (shipMesh != nullptr)
 	{
 		shipMesh->AddMaterial("Resources/textures/TCube.mtl");
@@ -62,8 +62,8 @@ void ShooterGame::Render()
 
 	mSceneManager.Render(mRenderSystem);
 
-	PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
-	PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
+	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
+	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
 }
 
 void ShooterGame::Run(double dt)
@@ -145,6 +145,27 @@ bool ShooterGame::HandleInput()
 			
 			mCamera->Rotate(-50 * mDeltaTime);
 		}
+
+	if (_keyStates[32]) // Space
+		if (mGameState == Playing)
+		{
+			// Move up
+			mCamera->MoveUp(moveSensitivity);
+		}
+
+	if (_keyStates[340]) // Shift
+		if (mGameState == Playing)
+		{
+			// Move down
+			mCamera->MoveUp(-moveSensitivity);
+		}
+
+	if (_keyStates[82]) // R
+		if (mGameState == Playing)
+		{
+			mSceneManager.OnKeyboard(82, true);
+		}
+
 	return false;
 }
 

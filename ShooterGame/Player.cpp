@@ -26,8 +26,18 @@ void Player::start()
 
 }
 
+void Player::SetPosition()
+{
+}
+
 Player::Player()
 {
 
 	start();
+}
+
+void Player::SetPosition(glm::vec3 pPos)
+{
+	GetComponent<ComponentTransform>()->SetPosition(pPos);
+	GetComponent<ComponentRigidBody>()->SetPosition(pPos);
 }

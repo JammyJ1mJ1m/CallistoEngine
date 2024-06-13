@@ -215,6 +215,8 @@
     <ClInclude Include="SkyBox.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Shaders\basicLight.frag" />
+    <None Include="Resources\Shaders\basicLight.vert" />
     <None Include="Resources\Shaders\BulletLineShader.frag" />
     <None Include="Resources\Shaders\BulletLineShader.vert" />
   </ItemGroup>

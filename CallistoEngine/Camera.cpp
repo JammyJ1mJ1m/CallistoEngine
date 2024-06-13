@@ -18,7 +18,7 @@ Camera::Camera(const glm::vec3 pPos, const float pWidth, const float pHeight)
 	float aspect = 800 / 800;
 	float fov = glm::radians(45.0f);
 	float near = 0.1f;
-	float far = 100.0f;
+	float far = 1000.0f;
 
 	projection = glm::mat4(1.0f);
 		projection = glm::perspective(fov, aspect, near, far);
@@ -44,6 +44,12 @@ void Camera::Strafe(const float pMoveAmount)
 	cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * pMoveAmount;
 	UpdateView();
 
+}
+
+void Camera::MoveUp(const float pMoveAmount)
+{
+	cameraPos += cameraUp * pMoveAmount;
+	UpdateView();
 }
 
 void Camera::UpdateView()

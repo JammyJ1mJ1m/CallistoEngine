@@ -42,6 +42,11 @@ void GameScene::Initialise()
 
 void GameScene::OnKeyboard(int key, bool down)
 {
+	if (key == 82)
+	{
+		AddEntity(new Enemy());
+	}
+
 }
 
 void GameScene::Update(double deltaTime)
