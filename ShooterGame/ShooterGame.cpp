@@ -9,6 +9,7 @@ void ShooterGame::Initialise(Window* w)
 {
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
 	//theGame = this;
+	mAudioManager = &AudioManager::GetInstance();
 
 	PhysicsManager::GetInstance();
 	mWindow = w;

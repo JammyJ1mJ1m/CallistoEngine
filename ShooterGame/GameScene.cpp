@@ -38,6 +38,8 @@ void GameScene::Initialise()
 
 	SkyBox* skybox = new SkyBox();
 	AddEntity(skybox);
+
+	Game::GetGame()->GetAudioManager()->PlaySound("Resources/Sounds/hyperloop-by-infraction.mp3", true);
 }
 
 void GameScene::OnKeyboard(int key, bool down)

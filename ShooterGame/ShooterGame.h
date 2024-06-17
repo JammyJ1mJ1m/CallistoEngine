@@ -8,12 +8,14 @@
 #include "Material.h"
 #include "SceneManager.h"
 
+
 class ShooterGame : public Game
 {
 	GameState mGameState;
 	SystemRender* mRenderSystem;
 
 public:
+
 
 	Mesh* GetMesh(std::string pMesh)
 	{

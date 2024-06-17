@@ -248,8 +248,8 @@
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;assimp.lib</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;glfw3_mt.lib;assimp-vc143-mt.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glfw3_mt.lib;assimp-vc143-mt.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;irrKlang.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\lib;$(SolutionDir)Dependencies\bin</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - release|x64'">
@@ -311,6 +311,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Managers\AudioManager.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Components\ComponentCollider.cpp" />
     <ClCompile Include="Components\ComponentRigidBody.cpp" />
@@ -341,6 +342,7 @@
     <ClCompile Include="Window_GL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Managers\AudioManager.h" />
     <ClInclude Include="BulletDebugDraw.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Components\ComponentCollider.h" />

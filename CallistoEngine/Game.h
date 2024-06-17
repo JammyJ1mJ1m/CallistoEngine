@@ -7,11 +7,11 @@
 #include <map>
 
 #include "Camera.h"
-
-// #include "RenderSystem.h"
 #include "SceneManager.h"
 
 #include "Systems/SystemRender.h"
+#include "Managers/AudioManager.h"
+
 
 using MeshMap = std::map<std::string, Mesh*>;
 using MeshMapIterator = MeshMap::iterator;
@@ -24,13 +24,13 @@ protected:
 	// DT stuff
 	double mDeltaTime;
 	double mLastFrameTime;
-	
+
 
 	bool _keyStates[512];
 	Renderer* mRenderer;
 	Window* mWindow;
 	MeshMap mMeshes;
-//	RenderSystem mRenderSystem;
+	//	RenderSystem mRenderSystem;
 
 	SystemRender* mRenderSystem;
 
@@ -39,10 +39,12 @@ protected:
 	std::vector<Entity*> mEntities;
 
 	static Game* theGame;  // Static instance pointer
+	AudioManager* mAudioManager;
 
 public:
 	static Camera* GetGameCamera();
-	static Game* GetGame()				{ return theGame; }
+	static Game* GetGame() { return theGame; }
+	AudioManager* GetAudioManager() { return mAudioManager; }
 
 
 

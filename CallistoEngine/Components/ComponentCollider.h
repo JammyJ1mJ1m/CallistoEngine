@@ -28,6 +28,7 @@ public:
 	ComponentCollider(btVector3 pHalfExtents);
 
 	// TODO create sphere collider
+	ComponentCollider(btScalar pRadius);
 	// TODO create capsule collider
 
 	// pass in a collision shape and a transform

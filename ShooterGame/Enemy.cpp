@@ -1,8 +1,7 @@
 #include "Enemy.h"
 #include "Components/ComponentRigidBody.h"
 //#include <BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h>
-//#include "Bullet/BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
-#include "Dependencies/inc/Bullet/BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
+//#include "Bullet/BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"	
 #include "Components/ComponentCollider.h"
 
 
@@ -15,6 +14,8 @@ void Enemy::start()
 	AddComponent(new ComponentTransform(pos, glm::vec3(0.5f, 0.0f, 0.0f), glm::vec3(2.0f, 2.0f, 2.0f)));
 
 	ComponentCollider* collider = new ComponentCollider(btVector3(1, 1, 1));
+	//ComponentCollider* collider = new ComponentCollider(1);
+
 	AddComponent(collider);
 
 	btScalar mass = 1.0;

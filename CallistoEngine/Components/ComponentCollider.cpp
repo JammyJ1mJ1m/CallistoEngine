@@ -31,6 +31,12 @@ ComponentCollider::ComponentCollider(btVector3 pHalfExtents)
 		mColliderType = ColliderType::BOX;
 }
 
+ComponentCollider::ComponentCollider(btScalar pRadius)
+{
+	mCollisionShape = new btSphereShape(pRadius);
+	mColliderType = ColliderType::SPHERE;
+}
+
 ComponentCollider::ComponentCollider(btCollisionShape* pShape, const btTransform& pTransform)
 {
 	mCollisionShape = pShape;
