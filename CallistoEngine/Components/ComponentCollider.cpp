@@ -20,7 +20,7 @@ ComponentCollider::ComponentCollider(const std::vector<Vertex>& pVerts, const st
 	for (const auto& vert : btVerts) {
 		convexHullShape->addPoint(vert);
 	}
-
+	trimesh->setScaling(btVector3(2, 2, 2));
 	mCollisionShape = new btBvhTriangleMeshShape(trimesh,false);
 	mColliderType = ColliderType::MESH;
 }

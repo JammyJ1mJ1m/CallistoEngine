@@ -47,7 +47,7 @@ void GameScene::Initialise()
 	expBarrel = new ExpBarrel();
 	AddEntity(expBarrel);
 
-//	Game::GetGame()->GetAudioManager()->Play3DSound("Resources/Sounds/hyperloop-by-infraction.mp3",0,0,0, true);
+	//Game::GetGame()->GetAudioManager()->PlaySound("Resources/Sounds/hyperloop-by-infraction.mp3", true);
 }
 
 
@@ -71,6 +71,11 @@ void GameScene::OnKeyboard(int key, bool down)
 		auto strength = 175;
 		auto radius = 50;
 		expBarrel->applyExplosionForce(world,origin,strength,radius);
+		Game::GetGame()->GetAudioManager()->Play3DSound("Resources/Sounds/explosion.wav",origin.x(),origin.y(),origin.z(), false);
+		
+		// remove expBarrel from mEntities
+		 mEntities.erase(std::remove(mEntities.begin(), mEntities.end(), expBarrel), mEntities.end());
+
 	}
 
 }

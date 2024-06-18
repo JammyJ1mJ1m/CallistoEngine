@@ -22,7 +22,7 @@ void ShooterGame::Initialise(Window* w)
 	mCamera = new Camera(glm::vec3(0.0f, 0.0f, 45.0f), mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
 
 	ResourceManager& RM = ResourceManager::getInstance();
-	Mesh* shipMesh = RM.LoadMesh("Resources/Geometry/Floor/FloorTwo.obj");
+	Mesh* shipMesh = RM.LoadMesh("Resources/Geometry/Floor/Floor.obj");
 	if (shipMesh != nullptr)
 	{
 		shipMesh->AddMaterial("Resources/textures/TCube.mtl");
@@ -71,8 +71,8 @@ void ShooterGame::Render()
 
 	mSceneManager.Render(mRenderSystem);
 
-	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
-	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
+	PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
+	PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
 }
 
 void ShooterGame::Run(double dt)
