@@ -75,3 +75,21 @@ void Camera::Rotate(const float pYaw)
 
     UpdateView();
 }
+
+Vector3f Camera::GetPosition() const
+{
+	Vector3f vec;
+	vec.SetX(cameraPos.x);
+	vec.SetY(cameraPos.y);
+	vec.SetZ(cameraPos.z);
+	return vec;
+}
+
+Vector3f Camera::GetDirection() const
+{
+	Vector3f vec;
+	vec.SetX(cameraDir.x);
+	vec.SetY(cameraDir.y);
+	vec.SetZ(cameraDir.z);
+	return vec;
+}

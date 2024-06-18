@@ -45,12 +45,29 @@ ComponentRigidBody::ComponentRigidBody(ComponentCollider* pCollider, btScalar pM
 
 }
 
+//float RadToDeg(float rad)
+//{
+//	return rad * 180 / 3.14159265359;
+//}
+
 void ComponentRigidBody::SyncWithTransform(ComponentTransform* pTransform)
 {
-	btTransform trans;
-	trans = mRigidBody->getWorldTransform();
-	pTransform->SetPosition(glm::vec3(trans.getOrigin().x() * 2, trans.getOrigin().y() * 2, trans.getOrigin().z() * 2));
-	pTransform->SetRotation(glm::vec3(trans.getRotation().x() * 2, trans.getRotation().y() * 2, trans.getRotation().z() * 2));
+	btTransform bulletTransform;
+	mRigidBody->getMotionState()->getWorldTransform(bulletTransform);
+
+	pTransform->SyncTransform(bulletTransform);
+
+
+
+
+
+
+
+	//btTransform trans;
+	//trans = mRigidBody->getWorldTransform();
+	//pTransform->SetPosition(glm::vec3(trans.getOrigin().x()/* * 2*/, trans.getOrigin().y() /** 2*/, trans.getOrigin().z() /** 2*/));
+	//glm::vec3 t = glm::vec3(trans.getRotation().x() /** 2*/, trans.getRotation().y()/* * 2*/, trans.getRotation().z()/* * 2*/);
+	//pTransform->SetRotation(t);
 }
 
 void ComponentRigidBody::SetPosition(glm::vec3 pPos)

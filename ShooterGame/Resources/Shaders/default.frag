@@ -35,7 +35,7 @@ vec4 calculatePointLight(int i)
 
 
      
-    vec3 lightPos = vec3(-8.0f, 15.0f, -15.0f);
+    vec3 lightPos = vec3(-8.0f, 15.0f, 15.0f);
     vec3 lightColor = vec3(1.0, 0.8, 0.5);
     vec3 objectColor = texture(ourTexture, TexCoord).xyz;
     vec3 viewPos; 

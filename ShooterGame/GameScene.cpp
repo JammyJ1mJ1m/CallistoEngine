@@ -39,7 +39,7 @@ void GameScene::Initialise()
 	SkyBox* skybox = new SkyBox();
 	AddEntity(skybox);
 
-	Game::GetGame()->GetAudioManager()->PlaySound("Resources/Sounds/hyperloop-by-infraction.mp3", true);
+	Game::GetGame()->GetAudioManager()->Play3DSound("Resources/Sounds/hyperloop-by-infraction.mp3",0,0,0, true);
 }
 
 void GameScene::OnKeyboard(int key, bool down)
@@ -53,6 +53,9 @@ void GameScene::OnKeyboard(int key, bool down)
 
 void GameScene::Update(double deltaTime)
 {
+	// Game::GetGame()->GetAudioManager()->SetListenerPosition(player->GetComponent<ComponentTransform>()->GetPosition().x, player->GetComponent<ComponentTransform>()->GetPosition().y, player->GetComponent<ComponentTransform>()->GetPosition().z);
+
+	Game::GetGame()->GetAudioManager()->SetListenerPosition(0,0,0);
 	PhysicsManager::GetInstance().Update(deltaTime);
 
 	//btTransform pos;
@@ -67,7 +70,10 @@ void GameScene::Render(SystemRender* renderer)
 	for (auto& enti : mEntities)
 	{
 		if (enti->GetComponent<ComponentRigidBody>())
+		{
 			enti->GetComponent<ComponentRigidBody>()->SyncWithTransform(enti->GetComponent<ComponentTransform>());
+
+		}
 
 		renderer->Run(enti);
 	}

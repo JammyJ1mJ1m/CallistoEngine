@@ -25,6 +25,8 @@ public:
 	// void Initialise();
 
 	void PlaySound(const char* pFile, bool pLoop = false);
+	void Play3DSound(const char* pFile, float x, float y, float z, bool pLoop = false);
+	void SetListenerPosition(float x, float y, float z);
 
 	//void Update(double deltaTime);
 };

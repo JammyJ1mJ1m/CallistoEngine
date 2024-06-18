@@ -3,6 +3,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "Bullet/btBulletDynamicsCommon.h"
+
 
 class ComponentTransform : public IComponent
 {
@@ -37,6 +39,8 @@ public:
 	void Scale(glm::vec3 pScale);
 
 	void GetWorld();
+
+	void SyncTransform(const btTransform& pTransform);
 
 	virtual ComponentTypes GetType() const;
 };

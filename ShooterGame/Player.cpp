@@ -5,7 +5,7 @@
 
 void Player::start()
 {
-	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("ship"), "Resources/textures/TCube.mtl"));
+	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("ship"), "Resources/textures/Floor.mtl"));
 	AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
 
 	glm::vec3 pos = glm::vec3(0.0f, -5.0f, 0.0f);

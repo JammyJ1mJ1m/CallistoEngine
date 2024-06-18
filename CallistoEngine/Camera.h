@@ -2,7 +2,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
+#include "Vector.h"
 
 class Camera
 {
@@ -46,6 +46,7 @@ public:
 
 	glm::mat4 GetView() const { return view; }
 	glm::mat4 GetProjection() const { return projection; }
-
+	Vector3f GetPosition() const;
+	Vector3f GetDirection() const;
 
 };

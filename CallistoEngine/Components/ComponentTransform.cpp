@@ -57,9 +57,17 @@ void ComponentTransform::GetWorld()
 	modelMatrix += glm::translate(modelMatrix, position);
 	modelMatrix *= glm::mat4(glm::quat(rotation));
 	//modelMatrix *= glm::scale(modelMatrix, scale);
+}
 
-	
+void ComponentTransform::SyncTransform(const btTransform& pTransform)
+{
+	btVector3 bulletPosition = pTransform.getOrigin();
+	position = glm::vec3(bulletPosition.getX(), bulletPosition.getY(), bulletPosition.getZ());
 
+	btQuaternion bulletRotation = pTransform.getRotation();
+	rotation = glm::eulerAngles(glm::quat(bulletRotation.getW(), bulletRotation.getX(), bulletRotation.getY(), bulletRotation.getZ()));
+
+	UpdateModelMatrix();	
 }
 
 
