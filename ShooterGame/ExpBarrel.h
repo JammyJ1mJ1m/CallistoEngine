@@ -5,15 +5,17 @@
 
 #include "Components/ComponentTransform.h"
 
-class Player : public Entity
+class ExpBarrel : public Entity
 {
 	virtual void start();
 	void SetPosition() override;
 
 public:
-	Player();
-	~Player() = default;
+	ExpBarrel();
+	~ExpBarrel() = default;
 
 	void SetPosition(glm::vec3 pPos);
+	void applyExplosionForce(btDiscreteDynamicsWorld& world, const btVector3& explosionOrigin, btScalar explosionStrength, btScalar explosionRadius);
+
 };
 

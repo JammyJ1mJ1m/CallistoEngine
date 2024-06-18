@@ -34,7 +34,14 @@ ComponentCollider::ComponentCollider(btVector3 pHalfExtents)
 ComponentCollider::ComponentCollider(btScalar pRadius)
 {
 	mCollisionShape = new btSphereShape(pRadius);
+
 	mColliderType = ColliderType::SPHERE;
+}
+
+ComponentCollider::ComponentCollider(float pRadius, float pHeight)
+{
+	mCollisionShape = new btCylinderShape(btVector3(pRadius, pHeight, pRadius));
+	mColliderType = ColliderType::CYLINDER;
 }
 
 ComponentCollider::ComponentCollider(btCollisionShape* pShape, const btTransform& pTransform)

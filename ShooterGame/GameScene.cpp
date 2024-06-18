@@ -14,11 +14,16 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "SkyBox.h"
+#include "ExpBarrel.h"
 
 #include "Managers/PhysicsManager.h"
+
 Player* player;
+ExpBarrel* expBarrel;
+
 GameScene::GameScene()
 {
+	isExploded = false;
 }
 
 GameScene::~GameScene()
@@ -39,14 +44,33 @@ void GameScene::Initialise()
 	SkyBox* skybox = new SkyBox();
 	AddEntity(skybox);
 
-	Game::GetGame()->GetAudioManager()->Play3DSound("Resources/Sounds/hyperloop-by-infraction.mp3",0,0,0, true);
+	expBarrel = new ExpBarrel();
+	AddEntity(expBarrel);
+
+//	Game::GetGame()->GetAudioManager()->Play3DSound("Resources/Sounds/hyperloop-by-infraction.mp3",0,0,0, true);
 }
+
+
 
 void GameScene::OnKeyboard(int key, bool down)
 {
 	if (key == 82)
 	{
 		AddEntity(new Enemy());
+	}
+	// key y is pressed
+
+	// g key pres
+
+	if (key == 89 && isExploded == false)
+	{
+		isExploded = true;
+		// applyExplosionForce(PhysicsManager::GetInstance().GetWorld(), btVector3(0, 0, 0), 1000, 100);
+		btDiscreteDynamicsWorld& world = PhysicsManager::GetInstance().GetDynamicsWorld();
+		auto origin = btVector3(expBarrel->GetComponent<ComponentTransform>()->GetPosition().x, expBarrel->GetComponent<ComponentTransform>()->GetPosition().y, expBarrel->GetComponent<ComponentTransform>()->GetPosition().z);
+		auto strength = 175;
+		auto radius = 50;
+		expBarrel->applyExplosionForce(world,origin,strength,radius);
 	}
 
 }

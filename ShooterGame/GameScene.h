@@ -3,6 +3,7 @@
 
 class GameScene final : public Scene
 {
+	bool isExploded;
 	public:
 	GameScene();
 	virtual ~GameScene();

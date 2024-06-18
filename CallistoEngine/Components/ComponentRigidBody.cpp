@@ -20,7 +20,7 @@ ComponentRigidBody::ComponentRigidBody(ComponentCollider* pCollider, btScalar pM
 	mInertia = btVector3();
 
 	// Don't want to calculate inertia for static mesh objects
-	if (pCollider->GetColliderType() == ColliderType::BOX)
+	if (pCollider->GetColliderType() != ColliderType::MESH)
 		pCollider->GetCollisionShape()->calculateLocalInertia(mMass, mInertia);
 
 	btTransform transform;
@@ -56,11 +56,6 @@ void ComponentRigidBody::SyncWithTransform(ComponentTransform* pTransform)
 	mRigidBody->getMotionState()->getWorldTransform(bulletTransform);
 
 	pTransform->SyncTransform(bulletTransform);
-
-
-
-
-
 
 
 	//btTransform trans;

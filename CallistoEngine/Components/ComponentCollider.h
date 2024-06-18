@@ -10,6 +10,7 @@ enum ColliderType
 	BOX,
 	SPHERE,
 	CAPSULE,
+	CYLINDER,
 	MESH
 };
 
@@ -30,6 +31,9 @@ public:
 	// TODO create sphere collider
 	ComponentCollider(btScalar pRadius);
 	// TODO create capsule collider
+
+	// TODO create cylinder collider
+	ComponentCollider(float pRadius, float pHeight);
 
 	// pass in a collision shape and a transform
 	ComponentCollider(btCollisionShape* pShape, const btTransform& pTransform);

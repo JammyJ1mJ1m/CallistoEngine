@@ -10,7 +10,7 @@ void Enemy::start()
 {
 	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("cube"), "Resources/textures/TCube.mtl"));
 	AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
-	glm::vec3 pos = glm::vec3(-0.0f, 15.0f, -0.0f);
+	glm::vec3 pos = glm::vec3(-0.0f, 15.0f, -5.0f);
 	AddComponent(new ComponentTransform(pos, glm::vec3(0.5f, 0.0f, 0.0f), glm::vec3(2.0f, 2.0f, 2.0f)));
 
 	ComponentCollider* collider = new ComponentCollider(btVector3(2, 2, 2));

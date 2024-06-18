@@ -43,6 +43,14 @@ void ShooterGame::Initialise(Window* w)
 		AddMesh("cube", cube);
 	}
 
+	Mesh* barrel = RM.LoadMesh("Resources/Geometry/Barrel/expBarrel.obj");
+	if (barrel != nullptr)
+	{
+		barrel->AddMaterial("Resources/textures/TCube.mtl");
+		AddMesh("barrel", barrel);
+	}
+
+
 	mSceneManager.PushScene(new GameScene());
 }
 
@@ -63,8 +71,8 @@ void ShooterGame::Render()
 
 	mSceneManager.Render(mRenderSystem);
 
-	// PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
-	// PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
+	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
+	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
 }
 
 void ShooterGame::Run(double dt)
@@ -134,16 +142,16 @@ bool ShooterGame::HandleInput()
 			mCamera->MoveForward(moveSensitivity);
 		}
 
-	if(_keyStates[81]) // Q
+	if (_keyStates[81]) // Q
 		if (mGameState == Playing)
 		{
-			
+
 			mCamera->Rotate(50 * mDeltaTime);
 		}
 	if (_keyStates[69]) // E
 		if (mGameState == Playing)
 		{
-			
+
 			mCamera->Rotate(-50 * mDeltaTime);
 		}
 
@@ -165,6 +173,12 @@ bool ShooterGame::HandleInput()
 		if (mGameState == Playing)
 		{
 			mSceneManager.OnKeyboard(82, true);
+		}
+
+	if (_keyStates[89]) // R
+		if (mGameState == Playing)
+		{
+			mSceneManager.OnKeyboard(89, true);
 		}
 
 	return false;
