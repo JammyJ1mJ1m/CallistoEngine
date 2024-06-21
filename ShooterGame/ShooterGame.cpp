@@ -71,8 +71,8 @@ void ShooterGame::Render()
 
 	mSceneManager.Render(mRenderSystem);
 
-	PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
-	PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
+	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
+	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
 }
 
 void ShooterGame::Run(double dt)

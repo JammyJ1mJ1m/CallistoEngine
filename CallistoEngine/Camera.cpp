@@ -93,3 +93,21 @@ Vector3f Camera::GetDirection() const
 	vec.SetZ(cameraDir.z);
 	return vec;
 }
+
+Vector3f Camera::GetRight() const
+{
+	Vector3f vec;
+	vec.SetX(cameraRight.x);
+	vec.SetY(cameraRight.y);
+	vec.SetZ(cameraRight.z);
+	return vec;
+}
+
+Vector3f Camera::GetUp() const
+{
+	Vector3f vec;
+	vec.SetX(cameraUp.x);
+	vec.SetY(cameraUp.y);
+	vec.SetZ(cameraUp.z);
+	return vec;
+}

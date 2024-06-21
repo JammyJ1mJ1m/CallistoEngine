@@ -48,5 +48,7 @@ public:
 	glm::mat4 GetProjection() const { return projection; }
 	Vector3f GetPosition() const;
 	Vector3f GetDirection() const;
+	Vector3f GetRight() const;
+	Vector3f GetUp() const;
 
 };

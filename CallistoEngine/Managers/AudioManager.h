@@ -1,5 +1,9 @@
 #pragma once
-#include "irrKlang/irrKlang.h"
+ #include "irrKlang/irrKlang.h"
+
+#include "AL/al.h"
+#include "AL/alc.h"
+#include <string>
 
 using namespace irrklang;
 
@@ -7,7 +11,12 @@ class AudioManager
 {
 
 	static AudioManager* mInstance;
+	
 	ISoundEngine* mSoundEngine;
+
+	// open al sound engine
+	ALCdevice* mDevice;
+	ALCcontext* mContext;
 
 	AudioManager();
 public:

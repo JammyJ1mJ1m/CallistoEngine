@@ -17,10 +17,11 @@
 #include "ExpBarrel.h"
 
 #include "Managers/PhysicsManager.h"
+#include "Sound.h"
 
 Player* player;
 ExpBarrel* expBarrel;
-
+Sound* sound;
 GameScene::GameScene()
 {
 	isExploded = false;
@@ -47,6 +48,11 @@ void GameScene::Initialise()
 	expBarrel = new ExpBarrel();
 	AddEntity(expBarrel);
 
+
+	sound = new Sound("Resources/Sounds/explosion.wav");
+	sound->SetLooping(true);
+	sound->Play3D(0,0,0);
+
 	//Game::GetGame()->GetAudioManager()->PlaySound("Resources/Sounds/hyperloop-by-infraction.mp3", true);
 }
 
@@ -71,7 +77,8 @@ void GameScene::OnKeyboard(int key, bool down)
 		auto strength = 175;
 		auto radius = 50;
 		expBarrel->applyExplosionForce(world,origin,strength,radius);
-		Game::GetGame()->GetAudioManager()->Play3DSound("Resources/Sounds/explosion.wav",origin.x(),origin.y(),origin.z(), false);
+		sound->Play3D(origin.x(), origin.y(), origin.z());
+		//Game::GetGame()->GetAudioManager()->Play3DSound("Resources/Sounds/explosion.wav",origin.x(),origin.y(),origin.z(), false);
 		
 		// remove expBarrel from mEntities
 		 mEntities.erase(std::remove(mEntities.begin(), mEntities.end(), expBarrel), mEntities.end());
@@ -82,9 +89,35 @@ void GameScene::OnKeyboard(int key, bool down)
 
 void GameScene::Update(double deltaTime)
 {
-	// Game::GetGame()->GetAudioManager()->SetListenerPosition(player->GetComponent<ComponentTransform>()->GetPosition().x, player->GetComponent<ComponentTransform>()->GetPosition().y, player->GetComponent<ComponentTransform>()->GetPosition().z);
+	ALfloat listenerPos[] = { 
+	Game::GetGame()->GetGameCamera()->GetPosition().GetX(),
+	Game::GetGame()->GetGameCamera()->GetPosition().GetY(),
+	Game::GetGame()->GetGameCamera()->GetPosition().GetZ()
+	};
 
-	Game::GetGame()->GetAudioManager()->SetListenerPosition(0,0,0);
+	ALfloat listenerVel[] = { 0.0f, 0.0f, 0.0f };
+
+	ALfloat listenerOri[] = {  
+	Game::GetGame()->GetGameCamera()->GetDirection().GetX() ,
+	Game::GetGame()->GetGameCamera()->GetDirection().GetY() ,
+	Game::GetGame()->GetGameCamera()->GetDirection().GetZ() ,
+
+	Game::GetGame()->GetGameCamera()->GetUp().GetX() * -1,
+	Game::GetGame()->GetGameCamera()->GetUp().GetY() * -1,
+	Game::GetGame()->GetGameCamera()->GetUp().GetZ() * -1
+	};
+
+
+
+	alListenerfv(AL_POSITION, listenerPos);
+	alListenerfv(AL_VELOCITY, listenerVel);
+	alListenerfv(AL_ORIENTATION, listenerOri);
+
+	Game::GetGame()->GetAudioManager()->SetListenerPosition(Game::GetGame()->GetGameCamera()->GetPosition().GetX(),
+		Game::GetGame()->GetGameCamera()->GetPosition().GetY(),
+		Game::GetGame()->GetGameCamera()->GetPosition().GetZ());
+
+	//Game::GetGame()->GetAudioManager()->SetListenerPosition(0,0,0);
 	PhysicsManager::GetInstance().Update(deltaTime);
 
 	//btTransform pos;

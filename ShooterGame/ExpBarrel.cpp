@@ -8,7 +8,7 @@ void ExpBarrel::start()
 	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("barrel"), "Resources/Geometry/Barrel/expBarrel.mtl"));
 	AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
 
-	glm::vec3 pos = glm::vec3(-10.0f, 40.0f, -48.0f);
+	glm::vec3 pos = glm::vec3(-10.0f, 40.0f, 0.0f);
 	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1, 1, 1)));
 	//mEntities.push_back(tri);
 
@@ -16,8 +16,8 @@ void ExpBarrel::start()
 	std::vector<Vertex> vertices = Game::GetGame()->GetMesh("barrel")->GetVertices();
 	std::vector<int> indices = Game::GetGame()->GetMesh("barrel")->GetIndices();
 
-	//ComponentCollider* collider = new ComponentCollider(2, 2.75);
-	ComponentCollider* collider = new ComponentCollider(2/*,2.75*/);
+	ComponentCollider* collider = new ComponentCollider(2, 2.75);
+	//ComponentCollider* collider = new ComponentCollider(2/*,2.75*/);
 	
 
 	AddComponent(collider);
