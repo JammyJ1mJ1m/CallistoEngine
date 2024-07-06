@@ -4,13 +4,9 @@
 #include "Components/ComponentShader.h"
 #include "Components/ComponentTransform.h"
 #include "Components/ComponentRigidBody.h"
-
 #include "Vector.h"
-
 #include "Material.h"
-
 #include "Systems/SystemRender.h"
-
 #include "Player.h"
 #include "Enemy.h"
 #include "SkyBox.h"
@@ -50,8 +46,8 @@ void GameScene::Initialise()
 
 
 	sound = new Sound("Resources/Sounds/explosion.wav");
-	sound->SetLooping(true);
-	sound->Play3D(0,0,0);
+	//sound->SetLooping(true);
+	//sound->Play3D(0,0,0);
 
 	//Game::GetGame()->GetAudioManager()->PlaySound("Resources/Sounds/hyperloop-by-infraction.mp3", true);
 }

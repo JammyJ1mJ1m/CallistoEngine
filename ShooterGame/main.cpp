@@ -32,7 +32,7 @@ int main()
 
 	Game* game;
 
-	Window_GL* _window = new Window_GL(new ShooterGame(), 1280, 1280);
+	Window_GL* _window = new Window_GL(new ShooterGame(), 720, 720);
 
 	_window->Initialise("Gamey game");
 
