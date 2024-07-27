@@ -7,12 +7,14 @@
 #include "Vector.h"
 #include "Material.h"
 #include "SceneManager.h"
+#include "Managers/InputManager.h"
 
 
 class ShooterGame : public Game
 {
 	GameState mGameState;
 	SystemRender* mRenderSystem;
+	InputManager* mInputManager;
 
 public:
 

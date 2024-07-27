@@ -3,6 +3,7 @@
 #include "GameScene.h"
 #include "Managers/PhysicsManager.h"
 #include "BulletDebugDraw.h"
+
 static BulletDebugDrawer_OpenGL* bulletDebugDraw;
 
 void ShooterGame::Initialise(Window* w)
@@ -10,6 +11,7 @@ void ShooterGame::Initialise(Window* w)
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
 	//theGame = this;
 	mAudioManager = &AudioManager::GetInstance();
+	mInputManager = &InputManager::GetInstance();
 
 	PhysicsManager::GetInstance();
 	mWindow = w;
@@ -62,7 +64,8 @@ void ShooterGame::OnKeyboard(int key, bool down)
 	}
 	//mSceneManager->OnKeyboard(key, down);
 
-	_keyStates[key] = down;
+	mInputManager->SetKeyState(key, down);
+	//_keyStates[key] = down;
 }
 
 void ShooterGame::Render()
@@ -79,9 +82,9 @@ void ShooterGame::Run(double dt)
 {
 	mDeltaTime = dt;
 
-	if (mGameState != Paused)
+	if (mGameState == Paused)
 	{
-		// game logic here
+		// paused logic here
 	}
 	if (mGameState == Playing)
 	{
@@ -103,83 +106,17 @@ void ShooterGame::Run(double dt)
 
 bool ShooterGame::HandleInput()
 {
-	float moveSensitivity = 16.0f * mDeltaTime;
+	// todo - move this to GAME SCENE
+	// float moveSensitivity = 16.0f * mDeltaTime;
 
-	if (_keyStates[256])  // Esc
+	if (mInputManager->GetKey(256))  // Esc
 		mGameState = Quit;
-	if (_keyStates[80])  // P
-		if (mGameState == Playing)
-		{
-			mGameState = Paused;
-		}
-		else if (mGameState = Paused)
-		{
-			mGameState = Playing;
-		}
 
-	if (_keyStates[65])  // A
-		if (mGameState == Playing)
-		{
-			mCamera->Strafe(-(moveSensitivity));
-		}
-	if (_keyStates[68])  // D
-		if (mGameState == Playing)
-		{
-			// Move right
-			mCamera->Strafe((moveSensitivity));
-		}
 
-	if (_keyStates[83])  // S
-		if (mGameState == Playing)
-		{
-			// Move back
-			mCamera->MoveForward(-(moveSensitivity));
-		}
-	if (_keyStates[87]) // W
-		if (mGameState == Playing)
-		{
-			// Move forward
-			mCamera->MoveForward(moveSensitivity);
-		}
-
-	if (_keyStates[81]) // Q
-		if (mGameState == Playing)
-		{
-
-			mCamera->Rotate(50 * mDeltaTime);
-		}
-	if (_keyStates[69]) // E
-		if (mGameState == Playing)
-		{
-
-			mCamera->Rotate(-50 * mDeltaTime);
-		}
-
-	if (_keyStates[32]) // Space
-		if (mGameState == Playing)
-		{
-			// Move up
-			mCamera->MoveUp(moveSensitivity);
-		}
-
-	if (_keyStates[340]) // Shift
-		if (mGameState == Playing)
-		{
-			// Move down
-			mCamera->MoveUp(-moveSensitivity);
-		}
-
-	if (_keyStates[82]) // R
-		if (mGameState == Playing)
-		{
-			mSceneManager.OnKeyboard(82, true);
-		}
-
-	if (_keyStates[89]) // R
-		if (mGameState == Playing)
-		{
-			mSceneManager.OnKeyboard(89, true);
-		}
+	if (mGameState == Playing)
+	{
+		 mSceneManager.OnKeyboard(-1, true);
+	}
 
 	return false;
 }

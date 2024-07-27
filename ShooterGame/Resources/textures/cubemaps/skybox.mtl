@@ -1,7 +1,7 @@
 #skybox
-ktop Resources\\textures\\cubemaps\\top.png
-kleft Resources\\textures\\cubemaps\\left.png
-kfront Resources\\textures\\cubemaps\\front.png
 kright Resources\\textures\\cubemaps\\right.png
-kback Resources\\textures\\cubemaps\\back.png
+kleft Resources\\textures\\cubemaps\\left.png
+ktop Resources\\textures\\cubemaps\\top.png
 kbottom Resources\\textures\\cubemaps\\bottom.png
+kfront Resources\\textures\\cubemaps\\front.png
+kback Resources\\textures\\cubemaps\\back.png

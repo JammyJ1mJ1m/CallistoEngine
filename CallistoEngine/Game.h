@@ -45,7 +45,7 @@ public:
 	static Camera* GetGameCamera();
 	static Game* GetGame() { return theGame; }
 	AudioManager* GetAudioManager() { return mAudioManager; }
-
+	static const float GetDeltaTime() { return theGame->mDeltaTime; }
 
 
 	Game();
