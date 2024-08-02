@@ -1,0 +1,39 @@
+#include "Enemy.h"
+#include "Components/ComponentRigidBody.h"
+//#include <BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h>
+//#include "Bullet/BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"	
+#include "Components/ComponentCollider.h"
+
+
+
+void Enemy::start()
+{
+	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("cube"), "Resources/textures/TCube.mtl"));
+	AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
+	glm::vec3 pos = glm::vec3(-0.0f, 15.0f, -5.0f);
+	AddComponent(new ComponentTransform(pos, glm::vec3(0.5f, 0.0f, 0.0f), glm::vec3(2.0f, 2.0f, 2.0f)));
+
+	ComponentCollider* collider = new ComponentCollider(btVector3(2, 2, 2));
+	//ComponentCollider* collider = new ComponentCollider(1);
+
+	AddComponent(collider);
+
+	btScalar mass = 1.0;
+	ComponentRigidBody* rb = new ComponentRigidBody(collider, mass, pos);
+	AddComponent(rb);
+}
+
+void Enemy::SetPosition()
+{
+}
+
+void Enemy::SetPosition(glm::vec3 pPos)
+{
+	GetComponent<ComponentTransform>()->SetPosition(pPos);
+	GetComponent<ComponentRigidBody>()->SetPosition(pPos);
+}
+
+Enemy::Enemy()
+{
+	start();
+}
