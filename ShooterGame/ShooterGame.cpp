@@ -4,18 +4,20 @@
 #include "Managers/PhysicsManager.h"
 #include "BulletDebugDraw.h"
 
+
+
 static BulletDebugDrawer_OpenGL* bulletDebugDraw;
 
-void ShooterGame::Initialise(Window* w)
+void ShooterGame::Initialise(Window* pWindow)
 {
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
 	//theGame = this;
 	mAudioManager = &AudioManager::GetInstance();
-	mInputManager = &InputManager::GetInstance();
+	mInputManager = new GameInputManager();
 
 	PhysicsManager::GetInstance();
-	mWindow = w;
-	mRenderer = w->GetRenderer();
+	mWindow = pWindow;
+	mRenderer = pWindow->GetRenderer();
 	mRenderSystem = new SystemRender(mRenderer);
 
 	// other game setup logic

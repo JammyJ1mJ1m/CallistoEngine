@@ -58,7 +58,7 @@ void GameScene::Initialise()
 void GameScene::OnKeyboard(int key, bool down)
 {
 	// get a reference to the input manager
-	InputManager& inputManager = InputManager::GetInstance();
+	GameInputManager* inputManager = static_cast<GameInputManager*>(Game::GetGame()->GetInputManager());
 
 	// Get the delta time
 	double mDeltaTime = Game::GetGame()->GetDeltaTime();
@@ -71,41 +71,42 @@ void GameScene::OnKeyboard(int key, bool down)
 	// if (key == GLFW_KEY_R)
 
 		// Move left
-	if (inputManager.GetKey(GLFW_KEY_A))  // A
+	if (inputManager->GetKey(GLFW_KEY_A))  // A
 			mCamera->Strafe(-(moveSensitivity * mDeltaTime));
 
 	// Move right
-	if (inputManager.GetKey(GLFW_KEY_D))  // D
+	if (inputManager->GetKey(GLFW_KEY_D))  // D
 		mCamera->Strafe((moveSensitivity * mDeltaTime));
 
 
 	// Move back
-	if (inputManager.GetKey(GLFW_KEY_S))  // S
+	if (inputManager->GetKey(GLFW_KEY_S))  // S
 		mCamera->MoveForward(-(moveSensitivity * mDeltaTime));
 
 	// Move forward
-	if (inputManager.GetKey(GLFW_KEY_W)) // W
-		mCamera->MoveForward(moveSensitivity * mDeltaTime);
+	if (inputManager->GetKey(GLFW_KEY_W)) // W
+		inputManager->mWalkForwardCommand->execute();
+		//mCamera->MoveForward(moveSensitivity * mDeltaTime);
 		
 
-	if (inputManager.GetKey(GLFW_KEY_Q)) // Q
+	if (inputManager->GetKey(GLFW_KEY_Q)) // Q
 			mCamera->Rotate(50 * mDeltaTime);
 		
-	if (inputManager.GetKey(GLFW_KEY_E)) // E
+	if (inputManager->GetKey(GLFW_KEY_E)) // E
 			mCamera->Rotate(-50 * mDeltaTime);
 		
 
 			// Move up
-	if (inputManager.GetKey(GLFW_KEY_SPACE)) // 
+	if (inputManager->GetKey(GLFW_KEY_SPACE)) // 
 			mCamera->MoveUp(moveSensitivity * mDeltaTime);
 
 
 	// Move down
-	if (inputManager.GetKey(GLFW_KEY_LEFT_SHIFT)) // Shift
+	if (inputManager->GetKey(GLFW_KEY_LEFT_SHIFT)) // Shift
 		mCamera->MoveUp(-moveSensitivity * mDeltaTime);
 
 
-	if (inputManager.GetKey(GLFW_KEY_R))
+	if (inputManager->GetKey(GLFW_KEY_R))
 	{
 		AddEntity(new Enemy());
 	}
@@ -113,7 +114,7 @@ void GameScene::OnKeyboard(int key, bool down)
 
 	// g key pres
 
-	if (inputManager.GetKey(GLFW_KEY_Y) && isExploded == false)
+	if (inputManager->GetKey(GLFW_KEY_Y) && isExploded == false)
 	{
 		isExploded = true;
 		// applyExplosionForce(PhysicsManager::GetInstance().GetWorld(), btVector3(0, 0, 0), 1000, 100);

@@ -1,0 +1,34 @@
+# main settings file for the game / engine
+
+[settings]
+
+[settings.controls]
+forward = "w"
+backward = "s"
+left = "a"
+right = "d"
+look_left = "q"
+look_right = "e"
+up = "space"
+down = "left_shift"
+
+[settings.display]
+resolution = "1920x1080"
+fullscreen = "true"
+vsync = "true"
+fov = "90"
+
+[settings.graphics]
+texture_quality = "high" # low, medium, high, ultra
+shadow_quality = "high"
+anti_aliasing = "high"
+post_processing = "high"
+
+[settings.audio]
+master_volume = "0.5"
+music_volume = "0.5"
+effects_volume = "0.5"
+
+[settings.gameplay]
+mouse_sensitivity = "1.0"
+difficulty = "normal"

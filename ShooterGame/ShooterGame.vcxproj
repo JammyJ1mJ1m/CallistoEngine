@@ -199,8 +199,10 @@
     <ClCompile Include="ComponentShaderSkybox.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="ExpBarrel.cpp" />
+    <ClCompile Include="Managers\GameInputManager.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="GameCommands\MoveForwardCommand.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ShooterGame.cpp" />
     <ClCompile Include="SkyBox.cpp" />
@@ -210,8 +212,11 @@
     <ClInclude Include="ComponentShaderSkybox.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="ExpBarrel.h" />
+    <ClInclude Include="GameCommands\GameCommands.h" />
+    <ClInclude Include="Managers\GameInputManager.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="GameCommands\MoveForwardCommand.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ShooterGame.h" />
     <ClInclude Include="SkyBox.h" />
@@ -221,6 +226,9 @@
     <None Include="Resources\Shaders\basicLight.vert" />
     <None Include="Resources\Shaders\BulletLineShader.frag" />
     <None Include="Resources\Shaders\BulletLineShader.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Config\settings.toml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

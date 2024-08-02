@@ -7,14 +7,18 @@
 #include "Vector.h"
 #include "Material.h"
 #include "SceneManager.h"
-#include "Managers/InputManager.h"
+
+// #include "Managers/InputManager.h"
+#include "Managers/GameInputManager.h"
 
 
 class ShooterGame : public Game
 {
 	GameState mGameState;
 	SystemRender* mRenderSystem;
-	InputManager* mInputManager;
+
+	// non singleton, make sure that this doesn't get copied / or a new one is created. 
+
 
 public:
 
@@ -41,12 +45,13 @@ public:
 
 	virtual ~ShooterGame()
 	{
-		delete mCamera;
-		delete mRenderSystem;
 		// delete all dynamically allocated memory
 		for (auto e : mEntities)
 		{
 			delete e;
 		}
+		delete mCamera;
+		delete mRenderSystem;
+		delete mInputManager;
 	}
 };

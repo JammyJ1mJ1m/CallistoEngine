@@ -13,8 +13,11 @@
 #include "Managers/AudioManager.h"
 
 
+
 using MeshMap = std::map<std::string, Mesh*>;
 using MeshMapIterator = MeshMap::iterator;
+
+class InputManager;
 
 class Game
 {
@@ -24,6 +27,8 @@ protected:
 	// DT stuff
 	double mDeltaTime;
 	double mLastFrameTime;
+
+	InputManager* mInputManager;
 
 
 	bool _keyStates[512];
@@ -46,6 +51,9 @@ public:
 	static Game* GetGame() { return theGame; }
 	AudioManager* GetAudioManager() { return mAudioManager; }
 	static const float GetDeltaTime() { return theGame->mDeltaTime; }
+
+	// get the input manager
+	InputManager* GetInputManager() { return mInputManager; }
 
 
 	Game();

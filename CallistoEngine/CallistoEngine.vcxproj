@@ -311,6 +311,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Commands\Command.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
     <ClCompile Include="Managers\AudioManager.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -344,6 +345,7 @@
     <ClCompile Include="Window_GL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Commands\Command.h" />
     <ClInclude Include="Managers\InputManager.h" />
     <ClInclude Include="Managers\AudioManager.h" />
     <ClInclude Include="BulletDebugDraw.h" />
