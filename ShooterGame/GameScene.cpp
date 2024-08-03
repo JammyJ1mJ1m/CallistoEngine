@@ -85,7 +85,14 @@ void GameScene::OnKeyboard(int key, bool down)
 
 	// Move forward
 	if (inputManager->GetKey(GLFW_KEY_W)) // W
-		inputManager->mWalkForwardCommand->execute();
+		inputManager->HandleInput(GLFW_KEY_W);
+
+	if (inputManager->GetKey(GLFW_KEY_H)) // W
+		inputManager->HandleInput(GLFW_KEY_H);
+
+	if (inputManager->GetKey(GLFW_KEY_O)) // W
+		inputManager->RebindKey(GLFW_KEY_W, GLFW_KEY_P);
+		//inputManager->mWKeyCommand->execute();
 		//mCamera->MoveForward(moveSensitivity * mDeltaTime);
 		
 
