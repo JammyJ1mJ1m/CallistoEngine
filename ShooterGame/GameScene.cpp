@@ -67,56 +67,63 @@ void GameScene::OnKeyboard(int key, bool down)
 	Camera* mCamera = Game::GetGame()->GetGameCamera();
 	float moveSensitivity = 32.0f;
 
+	for (size_t i = 0; i < inputManager->GetKeysSize(); i++)
+	{
+		if (inputManager->GetKey(i)) 
+			inputManager->HandleInput(i);
+	} 
 
-	// if (key == GLFW_KEY_R)
+	//// if (key == GLFW_KEY_R)
 
-		// Move left
-	if (inputManager->GetKey(GLFW_KEY_A))  // A
-			mCamera->Strafe(-(moveSensitivity * mDeltaTime));
+	//	// Move left
+	//if (inputManager->GetKey(GLFW_KEY_A))  // A
+	//		mCamera->Strafe(-(moveSensitivity * mDeltaTime));
 
-	// Move right
-	if (inputManager->GetKey(GLFW_KEY_D))  // D
-		mCamera->Strafe((moveSensitivity * mDeltaTime));
+	//// Move right
+	//if (inputManager->GetKey(GLFW_KEY_D))  // D
+	//	mCamera->Strafe((moveSensitivity * mDeltaTime));
 
 
-	// Move back
-	if (inputManager->GetKey(GLFW_KEY_S))  // S
-		mCamera->MoveForward(-(moveSensitivity * mDeltaTime));
+	//// Move back
+	//if (inputManager->GetKey(GLFW_KEY_S))  // S
+	//	mCamera->MoveForward(-(moveSensitivity * mDeltaTime));
 
-	// Move forward
-	if (inputManager->GetKey(GLFW_KEY_W)) // W
-		inputManager->HandleInput(GLFW_KEY_W);
+	//// Move forward
+	//if (inputManager->GetKey(GLFW_KEY_W)) // W
+	//	inputManager->HandleInput(GLFW_KEY_W);
 
-	if (inputManager->GetKey(GLFW_KEY_H)) // W
-		inputManager->HandleInput(GLFW_KEY_H);
+	//if (inputManager->GetKey(GLFW_KEY_H)) // W
+	//	inputManager->HandleInput(GLFW_KEY_H);
+
+	//if (inputManager->GetKey(GLFW_KEY_P)) // W
+	//	inputManager->HandleInput(GLFW_KEY_P);
 
 	if (inputManager->GetKey(GLFW_KEY_O)) // W
 		inputManager->RebindKey(GLFW_KEY_W, GLFW_KEY_P);
-		//inputManager->mWKeyCommand->execute();
-		//mCamera->MoveForward(moveSensitivity * mDeltaTime);
-		
+	//	//mCamera->MoveForward(moveSensitivity * mDeltaTime);
+	//	
 
-	if (inputManager->GetKey(GLFW_KEY_Q)) // Q
-			mCamera->Rotate(50 * mDeltaTime);
-		
-	if (inputManager->GetKey(GLFW_KEY_E)) // E
-			mCamera->Rotate(-50 * mDeltaTime);
-		
+	//if (inputManager->GetKey(GLFW_KEY_Q)) // Q
+	//		mCamera->Rotate(50 * mDeltaTime);
+	//	
+	//if (inputManager->GetKey(GLFW_KEY_E)) // E
+	//		mCamera->Rotate(-50 * mDeltaTime);
+	//	
 
-			// Move up
-	if (inputManager->GetKey(GLFW_KEY_SPACE)) // 
-			mCamera->MoveUp(moveSensitivity * mDeltaTime);
-
-
-	// Move down
-	if (inputManager->GetKey(GLFW_KEY_LEFT_SHIFT)) // Shift
-		mCamera->MoveUp(-moveSensitivity * mDeltaTime);
+	//		// Move up
+	//if (inputManager->GetKey(GLFW_KEY_SPACE)) // 
+	//		mCamera->MoveUp(moveSensitivity * mDeltaTime);
 
 
-	if (inputManager->GetKey(GLFW_KEY_R))
-	{
-		AddEntity(new Enemy());
-	}
+	//// Move down
+	//if (inputManager->GetKey(GLFW_KEY_LEFT_SHIFT)) // Shift
+	//	mCamera->MoveUp(-moveSensitivity * mDeltaTime);
+
+
+	//if (inputManager->GetKey(GLFW_KEY_R))
+	//{
+	//	AddEntity(new Enemy());
+	//}
 	// key y is pressed
 
 	// g key pres

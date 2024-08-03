@@ -1,8 +1,7 @@
 #pragma once
 #include "Commands/Command.h"
 
-class MoveForwardCommand :
-    public Command
+class MoveForwardCommand : public Command
 {
     public:
 	MoveForwardCommand() = default;

@@ -1,5 +1,20 @@
 #include "GameInputManager.h"
-#include "../GameCommands/MoveForwardCommand.h"
+#include "../GameCommands/GameCommands.h"
+
+GameInputManager::GameInputManager()
+{
+    mWKeyCommand = new MoveForwardCommand();
+mSKeyCommand = new MoveBackCommand();
+    // Initialize default commands
+    mCommandMap["MoveForward"] = mWKeyCommand;
+
+    mCommandMap["MoveDown"] = mSKeyCommand;
+     // Initialize default key bindings
+    BindKey('W', "MoveForward");
+    BindKey('S', "MoveDown");
+    // Similarly, bind 'A' and 'D'
+
+}
 
 void GameInputManager::BindKey(int key, const std::string& commandName)
 {
@@ -26,21 +41,7 @@ void GameInputManager::HandleInput(int key)
     }
 }
 
-GameInputManager::GameInputManager()
-{
-	mWKeyCommand = new MoveForwardCommand();
 
-    
-        // Initialize default commands
-    mCommandMap["MoveForward"] = mWKeyCommand;
-    
-       // commandMap["MoveDown"] = MoveDownCommand;
-        // Initialize default key bindings
-        BindKey('W', "MoveForward");
-        //bindKey('S', "MoveDown");
-        // Similarly, bind 'A' and 'D'
-    
-}
 
 GameInputManager::~GameInputManager()
 {
