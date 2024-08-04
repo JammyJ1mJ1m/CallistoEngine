@@ -2,6 +2,7 @@
 #include "Managers\InputManager.h"
 //#include <map>
 //#include <memory>
+#include <unordered_map>
 //#include <string>
 
 class GameInputManager : public InputManager
@@ -24,6 +25,7 @@ public:
     void HandleInput(int key);
     //void AddCommand(const std::string& commandName, Command* command);
     void ReadControlsConfig(const std::string& filename);
+    std::unordered_map<std::string, int> LoadKeyCodeMap(const std::string& filename);
 
     GameInputManager();
 

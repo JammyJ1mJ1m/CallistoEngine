@@ -3,6 +3,7 @@
 #include "toml.hpp"
 #include <iostream>
 #include <sstream>
+#include <fstream>
 
 GameInputManager::GameInputManager()
 {
@@ -64,12 +65,14 @@ void GameInputManager::ReadControlsConfig(const std::string& filename)
 		return;
 	}
 
+	auto KeyCodeMap = LoadKeyCodeMap("Config/KeyCodeMap.csv");
+
 	auto controls = config["settings"]["controls"];
 	std::string forward = *controls["move_forward"].value<std::string>();
 	std::string backward = *controls["move_back"].value<std::string>();
 
 	// Loop through the controls table
-	for (const auto& kvp : *controls.as_table()) {
+	/*for (const auto& kvp : *controls.as_table()) {
 		const auto& key = kvp.first;
 		const auto& value = kvp.second;
 
@@ -78,8 +81,63 @@ void GameInputManager::ReadControlsConfig(const std::string& filename)
 			auto keyCode = *value.value<std::string>();
 			BindKey(keyCode[0], keyStr);
 		}
+	}*/
+
+	for (const auto& kvp : *controls.as_table()) {
+		const auto& key = kvp.first;
+		const auto& value = kvp.second;
+
+		if (value.is_string()) {
+
+			// std::string commandName = key.str();
+			std::string commandName = std::string(key.str());
+
+			std::string keyStr = *value.value<std::string>();
+
+			// Look up the key code in the map
+			auto it = KeyCodeMap.find(keyStr);
+			if (it != KeyCodeMap.end()) {
+				int keyCode = it->second;
+				BindKey(keyCode, commandName);
+			}
+			else if (it == KeyCodeMap.end())
+			{
+				BindKey(keyStr[0], commandName);
+			}
+			else {
+				std::cerr << "Unknown key: " << keyStr << "\n";
+			}
+		}
 	}
 }
+
+std::unordered_map<std::string, int> GameInputManager::LoadKeyCodeMap(const std::string& filename)
+{
+	std::unordered_map<std::string, int> keyCodeMap;
+	std::ifstream file(filename);
+
+	if (!file) {
+		std::cerr << "Failed to open key code map file: " << filename << std::endl;
+		return keyCodeMap;
+	}
+
+	std::string line;
+	while (std::getline(file, line)) {
+		std::istringstream lineStream(line);
+		std::string key;
+		int code;
+		if (std::getline(lineStream, key, ',') && (lineStream >> code)) {
+			keyCodeMap[key] = code;
+		}
+		else {
+			std::cerr << "Invalid format in key code map file: " << line << std::endl;
+		}
+	}
+
+	return keyCodeMap;
+}
+
+
 
 GameInputManager::~GameInputManager()
 {

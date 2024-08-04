@@ -116,6 +116,7 @@
     <None Include="Resources\Shaders\BulletLineShader.vert" />
     <None Include="Resources\Shaders\basicLight.frag" />
     <None Include="Resources\Shaders\basicLight.vert" />
+    <None Include="Config\KeyCodeMap.csv" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Config\settings.toml" />
