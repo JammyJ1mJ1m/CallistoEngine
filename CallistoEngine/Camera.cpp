@@ -15,13 +15,15 @@ Camera::Camera(const glm::vec3 pPos, const float pWidth, const float pHeight)
 
 	view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 
-	float aspect = 800 / 800;
+	/*float aspect = pWidth / pHeight;
 	float fov = glm::radians(45.0f);
 	float near = 0.1f;
 	float far = 1000.0f;
 
 	projection = glm::mat4(1.0f);
-		projection = glm::perspective(fov, aspect, near, far);
+		projection = glm::perspective(fov, aspect, near, far);*/
+
+		UpdateProjection(pWidth, pHeight);
 
 
 	//glm::mat4 projection2 = glm::perspective(glm::radians(45.0f), (float)800 / (float)800, 0.1f, 500.0f);
@@ -111,3 +113,12 @@ Vector3f Camera::GetUp() const
 	vec.SetZ(cameraUp.z);
 	return vec;
 }
+
+void Camera::UpdateProjection(const float pWidth, const float pHeight, const float fov, const float near, const float far)
+{
+	float aspect = pWidth / pHeight;
+
+	projection = glm::mat4(1.0f);
+	projection = glm::perspective(glm::radians(fov), aspect, near, far);
+}
+

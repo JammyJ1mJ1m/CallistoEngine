@@ -17,6 +17,7 @@ enum GameState
 
 class Window
 {
+	bool mHasWindowSizeChanged;
 
 protected:
 	std::string _title;
@@ -49,6 +50,9 @@ public:
 
 	virtual int GetWindowWidth() = 0;
 	virtual int GetWindowHeight() = 0;
+
+	const bool GetHasWindowSizeChanged() { return mHasWindowSizeChanged; }
+	const void SetHasWindowSizeChanged(bool value) { mHasWindowSizeChanged = value; }
 
 	virtual int Initialise(const char* pTitle) = 0;
 	//virtual void OnResize(int width, int height) = 0;

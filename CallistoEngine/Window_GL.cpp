@@ -6,7 +6,17 @@
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
+	
 	glViewport(0, 0, width, height);
+
+	Window_GL* instance = static_cast<Window_GL*>(glfwGetWindowUserPointer(window));
+	if (instance) {
+		instance->_width = width;
+		instance->_height = height;
+		//instance->SetDimensions(width, height);
+		instance->SetHasWindowSizeChanged(true);
+		glViewport(0, 0, width, height);
+	}
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -53,7 +63,16 @@ int Window_GL::Initialise(const char* pTitle)
 	// glfw window creation
 	// --------------------
 	
-	// _GlfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), glfwGetPrimaryMonitor(), NULL); // fullscreen
+	
+	
+	// this setting will be passed from display manager
+	//if (DisplayManager.FullScreenEnabled)
+		// GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+		// const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+		// _width = mode->width;
+		// _height = mode->height;
+		//_GlfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), glfwGetPrimaryMonitor(), NULL); // fullscreen
+	//else
 	_GlfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
 	if (_GlfwWindow == NULL)
 	{
@@ -69,6 +88,8 @@ int Window_GL::Initialise(const char* pTitle)
 
 	glfwMakeContextCurrent(_GlfwWindow);
 
+	// this setting will be passed from display manager
+	// if (!DisplayManager.VsyncEnabled)
 	glfwSwapInterval(0); // disable vsync
 
 

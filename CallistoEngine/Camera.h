@@ -51,4 +51,14 @@ public:
 	Vector3f GetRight() const;
 	Vector3f GetUp() const;
 
+	/// <summary>
+	/// Updates the projection matrix, contains some default values which are suitable for most applications.
+	/// </summary>
+	/// <param name="pWidth"> - Screen width</param>
+	/// <param name="pHeight"> - Screen height</param>
+	/// <param name="fov"> - FOV angle in degrees</param>
+	/// <param name="near"> - Near plance distance</param>
+	/// <param name="far"> - Far plane distance</param>
+	void UpdateProjection(const float pWidth, const float pHeight, const float fov = 45.0f, const float near = 0.1f, const float far = 1000.0f);
+
 };

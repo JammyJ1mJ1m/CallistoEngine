@@ -1,6 +1,6 @@
-#include "ComponentShaderDefault.h"
+#include "ComponentShaderError.h"
 
-ComponentShaderDefault::ComponentShaderDefault(Camera* pCam, const char* pVert, const char* pFrag)
+ComponentShaderError::ComponentShaderError(Camera* pCam, const char* pVert, const char* pFrag)
 {
 	mCamera = pCam;
 #if OPENGL
@@ -12,22 +12,21 @@ ComponentShaderDefault::ComponentShaderDefault(Camera* pCam, const char* pVert, 
 
 
 
-void ComponentShaderDefault::Render()
+void ComponentShaderError::Render()
 {
 }
 
-ComponentShaderDefault::~ComponentShaderDefault()
+ComponentShaderError::~ComponentShaderError()
 {
 	delete mShaderObject;
 }
 
-void ComponentShaderDefault::Update(glm::mat4 pMat)
+void ComponentShaderError::Update(glm::mat4 pMat)
 {
 
 	//mShaderObject->SetWorldMatrix("transform", pMat, mCamera);
 	// use program
 	UseProgram();
-
 
 	// set model
 	mShaderObject->SetMat4("model", pMat);
@@ -37,4 +36,7 @@ void ComponentShaderDefault::Update(glm::mat4 pMat)
 
 	// set projection
 	mShaderObject->SetMat4("projection", mCamera->GetProjection());
+
+	mShaderObject->SetFloat("fTime", glfwGetTime());
+
 }

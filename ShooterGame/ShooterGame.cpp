@@ -10,6 +10,7 @@ static BulletDebugDrawer_OpenGL* bulletDebugDraw;
 
 void ShooterGame::Initialise(Window* pWindow)
 {
+	mHasWindowSizeChanged = false;
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
 	//theGame = this;
 	mAudioManager = &AudioManager::GetInstance();
@@ -39,6 +40,16 @@ void ShooterGame::Initialise(Window* pWindow)
 		tester->AddMaterial("Resources/textures/TCube.mtl");
 		AddMesh("tester", tester);
 	}
+
+
+
+	Mesh* rpg = RM.LoadMesh("Resources/Geometry/RPG/rpg.obj");
+	if (rpg != nullptr)
+	{
+		rpg->AddMaterial("Resources/textures/TCube.mtl");
+		AddMesh("rpg", rpg);
+	}
+
 
 	Mesh* cube = RM.LoadMesh("Resources/Geometry/test/TCube.obj");
 	if (cube != nullptr)
@@ -75,6 +86,13 @@ void ShooterGame::Render()
 	mRenderer->ClearScreen();
 
 	mSceneManager.Render(mRenderSystem);
+
+	if (mWindow->GetHasWindowSizeChanged())
+	{
+		mCamera->UpdateProjection(mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
+		mWindow->SetHasWindowSizeChanged(false);
+
+	}
 
 	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
 	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
@@ -117,7 +135,7 @@ bool ShooterGame::HandleInput()
 
 	if (mGameState == Playing)
 	{
-		 mSceneManager.OnKeyboard(-1, true);
+		mSceneManager.OnKeyboard(-1, true);
 	}
 
 	return false;

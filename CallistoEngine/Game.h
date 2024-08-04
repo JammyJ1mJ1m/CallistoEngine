@@ -30,6 +30,7 @@ protected:
 
 	InputManager* mInputManager;
 
+	bool mHasWindowSizeChanged;
 
 	bool _keyStates[512];
 	Renderer* mRenderer;

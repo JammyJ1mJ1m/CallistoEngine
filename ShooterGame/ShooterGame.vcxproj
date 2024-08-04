@@ -196,9 +196,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ComponentShaderDefault.cpp" />
+    <ClCompile Include="ComponentShaderError.cpp" />
     <ClCompile Include="ComponentShaderSkybox.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="ExpBarrel.cpp" />
+    <ClCompile Include="GameCommands\MoveLeftCommand.cpp" />
+    <ClCompile Include="GameCommands\MoveRightCommand.cpp" />
     <ClCompile Include="Managers\GameInputManager.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -210,10 +213,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ComponentShaderDefault.h" />
+    <ClInclude Include="ComponentShaderError.h" />
     <ClInclude Include="ComponentShaderSkybox.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="ExpBarrel.h" />
     <ClInclude Include="GameCommands\GameCommands.h" />
+    <ClInclude Include="GameCommands\MoveLeftCommand.h" />
+    <ClInclude Include="GameCommands\MoveRightCommand.h" />
     <ClInclude Include="Managers\GameInputManager.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="main.h" />

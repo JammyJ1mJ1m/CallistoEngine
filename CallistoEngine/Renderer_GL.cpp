@@ -15,13 +15,10 @@ void Renderer_GL::Destroy()
 
 void Renderer_GL::Initialise(int width, int height)
 {
- 
-
 }
 
 void Renderer_GL::SwapBuffers()
 {
-
 }
 
 void Renderer_GL::Render(Entity* entity)

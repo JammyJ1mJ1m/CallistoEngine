@@ -2,7 +2,7 @@
 #include "Components\Entity.h"
 #include "Components/ComponentModel.h"
 #include "ComponentShaderDefault.h"
-
+#include "ComponentShaderError.h"
 #include "Components/ComponentTransform.h"
 
 class ExpBarrel : public Entity

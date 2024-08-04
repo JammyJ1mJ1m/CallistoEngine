@@ -5,13 +5,20 @@ GameInputManager::GameInputManager()
 {
     mWKeyCommand = new MoveForwardCommand();
 mSKeyCommand = new MoveBackCommand();
+ mAKeyCommand = new MoveLeftCommand();
+ mDKeyCommand = new MoveRightCommand();
+
     // Initialize default commands
     mCommandMap["MoveForward"] = mWKeyCommand;
-
     mCommandMap["MoveDown"] = mSKeyCommand;
+    mCommandMap["MoveLeft"] = mAKeyCommand;
+    mCommandMap["MoveRight"] = mDKeyCommand;
+
      // Initialize default key bindings
     BindKey('W', "MoveForward");
     BindKey('S', "MoveDown");
+    BindKey('A', "MoveLeft");
+    BindKey('D', "MoveRight");
     // Similarly, bind 'A' and 'D'
 
 }
