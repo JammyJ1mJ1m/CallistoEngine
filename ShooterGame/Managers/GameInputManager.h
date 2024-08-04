@@ -22,6 +22,8 @@ public:
     void BindKey(int key, const std::string& commandName);
     void RebindKey(int oldKey, int newKey);
     void HandleInput(int key);
+    //void AddCommand(const std::string& commandName, Command* command);
+    void ReadControlsConfig(const std::string& filename);
 
     GameInputManager();
 

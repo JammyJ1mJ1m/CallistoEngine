@@ -496,6 +496,7 @@
     <ClInclude Include="Objects\ShaderObject_GL.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Systems\SystemRender.h" />
+    <ClInclude Include="toml.hpp" />
     <ClInclude Include="VBO.h" />
     <ClInclude Include="VBO_GL.h" />
     <ClInclude Include="Vector.h" />

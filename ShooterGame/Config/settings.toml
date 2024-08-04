@@ -3,19 +3,19 @@
 [settings]
 
 [settings.controls]
-forward = "w"
-backward = "s"
-left = "a"
-right = "d"
-look_left = "q"
-look_right = "e"
-up = "space"
-down = "left_shift"
+move_forward = "W"
+move_back = "S"
+move_left = "A"
+move_right = "D"
+# look_left = "q"
+# look_right = "e"
+# up = "space"
+# down = "left_shift"
 
 [settings.display]
-resolution = "1920x1080"
-fullscreen = "true"
-vsync = "true"
+resolution = "800x800"
+fullscreen = true
+vsync = true
 fov = "90"
 
 [settings.graphics]
