@@ -71,17 +71,6 @@ void GameInputManager::ReadControlsConfig(const std::string& filename)
 	std::string forward = *controls["move_forward"].value<std::string>();
 	std::string backward = *controls["move_back"].value<std::string>();
 
-	// Loop through the controls table
-	/*for (const auto& kvp : *controls.as_table()) {
-		const auto& key = kvp.first;
-		const auto& value = kvp.second;
-
-		if (value.is_string()) {
-			std::string keyStr = std::string( key.str());
-			auto keyCode = *value.value<std::string>();
-			BindKey(keyCode[0], keyStr);
-		}
-	}*/
 
 	for (const auto& kvp : *controls.as_table()) {
 		const auto& key = kvp.first;
@@ -136,8 +125,6 @@ std::unordered_map<std::string, int> GameInputManager::LoadKeyCodeMap(const std:
 
 	return keyCodeMap;
 }
-
-
 
 GameInputManager::~GameInputManager()
 {

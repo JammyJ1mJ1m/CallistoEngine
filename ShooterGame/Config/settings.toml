@@ -3,8 +3,8 @@
 [settings]
 
 [settings.controls]
-move_forward = "W"
-move_back = "S"
+move_forward = "up"
+move_back = "down"
 move_left = "left"
 move_right = "right"
 # look_left = "q"
