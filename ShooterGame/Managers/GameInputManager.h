@@ -1,16 +1,8 @@
 #pragma once
 #include "Managers\InputManager.h"
-#include <map>
+//#include <map>
 //#include <memory>
-#include <string>
-
-using CommandMap = std::map<std::string, Command*>;
-using CommandMapIterator = CommandMap::iterator;
-
-
-using KeyBindingMap = std::map<int, std::string>;
-using KeyBindingMapIterator = KeyBindingMap::iterator;
-
+//#include <string>
 
 class GameInputManager : public InputManager
 {

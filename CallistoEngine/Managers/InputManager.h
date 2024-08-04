@@ -1,8 +1,16 @@
 #pragma once
 #include "../Commands/Command.h"
-
+#include <map>
+#include <string>
 
 #define mKeyCount 512
+
+using CommandMap = std::map<std::string, Command*>;
+using CommandMapIterator = CommandMap::iterator;
+
+
+using KeyBindingMap = std::map<int, std::string>;
+using KeyBindingMapIterator = KeyBindingMap::iterator;
 
 class InputManager
 {
