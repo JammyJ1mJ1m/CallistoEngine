@@ -91,7 +91,6 @@ void ShooterGame::Render()
 	{
 		mCamera->UpdateProjection(mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
 		mWindow->SetHasWindowSizeChanged(false);
-
 	}
 
 	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
@@ -131,6 +130,10 @@ bool ShooterGame::HandleInput()
 
 	if (mInputManager->GetKey(256))  // Esc
 		mGameState = Quit;
+
+	if (mInputManager->GetKey(258))  // Esc
+		mWindow->ToggleFullscreen(true);
+		//mGameState = Quit;
 
 
 	if (mGameState == Playing)

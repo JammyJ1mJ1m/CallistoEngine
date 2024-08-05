@@ -64,18 +64,18 @@ void Camera::UpdateView()
 
 void Camera::Rotate(const float pYaw)
 {
-    float yawRadians = glm::radians(pYaw);
-    glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), yawRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+	float yawRadians = glm::radians(pYaw);
+	glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), yawRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 
-    cameraDir = glm::normalize(glm::vec3(rotation * glm::vec4(cameraDir, 0.0f)));
+	cameraDir = glm::normalize(glm::vec3(rotation * glm::vec4(cameraDir, 0.0f)));
 
-    cameraFront = cameraDir;
+	cameraFront = cameraDir;
 	cameraFront *= -1.0f;
 
-    cameraRight = glm::normalize(glm::cross(up, cameraDir));
-    cameraUp = glm::cross(cameraDir, cameraRight);
+	cameraRight = glm::normalize(glm::cross(up, cameraDir));
+	cameraUp = glm::cross(cameraDir, cameraRight);
 
-    UpdateView();
+	UpdateView();
 }
 
 Vector3f Camera::GetPosition() const

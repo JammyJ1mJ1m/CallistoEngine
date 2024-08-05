@@ -135,6 +135,12 @@
     <ClCompile Include="Commands\Command.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Managers\DisplayManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TomlReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneManager.h">
@@ -609,6 +615,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="toml.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\DisplayManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TomlReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

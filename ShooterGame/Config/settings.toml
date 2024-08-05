@@ -3,10 +3,10 @@
 [settings]
 
 [settings.controls]
-move_forward = "up"
-move_back = "down"
-move_left = "left"
-move_right = "right"
+move_forward = "W"
+move_back = "S"
+move_left = "A"
+move_right = "D"
 # look_left = "q"
 # look_right = "e"
 # up = "space"
@@ -14,8 +14,8 @@ move_right = "right"
 
 [settings.display]
 resolution = "800x800"
-fullscreen = true
-vsync = true
+fullscreen = false
+vsync = false
 fov = 90
 
 [settings.graphics]

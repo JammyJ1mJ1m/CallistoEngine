@@ -2,23 +2,38 @@
 
 #include "Window_GL.h"
 #include <iostream>
+#include "DisplayManager.h"
 
+// when the window position changes
+void window_pos_callback(GLFWwindow* window, int xpos, int ypos)
+{
+	Window_GL* instance = static_cast<Window_GL*>(glfwGetWindowUserPointer(window));
+	if (instance) {
+		if (xpos <= 0 || ypos <= 0)
+			return;
+		instance->SetWindowPosX(xpos);
+		instance->SetWindowPosY(ypos);
+	}
+}
 
+// when the window size changes
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-	
-	glViewport(0, 0, width, height);
+	if (width == 0 || height == 0) {
+		return;
+	}
 
 	Window_GL* instance = static_cast<Window_GL*>(glfwGetWindowUserPointer(window));
 	if (instance) {
-		instance->_width = width;
-		instance->_height = height;
+		instance->mWindowWidth = width;
+		instance->mWindowHeight = height;
 		//instance->SetDimensions(width, height);
 		instance->SetHasWindowSizeChanged(true);
 		glViewport(0, 0, width, height);
 	}
 }
 
+// when keys are pressed
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	Window_GL* instance = dynamic_cast<Window_GL*>(Window::TheWindow);
@@ -38,16 +53,22 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 Window_GL::Window_GL(Game* game, const int width, const int height)
 {
-	_width = width;
-	_height = height;
+	mWindowWidth = width;
+	mWindowHeight = height;
 	_game = game;
 	lastPressedKey = -1;
 }
 
 int Window_GL::Initialise(const char* pTitle)
 {
+	mWindowPosX = 0;
+	mWindowPosY = 0;
+
 	SetTitle(pTitle);
 	_renderer = new Renderer_GL();
+
+	DisplayManager& displayManager = DisplayManager::GetInstance();
+
 
 
 	// glfw: initialize and configure
@@ -62,41 +83,43 @@ int Window_GL::Initialise(const char* pTitle)
 #endif
 	// glfw window creation
 	// --------------------
-	
-	
-	
+
+
+
 	// this setting will be passed from display manager
-	//if (DisplayManager.FullScreenEnabled)
-		// GLFWmonitor* monitor = glfwGetPrimaryMonitor();
-		// const GLFWvidmode* mode = glfwGetVideoMode(monitor);
-		// _width = mode->width;
-		// _height = mode->height;
-		//_GlfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), glfwGetPrimaryMonitor(), NULL); // fullscreen
-	//else
-	_GlfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
-	if (_GlfwWindow == NULL)
+	if (displayManager.GetFullscreen())
+	{
+		SetFullscreen();
+	}
+	else
+	{
+		SetWindowed();
+		//_GlfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
+	}
+	if (mGlfwWindow == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
 		return -1;
 	}
+	glfwMakeContextCurrent(mGlfwWindow);
+
 	void key_callback(GLFWwindow * window, int key, int scancode, int action, int mods);
-	glfwSetKeyCallback(_GlfwWindow, key_callback);
+	glfwSetKeyCallback(mGlfwWindow, key_callback);
 
-	glfwSetWindowUserPointer(_GlfwWindow, this);
-
-
-	glfwMakeContextCurrent(_GlfwWindow);
+	glfwSetWindowUserPointer(mGlfwWindow, this);
 
 	// this setting will be passed from display manager
-	// if (!DisplayManager.VsyncEnabled)
-	glfwSwapInterval(0); // disable vsync
+	if (!displayManager.GetVSync())
+		glfwSwapInterval(0); // disable vsync
 
 
 	void framebuffer_size_callback(GLFWwindow * window, int width, int height);
 
-	glfwSetFramebufferSizeCallback(_GlfwWindow, framebuffer_size_callback);
+	glfwSetFramebufferSizeCallback(mGlfwWindow, framebuffer_size_callback);
 
+	void window_pos_callback(GLFWwindow * window, int xpos, int ypos);
+	glfwSetWindowPosCallback(mGlfwWindow, window_pos_callback);
 
 	// glad: load all OpenGL function pointers
 	// ---------------------------------------
@@ -107,6 +130,10 @@ int Window_GL::Initialise(const char* pTitle)
 	}
 
 	_renderer->Initialise(0, 0);
+
+	glfwGetWindowPos(mGlfwWindow, &mWindowPosX, &mWindowPosY);
+
+	glfwPollEvents();
 	return 0;
 
 }
@@ -123,14 +150,67 @@ void Window_GL::Close()
 
 void Window_GL::Update()
 {
-	glfwSwapBuffers(_GlfwWindow);
+	glfwSwapBuffers(mGlfwWindow);
 	glfwPollEvents();
 }
 
 void Window_GL::SetTitle(const char* pTitle)
 {
 	_title = pTitle;
-	glfwSetWindowTitle(_GlfwWindow, pTitle);
+	glfwSetWindowTitle(mGlfwWindow, pTitle);
+}
+
+void Window_GL::SetWindowPosX(const int pX)
+{
+	mWindowPosX = pX;
+}
+
+void Window_GL::SetWindowPosY(const int pY)
+{
+	mWindowPosY = pY;
+}
+
+const void Window_GL::SetFullscreen()
+{
+	GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+	const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+	mWindowWidth = mode->width;
+	mWindowHeight = mode->height;
+	mGlfwWindow = glfwCreateWindow(mWindowWidth, mWindowHeight, _title.c_str(), glfwGetPrimaryMonitor(), NULL); // fullscreen
+	SetIsFullscreen(true);
+}
+
+const void Window_GL::SetWindowed()
+{
+	mGlfwWindow = glfwCreateWindow(mWindowWidth, mWindowHeight, _title.c_str(), NULL, NULL);
+	SetIsFullscreen(false); 
+}
+
+const void Window_GL::ToggleFullscreen(bool pState)
+{
+
+	SetIsFullscreen(!GetIsFullscreen());
+
+	//SetIsFullscreen(pState);
+
+	if (GetIsFullscreen())
+	{
+		mWindowWidthBackup = mWindowWidth;
+		mWindowHeightBackup = mWindowHeight;
+
+
+		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+		glfwSetWindowMonitor(mGlfwWindow, monitor, 0, 0, mode->width, mode->height, 0);
+	}
+	else
+	{
+		int xy = 0;
+		glfwSetWindowMonitor(mGlfwWindow, nullptr, GetWindowPosX(), GetWindowPosY(), mWindowWidthBackup, mWindowHeightBackup, 0);
+		int x = GetWindowPosX();
+		int y = GetWindowPosY();
+	}
+	
 }
 
 Window_GL::~Window_GL()

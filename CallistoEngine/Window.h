@@ -21,24 +21,26 @@ class Window
 
 protected:
 	std::string _title;
+	bool mIsFullscreen;
 
 public:
 
 	static Window* TheWindow;
 
-	float _width;
-	float _height;
+	int mWindowWidth;
+	int mWindowHeight;
+
+	int mWindowWidthBackup;
+	int mWindowHeightBackup;
+
+	int mWindowPosX;
+	int mWindowPosY;
 
 	Game* _game;
 	Renderer* _renderer;
 
-
-
-	// Data
-public:
-
 	// Structors
-public:
+
 	Window();
 	virtual ~Window();
 
@@ -50,9 +52,19 @@ public:
 
 	virtual int GetWindowWidth() = 0;
 	virtual int GetWindowHeight() = 0;
+	virtual int GetWindowPosX() = 0;
+	virtual int GetWindowPosY() = 0;
+	virtual void SetWindowPosX(const int pX) = 0;
+	virtual void SetWindowPosY(const int pY) = 0;
+	virtual const void SetFullscreen() = 0;
+	virtual const void SetWindowed() = 0;
+	virtual const void ToggleFullscreen(bool pState) = 0;
 
 	const bool GetHasWindowSizeChanged() { return mHasWindowSizeChanged; }
 	const void SetHasWindowSizeChanged(bool value) { mHasWindowSizeChanged = value; }
+	const bool GetIsFullscreen() { return mIsFullscreen; }
+	void SetIsFullscreen(bool value) { mIsFullscreen = value; }
+
 
 	virtual int Initialise(const char* pTitle) = 0;
 	//virtual void OnResize(int width, int height) = 0;

@@ -14,7 +14,8 @@
 
 class Window_GL : public Window
 {
-	GLFWwindow* _GlfwWindow;
+	GLFWwindow* mGlfwWindow;
+	GLFWwindow* mOldWindow;
 	int lastPressedKey;
 	// void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
@@ -26,8 +27,15 @@ public:
 	virtual void Close();
 	virtual void Update();
 	virtual void SetTitle(const char* pTitle);
-	virtual int GetWindowWidth() { return _width; };
-	virtual int GetWindowHeight() { return _height; }
+	virtual int GetWindowWidth() { return mWindowWidth; };
+	virtual int GetWindowHeight() { return mWindowHeight; }
+	virtual int GetWindowPosX() { return mWindowPosX; }
+	virtual int GetWindowPosY() { return mWindowPosY; }
+	virtual void SetWindowPosX(const int pX);
+	virtual void SetWindowPosY(const int pY);
+	virtual const void SetFullscreen();
+	virtual const void SetWindowed();
+	virtual const void ToggleFullscreen(bool pState);
 
 
 	virtual ~Window_GL();

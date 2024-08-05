@@ -312,6 +312,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Commands\Command.cpp" />
+    <ClCompile Include="Managers\DisplayManager.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
     <ClCompile Include="Managers\AudioManager.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -339,6 +340,7 @@
     <ClCompile Include="Objects\ShaderObject_GL.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="Systems\SystemRender.cpp" />
+    <ClCompile Include="TomlReader.cpp" />
     <ClCompile Include="VBO.cpp" />
     <ClCompile Include="VBO_GL.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -346,6 +348,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Commands\Command.h" />
+    <ClInclude Include="Managers\DisplayManager.h" />
     <ClInclude Include="Managers\InputManager.h" />
     <ClInclude Include="Managers\AudioManager.h" />
     <ClInclude Include="BulletDebugDraw.h" />
@@ -497,6 +500,7 @@
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Systems\SystemRender.h" />
     <ClInclude Include="toml.hpp" />
+    <ClInclude Include="TomlReader.h" />
     <ClInclude Include="VBO.h" />
     <ClInclude Include="VBO_GL.h" />
     <ClInclude Include="Vector.h" />
