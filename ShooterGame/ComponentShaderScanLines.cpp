@@ -39,6 +39,4 @@ void ComponentShaderScanLines::Update(glm::mat4 pMat)
 	mShaderObject->SetMat4("projection", mCamera->GetProjection());
 
 	mShaderObject->SetFloat("time", glfwGetTime());
-
-	std::cout << "time: " << sin(glfwGetTime()) * 0.1 << std::endl;
 }
