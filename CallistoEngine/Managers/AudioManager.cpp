@@ -33,7 +33,7 @@ AudioManager::~AudioManager()
 
 
 // Plays sound from a file with bool to loop the sound
-void AudioManager::PlaySound(const char* pFile, bool pLoop)
+void AudioManager::Play2DSound(const char* pFile, bool pLoop)
 {
 	mSoundEngine->play2D(pFile, pLoop);
 }

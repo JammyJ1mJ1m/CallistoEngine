@@ -99,6 +99,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)x64\OpenGL - debug;$(SolutionDir)Dependencies\inc\Bullet</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SolutionDir)x64\OpenGL - debug;$(SolutionDir)Dependencies\lib\Bullet</LibraryPath>
+    <TargetName>Shooter Game</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - release|x64'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)CSLib\inc;$(SolutionDir)x64\OpenGL - debug</IncludePath>

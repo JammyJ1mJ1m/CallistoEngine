@@ -83,6 +83,7 @@ void ShooterGame::OnKeyboard(int key, bool down)
 
 void ShooterGame::Render()
 {
+	mDiscordManager->UpdateDiscordPresence();
 	mRenderer->ClearScreen();
 
 	mSceneManager.Render(mRenderSystem);

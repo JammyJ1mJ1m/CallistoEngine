@@ -248,7 +248,7 @@
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;assimp.lib</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;glfw3_mt.lib;assimp-vc143-mt.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;irrKlang.lib;OpenAL32.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glfw3_mt.lib;assimp-vc143-mt.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;irrKlang.lib;OpenAL32.lib;discord-rpc.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\lib;$(SolutionDir)Dependencies\bin</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -312,6 +312,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Commands\Command.cpp" />
+    <ClCompile Include="DiscordManager.cpp" />
     <ClCompile Include="Managers\DisplayManager.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
     <ClCompile Include="Managers\AudioManager.cpp" />
@@ -348,6 +349,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Commands\Command.h" />
+    <ClInclude Include="DiscordManager.h" />
+    <ClInclude Include="Discord\discord_register.h" />
+    <ClInclude Include="Discord\discord_rpc.h" />
     <ClInclude Include="Managers\DisplayManager.h" />
     <ClInclude Include="Managers\InputManager.h" />
     <ClInclude Include="Managers\AudioManager.h" />

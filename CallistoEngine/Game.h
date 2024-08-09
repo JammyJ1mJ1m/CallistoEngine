@@ -12,6 +12,7 @@
 #include "Systems/SystemRender.h"
 #include "Managers/AudioManager.h"
 
+#include "DiscordManager.h"
 
 
 using MeshMap = std::map<std::string, Mesh*>;
@@ -23,6 +24,8 @@ class Game
 {
 
 protected:
+	DiscordManager* mDiscordManager;
+
 	Camera* mCamera;
 	// DT stuff
 	double mDeltaTime;
