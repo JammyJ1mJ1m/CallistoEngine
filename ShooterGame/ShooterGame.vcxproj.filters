@@ -60,6 +60,9 @@
     <ClCompile Include="ComponentShaderError.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ComponentShaderScanLines.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ComponentShaderError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentShaderScanLines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

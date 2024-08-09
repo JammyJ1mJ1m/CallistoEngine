@@ -1,7 +1,8 @@
 #pragma once
 #include "Components\Entity.h"
 #include "Components/ComponentModel.h"
-#include "ComponentShaderDefault.h"
+//#include "ComponentShaderDefault.h"
+#include "ComponentShaderScanLines.h"
 #include "ComponentShaderError.h"
 #include "Components/ComponentTransform.h"
 

@@ -121,10 +121,10 @@ void GameScene::OnKeyboard(int key, bool down)
 	//	mCamera->MoveUp(-moveSensitivity * mDeltaTime);
 
 
-	//if (inputManager->GetKey(GLFW_KEY_R))
-	//{
-	//	AddEntity(new Enemy());
-	//}
+	if (inputManager->GetKey(GLFW_KEY_R))
+	{
+		AddEntity(new Enemy());
+	}
 	// key y is pressed
 
 	// g key pres

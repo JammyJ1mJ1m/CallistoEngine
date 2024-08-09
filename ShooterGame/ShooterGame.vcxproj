@@ -198,6 +198,7 @@
   <ItemGroup>
     <ClCompile Include="ComponentShaderDefault.cpp" />
     <ClCompile Include="ComponentShaderError.cpp" />
+    <ClCompile Include="ComponentShaderScanLines.cpp" />
     <ClCompile Include="ComponentShaderSkybox.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="ExpBarrel.cpp" />
@@ -215,6 +216,7 @@
   <ItemGroup>
     <ClInclude Include="ComponentShaderDefault.h" />
     <ClInclude Include="ComponentShaderError.h" />
+    <ClInclude Include="ComponentShaderScanLines.h" />
     <ClInclude Include="ComponentShaderSkybox.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="ExpBarrel.h" />
