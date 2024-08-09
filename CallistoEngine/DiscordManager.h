@@ -1,6 +1,7 @@
 #pragma once
 #include "Discord/discord_rpc.h"
 #include <iostream>
+#include <string>
 class DiscordManager
 {
 	
@@ -14,5 +15,10 @@ class DiscordManager
 	};
 	void initDiscord();
 	void UpdateDiscordPresence();
+	void SetDiscordPresence(std::string& details, std::string& state, std::string& largeImageKey, std::string& largeImageText, std::string& smallImageKey, std::string& smallImageText);
+	void SetDiscordPresence(std::string& details, std::string& state);
+	void SetDiscordPresence(const char* details, const char* state, const char* largeImageKey, const char* largeImageText, const char* smallImageKey, const char* smallImageText);
+	void SetDiscordPresence(const char* details, const char* state);
+	void UpdatePresence(DiscordRichPresence& pPresence);
 };
 
