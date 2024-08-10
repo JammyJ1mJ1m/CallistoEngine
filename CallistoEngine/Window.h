@@ -59,6 +59,7 @@ public:
 	virtual const void SetFullscreen() = 0;
 	virtual const void SetWindowed() = 0;
 	virtual const void ToggleFullscreen(bool pState) = 0;
+	virtual const void GetMousePos(float& pX, float& pY) = 0;
 
 	const bool GetHasWindowSizeChanged() { return mHasWindowSizeChanged; }
 	const void SetHasWindowSizeChanged(bool value) { mHasWindowSizeChanged = value; }

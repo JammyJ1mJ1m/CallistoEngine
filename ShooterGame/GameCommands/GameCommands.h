@@ -5,3 +5,5 @@
 #include "MoveBackCommand.h"
 #include "MoveLeftCommand.h"
 #include "MoveRightCommand.h"
+#include "RotateLeftCommand.h"
+#include "RotateRightCommand.h"

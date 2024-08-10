@@ -63,6 +63,12 @@
     <ClCompile Include="ComponentShaderScanLines.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameCommands\RotateLeftCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameCommands\RotateRightCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -114,6 +120,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ComponentShaderScanLines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCommands\RotateLeftCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCommands\RotateRightCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

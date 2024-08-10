@@ -14,12 +14,11 @@ ComponentRigidBody::ComponentRigidBody()
 }
 
 
-ComponentRigidBody::ComponentRigidBody(ComponentCollider* pCollider, btScalar pMass, const glm::vec3& pPos)
+ComponentRigidBody::ComponentRigidBody(ComponentCollider* pCollider, btScalar pMass, const glm::vec3& pPos, bool gravityEnabled)
 {
 	mMass = pMass;
 	mInertia = btVector3();
 
-	// Don't want to calculate inertia for static mesh objects
 	if (pCollider->GetColliderType() != ColliderType::MESH)
 		pCollider->GetCollisionShape()->calculateLocalInertia(mMass, mInertia);
 
@@ -30,19 +29,21 @@ ComponentRigidBody::ComponentRigidBody(ComponentCollider* pCollider, btScalar pM
 	mTransform = transform;
 	mMotionState = new btDefaultMotionState(mTransform);
 
-
 	btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(mMass, mMotionState, pCollider->GetCollisionShape(), mInertia);
 
 	mRigidBody = new btRigidBody(rigidBodyCI);
 
 	mRigidBody->setDamping(0.25, 0.25);  // Linear and angular damping
 	mRigidBody->setFriction(0.5);  // Set friction
-	//mRigidBody->setRestitution(1);  // Set restitution (bounciness)
-	//mRigidBody->setAngularFactor(btVector3(1, 1, 1));  // Allow rotation around all axes
+
+	if (!gravityEnabled) {
+		mRigidBody->setGravity(btVector3(0, 0.0, 0));
+	}
+
+
 
 	// add rb to phys manager world
 	PhysicsManager::GetInstance().AddRigidBody(mRigidBody);
-
 }
 
 //float RadToDeg(float rad)

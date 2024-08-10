@@ -11,12 +11,16 @@ GameInputManager::GameInputManager()
 	mSKeyCommand = new MoveBackCommand();
 	mAKeyCommand = new MoveLeftCommand();
 	mDKeyCommand = new MoveRightCommand();
+	mRotateLeftCommand = new RotateLeftCommand();
+	mRotateRightCommand = new RotateRightCommand();
 
 	// Initialize default commands
 	mCommandMap["move_forward"] = mWKeyCommand;
 	mCommandMap["move_back"] = mSKeyCommand;
 	mCommandMap["move_left"] = mAKeyCommand;
 	mCommandMap["move_right"] = mDKeyCommand;
+	mCommandMap["look_left"] = mRotateLeftCommand;
+	mCommandMap["look_right"] = mRotateRightCommand;
 
 	// Initialize default key bindings
 	ReadControlsConfig("Config/settings.toml");

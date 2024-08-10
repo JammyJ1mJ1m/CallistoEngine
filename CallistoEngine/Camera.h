@@ -20,9 +20,17 @@ private:
 	glm::mat4 projection;
 	glm::mat4 position; // proj * view
 
+	float pitch;
+	float yaw;
+
 	Camera() {}	// Constructor? (the {} brackets) are needed here.
 
 	// static Camera mInstance;
+
+	bool firstMouse = true;
+	float lastX = 0.0f;
+	float lastY = 0.0f;
+
 
 public:
 
@@ -50,6 +58,7 @@ public:
 	Vector3f GetDirection() const;
 	Vector3f GetRight() const;
 	Vector3f GetUp() const;
+	void HandleMouse(const float xpos, const float ypos);
 
 	/// <summary>
 	/// Updates the projection matrix, contains some default values which are suitable for most applications.

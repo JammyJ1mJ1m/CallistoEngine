@@ -3,6 +3,9 @@
 
 Camera::Camera(const glm::vec3 pPos, const float pWidth, const float pHeight)
 {
+	yaw = -90.0f;
+	pitch = 0.0f;
+
 	cameraPos = pPos;
 	cameraDir = glm::vec3(0.0f, 0.0f, -1.0f);
 	up = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -121,4 +124,39 @@ void Camera::UpdateProjection(const float pWidth, const float pHeight, const flo
 	projection = glm::mat4(1.0f);
 	projection = glm::perspective(glm::radians(fov), aspect, near, far);
 }
+
+void Camera::HandleMouse(const float xpos, const float ypos)
+{
+	if (firstMouse)
+	{
+		lastX = xpos;
+		lastY = ypos;
+		firstMouse = false;
+	}
+
+	float xoffset = xpos - lastX;
+	float yoffset = lastY - ypos;
+	lastX = xpos;
+	lastY = ypos;
+
+	float sensitivity = 0.1f;
+	xoffset *= sensitivity;
+	yoffset *= sensitivity;
+
+	yaw += xoffset;
+	pitch += yoffset;
+
+	if (pitch > 89.0f)
+		pitch = 89.0f;
+	if (pitch < -89.0f)
+		pitch = -89.0f;
+
+	glm::vec3 direction;
+	direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+	direction.y = sin(glm::radians(pitch));
+	direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+	cameraFront = glm::normalize(direction);
+	UpdateView();
+}
+
 

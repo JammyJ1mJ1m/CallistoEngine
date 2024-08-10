@@ -25,7 +25,7 @@ void ExpBarrel::start()
 	AddComponent(collider);
 
 	int mass = 1;
-	ComponentRigidBody* rb = new ComponentRigidBody(collider, mass, pos);
+	ComponentRigidBody* rb = new ComponentRigidBody(collider, mass, pos, false);
 	AddComponent(rb);
 }
 

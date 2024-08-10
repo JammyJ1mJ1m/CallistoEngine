@@ -19,7 +19,31 @@ class Window_GL : public Window
 	int lastPressedKey;
 	// void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
+	// mouse related
+	float mLastMouseX;
+	float mLastMouseY;
+	bool mFirstMouse;
+	float mYaw;
+	float mPitch;
+
+
 public:
+	const bool GetFirstMouse() { return mFirstMouse; }
+	void SetFirstMouse(bool pState) { mFirstMouse = pState; }
+
+	const float GetLastMouseX() { return mLastMouseX; }
+	const float GetLastMouseY() { return mLastMouseY; }
+	void SetLastMouseX(float pX) { mLastMouseX = pX; }
+	void SetLastMouseY(float pY) { mLastMouseY = pY; }
+
+	virtual const void GetMousePos(float& pX, float& pY) { pX = mLastMouseX; pY = mLastMouseY; }
+
+	//const float GetYaw() { return mYaw; }
+	//const float GetPitch() { return mPitch; }
+	//void SetYaw(float pYaw) { mYaw = pYaw; }
+	//void SetPitch(float pPitch) { mPitch = pPitch; }
+
+
 	void SetLastKey(int pKey ) { lastPressedKey = pKey; }
 	Window_GL(Game* game, const int width, const int height);
 	virtual int Initialise(const char* pTitle);
@@ -36,6 +60,7 @@ public:
 	virtual const void SetFullscreen();
 	virtual const void SetWindowed();
 	virtual const void ToggleFullscreen(bool pState);
+
 
 
 	virtual ~Window_GL();

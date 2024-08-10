@@ -4,6 +4,56 @@
 #include <iostream>
 #include "DisplayManager.h"
 
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	Window_GL* instance = static_cast<Window_GL*>(glfwGetWindowUserPointer(window));
+	if (!instance) { return; }
+
+
+		instance->SetLastMouseX((float)xpos);
+		instance->SetLastMouseY((float)ypos);
+
+	//if ( instance->GetFirstMouse())
+	//{
+	//	instance->SetFirstMouse(false);
+	//}
+
+	//float xoffset = xpos - instance->GetLastMouseX();
+	//float yoffset = instance->GetLastMouseY() - ypos;
+	//instance->SetLastMouseX((float)xpos);
+	//instance->SetLastMouseY((float)ypos);
+
+	//// string stream mouse x and y into a string
+	//std::stringstream ss;
+	//ss << "Mouse X: " << xpos << " Mouse Y: " << ypos;
+	//std::string s = ss.str();
+
+
+	//instance->SetTitle(s.c_str());
+
+	//float sensitivity = 0.1f;
+	//xoffset *= sensitivity;
+	//yoffset *= sensitivity;
+
+	//instance->SetYaw(instance->GetYaw() + xoffset); 
+	//instance->SetPitch(instance->GetPitch() + yoffset); 
+	////pitch += yoffset;
+	//float pitch = instance->GetPitch();
+	//float yaw = instance->GetYaw();
+
+	//if (pitch > 89.0f)
+	//	pitch = 89.0f;
+	//if (pitch < -89.0f)
+	//	pitch = -89.0f;
+
+	//glm::vec3 direction;
+	//direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+	//direction.y = sin(glm::radians(pitch));
+	//direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+	//
+	//cameraFront = glm::normalize(direction);
+}
+
 // when the window position changes
 void window_pos_callback(GLFWwindow* window, int xpos, int ypos)
 {
@@ -120,6 +170,11 @@ int Window_GL::Initialise(const char* pTitle)
 
 	void window_pos_callback(GLFWwindow * window, int xpos, int ypos);
 	glfwSetWindowPosCallback(mGlfwWindow, window_pos_callback);
+
+	glfwSetInputMode(mGlfwWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	void mouse_callback(GLFWwindow * window, double xpos, double ypos);
+	glfwSetCursorPosCallback(mGlfwWindow, mouse_callback);
+
 
 	// glad: load all OpenGL function pointers
 	// ---------------------------------------

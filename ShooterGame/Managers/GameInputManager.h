@@ -12,6 +12,8 @@ private:
     Command* mAKeyCommand;
     Command* mSKeyCommand;
     Command* mDKeyCommand;
+    Command* mRotateLeftCommand;
+    Command* mRotateRightCommand;
 
     // map of keys to commands
     CommandMap mCommandMap;

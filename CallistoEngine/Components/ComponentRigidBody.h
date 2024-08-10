@@ -1,7 +1,7 @@
 #pragma once
 #include "IComponent.h"
 //#include "../Dependencies/inc/Bullet/btBulletCollisionCommon.h"
-
+#include <Bullet/btBulletCollisionCommon.h>
 #include "Bullet/btBulletDynamicsCommon.h"
 #include "ComponentTransform.h"
 #include "componentCollider.h"
@@ -18,7 +18,7 @@ class ComponentRigidBody : public IComponent
 	public:
 		ComponentRigidBody();
 		//ComponentRigidBody(btCollisionShape* pShape, btScalar pMass, const btVector3& pInertia, const btTransform& pTransform);
-		ComponentRigidBody(ComponentCollider* pCollider, btScalar pMass,  const glm::vec3& pPos);
+		ComponentRigidBody(ComponentCollider* pCollider, btScalar pMass,  const glm::vec3& pPos, bool gravityEnabled = true);
 		~ComponentRigidBody() ;
 
 		inline btRigidBody* GetRigidBody() { return mRigidBody; }

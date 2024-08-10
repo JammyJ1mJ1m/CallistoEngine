@@ -7,15 +7,15 @@ move_forward = "W"
 move_back = "S"
 move_left = "A"
 move_right = "D"
-# look_left = "q"
-# look_right = "e"
+look_left = "Q"
+look_right = "E"
 # up = "space"
 # down = "left_shift"
 
 [settings.display]
 resolution = "800x800"
 fullscreen = false
-vsync = false
+vsync = true
 fov = 90
 
 [settings.graphics]

@@ -94,6 +94,11 @@ void ShooterGame::Render()
 		mWindow->SetHasWindowSizeChanged(false);
 	}
 
+	// pass mouse x and y to the camera
+	float x, y;
+	mWindow->GetMousePos(x,y);
+	 mCamera->HandleMouse(x, y);
+
 	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
 	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
 }

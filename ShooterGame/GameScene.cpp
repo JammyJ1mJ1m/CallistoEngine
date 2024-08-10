@@ -46,6 +46,8 @@ void GameScene::Initialise()
 	expBarrel = new ExpBarrel();
 	AddEntity(expBarrel);
 
+	
+
 
 	sound = new Sound("Resources/Sounds/explosion.wav");
 	//sound->SetLooping(true);
@@ -143,7 +145,6 @@ void GameScene::OnKeyboard(int key, bool down)
 		
 		// remove expBarrel from mEntities
 		 mEntities.erase(std::remove(mEntities.begin(), mEntities.end(), expBarrel), mEntities.end());
-
 	}
 
 }

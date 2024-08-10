@@ -204,6 +204,8 @@
     <ClCompile Include="ExpBarrel.cpp" />
     <ClCompile Include="GameCommands\MoveLeftCommand.cpp" />
     <ClCompile Include="GameCommands\MoveRightCommand.cpp" />
+    <ClCompile Include="GameCommands\RotateLeftCommand.cpp" />
+    <ClCompile Include="GameCommands\RotateRightCommand.cpp" />
     <ClCompile Include="Managers\GameInputManager.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -223,6 +225,8 @@
     <ClInclude Include="GameCommands\GameCommands.h" />
     <ClInclude Include="GameCommands\MoveLeftCommand.h" />
     <ClInclude Include="GameCommands\MoveRightCommand.h" />
+    <ClInclude Include="GameCommands\RotateLeftCommand.h" />
+    <ClInclude Include="GameCommands\RotateRightCommand.h" />
     <ClInclude Include="Managers\GameInputManager.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="main.h" />
