@@ -5,6 +5,8 @@
 #include <sstream>
 #include <fstream>
 
+#include "TomlReader.h"
+
 GameInputManager::GameInputManager()
 {
 	mWKeyCommand = new MoveForwardCommand();
@@ -52,22 +54,30 @@ void GameInputManager::HandleInput(int key)
 	}
 }
 
-void GameInputManager::ReadControlsConfig(const std::string& filename)
+void GameInputManager::ReadControlsConfig(const std::string& pFilename)
 {
-	toml::table config;
-	try {
+	/*toml::table config;
+		config = toml::parse_file(pFilename);*/
 
-		config = toml::parse_file(filename);
-
-	}
-	catch (const toml::parse_error& err)
+	TomlReader reader;
+	toml::table config = reader.ReadFile(pFilename.c_str());
+	if (config.empty())
 	{
-		std::cerr
-			<< "Error parsing file '" << err.source().path
-			<< "':\n" << err.description()
-			<< "\n (" << err.source().begin << ")\n";
+		std::cerr << "Input managager :: Error parsing file\n";
+		// setup some default values
+		mKeyBindingMap = {
+			{ 'W', "move_forward" },
+			{ 'S', "move_back" },
+			{ 'A', "move_left" },
+			{ 'D', "move_right" },
+			{ 'Q', "look_left" },
+			{ 'E', "look_right" }
+		};
 		return;
 	}
+
+
+
 
 	auto KeyCodeMap = LoadKeyCodeMap("Config/KeyCodeMap.csv");
 

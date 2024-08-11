@@ -151,12 +151,10 @@ void Camera::HandleMouse(const float xpos, const float ypos)
 	if (pitch < -89.0f)
 		pitch = -89.0f;
 
-	glm::vec3 direction;
+	glm::vec3 direction = cameraFront;
 	direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
 	direction.y = sin(glm::radians(pitch));
 	direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 	cameraFront = glm::normalize(direction);
 	UpdateView();
 }
-
-

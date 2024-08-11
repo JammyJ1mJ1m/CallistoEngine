@@ -10,8 +10,8 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 	if (!instance) { return; }
 
 
-		instance->SetLastMouseX((float)xpos);
-		instance->SetLastMouseY((float)ypos);
+	instance->SetLastMouseX((float)xpos);
+	instance->SetLastMouseY((float)ypos);
 
 	//if ( instance->GetFirstMouse())
 	//{
@@ -160,7 +160,7 @@ int Window_GL::Initialise(const char* pTitle)
 	glfwSetWindowUserPointer(mGlfwWindow, this);
 
 	// this setting will be passed from display manager
-	if (!displayManager.GetVSync())
+	if (!displayManager.GetVSync() ? false : true)
 		glfwSwapInterval(0); // disable vsync
 
 
@@ -171,7 +171,11 @@ int Window_GL::Initialise(const char* pTitle)
 	void window_pos_callback(GLFWwindow * window, int xpos, int ypos);
 	glfwSetWindowPosCallback(mGlfwWindow, window_pos_callback);
 
-	glfwSetInputMode(mGlfwWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	if (displayManager.GetCursorEnabled())
+		glfwSetInputMode(mGlfwWindow, GLFW_CURSOR, GLFW_CURSOR);
+	else
+		glfwSetInputMode(mGlfwWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
 	void mouse_callback(GLFWwindow * window, double xpos, double ypos);
 	glfwSetCursorPosCallback(mGlfwWindow, mouse_callback);
 
@@ -238,7 +242,7 @@ const void Window_GL::SetFullscreen()
 const void Window_GL::SetWindowed()
 {
 	mGlfwWindow = glfwCreateWindow(mWindowWidth, mWindowHeight, _title.c_str(), NULL, NULL);
-	SetIsFullscreen(false); 
+	SetIsFullscreen(false);
 }
 
 const void Window_GL::ToggleFullscreen(bool pState)
@@ -265,7 +269,7 @@ const void Window_GL::ToggleFullscreen(bool pState)
 		int x = GetWindowPosX();
 		int y = GetWindowPosY();
 	}
-	
+
 }
 
 Window_GL::~Window_GL()

@@ -16,7 +16,7 @@ class DisplayManager
 	bool mFullscreen;
 	bool mVSync;
 	int mFov;
-
+	bool mCursorEnabled;
 
 	static DisplayManager* mInstance;
 
@@ -45,4 +45,7 @@ public:
 	bool GetFullscreen() const { return mFullscreen; }
 	bool GetVSync() const { return mVSync; }
 	int GetFov() const { return mFov; }
+
+	void SetCursorEnabled(bool pEnabled) { mCursorEnabled = pEnabled; }
+	const bool GetCursorEnabled() const { return mCursorEnabled; }
 };

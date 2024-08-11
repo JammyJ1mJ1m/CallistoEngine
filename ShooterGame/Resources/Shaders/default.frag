@@ -32,8 +32,6 @@ uniform sampler2D ourTexture;
 vec4 calculatePointLight(int i)
 {
     // generate point lighting using input texture as ambient
-
-
      
     vec3 lightPos = vec3(-8.0f, 15.0f, 15.0f);
     vec3 lightColor = vec3(1.0, 0.8, 0.5);
@@ -41,8 +39,6 @@ vec4 calculatePointLight(int i)
     vec3 viewPos; 
 
 
-
-//
 //    vec3 normal = normalize(Normal);
 //    vec3 lightDir = normalize(lightPos - FragPos);
 //    float diff = max(dot(normal, lightDir), 0.0);

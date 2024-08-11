@@ -11,6 +11,13 @@ void DisplayManager::LoadConfig(std::string pFilename)
 	if(config.empty())
 	{
 		std::cerr << "DisplayManager :: Error parsing file\n";
+		// setup some default values
+		SetResolution(1280, 720);
+		SetFullscreen(false);
+		SetVSync(true);
+		SetFov(90);
+		SetCursorEnabled(true);
+
 		return;
 	}
 
@@ -31,4 +38,6 @@ void DisplayManager::LoadConfig(std::string pFilename)
 
 	SetVSync(*display["vsync"].value<bool>());
 	SetFov(*display["fov"].value<int>());
+
+	SetCursorEnabled(*display["cursor"].value<bool>());
 }

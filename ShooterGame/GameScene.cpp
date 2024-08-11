@@ -76,51 +76,6 @@ void GameScene::OnKeyboard(int key, bool down)
 			inputManager->HandleInput(i);
 	} 
 
-	//// if (key == GLFW_KEY_R)
-
-	//	// Move left
-	//if (inputManager->GetKey(GLFW_KEY_A))  // A
-	//		mCamera->Strafe(-(moveSensitivity * mDeltaTime));
-
-	//// Move right
-	//if (inputManager->GetKey(GLFW_KEY_D))  // D
-	//	mCamera->Strafe((moveSensitivity * mDeltaTime));
-
-
-	//// Move back
-	//if (inputManager->GetKey(GLFW_KEY_S))  // S
-	//	mCamera->MoveForward(-(moveSensitivity * mDeltaTime));
-
-	//// Move forward
-	//if (inputManager->GetKey(GLFW_KEY_W)) // W
-	//	inputManager->HandleInput(GLFW_KEY_W);
-
-	//if (inputManager->GetKey(GLFW_KEY_H)) // W
-	//	inputManager->HandleInput(GLFW_KEY_H);
-
-	//if (inputManager->GetKey(GLFW_KEY_P)) // W
-	//	inputManager->HandleInput(GLFW_KEY_P);
-
-	if (inputManager->GetKey(GLFW_KEY_O)) // W
-		inputManager->RebindKey(GLFW_KEY_W, GLFW_KEY_P);
-	//	//mCamera->MoveForward(moveSensitivity * mDeltaTime);
-	//	
-
-	//if (inputManager->GetKey(GLFW_KEY_Q)) // Q
-	//		mCamera->Rotate(50 * mDeltaTime);
-	//	
-	//if (inputManager->GetKey(GLFW_KEY_E)) // E
-	//		mCamera->Rotate(-50 * mDeltaTime);
-	//	
-
-	//		// Move up
-	//if (inputManager->GetKey(GLFW_KEY_SPACE)) // 
-	//		mCamera->MoveUp(moveSensitivity * mDeltaTime);
-
-
-	//// Move down
-	//if (inputManager->GetKey(GLFW_KEY_LEFT_SHIFT)) // Shift
-	//	mCamera->MoveUp(-moveSensitivity * mDeltaTime);
 
 
 	if (inputManager->GetKey(GLFW_KEY_R))
@@ -137,7 +92,7 @@ void GameScene::OnKeyboard(int key, bool down)
 		// applyExplosionForce(PhysicsManager::GetInstance().GetWorld(), btVector3(0, 0, 0), 1000, 100);
 		btDiscreteDynamicsWorld& world = PhysicsManager::GetInstance().GetDynamicsWorld();
 		auto origin = btVector3(expBarrel->GetComponent<ComponentTransform>()->GetPosition().x, expBarrel->GetComponent<ComponentTransform>()->GetPosition().y, expBarrel->GetComponent<ComponentTransform>()->GetPosition().z);
-		auto strength = 175;
+		auto strength = 100;
 		auto radius = 50;
 		expBarrel->applyExplosionForce(world,origin,strength,radius);
 		sound->Play3D(origin.x(), origin.y(), origin.z());
