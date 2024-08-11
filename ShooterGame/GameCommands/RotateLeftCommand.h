@@ -6,6 +6,6 @@ public:
 	RotateLeftCommand() = default;
 	~RotateLeftCommand() = default;
 
-	virtual void execute();
+	virtual void execute(Entity* pEntity);
 };
 

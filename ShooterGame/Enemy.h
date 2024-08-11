@@ -15,4 +15,9 @@ public:
 	Enemy();
 	~Enemy() = default;
 	 void SetPosition(glm::vec3 pPos);
+
+	 virtual void MoveForward();
+	 virtual void MoveBackward();
+	 virtual void MoveLeft();
+	 virtual void MoveRight();
 };

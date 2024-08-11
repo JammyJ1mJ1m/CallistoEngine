@@ -64,4 +64,10 @@ public:
 
 	virtual void SetPosition() = 0;
 
+	// common function a lot of entities will have
+	virtual void MoveForward() = 0;
+	virtual void MoveBackward() = 0;
+	virtual void MoveLeft() = 0;
+	virtual void MoveRight() = 0;
+
 };

@@ -3,10 +3,10 @@
 
 class MoveForwardCommand : public Command
 {
-    public:
+public:
 	MoveForwardCommand() = default;
 	~MoveForwardCommand() = default;
 
-	virtual void execute();
+	virtual void execute(Entity* pEntity);
 };
 

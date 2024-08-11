@@ -2,7 +2,7 @@
 #include <iostream>
 #include "../ShooterGame.h"
 
-void RotateLeftCommand::execute()
+void RotateLeftCommand::execute(Entity* pEntity)
 {
 	// get game instance
 	Game* game = Game::GetGame();

@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include "SkyBox.h"
 #include "ExpBarrel.h"
+#include "TestCube.h"
 
 #include "Managers/PhysicsManager.h"
 #include "Managers/InputManager.h"
@@ -20,6 +21,7 @@
 Player* player;
 ExpBarrel* expBarrel;
 Sound* sound;
+TestCube* testCube;
 GameScene::GameScene()
 {
 	isExploded = false;
@@ -46,6 +48,9 @@ void GameScene::Initialise()
 	expBarrel = new ExpBarrel();
 	AddEntity(expBarrel);
 
+	testCube = new TestCube();
+	AddEntity(testCube);
+
 	
 
 
@@ -55,7 +60,6 @@ void GameScene::Initialise()
 
 	//Game::GetGame()->GetAudioManager()->PlaySound("Resources/Sounds/hyperloop-by-infraction.mp3", true);
 }
-
 
 
 void GameScene::OnKeyboard(int key, bool down)
@@ -72,8 +76,14 @@ void GameScene::OnKeyboard(int key, bool down)
 
 	for (size_t i = 0; i < inputManager->GetKeysSize(); i++)
 	{
+	Command* command = nullptr;
 		if (inputManager->GetKey(i)) 
-			inputManager->HandleInput(i);
+			command = inputManager->HandleInput(i);
+
+		// Test and run specific commands here
+		if (command != nullptr)
+			command->execute(testCube);
+
 	} 
 
 
@@ -101,11 +111,11 @@ void GameScene::OnKeyboard(int key, bool down)
 		// remove expBarrel from mEntities
 		 mEntities.erase(std::remove(mEntities.begin(), mEntities.end(), expBarrel), mEntities.end());
 	}
-
 }
 
 void GameScene::Update(double deltaTime)
 {
+	testCube->Rotate(1, deltaTime);
 	ALfloat listenerPos[] = { 
 	Game::GetGame()->GetGameCamera()->GetPosition().GetX(),
 	Game::GetGame()->GetGameCamera()->GetPosition().GetY(),

@@ -1,8 +1,8 @@
-#include "MoveBackCommand.h"
+#include "MoveCamBackCommand.h"
 #include <iostream>
 #include "../ShooterGame.h"
 
-void MoveBackCommand::execute()
+void MoveCamBackCommand::execute(Entity* pEntity)
 {
 	// get game instance
 	Game* game = Game::GetGame();

@@ -25,3 +25,19 @@ SkyBox::SkyBox()
 void SkyBox::SetPosition(glm::vec3 pPos)
 {
 }
+
+void SkyBox::MoveForward()
+{
+}
+
+void SkyBox::MoveBackward()
+{
+}
+
+void SkyBox::MoveLeft()
+{
+}
+
+void SkyBox::MoveRight()
+{
+}

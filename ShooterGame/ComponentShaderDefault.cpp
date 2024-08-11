@@ -37,4 +37,10 @@ void ComponentShaderDefault::Update(glm::mat4 pMat)
 
 	// set projection
 	mShaderObject->SetMat4("projection", mCamera->GetProjection());
+
+	glm::vec3 pos;
+	pos.x = mCamera->GetPosition().GetX();
+	pos.y = mCamera->GetPosition().GetY();
+	pos.z = mCamera->GetPosition().GetZ();
+	mShaderObject->SetVec3("viewPos", pos);
 }

@@ -33,6 +33,22 @@ void Enemy::SetPosition(glm::vec3 pPos)
 	GetComponent<ComponentRigidBody>()->SetPosition(pPos);
 }
 
+void Enemy::MoveForward()
+{
+}
+
+void Enemy::MoveBackward()
+{
+}
+
+void Enemy::MoveLeft()
+{
+}
+
+void Enemy::MoveRight()
+{
+}
+
 Enemy::Enemy()
 {
 	start();

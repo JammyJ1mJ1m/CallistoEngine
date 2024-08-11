@@ -15,6 +15,11 @@ private:
     Command* mRotateLeftCommand;
     Command* mRotateRightCommand;
 
+    Command* mAltFwdKeyCommand;
+    Command* mAltLeftKeyCommand;
+    Command* mAltBckKeyCommand;
+    Command* mAltRightKeyCommand;
+
     // map of keys to commands
     CommandMap mCommandMap;
     
@@ -24,7 +29,13 @@ private:
 public:
     void BindKey(int key, const std::string& commandName);
     void RebindKey(int oldKey, int newKey);
-    void HandleInput(int key);
+
+    // Original implementation. Works but is kind of limited. 
+    // void HandleInput(int key);
+
+    // New implementation. Returns a command object that can be executed by the caller.
+     Command* HandleInput(int key);
+
     //void AddCommand(const std::string& commandName, Command* command);
     void ReadControlsConfig(const std::string& filename);
     std::unordered_map<std::string, int> LoadKeyCodeMap(const std::string& filename);

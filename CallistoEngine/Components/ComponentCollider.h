@@ -27,6 +27,7 @@ public:
 
 	// pass in half extents to create a box collider
 	ComponentCollider(btVector3 pHalfExtents);
+	ComponentCollider(float x, float y, float z);
 
 	// TODO create sphere collider
 	ComponentCollider(btScalar pRadius);

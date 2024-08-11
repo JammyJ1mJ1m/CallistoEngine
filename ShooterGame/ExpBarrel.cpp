@@ -74,3 +74,18 @@ void ExpBarrel::applyExplosionForce(btDiscreteDynamicsWorld& world, const btVect
     }
 }
 
+void ExpBarrel::MoveForward()
+{
+}
+
+void ExpBarrel::MoveBackward()
+{
+}
+
+void ExpBarrel::MoveLeft()
+{
+}
+
+void ExpBarrel::MoveRight()
+{
+}

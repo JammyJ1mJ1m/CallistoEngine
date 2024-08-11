@@ -11,6 +11,10 @@ look_left = "Q"
 look_right = "E"
 # up = "space"
 # down = "left_shift"
+alt_move_forward = "up"
+alt_move_back = "down"
+alt_move_left = "left"
+alt_move_right = "right"
 
 [settings.display]
 resolution = "800x800"

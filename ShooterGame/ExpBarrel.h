@@ -17,6 +17,10 @@ public:
 
 	void SetPosition(glm::vec3 pPos);
 	void applyExplosionForce(btDiscreteDynamicsWorld& world, const btVector3& explosionOrigin, btScalar explosionStrength, btScalar explosionRadius);
-
+	
+	virtual void MoveForward() ;
+	virtual void MoveBackward() ;
+	virtual void MoveLeft() ;
+	virtual void MoveRight() ;
 };
 

@@ -1,12 +1,11 @@
 #pragma once
-#include "Commands/Command.h"
-
+#include "Commands\Command.h"
 class MoveRightCommand : public Command
 {
-    public:
-		MoveRightCommand() = default;
+public:
+	MoveRightCommand() = default;
 	~MoveRightCommand() = default;
 
-	virtual void execute();
+	virtual void execute(Entity* pEntity);
 };
 

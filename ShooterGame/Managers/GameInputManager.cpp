@@ -9,20 +9,30 @@
 
 GameInputManager::GameInputManager()
 {
-	mWKeyCommand = new MoveForwardCommand();
-	mSKeyCommand = new MoveBackCommand();
-	mAKeyCommand = new MoveLeftCommand();
-	mDKeyCommand = new MoveRightCommand();
-	mRotateLeftCommand = new RotateLeftCommand();
-	mRotateRightCommand = new RotateRightCommand();
+	mWKeyCommand = new MoveCamForwardCommand();
+	mSKeyCommand = new MoveCamBackCommand();
+	mAKeyCommand = new MoveCamLeftCommand();
+	mDKeyCommand = new MoveCamRightCommand();
+
+	mAltFwdKeyCommand = new MoveForwardCommand();
+	mAltBckKeyCommand = new MoveBackwardCommand();
+	mAltLeftKeyCommand = new MoveLeftCommand();
+	mAltRightKeyCommand = new MoveRightCommand();
+	//mRotateLeftCommand = new RotateLeftCommand();
+	//mRotateRightCommand = new RotateRightCommand();
 
 	// Initialize default commands
 	mCommandMap["move_forward"] = mWKeyCommand;
 	mCommandMap["move_back"] = mSKeyCommand;
 	mCommandMap["move_left"] = mAKeyCommand;
 	mCommandMap["move_right"] = mDKeyCommand;
-	mCommandMap["look_left"] = mRotateLeftCommand;
-	mCommandMap["look_right"] = mRotateRightCommand;
+	//mCommandMap["look_left"] = mRotateLeftCommand;
+	//mCommandMap["look_right"] = mRotateRightCommand;
+
+	mCommandMap["alt_move_forward"] = mAltFwdKeyCommand;
+	mCommandMap["alt_move_back"] = mAltBckKeyCommand;
+	mCommandMap["alt_move_left"] = mAltLeftKeyCommand;
+	mCommandMap["alt_move_right"] = mAltRightKeyCommand;
 
 	// Initialize default key bindings
 	ReadControlsConfig("Config/settings.toml");
@@ -44,12 +54,26 @@ void GameInputManager::RebindKey(int oldKey, int newKey)
 	}
 }
 
-void GameInputManager::HandleInput(int key)
+// Original implementation. Works but is kind of limited. 
+//void GameInputManager::HandleInput(int key)
+//{
+//	if (mKeyBindingMap.find(key) != mKeyBindingMap.end()) {
+//		std::string commandName = mKeyBindingMap[key];
+//		if (mCommandMap.find(commandName) != mCommandMap.end()) {
+//			mCommandMap[commandName]->execute();
+//		}
+//	}
+//}
+
+Command* GameInputManager::HandleInput(int key)
 {
 	if (mKeyBindingMap.find(key) != mKeyBindingMap.end()) {
 		std::string commandName = mKeyBindingMap[key];
 		if (mCommandMap.find(commandName) != mCommandMap.end()) {
-			mCommandMap[commandName]->execute();
+		 return	mCommandMap[commandName];
+		}
+		else {
+			return nullptr;	
 		}
 	}
 }
@@ -75,9 +99,6 @@ void GameInputManager::ReadControlsConfig(const std::string& pFilename)
 		};
 		return;
 	}
-
-
-
 
 	auto KeyCodeMap = LoadKeyCodeMap("Config/KeyCodeMap.csv");
 

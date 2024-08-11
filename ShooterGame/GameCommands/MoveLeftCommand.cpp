@@ -1,13 +1,6 @@
 #include "MoveLeftCommand.h"
-#include <iostream>
-#include "../ShooterGame.h"
 
-void MoveLeftCommand::execute()
+void MoveLeftCommand::execute(Entity* pEntity)
 {
-	// get game instance
-	Game* game = Game::GetGame();
-
-	game->GetGameCamera()->Strafe(-32.0f * game->GetDeltaTime());
-
-	// std::cout << "MoveLeftCommand executed" << std::endl;
+	pEntity->MoveLeft();
 }

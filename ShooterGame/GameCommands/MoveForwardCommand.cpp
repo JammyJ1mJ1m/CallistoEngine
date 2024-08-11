@@ -1,13 +1,6 @@
 #include "MoveForwardCommand.h"
-#include <iostream>
-#include "../ShooterGame.h"
 
-void MoveForwardCommand::execute()
+void MoveForwardCommand::execute(Entity* pEntity)
 {
-	// get game instance
-	Game* game = Game::GetGame();
-
-	game->GetGameCamera()->MoveForward(32.0f * game->GetDeltaTime());
-
-	// std::cout << "MoveForwardCommand executed" << std::endl;
+	pEntity->MoveForward();
 }
