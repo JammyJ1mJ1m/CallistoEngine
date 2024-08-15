@@ -8,7 +8,7 @@ void TestCube::start()
 	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("cube"), "Resources/textures/TestCube.mtl"));
 	AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
 
-	glm::vec3 pos = glm::vec3(-8.0f, 15.0f, 20.0f);
+	glm::vec3 pos = glm::vec3(0.0f, 0.0f, 0.0f);
 	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1, 1, 1)));
 	//mEntities.push_back(tri);
 
@@ -16,15 +16,15 @@ void TestCube::start()
 	std::vector<Vertex> vertices = Game::GetGame()->GetMesh("cube")->GetVertices();
 	std::vector<int> indices = Game::GetGame()->GetMesh("cube")->GetIndices();
 
-	//ComponentCollider* collider = new ComponentCollider(vertices, indices);
-	// CREATE A BOX COLLIDER
-	ComponentCollider* collider = new ComponentCollider(2, 2, 2);
+	////ComponentCollider* collider = new ComponentCollider(vertices, indices);
+	//// CREATE A BOX COLLIDER
+	//ComponentCollider* collider = new ComponentCollider(2, 2, 2);
 
-	AddComponent(collider);
+	//AddComponent(collider);
 
-	int mass = 64;
-	ComponentRigidBody* rb = new ComponentRigidBody(collider, mass, pos);
-	AddComponent(rb);
+	//int mass = 64;
+	//ComponentRigidBody* rb = new ComponentRigidBody(collider, mass, pos);
+	//AddComponent(rb);
 }
 
 void TestCube::SetPosition()

@@ -14,6 +14,9 @@
 
 #include "DiscordManager.h"
 
+#include "Managers/ResourceManager.h"
+
+
 
 using MeshMap = std::map<std::string, Mesh*>;
 using MeshMapIterator = MeshMap::iterator;
@@ -73,6 +76,7 @@ public:
 	virtual void Run(double dt) = 0;
 	virtual bool IsRunning() = 0;
 	virtual bool HandleInput() = 0;
+	virtual bool LoadMesh(const char* pFilePath, const char* pModelName, ResourceManager& pResourceManager) = 0;
 };
 
 inline Mesh* Game::GetMesh(std::string name)

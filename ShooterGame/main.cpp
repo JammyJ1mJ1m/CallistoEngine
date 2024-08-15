@@ -83,8 +83,6 @@ int main()
 	}
 
 	delete _window;
-	//char* p = {};
-	//std::cin >> p;
 	return 0;
 }
 #endif

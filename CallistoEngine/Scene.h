@@ -20,6 +20,8 @@ public:
 	std::vector<Entity*>& GetEntities() { return mEntities; }
 	void AddEntity(Entity* obj) { mEntities.push_back(obj); }
 
+	int GetEntityCount() const { return mEntities.size(); }
+
 	void SetSceneManager(SceneManager* s) { _sceneManager = s; }
 	SceneManager* GetSceneManager()	const { return _sceneManager; }
 

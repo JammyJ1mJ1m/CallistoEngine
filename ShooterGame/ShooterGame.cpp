@@ -1,5 +1,4 @@
 #include "ShooterGame.h"
-#include "Managers/ResourceManager.h"
 #include "GameScene.h"
 #include "Managers/PhysicsManager.h"
 #include "BulletDebugDraw.h"
@@ -27,43 +26,11 @@ void ShooterGame::Initialise(Window* pWindow)
 	mCamera = new Camera(glm::vec3(0.0f, 0.0f, 45.0f), mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
 
 	ResourceManager& RM = ResourceManager::getInstance();
-	Mesh* shipMesh = RM.LoadMesh("Resources/Geometry/Floor/FloorTwo.obj");
-	if (shipMesh != nullptr)
-	{
-		shipMesh->AddMaterial("Resources/textures/TCube.mtl");
-		AddMesh("ship", shipMesh);
-	}
-
-	Mesh* tester = RM.LoadMesh("Resources/Geometry/test/Tester.obj");
-	if (tester != nullptr)
-	{
-		tester->AddMaterial("Resources/textures/TCube.mtl");
-		AddMesh("tester", tester);
-	}
-
-
-
-	Mesh* rpg = RM.LoadMesh("Resources/Geometry/RPG/rpg.obj");
-	if (rpg != nullptr)
-	{
-		rpg->AddMaterial("Resources/textures/TCube.mtl");
-		AddMesh("rpg", rpg);
-	}
-
-
-	Mesh* cube = RM.LoadMesh("Resources/Geometry/test/TCube.obj");
-	if (cube != nullptr)
-	{
-		cube->AddMaterial("Resources/textures/TCube.mtl");
-		AddMesh("cube", cube);
-	}
-
-	Mesh* barrel = RM.LoadMesh("Resources/Geometry/Barrel/expBarrel.obj");
-	if (barrel != nullptr)
-	{
-		barrel->AddMaterial("Resources/textures/TCube.mtl");
-		AddMesh("barrel", barrel);
-	}
+	LoadMesh("Resources/Geometry/Floor/FloorTwo.obj", "ship", RM);
+	LoadMesh("Resources/Geometry/test/Tester.obj", "tester", RM);
+	LoadMesh("Resources/Geometry/RPG/rpg.obj", "rpg", RM);
+	LoadMesh("Resources/Geometry/CardBox/box.obj", "cube", RM);
+	LoadMesh("Resources/Geometry/Barrel/expBarrel.obj", "barrel", RM);
 
 
 	mSceneManager.PushScene(new GameScene());
@@ -96,8 +63,8 @@ void ShooterGame::Render()
 
 	// pass mouse x and y to the camera
 	float x, y;
-	mWindow->GetMousePos(x,y);
-	 mCamera->HandleMouse(x, y);
+	mWindow->GetMousePos(x, y);
+	mCamera->HandleMouse(x, y);
 
 	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
 	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
@@ -113,6 +80,8 @@ void ShooterGame::Run(double dt)
 	}
 	if (mGameState == Playing)
 	{
+		// get current entity count from scene
+
 		mSceneManager.Update(dt);
 		Render();
 		HandleInput();
@@ -142,12 +111,24 @@ bool ShooterGame::HandleInput()
 		mWindow->ToggleFullscreen(true);
 		mDiscordManager->SetDiscordPresence("fullscreen", "test");
 	}
-		//mGameState = Quit;
+	//mGameState = Quit;
 
 
 	if (mGameState == Playing)
 	{
 		mSceneManager.OnKeyboard(-1, true);
+	}
+
+	return false;
+}
+
+bool ShooterGame::LoadMesh(const char* pFilePath, const char* pModelName, ResourceManager& pResourceManager)
+{
+	Mesh* modelMesh = pResourceManager.LoadMesh(pFilePath);
+	if (modelMesh != nullptr)
+	{
+		AddMesh(pModelName, modelMesh);
+		return true;
 	}
 
 	return false;

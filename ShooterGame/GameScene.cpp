@@ -91,6 +91,8 @@ void GameScene::OnKeyboard(int key, bool down)
 	if (inputManager->GetKey(GLFW_KEY_R))
 	{
 		AddEntity(new Enemy());
+		int entityCount = GetEntityCount();
+		std::cout << "Entity count: " << entityCount << std::endl;
 	}
 	// key y is pressed
 
