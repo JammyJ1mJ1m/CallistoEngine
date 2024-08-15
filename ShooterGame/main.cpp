@@ -16,10 +16,14 @@
 
 #include "Managers/DisplayManager.h"
 
+#include <steam/steam_api.h>
+#include <stdio.h>
 
 #if OPENGL
 #include "Window_GL.h"
 #endif
+
+#include <fstream>
 
 #if OPENGL	
 double calculateDeltaTime(double& lastFrameTime)
@@ -33,6 +37,37 @@ double calculateDeltaTime(double& lastFrameTime)
 // this is part of the game
 int main()
 {
+	// load steam api config file
+	//	// load a file from disk
+	//	std::ifstream file("steam_appid.txt");
+	//	if (file.is_open())
+	//	{
+	//		std::string line;
+	//		std::getline(file, line);
+	//		SteamAPI_SetTryCatchCallbacks(true);
+	//		SteamAPI_Init();
+	//		SteamAPI_RestartAppIfNecessary(std::stoi(line));
+	//		SteamFriends()->SetRichPresence("status", "Testing");
+	//	}
+	//	else
+	//	{
+	//		std::cout << "Steam API not initialized" << std::endl;
+	//		return -1;	
+	//	}
+
+	if (SteamAPI_RestartAppIfNecessary(480)) // Replace with your App ID
+	{
+		std::cout << "Steam API initialized successfully!" << std::endl;
+		//return 1;
+	}
+
+	if (!SteamAPI_Init())
+	{
+		printf("Fatal Error - Steam must be running to play this game (SteamAPI_Init() failed).\n");
+		return 1;
+	}
+
+
 #ifdef _DEBUG
 	// pls work
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -81,7 +116,7 @@ int main()
 			_window->SetTitle(ss.str().c_str());
 		}
 	}
-
+	SteamAPI_Shutdown();
 	delete _window;
 	return 0;
 }

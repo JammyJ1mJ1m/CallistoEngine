@@ -248,7 +248,7 @@
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;assimp.lib</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;glfw3_mt.lib;assimp-vc143-mt.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;irrKlang.lib;OpenAL32.lib;discord-rpc.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glfw3_mt.lib;assimp-vc143-mt.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;irrKlang.lib;OpenAL32.lib;discord-rpc.lib;steam_api64.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\lib;$(SolutionDir)Dependencies\bin</AdditionalLibraryDirectories>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Lib>
@@ -275,7 +275,7 @@
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;assimp.lib</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;glfw3_mt.lib;assimp-vc143-mt.lib;irrKlang.lib;OpenAL32.lib;discord-rpc.lib;LinearMath.lib;BulletDynamics.lib;BulletCollision.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glfw3_mt.lib;assimp-vc143-mt.lib;irrKlang.lib;OpenAL32.lib;discord-rpc.lib;LinearMath.lib;BulletDynamics.lib;BulletCollision.lib;steam_api64.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\lib;$(SolutionDir)Dependencies\bin</AdditionalLibraryDirectories>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Lib>

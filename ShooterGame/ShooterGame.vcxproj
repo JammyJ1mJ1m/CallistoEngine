@@ -269,6 +269,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Config\settings.toml" />
+    <Text Include="steam_appid.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
