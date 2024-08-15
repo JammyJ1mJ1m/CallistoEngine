@@ -22,11 +22,9 @@ void TestCube::start()
 
 	AddComponent(collider);
 
-	int mass = 1;
+	int mass = 64;
 	ComponentRigidBody* rb = new ComponentRigidBody(collider, mass, pos);
 	AddComponent(rb);
-
-
 }
 
 void TestCube::SetPosition()
@@ -35,7 +33,6 @@ void TestCube::SetPosition()
 
 TestCube::TestCube()
 {
-
 	start();
 }
 
@@ -69,7 +66,7 @@ void TestCube::MoveForward()
     double mDeltaTime = Game::GetGame()->GetDeltaTime();
 
     // Apply force in the negative z-direction to move forward
-    btVector3 force = btVector3(0, 0, -32.0);
+    btVector3 force = btVector3(0, 0, -1024);
     GetComponent<ComponentRigidBody>()->GetRigidBody()->applyForce(force, btVector3(0, 0, 0));
 }
 
@@ -83,7 +80,7 @@ void TestCube::MoveBackward()
     double mDeltaTime = Game::GetGame()->GetDeltaTime();
 
     // Apply force in the positive z-direction to move backward
-    btVector3 force = btVector3(0, 0, 32.0);
+    btVector3 force = btVector3(0, 0, 1024);
     GetComponent<ComponentRigidBody>()->GetRigidBody()->applyForce(force, btVector3(0, 0, 0));
 }
 
@@ -97,7 +94,7 @@ void TestCube::MoveLeft()
 	double mDeltaTime = Game::GetGame()->GetDeltaTime();
 
 	// Apply force in the positive z-direction to move backward
-	btVector3 force = btVector3(-32, 0, 0.0);
+	btVector3 force = btVector3(-512, 0, 0.0);
 	GetComponent<ComponentRigidBody>()->GetRigidBody()->applyForce(force, btVector3(0, 0, 0));
 
 }
@@ -112,7 +109,7 @@ void TestCube::MoveRight()
 	double mDeltaTime = Game::GetGame()->GetDeltaTime();
 
 	// Apply force in the positive z-direction to move backward
-	btVector3 force = btVector3(32, 0, 0.0);
+	btVector3 force = btVector3(512, 0, 0.0);
 	GetComponent<ComponentRigidBody>()->GetRigidBody()->applyForce(force, btVector3(0, 0, 0));
 
 }
