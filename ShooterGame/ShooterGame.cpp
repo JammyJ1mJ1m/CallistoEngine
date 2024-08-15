@@ -137,7 +137,7 @@ bool ShooterGame::HandleInput()
 	if (mInputManager->GetKey(256))  // Esc
 		mGameState = Quit;
 
-	if (mInputManager->GetKey(258))  // Esc
+	if (mInputManager->GetKey(280))  // tab
 	{
 		mWindow->ToggleFullscreen(true);
 		mDiscordManager->SetDiscordPresence("fullscreen", "test");

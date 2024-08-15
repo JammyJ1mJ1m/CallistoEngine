@@ -1,5 +1,6 @@
 #pragma once
 #include "Components\ComponentShader.h"
+#include "Camera.h"
 class ComponentShaderDefault : public ComponentShader
 {
 public:

@@ -1,3 +1,9 @@
+#ifdef _DEBUG
+	#define _CRTDBG_MAP_ALLOC
+	#include <cstdlib>
+	#include <crtdbg.h>
+#endif
+
 #include "main.h"
 #pragma comment(lib, "CallistoEngine.lib")
 
@@ -27,6 +33,11 @@ double calculateDeltaTime(double& lastFrameTime)
 // this is part of the game
 int main()
 {
+#ifdef _DEBUG
+	// pls work
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#endif
+
 	auto& DispManager = DisplayManager::GetInstance();
 	DispManager.LoadConfig("Config/settings.toml");
 
@@ -72,6 +83,8 @@ int main()
 	}
 
 	delete _window;
+	//char* p = {};
+	//std::cin >> p;
 	return 0;
 }
 #endif
