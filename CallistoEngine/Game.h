@@ -77,6 +77,7 @@ public:
 	virtual bool IsRunning() = 0;
 	virtual bool HandleInput() = 0;
 	virtual bool LoadMesh(const char* pFilePath, const char* pModelName, ResourceManager& pResourceManager) = 0;
+	virtual void SetTitle(const char* pName){ mWindow->SetTitle(pName); }
 };
 
 inline Mesh* Game::GetMesh(std::string name)

@@ -93,6 +93,14 @@ void GameScene::OnKeyboard(int key, bool down)
 		AddEntity(new Enemy());
 		int entityCount = GetEntityCount();
 		std::cout << "Entity count: " << entityCount << std::endl;
+		// get the game class
+		Game* game = Game::GetGame();
+
+		// update window title
+		std::stringstream ss;
+		ss << "Gamey game :: " << entityCount << " entities";
+
+		game->SetTitle(ss.str().c_str());
 	}
 	// key y is pressed
 

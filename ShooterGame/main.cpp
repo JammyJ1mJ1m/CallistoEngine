@@ -55,17 +55,19 @@ int main()
 	//		return -1;	
 	//	}
 
-	if (SteamAPI_RestartAppIfNecessary(480)) // Replace with your App ID
-	{
-		std::cout << "Steam API initialized successfully!" << std::endl;
-		//return 1;
-	}
+	//if (SteamAPI_RestartAppIfNecessary(480)) // Replace with your App ID
+	//{
+	//	std::cout << "Steam API initialized successfully!" << std::endl;
+	//	//		SteamFriends()->SetRichPresence("status", "Testing");
 
-	if (!SteamAPI_Init())
-	{
-		printf("Fatal Error - Steam must be running to play this game (SteamAPI_Init() failed).\n");
-		return 1;
-	}
+	//	//return 1;
+	//}
+
+	//if (!SteamAPI_Init())
+	//{
+	//	printf("Fatal Error - Steam must be running to play this game (SteamAPI_Init() failed).\n");
+	//	return 1;
+	//}
 
 
 #ifdef _DEBUG
