@@ -21,25 +21,25 @@
     <ClCompile Include="ShooterGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp">
+    <ClCompile Include="Scenes\GameScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="Entities\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
+    <ClCompile Include="Entities\Enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SkyBox.cpp">
+    <ClCompile Include="Entities\SkyBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentShaderSkybox.cpp">
+    <ClCompile Include="Components\ComponentShaderSkybox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentShaderDefault.cpp">
+    <ClCompile Include="Components\ComponentShaderDefault.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ExpBarrel.cpp">
+    <ClCompile Include="Entities\ExpBarrel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameCommands\MoveCamForwardCommand.cpp">
@@ -57,10 +57,10 @@
     <ClCompile Include="GameCommands\MoveCamRightCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentShaderError.cpp">
+    <ClCompile Include="Components\ComponentShaderError.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentShaderScanLines.cpp">
+    <ClCompile Include="Components\ComponentShaderScanLines.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameCommands\RotateLeftCommand.cpp">
@@ -69,7 +69,7 @@
     <ClCompile Include="GameCommands\RotateRightCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestCube.cpp">
+    <ClCompile Include="Entities\TestCube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameCommands\MoveForwardCommand.cpp">
@@ -92,25 +92,25 @@
     <ClInclude Include="ShooterGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h">
+    <ClInclude Include="Scenes\GameScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="Entities\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
+    <ClInclude Include="Entities\Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SkyBox.h">
+    <ClInclude Include="Entities\SkyBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentShaderSkybox.h">
+    <ClInclude Include="Components\ComponentShaderSkybox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentShaderDefault.h">
+    <ClInclude Include="Components\ComponentShaderDefault.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ExpBarrel.h">
+    <ClInclude Include="Entities\ExpBarrel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameCommands\MoveCamForwardCommand.h">
@@ -131,10 +131,10 @@
     <ClInclude Include="GameCommands\MoveCamLeftCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentShaderError.h">
+    <ClInclude Include="Components\ComponentShaderError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentShaderScanLines.h">
+    <ClInclude Include="Components\ComponentShaderScanLines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameCommands\RotateLeftCommand.h">
@@ -143,7 +143,7 @@
     <ClInclude Include="GameCommands\RotateRightCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TestCube.h">
+    <ClInclude Include="Entities\TestCube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameCommands\MoveForwardCommand.h">

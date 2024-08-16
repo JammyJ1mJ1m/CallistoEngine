@@ -97,12 +97,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)x64\OpenGL - debug;$(SolutionDir)Dependencies\inc\Bullet</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)x64\OpenGL - debug;$(SolutionDir)Dependencies\inc\Bullet;$(ProjectDir)Components;$(ProjectDir)Entities;$(ProjectDir)Scenes;$(ProjectDir)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SolutionDir)x64\OpenGL - debug;$(SolutionDir)Dependencies\lib\Bullet</LibraryPath>
     <TargetName>Shooter Game</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - release|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)x64\OpenGL - debug;$(SolutionDir)Dependencies\inc\Bullet</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)x64\OpenGL - debug;$(SolutionDir)Dependencies\inc\Bullet;$(ProjectDir)Components;$(ProjectDir)Entities;$(ProjectDir)Scenes;$(ProjectDir)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SolutionDir)x64\OpenGL - debug;$(SolutionDir)Dependencies\lib\Bullet</LibraryPath>
     <TargetName>Shooter Game</TargetName>
   </PropertyGroup>
@@ -210,18 +210,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ComponentShaderDefault.cpp" />
-    <ClCompile Include="ComponentShaderError.cpp" />
-    <ClCompile Include="ComponentShaderScanLines.cpp" />
-    <ClCompile Include="ComponentShaderSkybox.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="ExpBarrel.cpp" />
+    <ClCompile Include="Components\ComponentShaderDefault.cpp" />
+    <ClCompile Include="Components\ComponentShaderError.cpp" />
+    <ClCompile Include="Components\ComponentShaderScanLines.cpp" />
+    <ClCompile Include="Components\ComponentShaderSkybox.cpp" />
+    <ClCompile Include="Entities\Enemy.cpp" />
+    <ClCompile Include="Entities\ExpBarrel.cpp" />
     <ClCompile Include="GameCommands\MoveCamLeftCommand.cpp" />
     <ClCompile Include="GameCommands\MoveCamRightCommand.cpp" />
     <ClCompile Include="GameCommands\RotateLeftCommand.cpp" />
     <ClCompile Include="GameCommands\RotateRightCommand.cpp" />
     <ClCompile Include="Managers\GameInputManager.cpp" />
-    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Scenes\GameScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GameCommands\MoveCamForwardCommand.cpp" />
     <ClCompile Include="GameCommands\MoveCamBackCommand.cpp" />
@@ -229,25 +229,25 @@
     <ClCompile Include="GameCommands\MoveBackwardCommand.cpp" />
     <ClCompile Include="GameCommands\MoveLeftCommand.cpp" />
     <ClCompile Include="GameCommands\MoveRightCommand.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Entities\Player.cpp" />
     <ClCompile Include="ShooterGame.cpp" />
-    <ClCompile Include="SkyBox.cpp" />
-    <ClCompile Include="TestCube.cpp" />
+    <ClCompile Include="Entities\SkyBox.cpp" />
+    <ClCompile Include="Entities\TestCube.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ComponentShaderDefault.h" />
-    <ClInclude Include="ComponentShaderError.h" />
-    <ClInclude Include="ComponentShaderScanLines.h" />
-    <ClInclude Include="ComponentShaderSkybox.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="ExpBarrel.h" />
+    <ClInclude Include="Components\ComponentShaderDefault.h" />
+    <ClInclude Include="Components\ComponentShaderError.h" />
+    <ClInclude Include="Components\ComponentShaderScanLines.h" />
+    <ClInclude Include="Components\ComponentShaderSkybox.h" />
+    <ClInclude Include="Entities\Enemy.h" />
+    <ClInclude Include="Entities\ExpBarrel.h" />
     <ClInclude Include="GameCommands\GameCommands.h" />
     <ClInclude Include="GameCommands\MoveCamLeftCommand.h" />
     <ClInclude Include="GameCommands\MoveCamRightCommand.h" />
     <ClInclude Include="GameCommands\RotateLeftCommand.h" />
     <ClInclude Include="GameCommands\RotateRightCommand.h" />
     <ClInclude Include="Managers\GameInputManager.h" />
-    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Scenes\GameScene.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="GameCommands\MoveCamForwardCommand.h" />
     <ClInclude Include="GameCommands\MoveCamBackCommand.h" />
@@ -255,10 +255,10 @@
     <ClInclude Include="GameCommands\MoveBackwardCommand.h" />
     <ClInclude Include="GameCommands\MoveLeftCommand.h" />
     <ClInclude Include="GameCommands\MoveRightCommand.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Entities\Player.h" />
     <ClInclude Include="ShooterGame.h" />
-    <ClInclude Include="SkyBox.h" />
-    <ClInclude Include="TestCube.h" />
+    <ClInclude Include="Entities\SkyBox.h" />
+    <ClInclude Include="Entities\TestCube.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\KeyCodeMap.csv" />
