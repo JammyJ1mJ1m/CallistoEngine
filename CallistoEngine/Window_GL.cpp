@@ -107,6 +107,13 @@ Window_GL::Window_GL(Game* game, const int width, const int height)
 	mWindowHeight = height;
 	_game = game;
 	lastPressedKey = -1;
+	mFirstMouse = false;
+	mLastMouseX = 0.0f;
+	mLastMouseY = 0.0f;
+	mYaw = -90.0f;
+	mPitch = 0.0f;
+	mGlfwWindow = nullptr;
+
 }
 
 int Window_GL::Initialise(const char* pTitle)

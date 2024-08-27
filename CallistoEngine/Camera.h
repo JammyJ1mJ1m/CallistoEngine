@@ -23,7 +23,7 @@ private:
 	float pitch;
 	float yaw;
 
-	Camera() {}	// Constructor? (the {} brackets) are needed here.
+	//Camera() {}	// Constructor? (the {} brackets) are needed here.
 
 	// static Camera mInstance;
 
@@ -35,15 +35,15 @@ private:
 public:
 
 
-	Camera(const Camera&) = delete;
+	//Camera(const Camera&) = delete;
 	Camera& operator=(const Camera&) = delete;
 
-	static Camera& getInstance()
-	{
-		static Camera    instance; // Guaranteed to be destroyed.
-		// Instantiated on first use.
-		return instance;
-	}
+	//static Camera& getInstance()
+	//{
+	//	static Camera    instance; // Guaranteed to be destroyed.
+	//	// Instantiated on first use.
+	//	return instance;
+	//}
 
 	Camera(const glm::vec3 pPos, const float pWidth, const float pHeight);
 	void MoveForward(const float pMoveAmount);
