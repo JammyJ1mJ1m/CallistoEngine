@@ -51,7 +51,7 @@ void GameScene::Initialise()
 	testCube = new TestCube();
 	AddEntity(testCube);
 
-	
+
 
 
 	sound = new Sound("Resources/Sounds/explosion.wav");
@@ -76,15 +76,16 @@ void GameScene::OnKeyboard(int key, bool down)
 
 	for (size_t i = 0; i < inputManager->GetKeysSize(); i++)
 	{
-	Command* command = nullptr;
-		if (inputManager->GetKey(i)) 
+		Command* command = nullptr;
+		if (inputManager->GetKey(i))
 			command = inputManager->HandleInput(i);
 
-		// Test and run specific commands here
+		// realistically we would only ever pass the player here as the user input affects the player
+		// TODO maybe implemnent a type/tag to filter commands for specific entities
 		if (command != nullptr)
-			command->execute(testCube);
+			command->execute(player);
 
-	} 
+	}
 
 
 
@@ -114,19 +115,19 @@ void GameScene::OnKeyboard(int key, bool down)
 		auto origin = btVector3(expBarrel->GetComponent<ComponentTransform>()->GetPosition().x, expBarrel->GetComponent<ComponentTransform>()->GetPosition().y, expBarrel->GetComponent<ComponentTransform>()->GetPosition().z);
 		auto strength = 100;
 		auto radius = 50;
-		expBarrel->applyExplosionForce(world,origin,strength,radius);
+		expBarrel->applyExplosionForce(world, origin, strength, radius);
 		sound->Play3D(origin.x(), origin.y(), origin.z());
 		//Game::GetGame()->GetAudioManager()->Play3DSound("Resources/Sounds/explosion.wav",origin.x(),origin.y(),origin.z(), false);
-		
+
 		// remove expBarrel from mEntities
-		 mEntities.erase(std::remove(mEntities.begin(), mEntities.end(), expBarrel), mEntities.end());
+		mEntities.erase(std::remove(mEntities.begin(), mEntities.end(), expBarrel), mEntities.end());
 	}
 }
 
 void GameScene::Update(double deltaTime)
 {
 	testCube->Rotate(1, deltaTime);
-	ALfloat listenerPos[] = { 
+	ALfloat listenerPos[] = {
 	Game::GetGame()->GetGameCamera()->GetPosition().GetX(),
 	Game::GetGame()->GetGameCamera()->GetPosition().GetY(),
 	Game::GetGame()->GetGameCamera()->GetPosition().GetZ()
@@ -134,7 +135,7 @@ void GameScene::Update(double deltaTime)
 
 	ALfloat listenerVel[] = { 0.0f, 0.0f, 0.0f };
 
-	ALfloat listenerOri[] = {  
+	ALfloat listenerOri[] = {
 	Game::GetGame()->GetGameCamera()->GetDirection().GetX() ,
 	Game::GetGame()->GetGameCamera()->GetDirection().GetY() ,
 	Game::GetGame()->GetGameCamera()->GetDirection().GetZ() ,

@@ -43,10 +43,8 @@ void ShooterGame::OnKeyboard(int key, bool down)
 		std::cout << "Key code out of keystate bounds" << std::endl;
 		return; //If the key is out of bounds, DO NOT continue as memory will be corrupted
 	}
-	//mSceneManager->OnKeyboard(key, down);
 
 	mInputManager->SetKeyState(key, down);
-	//_keyStates[key] = down;
 }
 
 void ShooterGame::Render()

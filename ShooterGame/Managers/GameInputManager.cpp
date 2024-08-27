@@ -70,10 +70,10 @@ Command* GameInputManager::HandleInput(int key)
 	if (mKeyBindingMap.find(key) != mKeyBindingMap.end()) {
 		std::string commandName = mKeyBindingMap[key];
 		if (mCommandMap.find(commandName) != mCommandMap.end()) {
-		 return	mCommandMap[commandName];
+			return	mCommandMap[commandName];
 		}
 		else {
-			return nullptr;	
+			return nullptr;
 		}
 	}
 }
@@ -167,4 +167,11 @@ GameInputManager::~GameInputManager()
 	delete mAKeyCommand;
 	delete mSKeyCommand;
 	delete mDKeyCommand;
+	delete mAltFwdKeyCommand;
+	delete mAltBckKeyCommand;
+	delete mAltLeftKeyCommand;
+	delete mAltRightKeyCommand;
+	//delete mRotateLeftCommand;
+	//delete mRotateRightCommand;
+
 }
