@@ -26,13 +26,13 @@
 #include <fstream>
 
 #if OPENGL	
-double calculateDeltaTime(double& lastFrameTime)
-{
-	double temp_time = clock();
-	double deltaTime = (temp_time - lastFrameTime) / CLOCKS_PER_SEC;
-	lastFrameTime = temp_time;
-	return deltaTime;
-}
+//double calculateDeltaTime(double& lastFrameTime)
+//{
+//	double temp_time = clock();
+//	double deltaTime = (temp_time - lastFrameTime) / CLOCKS_PER_SEC;
+//	lastFrameTime = temp_time;
+//	return deltaTime;
+//}
 
 // this is part of the game
 int main()
@@ -79,12 +79,12 @@ int main()
 	DispManager.LoadConfig("Config/settings.toml");
 
 	double deltaTime = 0.0f;
-	double lastFrameTime = 0.0f;
-	float fps = 0.0f;
-	int frameCount = 0;
-	int lastFrameCount = 0;
+	//double lastFrameTime = 0.0f;
+	//float fps = 0.0f;
+	//int frameCount = 0;
+	//int lastFrameCount = 0;
 
-	std::chrono::high_resolution_clock::time_point time = std::chrono::high_resolution_clock::now();
+	//std::chrono::high_resolution_clock::time_point time = std::chrono::high_resolution_clock::now();
 
 	Game* game;
 
@@ -98,25 +98,26 @@ int main()
 
 	while (game->IsRunning())
 	{
-		++frameCount;
-		game->Run(deltaTime);
+		deltaTime = game->CalculateDeltaTime();
+		/*++frameCount;*/
+		game->Run();
 		_window->Update();
 
-		deltaTime = calculateDeltaTime(lastFrameTime);
-		auto newTime = std::chrono::high_resolution_clock::now();
-		std::chrono::duration<float> time_span = std::chrono::duration_cast<std::chrono::duration<float>>(newTime - time);
+		//deltaTime = calculateDeltaTime(lastFrameTime);
+		//auto newTime = std::chrono::high_resolution_clock::now();
+		//std::chrono::duration<float> time_span = std::chrono::duration_cast<std::chrono::duration<float>>(newTime - time);
 
-		if (time_span.count() > 1.0f)
-		{
-			fps = frameCount - lastFrameCount;
-			lastFrameCount = frameCount;
-			time = newTime;
+		//if (time_span.count() > 1.0f)
+		//{
+			//fps = frameCount - lastFrameCount;
+			//lastFrameCount = frameCount;
+			//time = newTime;
 			//std::cout << "FPS: " << fps << std::endl;
 
-			std::stringstream ss;
-			ss << "Gamey game :: " << fps << " FPS";
-			_window->SetTitle(ss.str().c_str());
-		}
+			//std::stringstream ss;
+			//ss << "Gamey game :: " << game->GetFPS() << " FPS";
+			//_window->SetTitle(ss.str().c_str());
+		//}
 	}
 	SteamAPI_Shutdown();
 	delete _window;

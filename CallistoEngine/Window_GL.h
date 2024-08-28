@@ -36,7 +36,7 @@ public:
 	void SetLastMouseX(float pX) { mLastMouseX = pX; }
 	void SetLastMouseY(float pY) { mLastMouseY = pY; }
 
-	virtual const void GetMousePos(float& pX, float& pY) { pX = mLastMouseX; pY = mLastMouseY; }
+	virtual const void GetMousePos(float& pX, float& pY) override { pX = mLastMouseX; pY = mLastMouseY; }
 
 	//const float GetYaw() { return mYaw; }
 	//const float GetPitch() { return mPitch; }

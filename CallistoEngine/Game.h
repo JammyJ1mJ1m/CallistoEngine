@@ -15,6 +15,7 @@
 #include "DiscordManager.h"
 
 #include "Managers/ResourceManager.h"
+#include "chrono"
 
 
 
@@ -25,6 +26,12 @@ class InputManager;
 
 class Game
 {
+	float fps = 0.0f;
+	int frameCount = 0;
+	int lastFrameCount = 0;
+
+	std::chrono::high_resolution_clock::time_point time = std::chrono::high_resolution_clock::now();
+
 
 protected:
 	DiscordManager* mDiscordManager;
@@ -73,11 +80,13 @@ public:
 	virtual void Initialise(Window* w) = 0;
 	virtual void OnKeyboard(int key, bool down) = 0;
 	virtual void Render() = 0;
-	virtual void Run(double dt) = 0;
+	virtual void Run() = 0;
 	virtual bool IsRunning() = 0;
 	virtual bool HandleInput() = 0;
 	virtual bool LoadMesh(const char* pFilePath, const char* pModelName, ResourceManager& pResourceManager) = 0;
 	virtual void SetTitle(const char* pName){ mWindow->SetTitle(pName); }
+	const double CalculateDeltaTime();
+	const float GetFPS() { return fps; }
 };
 
 inline Mesh* Game::GetMesh(std::string name)

@@ -3,15 +3,12 @@
 #include "Managers/PhysicsManager.h"
 #include "BulletDebugDraw.h"
 
-
-
 static BulletDebugDrawer_OpenGL* bulletDebugDraw;
 
 void ShooterGame::Initialise(Window* pWindow)
 {
 	mHasWindowSizeChanged = false;
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
-	//theGame = this;
 	mAudioManager = &AudioManager::GetInstance();
 	mInputManager = new GameInputManager();
 
@@ -65,30 +62,21 @@ void ShooterGame::Render()
 	mWindow->GetMousePos(x, y);
 	mCamera->HandleMouse(x, y);
 
-	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
-	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
+	PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
+	PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
 }
 
-void ShooterGame::Run(double dt)
+void ShooterGame::Run()
 {
-	mDeltaTime = dt;
-
 	if (mGameState == Paused)
 	{
 		// paused logic here
 	}
 	if (mGameState == Playing)
 	{
-		// get current entity count from scene
-
-		mSceneManager.Update(dt);
+		mSceneManager.Update(mDeltaTime);
 		Render();
 		HandleInput();
-
-
-		// run current scene update loop
-
-		// game logic here
 	}
 	if (mGameState == Quit)
 	{
