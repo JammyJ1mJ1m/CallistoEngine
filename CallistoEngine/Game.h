@@ -18,6 +18,7 @@
 #include "chrono"
 
 
+#include "SteamManager.h"
 
 using MeshMap = std::map<std::string, Mesh*>;
 using MeshMapIterator = MeshMap::iterator;
@@ -35,6 +36,7 @@ class Game
 
 protected:
 	DiscordManager* mDiscordManager;
+	SteamManager* mSteamManager;
 
 	Camera* mCamera;
 	// DT stuff
@@ -71,7 +73,16 @@ public:
 
 
 	Game();
-	virtual ~Game() {};
+	virtual ~Game() 
+	{
+	
+		delete mCamera;
+		delete mRenderSystem;
+		delete mInputManager;
+
+		delete mDiscordManager;
+		delete mSteamManager;
+	};
 
 	Mesh* GetMesh(std::string name);
 	void AddMesh(std::string name, Mesh* mesh) { mMeshes[name] = mesh; }

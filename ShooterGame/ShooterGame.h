@@ -19,9 +19,7 @@ class ShooterGame : public Game
 
 	// non singleton, make sure that this doesn't get copied / or a new one is created. 
 
-
 public:
-
 
 	Mesh* GetMesh(std::string pMesh)
 	{
@@ -53,8 +51,8 @@ public:
 		{
 			delete e;
 		}
-		delete mCamera;
+		/*delete mCamera;
 		delete mRenderSystem;
-		delete mInputManager;
+		delete mInputManager;*/
 	}
 };

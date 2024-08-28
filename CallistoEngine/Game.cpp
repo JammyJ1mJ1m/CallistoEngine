@@ -29,6 +29,8 @@ Game::Game() :
 	mRenderSystem = nullptr;
 	mDiscordManager = new DiscordManager();
 	mDiscordManager->initDiscord();
+	mSteamManager = new SteamManager();
+	mSteamManager->initSteam();
 }
 
 const double Game::CalculateDeltaTime()
