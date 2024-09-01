@@ -3,6 +3,7 @@
 #include "Bullet/btBulletDynamicsCommon.h"
 #include <vector>
 #include "../Vertex.h"
+#include "../Vector.h"
 
 
 enum ColliderType
@@ -18,9 +19,29 @@ class ComponentCollider : public IComponent
 {
 	btCollisionShape* mCollisionShape;
 	ColliderType mColliderType;
+	btTransform mTransform;
+
+	Vector<float,3> FindSmallest(const std::vector<Vertex>& pVerts);
+	Vector<float,3> FindLargest(const std::vector<Vertex>& pVerts);
 
 public:
+	Vector3f GetCenter() 
+	{
+		btVector3 center = mTransform.getOrigin();
+		Vector3f res;
+		res.SetX(center.getX());
+		res.SetY(center.getY());
+		res.SetZ(center.getZ());
+		return res;
+	}
 	ComponentCollider() = default;
+
+	// pass in geometry to create a auto sized collider - cube in this case
+	//ComponentCollider(const std::vector<Vertex>& pVerts, const Vector3f& pPos);
+	ComponentCollider(const std::vector<Vertex>& pVerts/*, const Vector3f& pPos*/);
+	
+	// pass in geometry to create a auto sized collider - sphere in this case
+	ComponentCollider(const std::vector<Vertex>& pVerts, const ColliderType pType);
 
 	// pass in model vertices to create a mesh collision shape
 	ComponentCollider(const std::vector<Vertex>& pVerts, const std::vector<int>& pIndices);

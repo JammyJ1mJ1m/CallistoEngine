@@ -12,3 +12,5 @@
 #include "MoveBackwardCommand.h"
 #include "MoveLeftCommand.h"
 #include "MoveRightCommand.h"
+
+#include "BoostCommand.h"

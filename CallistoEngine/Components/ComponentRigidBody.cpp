@@ -68,8 +68,7 @@ void ComponentRigidBody::SyncWithTransform(ComponentTransform* pTransform)
 
 void ComponentRigidBody::SetPosition(glm::vec3 pPos)
 {
-	btTransform
-		transform;
+	btTransform transform;
 	transform.setIdentity();
 	transform.setOrigin(btVector3(pPos.x, pPos.y, pPos.z));
 	mRigidBody->setWorldTransform(transform);

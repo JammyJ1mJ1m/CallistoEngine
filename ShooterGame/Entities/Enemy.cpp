@@ -10,15 +10,27 @@ void Enemy::start()
 {
 	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("cube"), "Resources/textures/CardBox.mtl"));
 	AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
-	glm::vec3 pos = glm::vec3(-0.0f, 15.0f, -5.0f);
-	AddComponent(new ComponentTransform(pos, glm::vec3(0.5f, 0.0f, 0.0f), glm::vec3(2.0f, 2.0f, 2.0f)));
+	glm::vec3 pos = glm::vec3(0.0f, 5.0f, 0.0f);
+	Vector3f newPos;
+	newPos.SetX(pos.x);
+	newPos.SetY(pos.y);
+	newPos.SetZ(pos.z);
+	ComponentCollider* collider = new ComponentCollider(Game::GetGame()->GetMesh("cube")->GetVertices());
 
-	ComponentCollider* collider = new ComponentCollider(btVector3(2, 2, 2));
+	//pos[0] = collider->GetCenter().GetX();
+	//pos[1] = collider->GetCenter().GetY();
+	//pos[2] = collider->GetCenter().GetZ();
+
+	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f, 2.0f, 2.0f)));
+
+	//ComponentCollider* collider = new ComponentCollider(btVector3(0.177980006, 0.989475012, 4.58138275));
 	//ComponentCollider* collider = new ComponentCollider(1);
 
 	AddComponent(collider);
 
 	btScalar mass = 1.0;
+	//glm::vec3 posi = glm::vec3(GetComponent<ComponentCollider>()->GetCenter().GetX(), GetComponent<ComponentCollider>()->GetCenter().GetY(), GetComponent<ComponentCollider>()->GetCenter().GetZ());
+
 	ComponentRigidBody* rb = new ComponentRigidBody(collider, mass, pos);
 	AddComponent(rb);
 }

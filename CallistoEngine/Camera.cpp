@@ -1,5 +1,6 @@
 #include "Camera.h"
 #include <iostream>
+#include "Game.h"
 
 Camera::Camera(const glm::vec3 pPos, const float pWidth, const float pHeight)
 {
@@ -17,6 +18,8 @@ Camera::Camera(const glm::vec3 pPos, const float pWidth, const float pHeight)
 	cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 
 	view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+	mMoveSpeedModifier = 1.0f;
+
 
 	/*float aspect = pWidth / pHeight;
 	float fov = glm::radians(45.0f);
@@ -26,12 +29,14 @@ Camera::Camera(const glm::vec3 pPos, const float pWidth, const float pHeight)
 	projection = glm::mat4(1.0f);
 		projection = glm::perspective(fov, aspect, near, far);*/
 
-		UpdateProjection(pWidth, pHeight);
-
+	UpdateProjection(pWidth, pHeight);
+	mFov = 45.0f;
+	mWidth = pWidth;
+	mHeight = pHeight;
 
 	//glm::mat4 projection2 = glm::perspective(glm::radians(45.0f), (float)800 / (float)800, 0.1f, 500.0f);
 	//projection = projection2;
-	
+
 	UpdateView();
 
 
@@ -40,20 +45,26 @@ Camera::Camera(const glm::vec3 pPos, const float pWidth, const float pHeight)
 
 void Camera::MoveForward(const float pMoveAmount)
 {
-	cameraPos += cameraFront * pMoveAmount;
+	cameraPos += cameraFront * mMoveSpeedModifier * pMoveAmount * Game::GetGame()->GetDeltaTime();
+	mMoveSpeedModifier = 1.0f;
+
 	UpdateView();
 }
 
 void Camera::Strafe(const float pMoveAmount)
 {
-	cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * pMoveAmount;
+	cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * mMoveSpeedModifier * pMoveAmount * Game::GetGame()->GetDeltaTime();;
+	mMoveSpeedModifier = 1.0f;
+
 	UpdateView();
 
 }
 
 void Camera::MoveUp(const float pMoveAmount)
 {
-	cameraPos += cameraUp * pMoveAmount;
+	cameraPos += cameraUp * mMoveSpeedModifier * pMoveAmount * Game::GetGame()->GetDeltaTime();;
+	mMoveSpeedModifier = 1.0f;
+
 	UpdateView();
 }
 
@@ -79,6 +90,11 @@ void Camera::Rotate(const float pYaw)
 	cameraUp = glm::cross(cameraDir, cameraRight);
 
 	UpdateView();
+}
+
+const void Camera::IncreaseSpeedMod(const float pModifer)
+{
+	mMoveSpeedModifier = pModifer;
 }
 
 Vector3f Camera::GetPosition() const
@@ -120,7 +136,6 @@ Vector3f Camera::GetUp() const
 void Camera::UpdateProjection(const float pWidth, const float pHeight, const float fov, const float near, const float far)
 {
 	float aspect = pWidth / pHeight;
-
 	projection = glm::mat4(1.0f);
 	projection = glm::perspective(glm::radians(fov), aspect, near, far);
 }

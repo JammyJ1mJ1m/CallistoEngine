@@ -24,11 +24,10 @@ void ShooterGame::Initialise(Window* pWindow)
 
 	ResourceManager& RM = ResourceManager::getInstance();
 	LoadMesh("Resources/Geometry/Floor/FloorTwo.obj", "ship", RM);
-	LoadMesh("Resources/Geometry/test/Tester.obj", "tester", RM);
+	LoadMesh("Resources/Geometry/CardBox/ak.obj", "tester", RM);
 	LoadMesh("Resources/Geometry/RPG/rpg.obj", "rpg", RM);
 	LoadMesh("Resources/Geometry/CardBox/box.obj", "cube", RM);
 	LoadMesh("Resources/Geometry/Barrel/expBarrel.obj", "barrel", RM);
-
 
 	mSceneManager.PushScene(new GameScene());
 }
@@ -62,8 +61,8 @@ void ShooterGame::Render()
 	mWindow->GetMousePos(x, y);
 	mCamera->HandleMouse(x, y);
 
-	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
-	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
+	PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
+	PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
 }
 
 void ShooterGame::Run()

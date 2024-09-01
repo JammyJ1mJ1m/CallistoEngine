@@ -29,6 +29,8 @@ Game::Game() :
 	mRenderSystem = nullptr;
 	mDiscordManager = new DiscordManager();
 	mDiscordManager->initDiscord();
+
+	// TODO: renable this at a later date, this avoids spamming my steam friends with dev testing notifs
 	mSteamManager = new SteamManager();
 	mSteamManager->initSteam();
 }

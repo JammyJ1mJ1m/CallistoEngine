@@ -19,9 +19,12 @@ private:
 	glm::mat4 view;
 	glm::mat4 projection;
 	glm::mat4 position; // proj * view
-
+	float mMoveSpeedModifier;
 	float pitch;
 	float yaw;
+	float mWidth;
+	float mHeight;
+	float mFov;
 
 	//Camera() {}	// Constructor? (the {} brackets) are needed here.
 
@@ -51,6 +54,7 @@ public:
 	void Strafe(const float pMoveAmount);
 	void UpdateView();
 	void Rotate(const float pYaw);
+	const void IncreaseSpeedMod(const float pModifer);
 
 	glm::mat4 GetView() const { return view; }
 	glm::mat4 GetProjection() const { return projection; }

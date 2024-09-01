@@ -19,6 +19,7 @@ private:
     Command* mAltLeftKeyCommand;
     Command* mAltBckKeyCommand;
     Command* mAltRightKeyCommand;
+    Command* mBoostCommand;
 
     // map of keys to commands
     CommandMap mCommandMap;

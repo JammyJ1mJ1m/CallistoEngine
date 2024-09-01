@@ -18,6 +18,8 @@ GameInputManager::GameInputManager()
 	mAltBckKeyCommand = new MoveBackwardCommand();
 	mAltLeftKeyCommand = new MoveLeftCommand();
 	mAltRightKeyCommand = new MoveRightCommand();
+
+	mBoostCommand = new BoostCommand();
 	//mRotateLeftCommand = new RotateLeftCommand();
 	//mRotateRightCommand = new RotateRightCommand();
 
@@ -33,6 +35,7 @@ GameInputManager::GameInputManager()
 	mCommandMap["alt_move_back"] = mAltBckKeyCommand;
 	mCommandMap["alt_move_left"] = mAltLeftKeyCommand;
 	mCommandMap["alt_move_right"] = mAltRightKeyCommand;
+	mCommandMap["boost"] = mBoostCommand;
 
 	// Initialize default key bindings
 	ReadControlsConfig("Config/settings.toml");

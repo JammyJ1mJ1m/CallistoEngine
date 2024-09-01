@@ -7,7 +7,7 @@ void MoveCamForwardCommand::execute(Entity* pEntity)
 	// get game instance
 	Game* game = Game::GetGame();
 
-	game->GetGameCamera()->MoveForward(32.0f * game->GetDeltaTime());
+	game->GetGameCamera()->MoveForward(32.0f);
 
 	// std::cout << "MoveForwardCommand executed" << std::endl;
 }

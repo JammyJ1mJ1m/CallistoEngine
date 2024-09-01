@@ -5,66 +5,104 @@
 template<typename T, int N>
 class Vector
 {
-    T _elements[N];
+	T _elements[N];
 public:
-    Vector() {
-        for (int i = 0; i < N; ++i)
-            _elements[i] = T();
-    }
+	Vector() {
+		for (int i = 0; i < N; ++i)
+			_elements[i] = T();
+	}
 
-    Vector(const T values[]) {
-        for (int i = 0; i < N; ++i)
-            _elements[i] = values[i];
-    }
+	Vector(const T values[]) {
+		for (int i = 0; i < N; ++i)
+			_elements[i] = values[i];
+	}
 
-    Vector(const Vector& copy) {
-        for (int i = 0; i < N; ++i)
-            _elements[i] = copy._elements[i];
-    }
+	Vector(const Vector& copy) {
+		for (int i = 0; i < N; ++i)
+			_elements[i] = copy._elements[i];
+	}
 
-    Vector(const std::initializer_list<T>& list) {
-        int i = 0;
-        for (const auto& element : list) {
-            if (i >= N) break; 
-            _elements[i++] = element;
-        }
-    }
+	Vector(const std::initializer_list<T>& list) {
+		int i = 0;
+		for (const auto& element : list) {
+			if (i >= N) break;
+			_elements[i++] = element;
+		}
+	}
 
-    Vector& operator=(const Vector& copy) {
-        if (this != &copy) {
-            for (int i = 0; i < N; ++i)
-                _elements[i] = copy._elements[i];
-        }
-        return *this;
-    }
+	Vector(const float x, const float y) {
+		_elements[0] = x;
+		_elements[1] = y;
+	}
 
-    T GetX() const { return _elements[0]; }
-    T GetY() const { return _elements[1]; }
-    T GetZ() const { return _elements[2]; }
-    T GetW() const { return _elements[3]; }
+	Vector(const float x, const float y, const float z) {
+		_elements[0] = x;
+		_elements[1] = y;
+		_elements[2] = z;
+	}
 
-    void SetX(T value) { _elements[0] = value; }
-    void SetY(T value) { _elements[1] = value; }
-    void SetZ(T value) { _elements[2] = value; }
-    void SetW(T value) { _elements[3] = value; }
+	Vector(const float x, const float y, const float z, const float w) {
+		_elements[0] = x;
+		_elements[1] = y;
+		_elements[2] = z;
+		_elements[3] = w;
+	}
 
-    T Length() const {
-        T sumSquares = T();
-        for (int i = 0; i < N; ++i)
-            sumSquares += _elements[i] * _elements[i];
-        return std::sqrt(sumSquares);
-    }
+	Vector& operator=(const Vector& copy) {
+		if (this != &copy) {
+			for (int i = 0; i < N; ++i)
+				_elements[i] = copy._elements[i];
+		}
+		return *this;
+	}
 
-    void Normalize() {
-        T len = Length();
-        if (len != T()) {
-            for (int i = 0; i < N; ++i)
-                _elements[i] /= len;
-        }
-    }
+	Vector operator+(const Vector& other) const {
+		Vector result;
+		for (int i = 0; i < N; ++i)
+			result._elements[i] = _elements[i] + other._elements[i];
+		return result;
+	}
+
+	Vector& operator*(T scalar) {
+		for (int i = 0; i < N; ++i)
+			_elements[i] *= scalar;
+		return *this;
+	}
+
+	Vector& operator+=(const Vector& other) {
+		for (int i = 0; i < N; ++i)
+			_elements[i] += other._elements[i];
+		return *this;
+	}
 
 
-    virtual ~Vector() {}
+	T GetX() const { return _elements[0]; }
+	T GetY() const { return _elements[1]; }
+	T GetZ() const { return _elements[2]; }
+	T GetW() const { return _elements[3]; }
+
+	void SetX(T value) { _elements[0] = value; }
+	void SetY(T value) { _elements[1] = value; }
+	void SetZ(T value) { _elements[2] = value; }
+	void SetW(T value) { _elements[3] = value; }
+
+	T Length() const {
+		T sumSquares = T();
+		for (int i = 0; i < N; ++i)
+			sumSquares += _elements[i] * _elements[i];
+		return std::sqrt(sumSquares);
+	}
+
+	void Normalize() {
+		T len = Length();
+		if (len != T()) {
+			for (int i = 0; i < N; ++i)
+				_elements[i] /= len;
+		}
+	}
+
+
+	virtual ~Vector() {}
 };
 
 typedef Vector<float, 2> Vector2f;

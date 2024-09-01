@@ -7,7 +7,7 @@ void MoveCamRightCommand::execute(Entity* pEntity)
 	// get game instance
 	Game* game = Game::GetGame();
 
-	game->GetGameCamera()->Strafe(32.0f * game->GetDeltaTime());
+	game->GetGameCamera()->Strafe(32.0f );
 
 	// std::cout << "MoveRightCommand executed" << std::endl;
 }

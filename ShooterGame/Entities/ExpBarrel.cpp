@@ -19,11 +19,11 @@ void ExpBarrel::start()
 	std::vector<Vertex> vertices = Game::GetGame()->GetMesh("barrel")->GetVertices();
 	std::vector<int> indices = Game::GetGame()->GetMesh("barrel")->GetIndices();
 
-	ComponentCollider* collider = new ComponentCollider(2, 2.75);
+    ComponentCollider* collider = new ComponentCollider(2, 2.75);
+    //ComponentCollider* collider2 = new ComponentCollider(btVector3(3,4,4));
 	//ComponentCollider* collider = new ComponentCollider(2/*,2.75*/);
-	
-
 	AddComponent(collider);
+	//AddComponent(collider2);
 
 	int mass = 1;
 	ComponentRigidBody* rb = new ComponentRigidBody(collider, mass, pos, false);

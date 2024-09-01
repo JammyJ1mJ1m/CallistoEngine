@@ -15,6 +15,7 @@ alt_move_forward = "up"
 alt_move_back = "down"
 alt_move_left = "left"
 alt_move_right = "right"
+boost = "left_shift"
 
 [settings.display]
 resolution = "800x800"
