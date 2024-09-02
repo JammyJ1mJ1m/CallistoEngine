@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "Bullet/btBulletDynamicsCommon.h"
-
+#include "../Math/Vector.h"
 
 class ComponentTransform : public IComponent
 {
@@ -20,11 +20,25 @@ public:
 	ComponentTransform(glm::vec3 pPos, glm::vec3 pRot, glm::vec3 pScale );
 	~ComponentTransform() = default;
 
-	inline const glm::vec3& GetPosition() { return position; }
+	//inline const glm::vec3& GetPosition() { return position; }
+	inline const Vector3f& GetPosition() { return Vector3f(position.x,position.y,position.z); }
 	inline const glm::vec3& GetRotation() { return rotation; }
 	inline const glm::vec3& GetScale() { return scale; }
 
-	inline void SetPosition(glm::vec3 pPosition) { position = pPosition; UpdateModelMatrix(); }
+	//inline void SetPosition(glm::vec3 pPosition) { position = pPosition; UpdateModelMatrix(); }
+
+
+	inline void SetPosition(const Vector3f& pPosition)
+	{
+		position.x = pPosition.GetX(); 
+		position.y = pPosition.GetY();
+		position.z = pPosition.GetZ();
+		
+		UpdateModelMatrix(); 
+	}
+
+
+
 	inline void SetRotation(glm::vec3 pRotation) { rotation = pRotation; UpdateModelMatrix(); }
 	inline void SetScale(glm::vec3 pScale) { scale = pScale; UpdateModelMatrix(); }
 

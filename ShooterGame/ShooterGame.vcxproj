@@ -210,6 +210,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entities\GunAK.cpp" />
     <ClCompile Include="GameCommands\BoostCommand.cpp" />
     <ClCompile Include="Components\ComponentShaderDefault.cpp" />
     <ClCompile Include="Components\ComponentShaderError.cpp" />
@@ -236,6 +237,7 @@
     <ClCompile Include="Entities\TestCube.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Entities\GunAK.h" />
     <ClInclude Include="GameCommands\BoostCommand.h" />
     <ClInclude Include="Components\ComponentShaderDefault.h" />
     <ClInclude Include="Components\ComponentShaderError.h" />

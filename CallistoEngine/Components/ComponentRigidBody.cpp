@@ -66,11 +66,11 @@ void ComponentRigidBody::SyncWithTransform(ComponentTransform* pTransform)
 	//pTransform->SetRotation(t);
 }
 
-void ComponentRigidBody::SetPosition(glm::vec3 pPos)
+void ComponentRigidBody::SetPosition(const Vector3f pPos)
 {
 	btTransform transform;
 	transform.setIdentity();
-	transform.setOrigin(btVector3(pPos.x, pPos.y, pPos.z));
+	transform.setOrigin(btVector3(pPos.GetX(), pPos.GetY(), pPos.GetZ()));
 	mRigidBody->setWorldTransform(transform);
 	mRigidBody->getMotionState()->setWorldTransform(transform);
 

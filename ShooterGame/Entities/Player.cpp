@@ -26,8 +26,10 @@ void Player::start()
 
 }
 
-void Player::SetPosition()
+void Player::SetPosition(const Vector3f& pPosition)
 {
+	GetComponent<ComponentTransform>()->SetPosition(pPosition);
+	GetComponent<ComponentRigidBody>()->SetPosition(pPosition);
 }
 
 Player::Player()
@@ -36,33 +38,29 @@ Player::Player()
 	start();
 }
 
-void Player::SetPosition(glm::vec3 pPos)
-{
-	GetComponent<ComponentTransform>()->SetPosition(pPos);
-	GetComponent<ComponentRigidBody>()->SetPosition(pPos);
-}
+
 
 void Player::MoveForward()
 {
 
 	//GetComponent<ComponentTransform>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + glm::vec3(0.0f, 0.0f, 0.1f));
-	GetComponent<ComponentRigidBody>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + glm::vec3(0.0f, 0.0f, 0.1f));	
+	GetComponent<ComponentRigidBody>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + Vector3f(0.0f, 0.0f, 0.1f));	
 }
 
 void Player::MoveBackward()
 {
-	//GetComponent<ComponentTransform>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + glm::vec3(0.0f, 0.0f, -0.1f));
-	GetComponent<ComponentRigidBody>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + glm::vec3(0.0f, 0.0f, -0.1f));
+	//GetComponent<ComponentTransform>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + Vector3f(0.0f, 0.0f, -0.1f));
+	GetComponent<ComponentRigidBody>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + Vector3f(0.0f, 0.0f, -0.1f));
 }
 
 void Player::MoveLeft()
 {
-	//GetComponent<ComponentTransform>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + glm::vec3(-0.1f, 0.0f, 0.0f));
-	GetComponent<ComponentRigidBody>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + glm::vec3(-0.1f, 0.0f, 0.0f));
+	//GetComponent<ComponentTransform>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + Vector3f(-0.1f, 0.0f, 0.0f));
+	GetComponent<ComponentRigidBody>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + Vector3f(-0.1f, 0.0f, 0.0f));
 }
 
 void Player::MoveRight()
 {
-	//GetComponent<ComponentTransform>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + glm::vec3(0.1f, 0.0f, 0.0f));
-	GetComponent<ComponentRigidBody>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + glm::vec3(0.1f, 0.0f, 0.0f));
+	//GetComponent<ComponentTransform>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + Vector3f(0.1f, 0.0f, 0.0f));
+	GetComponent<ComponentRigidBody>()->SetPosition(GetComponent<ComponentTransform>()->GetPosition() + Vector3f(0.1f, 0.0f, 0.0f));
 }

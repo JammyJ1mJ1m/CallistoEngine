@@ -12,6 +12,7 @@
 #include "SkyBox.h"
 #include "ExpBarrel.h"
 #include "TestCube.h"
+#include "GunAK.h"
 
 #include "Managers/PhysicsManager.h"
 #include "Managers/InputManager.h"
@@ -50,6 +51,9 @@ void GameScene::Initialise()
 
 	testCube = new TestCube();
 	AddEntity(testCube);
+
+	GunAK* gun = new GunAK();
+	AddEntity(gun);
 
 
 
@@ -175,5 +179,11 @@ void GameScene::Render(SystemRender* renderer)
 		}
 
 		renderer->Run(enti);
+		for(auto& child : enti->GetChildren())
+		{
+			// sync the enti position with the child pos
+			//child->SetPosition(enti->GetComponent<ComponentTransform>()->GetPosition() + child->GetComponent<ComponentTransform>()->GetPosition());
+			renderer->Run(child);
+		}
 	}
 }

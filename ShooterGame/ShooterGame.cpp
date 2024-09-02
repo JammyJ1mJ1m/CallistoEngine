@@ -24,10 +24,11 @@ void ShooterGame::Initialise(Window* pWindow)
 
 	ResourceManager& RM = ResourceManager::getInstance();
 	LoadMesh("Resources/Geometry/Floor/FloorTwo.obj", "ship", RM);
-	LoadMesh("Resources/Geometry/CardBox/ak.obj", "tester", RM);
-	LoadMesh("Resources/Geometry/RPG/rpg.obj", "rpg", RM);
+	LoadMesh("Resources/Geometry/CardBox/box.obj", "tester", RM);
+	LoadMesh("Resources/Geometry/Guns/RPG/rpg.obj", "rpg", RM);
 	LoadMesh("Resources/Geometry/CardBox/box.obj", "cube", RM);
 	LoadMesh("Resources/Geometry/Barrel/expBarrel.obj", "barrel", RM);
+	LoadMesh("Resources/Geometry/Guns/AK/AK.obj", "AK", RM);
 
 	mSceneManager.PushScene(new GameScene());
 }

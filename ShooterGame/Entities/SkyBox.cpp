@@ -13,16 +13,13 @@ void SkyBox::start()
 
 }
 
-void SkyBox::SetPosition()
-{
-}
 
 SkyBox::SkyBox()
 {
 	start();
 }
 
-void SkyBox::SetPosition(glm::vec3 pPos)
+void SkyBox::SetPosition(const Vector3f& pPosition)
 {
 }
 

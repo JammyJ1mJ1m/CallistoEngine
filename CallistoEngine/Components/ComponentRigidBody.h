@@ -31,7 +31,7 @@ class ComponentRigidBody : public IComponent
 		inline void SetMass(btScalar pMass) { mMass = pMass; }
 
 		void SyncWithTransform(ComponentTransform* pTransform);
-		void SetPosition(glm::vec3 pPos);
+		void SetPosition(const Vector3f pPos);
 
 		// ******************************************************
 		// inherited stuff

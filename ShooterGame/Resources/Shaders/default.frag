@@ -20,7 +20,6 @@ vec4 calculatePointLight(int i)
     vec3 lightColor = vec3(1.0, 1.0, 1.0);
     vec3 specColor = vec3(1.0, 0.0, 1.0);
     vec3 objectColor = texture(ourTexture, TexCoord).rgb;
-
     // ambient
     vec3 ambient = 0.1 * objectColor;
   	

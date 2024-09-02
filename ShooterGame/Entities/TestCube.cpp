@@ -27,19 +27,17 @@ void TestCube::start()
 	AddComponent(rb);
 }
 
-void TestCube::SetPosition()
-{
-}
+
 
 TestCube::TestCube()
 {
 	start();
 }
 
-void TestCube::SetPosition(glm::vec3 pPos)
+void TestCube::SetPosition(const Vector3f& pPosition)
 {
-	GetComponent<ComponentTransform>()->SetPosition(pPos);
-	GetComponent<ComponentRigidBody>()->SetPosition(pPos);
+	GetComponent<ComponentTransform>()->SetPosition(pPosition);
+	GetComponent<ComponentRigidBody>()->SetPosition(pPosition);
 }
 
 void TestCube::SetRotation(glm::vec3 pRot)

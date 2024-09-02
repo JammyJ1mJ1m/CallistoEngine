@@ -9,7 +9,7 @@
 class Enemy : public Entity
 {
 	virtual void start();
-	void SetPosition() override;
+	void SetPosition(const Vector3f& pPosition) override;
 
 public:
 	Enemy();

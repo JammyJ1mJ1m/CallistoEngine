@@ -7,6 +7,12 @@ class Vector
 {
 	T _elements[N];
 public:
+
+	const T x = _elements[0];
+	const T y = _elements[1];
+	const T z = _elements[2];
+	const T w = _elements[3];
+
 	Vector() {
 		for (int i = 0; i < N; ++i)
 			_elements[i] = T();

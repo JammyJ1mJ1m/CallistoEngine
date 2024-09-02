@@ -35,14 +35,10 @@ void Enemy::start()
 	AddComponent(rb);
 }
 
-void Enemy::SetPosition()
+void Enemy::SetPosition(const Vector3f& pPosition)
 {
-}
-
-void Enemy::SetPosition(glm::vec3 pPos)
-{
-	GetComponent<ComponentTransform>()->SetPosition(pPos);
-	GetComponent<ComponentRigidBody>()->SetPosition(pPos);
+	GetComponent<ComponentTransform>()->SetPosition(pPosition);
+	GetComponent<ComponentRigidBody>()->SetPosition(pPosition);
 }
 
 void Enemy::MoveForward()

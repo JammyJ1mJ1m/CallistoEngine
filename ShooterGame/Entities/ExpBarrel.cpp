@@ -30,19 +30,17 @@ void ExpBarrel::start()
 	AddComponent(rb);
 }
 
-void ExpBarrel::SetPosition()
-{
-}
+
 
 ExpBarrel::ExpBarrel()
 {
 	start();
 }
 
-void ExpBarrel::SetPosition(glm::vec3 pPos)
+void ExpBarrel::SetPosition(const Vector3f& pPosition)
 {
-	GetComponent<ComponentTransform>()->SetPosition(pPos);
-	GetComponent<ComponentRigidBody>()->SetPosition(pPos);
+    GetComponent<ComponentTransform>()->SetPosition(pPosition);
+    GetComponent<ComponentRigidBody>()->SetPosition(pPosition);
 }
 
 void ExpBarrel::applyExplosionForce(btDiscreteDynamicsWorld& world, const btVector3& explosionOrigin, btScalar explosionStrength, btScalar explosionRadius)

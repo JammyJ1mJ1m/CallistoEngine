@@ -5,14 +5,14 @@
 
 #include "Components/ComponentTransform.h"
 
-class TestCube : public Entity
+class GunAK : public Entity
 {
 	virtual void start();
 	void SetPosition(const Vector3f& pPosition) override;
 
 public:
-	TestCube();
-	~TestCube() = default;
+	GunAK();
+	~GunAK() = default;
 
 	//void SetPosition(glm::vec3 pPos);
 	void SetRotation(glm::vec3 pRot);
