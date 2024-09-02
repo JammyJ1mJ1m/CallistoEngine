@@ -7,24 +7,6 @@ Currently, I am focusing on implementing the OpenGL side of things.
 ## How to use  
 ### Resources
 <details closed>
-<summary>Cubemaps</summary>
-  
-### Cubemaps can be loaded from a config file and its layout is as follows:
-```
-kright   local location to right image\\right.png
-kleft    local location to left image\\left.png
-ktop     local location to top image\\top.png
-kbottom  local location to bottom image\\bottom.png
-kfront   local location to front image\\front.png
-kback    local location to back image\\back.png
-```
-lines marked with # are ignored so they can be used as comments, at least that's what I use. It isn't picky so you could use whatever you wanted or none at all.
-</details>
-
-
-
-
-<details closed>
 <summary>Materials</summary>  
   
  ### Materials files (.mtl)
@@ -39,3 +21,23 @@ lines marked with # are ignored so they can be used as comments, at least that's
 
 </details>
   
+<details closed>
+<summary>Cubemaps</summary>
+  
+### Cubemaps can be loaded from a config file and its layout is as follows:
+```
+kright   local location to right image\\right.png
+kleft    local location to left image\\left.png
+ktop     local location to top image\\top.png
+kbottom  local location to bottom image\\bottom.png
+kfront   local location to front image\\front.png
+kback    local location to back image\\back.png
+```
+Alternatively, much like standard .mtl files, you can pass in the image itself:
+```
+kright   right.png
+kleft    left.png
+... ...
+```
+lines marked with # are ignored so they can be used as comments, at least that's what I use. It isn't picky so you could use whatever you wanted or none at all.
+</details>
