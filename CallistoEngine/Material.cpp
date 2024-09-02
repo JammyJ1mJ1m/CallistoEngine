@@ -1,6 +1,5 @@
 #include "Material.h"
 
-
 void replaceAll(std::string& str, const std::string& from, const std::string& to) {
 	if (from.empty())
 		return;
@@ -14,10 +13,21 @@ void replaceAll(std::string& str, const std::string& from, const std::string& to
 
 }
 
+void checkDir(std::string& line, std::string& pFileLoc)
+{
+	std::size_t pos = pFileLoc.find_last_of("/\\");
+
+	// Extract the substring from the start to the position before the last separator
+	std::string directoryPath = (pos != std::string::npos) ? pFileLoc.substr(0, pos + 1) : "";
+
+	replaceAll(directoryPath, "/", "\\");
+
+	if (line.find(directoryPath) == std::string::npos)
+		line = directoryPath + line;
+}
+
 void Material::LoadMaterial(std::string pFile)
 {
-
-
 	std::ifstream fileStram;
 
 	fileStram.open(pFile);
@@ -35,16 +45,17 @@ void Material::LoadMaterial(std::string pFile)
 
 		if (CheckLine(line, "map_Kd"))
 		{
+			checkDir(line, pFile);
 			mDiffuseMap = manager.LoadTexture(line.c_str());
 		}
 		if (CheckLine(line, "map_Bump"))
 		{
+			checkDir(line, pFile);
 			mNormalMap = manager.LoadTexture(line.c_str());
 		}
 	}
+
 	// if none of the textures are found, load the default texture
-
-
 	if (mDiffuseMap == -1)
 	{
 		std::cout << "Texture :: Diffuse not loaded :: mtl = " << pFile << std::endl;

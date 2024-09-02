@@ -5,7 +5,7 @@
 
 void TestCube::start()
 {
-	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("tester"), "Resources/textures/ak.mtl"));
+	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("tester"), "Resources/textures/TestCube.mtl"));
 	AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
 
 	glm::vec3 pos = glm::vec3(15.0f, 0.0f, 0.0f);
@@ -14,7 +14,7 @@ void TestCube::start()
 
 	// create mesh colider shape
 	std::vector<Vertex> vertices = Game::GetGame()->GetMesh("tester")->GetVertices();
-	std::vector<int> indices = Game::GetGame()->GetMesh("cube")->GetIndices();
+	std::vector<int> indices = Game::GetGame()->GetMesh("tester")->GetIndices();
 
 	Vector3f newPos;
 	newPos.SetX(pos.x);

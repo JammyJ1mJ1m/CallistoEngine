@@ -47,6 +47,8 @@ std::string ResourceManager::LoadShader(const char* pFile)
 
 int ResourceManager::LoadTexture(const std::string pFile)
 {
+
+
 	bool fileExists = false;
 	// Search for a specific value
 	for (const auto& pair : mTextures) {
