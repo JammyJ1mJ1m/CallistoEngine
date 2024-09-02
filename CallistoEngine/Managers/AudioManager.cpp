@@ -1,6 +1,6 @@
 #include "AudioManager.h"
 #include "../Game.h"
-#include "../Vector.h"
+#include "../Math/Vector.h"
 
 AudioManager* AudioManager::mInstance = nullptr;
 

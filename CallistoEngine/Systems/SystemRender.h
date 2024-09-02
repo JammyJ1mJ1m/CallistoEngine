@@ -1,6 +1,6 @@
 #pragma once
 #include "ISystem.h"
-#include "../Renderer.h"
+#include "../Graphical/Renderer.h"
 
 
 class SystemRender : public ISystem

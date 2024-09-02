@@ -1,24 +1,24 @@
 #pragma once
-#include "Window.h"
-#include "Renderer.h"
+#include "Graphical/Window.h"
+#include "Graphical/Renderer.h"
 #include <vector>
 #include "Components/Entity.h"
-#include "Mesh.h"
+#include "Graphical/Mesh.h"
 #include <map>
 
-#include "Camera.h"
-#include "SceneManager.h"
+#include "Misc/Camera.h"
+#include "Managers/SceneManager.h"
 
 #include "Systems/SystemRender.h"
 #include "Managers/AudioManager.h"
 
-#include "DiscordManager.h"
+#include "Managers/DiscordManager.h"
 
 #include "Managers/ResourceManager.h"
 #include "chrono"
 
 
-#include "SteamManager.h"
+#include "Managers/SteamManager.h"
 
 using MeshMap = std::map<std::string, Mesh*>;
 using MeshMapIterator = MeshMap::iterator;

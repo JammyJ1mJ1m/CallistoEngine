@@ -10,13 +10,13 @@
 #include "time.h"
 #include "chrono"
 #include <sstream>
-#include "toml.hpp"
+#include "Misc/toml.hpp"
 #include <iostream>
 #include "Managers/DisplayManager.h"
 #include <stdio.h>
 
 #if OPENGL
-#include "Window_GL.h"
+#include "Graphical/Window_GL.h"
 #endif
 #include <fstream>
 #if OPENGL	

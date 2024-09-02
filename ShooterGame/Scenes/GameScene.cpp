@@ -4,8 +4,8 @@
 #include "Components/ComponentShader.h"
 #include "Components/ComponentTransform.h"
 #include "Components/ComponentRigidBody.h"
-#include "Vector.h"
-#include "Material.h"
+#include "Math/Vector.h"
+#include "Misc/Material.h"
 #include "Systems/SystemRender.h"
 #include "Player.h"
 #include "Enemy.h"
@@ -16,7 +16,7 @@
 #include "Managers/PhysicsManager.h"
 #include "Managers/InputManager.h"
 
-#include "Sound.h"
+#include "Misc/Sound.h"
 
 Player* player;
 ExpBarrel* expBarrel;

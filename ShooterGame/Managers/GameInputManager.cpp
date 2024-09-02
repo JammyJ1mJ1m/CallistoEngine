@@ -1,11 +1,11 @@
 #include "GameInputManager.h"
 #include "../GameCommands/GameCommands.h"
-#include "toml.hpp"
+#include "Misc/toml.hpp"
 #include <iostream>
 #include <sstream>
 #include <fstream>
 
-#include "TomlReader.h"
+#include "Misc/TomlReader.h"
 
 GameInputManager::GameInputManager()
 {

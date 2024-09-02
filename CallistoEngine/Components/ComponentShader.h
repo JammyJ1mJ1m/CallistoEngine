@@ -4,7 +4,7 @@
 
 #if OPENGL
 #include "../Objects/ShaderObject_GL.h"
-#include "../Camera.h"
+#include "../Misc/Camera.h"
 #elif DIRECTX
 #include "../Objects/ShaderObject_DX.h"
 #endif

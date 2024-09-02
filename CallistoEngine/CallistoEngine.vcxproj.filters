@@ -39,22 +39,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SceneManager.cpp">
+    <ClCompile Include="Managers\SceneManager.cpp">
       <Filter>Engine\Window</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
+    <ClCompile Include="Graphical\Window.cpp">
       <Filter>Engine\Window</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
+    <ClCompile Include="Graphical\Renderer.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Window_GL.cpp">
+    <ClCompile Include="Graphical\Window_GL.cpp">
       <Filter>Engine\Window</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer_GL.cpp">
+    <ClCompile Include="Graphical\Renderer_GL.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="glad.c">
@@ -69,13 +69,13 @@
     <ClCompile Include="Components\ComponentModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
+    <ClCompile Include="Graphical\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VBO.cpp">
+    <ClCompile Include="Graphical\VBO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VBO_GL.cpp">
+    <ClCompile Include="Graphical\VBO_GL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\ComponentShader.cpp">
@@ -90,10 +90,10 @@
     <ClCompile Include="Managers\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stb_image.cpp">
+    <ClCompile Include="Graphical\stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Material.cpp">
+    <ClCompile Include="Misc\Material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\ComponentTransform.cpp">
@@ -105,13 +105,13 @@
     <ClCompile Include="Systems\ISystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
+    <ClCompile Include="Misc\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
+    <ClCompile Include="Scenes\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="System.cpp">
+    <ClCompile Include="Systems\System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\ComponentRigidBody.cpp">
@@ -126,7 +126,7 @@
     <ClCompile Include="Managers\AudioManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sound.cpp">
+    <ClCompile Include="Misc\Sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Managers\InputManager.cpp">
@@ -138,402 +138,402 @@
     <ClCompile Include="Managers\DisplayManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TomlReader.cpp">
+    <ClCompile Include="Misc\TomlReader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DiscordManager.cpp">
+    <ClCompile Include="Managers\DiscordManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SteamManager.cpp">
+    <ClCompile Include="Managers\SteamManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SceneManager.h">
+    <ClInclude Include="Managers\SceneManager.h">
       <Filter>Engine\Window</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
+    <ClInclude Include="Graphical\Window.h">
       <Filter>Engine\Window</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
+    <ClInclude Include="Graphical\Renderer.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Window_GL.h">
+    <ClInclude Include="Graphical\Window_GL.h">
       <Filter>Engine\Window</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer_GL.h">
+    <ClInclude Include="Graphical\Renderer_GL.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\glad\glad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\glad\glad.h">
+    <ClInclude Include="DependenciesOG\inc\glad\glad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLFW\glfw3.h">
+    <ClInclude Include="DependenciesOG\inc\GLFW\glfw3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLFW\glfw3native.h">
+    <ClInclude Include="DependenciesOG\inc\GLFW\glfw3native.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\_detail.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\_detail.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\_fixes.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\_fixes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\_swizzle.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\_swizzle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\_swizzle_func.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\_swizzle_func.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\_vectorize.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\_vectorize.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\func_common.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\func_common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\func_exponential.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\func_exponential.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\func_geometric.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\func_geometric.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\func_integer.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\func_integer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\func_matrix.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\func_matrix.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\func_noise.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\func_noise.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\func_packing.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\func_packing.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\func_trigonometric.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\func_trigonometric.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\func_vector_relational.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\func_vector_relational.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\hint.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\hint.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\intrinsic_common.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\intrinsic_common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\intrinsic_exponential.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\intrinsic_exponential.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\intrinsic_geometric.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\intrinsic_geometric.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\intrinsic_matrix.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\intrinsic_matrix.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\intrinsic_trigonometric.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\intrinsic_trigonometric.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\intrinsic_vector_relational.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\intrinsic_vector_relational.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\setup.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\setup.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_float.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_float.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_gentype.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_gentype.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_half.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_half.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_int.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_int.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_mat.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_mat.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_mat2x2.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_mat2x2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_mat2x3.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_mat2x3.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_mat2x4.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_mat2x4.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_mat3x2.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_mat3x2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_mat3x3.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_mat3x3.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_mat3x4.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_mat3x4.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_mat4x2.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_mat4x2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_mat4x3.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_mat4x3.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_mat4x4.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_mat4x4.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_size.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_size.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_vec.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_vec.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_vec1.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_vec1.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_vec2.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_vec2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_vec3.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_vec3.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\core\type_vec4.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\core\type_vec4.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtc\half_float.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtc\half_float.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtc\matrix_access.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtc\matrix_access.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtc\matrix_integer.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtc\matrix_integer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtc\matrix_inverse.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtc\matrix_inverse.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtc\matrix_transform.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtc\matrix_transform.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtc\noise.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtc\noise.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtc\quaternion.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtc\quaternion.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtc\random.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtc\random.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtc\swizzle.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtc\swizzle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtc\type_precision.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtc\type_precision.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtc\type_ptr.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtc\type_ptr.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\associated_min_max.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\associated_min_max.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\bit.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\bit.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\closest_point.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\closest_point.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\color_cast.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\color_cast.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\color_space.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\color_space.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\color_space_YCoCg.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\color_space_YCoCg.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\compatibility.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\compatibility.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\component_wise.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\component_wise.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\constants.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\constants.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\epsilon.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\epsilon.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\euler_angles.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\euler_angles.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\extend.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\extend.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\extented_min_max.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\extented_min_max.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\fast_exponential.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\fast_exponential.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\fast_square_root.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\fast_square_root.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\fast_trigonometry.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\fast_trigonometry.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\gradient_paint.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\gradient_paint.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\handed_coordinate_space.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\handed_coordinate_space.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\inertia.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\inertia.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\int_10_10_10_2.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\int_10_10_10_2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\integer.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\integer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\intersect.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\intersect.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\log_base.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\log_base.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\matrix_cross_product.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\matrix_cross_product.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\matrix_interpolation.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\matrix_interpolation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\matrix_major_storage.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\matrix_major_storage.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\matrix_operation.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\matrix_operation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\matrix_query.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\matrix_query.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\mixed_product.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\mixed_product.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\multiple.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\multiple.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\noise.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\noise.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\norm.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\norm.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\normal.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\normal.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\normalize_dot.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\normalize_dot.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\number_precision.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\number_precision.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\ocl_type.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\ocl_type.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\optimum_pow.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\optimum_pow.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\orthonormalize.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\orthonormalize.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\perpendicular.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\perpendicular.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\polar_coordinates.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\polar_coordinates.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\projection.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\projection.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\quaternion.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\quaternion.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\random.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\random.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\raw_data.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\raw_data.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\reciprocal.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\reciprocal.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\rotate_vector.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\rotate_vector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\simd_mat4.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\simd_mat4.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\simd_vec4.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\simd_vec4.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\spline.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\spline.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\std_based_type.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\std_based_type.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\string_cast.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\string_cast.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\transform.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\transform.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\transform2.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\transform2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\ulp.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\ulp.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\unsigned_int.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\unsigned_int.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\vec1.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\vec1.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\vector_access.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\vector_access.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\vector_angle.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\vector_angle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\vector_query.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\vector_query.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\verbose_operator.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\verbose_operator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\gtx\wrap.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\gtx\wrap.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\virtrev\xstream.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\virtrev\xstream.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\ext.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\ext.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\GLM\glm.hpp">
+    <ClInclude Include="DependenciesOG\inc\GLM\glm.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\inc\KHR\khrplatform.h">
+    <ClInclude Include="DependenciesOG\inc\KHR\khrplatform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\Entity.h">
@@ -545,16 +545,16 @@
     <ClInclude Include="Components\ComponentModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
+    <ClInclude Include="Graphical\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VBO.h">
+    <ClInclude Include="Graphical\VBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VBO_GL.h">
+    <ClInclude Include="Graphical\VBO_GL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
+    <ClInclude Include="Graphical\Vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\ComponentShader.h">
@@ -569,13 +569,13 @@
     <ClInclude Include="Managers\ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vector.h">
+    <ClInclude Include="Math\Vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="stb_image.h">
+    <ClInclude Include="Graphical\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Material.h">
+    <ClInclude Include="Misc\Material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\ComponentTransform.h">
@@ -587,13 +587,13 @@
     <ClInclude Include="Systems\ISystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="Misc\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
+    <ClInclude Include="Scenes\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="System.h">
+    <ClInclude Include="Systems\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\ComponentRigidBody.h">
@@ -602,7 +602,7 @@
     <ClInclude Include="Managers\PhysicsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BulletDebugDraw.h">
+    <ClInclude Include="Misc\BulletDebugDraw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\ComponentCollider.h">
@@ -611,7 +611,7 @@
     <ClInclude Include="Managers\AudioManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sound.h">
+    <ClInclude Include="Misc\Sound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Managers\InputManager.h">
@@ -620,16 +620,16 @@
     <ClInclude Include="Commands\Command.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="toml.hpp">
+    <ClInclude Include="Misc\toml.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Managers\DisplayManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TomlReader.h">
+    <ClInclude Include="Misc\TomlReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DiscordManager.h">
+    <ClInclude Include="Managers\DiscordManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Discord\discord_register.h">
@@ -638,7 +638,7 @@
     <ClInclude Include="Discord\discord_rpc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SteamManager.h">
+    <ClInclude Include="Managers\SteamManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -677,351 +677,316 @@
     <None Include="Shaders\default.frag">
       <Filter>Engine\Shaders\GL</Filter>
     </None>
-    <None Include="Dependencies\lib\glfw3.dll" />
-    <None Include="Dependencies\inc\GLM\core\func_common.inl">
+    <None Include="DependenciesOG\lib\glfw3.dll" />
+    <None Include="DependenciesOG\inc\GLM\core\func_common.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\func_exponential.inl">
+    <None Include="DependenciesOG\inc\GLM\core\func_exponential.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\func_geometric.inl">
+    <None Include="DependenciesOG\inc\GLM\core\func_geometric.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\func_integer.inl">
+    <None Include="DependenciesOG\inc\GLM\core\func_integer.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\func_matrix.inl">
+    <None Include="DependenciesOG\inc\GLM\core\func_matrix.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\func_noise.inl">
+    <None Include="DependenciesOG\inc\GLM\core\func_noise.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\func_packing.inl">
+    <None Include="DependenciesOG\inc\GLM\core\func_packing.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\func_trigonometric.inl">
+    <None Include="DependenciesOG\inc\GLM\core\func_trigonometric.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\func_vector_relational.inl">
+    <None Include="DependenciesOG\inc\GLM\core\func_vector_relational.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\intrinsic_common.inl">
+    <None Include="DependenciesOG\inc\GLM\core\intrinsic_common.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\intrinsic_exponential.inl">
+    <None Include="DependenciesOG\inc\GLM\core\intrinsic_exponential.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\intrinsic_geometric.inl">
+    <None Include="DependenciesOG\inc\GLM\core\intrinsic_geometric.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\intrinsic_matrix.inl">
+    <None Include="DependenciesOG\inc\GLM\core\intrinsic_matrix.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\intrinsic_trigonometric.inl">
+    <None Include="DependenciesOG\inc\GLM\core\intrinsic_trigonometric.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\intrinsic_vector_relational.inl">
+    <None Include="DependenciesOG\inc\GLM\core\intrinsic_vector_relational.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_gentype.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_gentype.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_half.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_half.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_mat.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_mat.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_mat2x2.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_mat2x2.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_mat2x3.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_mat2x3.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_mat2x4.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_mat2x4.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_mat3x2.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_mat3x2.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_mat3x3.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_mat3x3.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_mat3x4.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_mat3x4.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_mat4x2.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_mat4x2.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_mat4x3.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_mat4x3.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_mat4x4.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_mat4x4.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_vec.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_vec.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_vec1.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_vec1.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_vec2.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_vec2.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_vec3.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_vec3.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\core\type_vec4.inl">
+    <None Include="DependenciesOG\inc\GLM\core\type_vec4.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtc\half_float.inl">
+    <None Include="DependenciesOG\inc\GLM\gtc\half_float.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtc\matrix_access.inl">
+    <None Include="DependenciesOG\inc\GLM\gtc\matrix_access.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtc\matrix_inverse.inl">
+    <None Include="DependenciesOG\inc\GLM\gtc\matrix_inverse.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtc\matrix_transform.inl">
+    <None Include="DependenciesOG\inc\GLM\gtc\matrix_transform.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtc\noise.inl">
+    <None Include="DependenciesOG\inc\GLM\gtc\noise.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtc\quaternion.inl">
+    <None Include="DependenciesOG\inc\GLM\gtc\quaternion.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtc\random.inl">
+    <None Include="DependenciesOG\inc\GLM\gtc\random.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtc\swizzle.inl">
+    <None Include="DependenciesOG\inc\GLM\gtc\swizzle.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtc\type_precision.inl">
+    <None Include="DependenciesOG\inc\GLM\gtc\type_precision.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtc\type_ptr.inl">
+    <None Include="DependenciesOG\inc\GLM\gtc\type_ptr.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\associated_min_max.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\associated_min_max.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\bit.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\bit.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\closest_point.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\closest_point.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\color_cast.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\color_cast.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\color_space.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\color_space.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\color_space_YCoCg.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\color_space_YCoCg.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\compatibility.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\compatibility.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\component_wise.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\component_wise.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\constants.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\constants.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\epsilon.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\epsilon.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\euler_angles.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\euler_angles.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\extend.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\extend.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\extented_min_max.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\extented_min_max.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\fast_exponential.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\fast_exponential.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\fast_square_root.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\fast_square_root.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\fast_trigonometry.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\fast_trigonometry.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\gradient_paint.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\gradient_paint.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\handed_coordinate_space.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\handed_coordinate_space.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\inertia.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\inertia.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\int_10_10_10_2.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\int_10_10_10_2.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\integer.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\integer.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\intersect.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\intersect.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\log_base.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\log_base.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\matrix_cross_product.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\matrix_cross_product.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\matrix_interpolation.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\matrix_interpolation.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\matrix_major_storage.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\matrix_major_storage.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\matrix_operation.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\matrix_operation.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\matrix_query.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\matrix_query.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\mixed_product.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\mixed_product.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\multiple.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\multiple.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\noise.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\noise.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\norm.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\norm.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\normal.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\normal.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\normalize_dot.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\normalize_dot.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\number_precision.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\number_precision.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\ocl_type.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\ocl_type.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\optimum_pow.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\optimum_pow.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\orthonormalize.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\orthonormalize.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\perpendicular.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\perpendicular.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\polar_coordinates.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\polar_coordinates.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\projection.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\projection.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\quaternion.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\quaternion.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\random.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\random.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\raw_data.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\raw_data.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\reciprocal.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\reciprocal.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\rotate_vector.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\rotate_vector.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\simd_mat4.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\simd_mat4.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\simd_vec4.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\simd_vec4.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\spline.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\spline.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\std_based_type.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\std_based_type.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\string_cast.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\string_cast.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\transform.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\transform.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\transform2.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\transform2.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\ulp.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\ulp.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\unsigned_int.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\unsigned_int.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\vec1.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\vec1.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\vector_access.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\vector_access.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\vector_angle.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\vector_angle.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\vector_query.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\vector_query.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\verbose_operator.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\verbose_operator.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\inc\GLM\gtx\wrap.inl">
+    <None Include="DependenciesOG\inc\GLM\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Textures\rockwall.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\container.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\awesomeface.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\box.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\box_specular.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\box_specular2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\box2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Textures\box_emission.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Geometry\SpaceShip\diffuse.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Geometry\SpaceShip\Intergalactic_Spaceship_nmap_2_Tris.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Geometry\SpaceShip\Intergalactic_Spaceship_rough.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Shaders\3.1.1.debug_quad.vert">
@@ -1029,8 +994,8 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Dependencies\lib\glfw3.lib" />
-    <Library Include="Dependencies\lib\glfw3_mt.lib" />
-    <Library Include="Dependencies\lib\glfw3dll.lib" />
+    <Library Include="DependenciesOG\lib\glfw3.lib" />
+    <Library Include="DependenciesOG\lib\glfw3_mt.lib" />
+    <Library Include="DependenciesOG\lib\glfw3dll.lib" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 #include "DisplayManager.h"
-#include "../TomlReader.h"
+#include "../Misc/TomlReader.h"
 
 DisplayManager* DisplayManager::mInstance = nullptr;
 

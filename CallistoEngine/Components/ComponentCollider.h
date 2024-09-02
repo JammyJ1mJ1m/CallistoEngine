@@ -2,8 +2,8 @@
 #include "IComponent.h"
 #include "Bullet/btBulletDynamicsCommon.h"
 #include <vector>
-#include "../Vertex.h"
-#include "../Vector.h"
+#include "../Graphical/Vertex.h"
+#include "../Math/Vector.h"
 
 
 enum ColliderType

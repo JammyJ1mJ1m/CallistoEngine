@@ -4,9 +4,9 @@
 #include "Components/ComponentModel.h"
 #include "Components/ComponentShader.h"
 #include "Components/ComponentTransform.h"
-#include "Vector.h"
-#include "Material.h"
-#include "SceneManager.h"
+#include "Math/Vector.h"
+#include "Misc/Material.h"
+#include "Managers/SceneManager.h"
 
 // #include "Managers/InputManager.h"
 #include "Managers/GameInputManager.h"

@@ -2,7 +2,7 @@
 // include string stream
 #include <sstream>
 #include "../Managers/ResourceManager.h"
-#include "../Camera.h"
+#include "../Misc/Camera.h"
 
 ShaderObject_GL::ShaderObject_GL(const char* pVertexPath, const char* pFragPath)
 {

@@ -1,7 +1,7 @@
 #include "ResourceManager.h"
-#include <../stb_image.h>
+#include <../Graphical/stb_image.h>
 
-#include "../Mesh.h"
+#include "../Graphical/Mesh.h"
 
 
 

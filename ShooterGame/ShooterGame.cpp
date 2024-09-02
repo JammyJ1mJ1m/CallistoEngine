@@ -1,7 +1,7 @@
 #include "ShooterGame.h"
 #include "GameScene.h"
 #include "Managers/PhysicsManager.h"
-#include "BulletDebugDraw.h"
+#include "Misc/BulletDebugDraw.h"
 
 static BulletDebugDrawer_OpenGL* bulletDebugDraw;
 

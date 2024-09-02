@@ -1,7 +1,7 @@
 #pragma once
 #include "IComponent.h"
 #include <string>
- #include "../Mesh.h"
+ #include "../Graphical/Mesh.h"
 // #include "../Managers/ResourceManager.h"
 
 class ComponentModel : public IComponent
