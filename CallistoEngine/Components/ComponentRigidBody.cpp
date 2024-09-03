@@ -1,7 +1,7 @@
 
 #include "ComponentRigidBody.h"
-#include "PhysicsManager.h"
 #include "iostream"
+#include "PhysicsManager.h"
 
 ComponentRigidBody::ComponentRigidBody()
 {
@@ -64,6 +64,14 @@ void ComponentRigidBody::SyncWithTransform(ComponentTransform* pTransform)
 	//pTransform->SetPosition(glm::vec3(trans.getOrigin().x()/* * 2*/, trans.getOrigin().y() /** 2*/, trans.getOrigin().z() /** 2*/));
 	//glm::vec3 t = glm::vec3(trans.getRotation().x() /** 2*/, trans.getRotation().y()/* * 2*/, trans.getRotation().z()/* * 2*/);
 	//pTransform->SetRotation(t);
+}
+
+void ComponentRigidBody::SyncWithTransform(Entity* pEntity)
+{
+	btTransform bulletTransform;
+	mRigidBody->getMotionState()->getWorldTransform(bulletTransform);
+	
+	pEntity->SetPosition(Vector3f(bulletTransform.getOrigin().getX(), bulletTransform.getOrigin().getY(), bulletTransform.getOrigin().getZ()));
 }
 
 void ComponentRigidBody::SetPosition(const Vector3f pPos)

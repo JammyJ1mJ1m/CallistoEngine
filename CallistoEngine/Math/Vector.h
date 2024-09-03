@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <cmath>
+#include <iostream>
 
 template<typename T, int N>
 class Vector
@@ -8,10 +9,10 @@ class Vector
 	T _elements[N];
 public:
 
-	const T x = _elements[0];
-	const T y = _elements[1];
-	const T z = _elements[2];
-	const T w = _elements[3];
+	const T& x = _elements[0];
+	const T& y = _elements[1];
+	const T& z = _elements[2];
+	const T& w = _elements[3];
 
 	Vector() {
 		for (int i = 0; i < N; ++i)
@@ -36,18 +37,18 @@ public:
 		}
 	}
 
-	Vector(const float x, const float y) {
+	Vector(const T x, const T y) {
 		_elements[0] = x;
 		_elements[1] = y;
 	}
 
-	Vector(const float x, const float y, const float z) {
-		_elements[0] = x;
-		_elements[1] = y;
-		_elements[2] = z;
-	}
+	//Vector(const T x, const T y, const T z) {
+	//	_elements[0] = x;
+	//	_elements[1] = y;
+	//	_elements[2] = z;
+	//}
 
-	Vector(const float x, const float y, const float z, const float w) {
+	Vector(const T x, const T y, const T z, const T w = 0) {
 		_elements[0] = x;
 		_elements[1] = y;
 		_elements[2] = z;
@@ -69,6 +70,13 @@ public:
 		return result;
 	}
 
+	Vector operator-(const Vector& other) const {
+		Vector result;
+		for (int i = 0; i < N; ++i)
+			result._elements[i] = _elements[i] - other._elements[i];
+		return result;
+	}
+
 	Vector& operator*(T scalar) {
 		for (int i = 0; i < N; ++i)
 			_elements[i] *= scalar;
@@ -81,6 +89,15 @@ public:
 		return *this;
 	}
 
+	friend std::ostream& operator<<(std::ostream& os, const Vector<T, N>& vec) {
+		for (int i = 0; i < N; ++i) {
+			os << vec._elements[i];
+			if (i < N - 1) {
+				os << " ";  // Separate elements by space
+			}
+		}
+		return os;
+	}
 
 	T GetX() const { return _elements[0]; }
 	T GetY() const { return _elements[1]; }

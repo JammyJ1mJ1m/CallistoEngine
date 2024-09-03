@@ -5,6 +5,7 @@
 #include "Bullet/btBulletDynamicsCommon.h"
 #include "ComponentTransform.h"
 #include "componentCollider.h"
+#include "Entity.h"
 
 class ComponentRigidBody : public IComponent
 {
@@ -31,6 +32,7 @@ class ComponentRigidBody : public IComponent
 		inline void SetMass(btScalar pMass) { mMass = pMass; }
 
 		void SyncWithTransform(ComponentTransform* pTransform);
+		void SyncWithTransform(Entity* pEntity);
 		void SetPosition(const Vector3f pPos);
 
 		// ******************************************************

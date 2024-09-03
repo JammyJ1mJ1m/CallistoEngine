@@ -11,7 +11,7 @@ class Scene
 {
 protected:
 	SceneManager* _sceneManager;
-	std::vector<Entity*>		mEntities;		// The list of game objects
+	std::vector<Entity*> mEntities; // The list of game objects
 
 public:
 	Scene();

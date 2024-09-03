@@ -21,15 +21,12 @@ class Entity
 
 	virtual void start() = 0;
 
+	protected:
 
 public:
-	const void AddChild(Entity* pChild, const Vector3f& pPos) 
-	{ 
-		ComponentTransform* transform = GetComponent<ComponentTransform>();
-
-		pChild->SetPosition(transform->GetPosition()+ pPos);
-		mChildren.push_back(pChild); 
-	}
+	const void UpdateChildPositions();
+	const void AddChild(Entity* pChild, const Vector3f& pPos);
+	
 	const void AddChildren(std::vector<Entity*> pChildren) { mChildren.insert(mChildren.end(), pChildren.begin(), pChildren.end()); }
 	const std::vector<Entity*> GetChildren() { return mChildren; }
 	const Entity* GetChild(int pIndex) { return mChildren[pIndex]; }

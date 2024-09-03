@@ -23,6 +23,8 @@ Player* player;
 ExpBarrel* expBarrel;
 Sound* sound;
 TestCube* testCube;
+GunAK* gun;
+
 GameScene::GameScene()
 {
 	isExploded = false;
@@ -40,19 +42,19 @@ void GameScene::Initialise()
 	player = new Player();
 	AddEntity(player);
 
-	Enemy* enemy = new Enemy();
-	AddEntity(enemy);
+	//Enemy* enemy = new Enemy();
+	//AddEntity(enemy);
 
 	SkyBox* skybox = new SkyBox();
 	AddEntity(skybox);
 
-	expBarrel = new ExpBarrel();
-	AddEntity(expBarrel);
+	//expBarrel = new ExpBarrel();
+	//AddEntity(expBarrel);
 
-	testCube = new TestCube();
-	AddEntity(testCube);
+	//testCube = new TestCube();
+	//AddEntity(testCube);
 
-	GunAK* gun = new GunAK();
+	 gun = new GunAK();
 	AddEntity(gun);
 
 
@@ -87,7 +89,7 @@ void GameScene::OnKeyboard(int key, bool down)
 		// realistically we would only ever pass the player here as the user input affects the player
 		// TODO maybe implemnent a type/tag to filter commands for specific entities
 		if (command != nullptr)
-			command->execute(player);
+			command->execute(gun);
 
 	}
 
@@ -129,7 +131,10 @@ void GameScene::OnKeyboard(int key, bool down)
 
 void GameScene::Update(double deltaTime)
 {
-	testCube->Rotate(1, deltaTime);
+	// testCube->Rotate(1, deltaTime);
+
+
+	// move all this to a audio system
 	ALfloat listenerPos[] = {
 	Game::GetGame()->GetGameCamera()->GetPosition().GetX(),
 	Game::GetGame()->GetGameCamera()->GetPosition().GetY(),
@@ -175,14 +180,13 @@ void GameScene::Render(SystemRender* renderer)
 		if (enti->GetComponent<ComponentRigidBody>())
 		{
 			enti->GetComponent<ComponentRigidBody>()->SyncWithTransform(enti->GetComponent<ComponentTransform>());
+			//enti->GetComponent<ComponentRigidBody>()->SyncWithTransform(enti);
 
 		}
-
+		//enti->UpdateChildPositions();
 		renderer->Run(enti);
 		for(auto& child : enti->GetChildren())
 		{
-			// sync the enti position with the child pos
-			//child->SetPosition(enti->GetComponent<ComponentTransform>()->GetPosition() + child->GetComponent<ComponentTransform>()->GetPosition());
 			renderer->Run(child);
 		}
 	}

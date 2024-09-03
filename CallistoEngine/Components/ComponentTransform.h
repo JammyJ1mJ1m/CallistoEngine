@@ -34,7 +34,7 @@ public:
 		position.y = pPosition.GetY();
 		position.z = pPosition.GetZ();
 		
-		UpdateModelMatrix(); 
+		//UpdateModelMatrix(); 
 	}
 
 
@@ -45,6 +45,7 @@ public:
 	inline const glm::mat4 GetModelMatrix() { return modelMatrix; }
 	inline void SetModelMatrix(glm::mat4 pModelMatrix) { modelMatrix = pModelMatrix; }
 	void UpdateModelMatrix();
+	void UpdateModelMatrix(const glm::mat4& pParentMat);
 
 	void Translate(glm::vec3 pTranslation);
 	void RotateX(const float pAngle);

@@ -19,9 +19,9 @@ public:
 	
 	void Rotate(float pAmount, float dt);
 
-	virtual void MoveForward();
-	virtual void MoveBackward();
-	virtual void MoveLeft();
-	virtual void MoveRight();
+	virtual void MoveForward() override;
+	virtual void MoveBackward()override;
+	virtual void MoveLeft()override;
+	virtual void MoveRight()override;
 };
 
