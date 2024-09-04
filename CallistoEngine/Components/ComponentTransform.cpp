@@ -91,7 +91,7 @@ void ComponentTransform::GetWorld()
 	modelMatrix = glm::mat4(1.0f);
 	modelMatrix = glm::translate(modelMatrix, position);
 	modelMatrix *= glm::mat4(glm::quat(rotation));
-	//modelMatrix *= glm::scale(modelMatrix, scale);
+	modelMatrix *= glm::scale(modelMatrix, scale);
 }
 
 void ComponentTransform::SyncTransform(const btTransform& pTransform)
