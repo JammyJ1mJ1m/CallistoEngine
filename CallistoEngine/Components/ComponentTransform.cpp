@@ -80,6 +80,7 @@ void ComponentTransform::RotateZ(const float pAngle)
 void ComponentTransform::Scale(glm::vec3 pScale)
 {
 	modelMatrix = glm::scale(modelMatrix, pScale);
+	SetScale(pScale);
 	UpdateModelMatrix();
 
 }
