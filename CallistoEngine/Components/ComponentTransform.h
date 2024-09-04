@@ -34,7 +34,7 @@ public:
 		position.y = pPosition.GetY();
 		position.z = pPosition.GetZ();
 		
-		//UpdateModelMatrix(); 
+		UpdateModelMatrix(); 
 	}
 
 

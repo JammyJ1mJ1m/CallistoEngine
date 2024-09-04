@@ -29,6 +29,7 @@ void ShooterGame::Initialise(Window* pWindow)
 	LoadMesh("Resources/Geometry/CardBox/box.obj", "cube", RM);
 	LoadMesh("Resources/Geometry/Barrel/expBarrel.obj", "barrel", RM);
 	LoadMesh("Resources/Geometry/Guns/AK/AK.obj", "AK", RM);
+	LoadMesh("Resources/Geometry/Guns/AK/magazineAK.obj", "AKmagazine", RM);
 
 	mSceneManager.PushScene(new GameScene());
 }

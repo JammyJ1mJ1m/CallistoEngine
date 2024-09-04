@@ -23,17 +23,22 @@ void GunAK::start()
 	newPos.SetY(pos.y);
 	newPos.SetZ(pos.z);
 
-	ComponentCollider* collider = new ComponentCollider(vertices);
-		int mass = 1;
-		ComponentRigidBody* rb = new ComponentRigidBody(collider, mass, pos);
-		AddComponent(rb);
+	//ComponentCollider* collider = new ComponentCollider(vertices);
+	//	int mass = 1;
+	//	ComponentRigidBody* rb = new ComponentRigidBody(collider, mass, pos);
+	//	AddComponent(rb);
 
-		TestCube* cub = new TestCube();
+
 		//glm::vec3 newpos = pos + glm::vec3(0.0f, 0.0f, 0.0f);
 		//cub->SetPosition(glm::vec3(newpos));
-		AddChild(new TestCube(), Vector3f(0.0f, 0.0f, 0.0f));
+		AddChild(new TestCube(), Vector3f(0.0f, -3.0f, 0.0f));
 
 
+}
+
+GunAK::GunAK()
+{
+	start();
 }
 
 void GunAK::SetPosition(const Vector3f& pPosition)
@@ -55,10 +60,6 @@ void GunAK::SetPosition(const Vector3f& pPosition)
 	//UpdateChildPositions();
 }
 
-GunAK::GunAK()
-{
-	start();
-}
 
 /*oid GunAK::SetPosition(glm::vec3 pPos)
 {
@@ -87,13 +88,13 @@ void GunAK::MoveForward() {
 		pos.z += 32.0f * Game::GetDeltaTime() ;  // Move forward along the Z-axis
 		SetPosition(Vector3f(pos.x, pos.y, pos.z));
 	}
-	ComponentRigidBody* rb = GetComponent<ComponentRigidBody>();
+	/*ComponentRigidBody* rb = GetComponent<ComponentRigidBody>();
 	if (rb)
 	{
 		glm::vec3 pos = glm::vec3(transform->GetPosition().GetX(), transform->GetPosition().GetY(), transform->GetPosition().GetZ());
 
 		rb->SetPosition(Vector3f(pos.x, pos.y, pos.z));
-	}
+	}*/
 
 }
 
