@@ -53,6 +53,7 @@ const void Entity::AddChild(Entity* pChild, const Vector3f& pPos)
 {
     ComponentTransform* transform = GetComponent<ComponentTransform>();
 
-    pChild->SetPosition(transform->GetPosition() + pPos);
+    pChild->SetPosition(pPos);
+    pChild->GetComponent<ComponentTransform>()->UpdateModelMatrix(GetComponent<ComponentTransform>()->GetModelMatrix());
     mChildren.push_back(pChild);
 }

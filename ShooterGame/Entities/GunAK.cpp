@@ -31,7 +31,7 @@ void GunAK::start()
 
 		//glm::vec3 newpos = pos + glm::vec3(0.0f, 0.0f, 0.0f);
 		//cub->SetPosition(glm::vec3(newpos));
-		AddChild(new TestCube(), Vector3f(0.0f, -3.0f, 0.0f));
+		AddChild(new TestCube(), Vector3f(0.0f, -1.0f, 0.0f));
 
 
 }
