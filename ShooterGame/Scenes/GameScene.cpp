@@ -13,6 +13,7 @@
 #include "ExpBarrel.h"
 #include "TestCube.h"
 #include "GunAK.h"
+#include "TestLight.h"
 
 #include "Managers/PhysicsManager.h"
 #include "Managers/InputManager.h"
@@ -39,14 +40,20 @@ GameScene::~GameScene()
 /// </summary>
 void GameScene::Initialise()
 {
+	mLightSystem = new SystemLight();
+	SkyBox* skybox = new SkyBox();
+	AddEntity(skybox);
+
+
 	player = new Player();
 	AddEntity(player);
 
+	gun = new GunAK();
+	AddEntity(gun);
 	//Enemy* enemy = new Enemy();
 	//AddEntity(enemy);
 
-	SkyBox* skybox = new SkyBox();
-	AddEntity(skybox);
+
 
 	//expBarrel = new ExpBarrel();
 	//AddEntity(expBarrel);
@@ -54,17 +61,17 @@ void GameScene::Initialise()
 	//testCube = new TestCube();
 	//AddEntity(testCube);
 
-	 gun = new GunAK();
-	AddEntity(gun);
-
-
-
-
 	sound = new Sound("Resources/Sounds/explosion.wav");
 	//sound->SetLooping(true);
 	//sound->Play3D(0,0,0);
 
 	//Game::GetGame()->GetAudioManager()->PlaySound("Resources/Sounds/hyperloop-by-infraction.mp3", true);
+
+
+	
+	// add the lights here
+	// HIGHLY advised to use the light manager to add / create lights
+	AddEntity(LightManager::GetInstance().CreatePointLight(1000, Vector3f(1.0f, 1.0f, 1.0f)));
 }
 
 
@@ -177,6 +184,8 @@ void GameScene::Render(SystemRender* renderer)
 {
 	for (auto& enti : mEntities)
 	{
+		// mLightSystem->Run(enti);
+
 		if (enti->GetComponent<ComponentRigidBody>())
 		{
 			enti->GetComponent<ComponentRigidBody>()->SyncWithTransform(enti->GetComponent<ComponentTransform>());

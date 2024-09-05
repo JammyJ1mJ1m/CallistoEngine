@@ -319,10 +319,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Commands\Command.cpp" />
+    <ClCompile Include="Components\LightComponent.cpp" />
+    <ClCompile Include="Lighting\Light.cpp" />
     <ClCompile Include="Managers\DiscordManager.cpp" />
     <ClCompile Include="Managers\DisplayManager.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
     <ClCompile Include="Managers\AudioManager.cpp" />
+    <ClCompile Include="Managers\LightManager.cpp" />
     <ClCompile Include="Misc\Camera.cpp" />
     <ClCompile Include="Components\ComponentCollider.cpp" />
     <ClCompile Include="Components\ComponentRigidBody.cpp" />
@@ -334,6 +337,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Managers\PhysicsManager.cpp" />
+    <ClCompile Include="Lighting\PointLight.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Misc\Sound.cpp" />
     <ClCompile Include="Managers\SteamManager.cpp" />
@@ -348,21 +352,27 @@
     <ClCompile Include="Objects\ShaderObject.cpp" />
     <ClCompile Include="Objects\ShaderObject_GL.cpp" />
     <ClCompile Include="Graphical\stb_image.cpp" />
+    <ClCompile Include="Systems\SystemLight.cpp" />
     <ClCompile Include="Systems\SystemRender.cpp" />
     <ClCompile Include="Misc\TomlReader.cpp" />
     <ClCompile Include="Graphical\VBO.cpp" />
     <ClCompile Include="Graphical\VBO_GL.cpp" />
     <ClCompile Include="Graphical\Window.cpp" />
     <ClCompile Include="Graphical\Window_GL.cpp" />
+    <ClCompile Include="TestLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Commands\Command.h" />
+    <ClInclude Include="Components\LightComponent.h" />
+    <ClInclude Include="Lighting\Light.h" />
     <ClInclude Include="Managers\DiscordManager.h" />
     <ClInclude Include="Discord\discord_register.h" />
     <ClInclude Include="Discord\discord_rpc.h" />
     <ClInclude Include="Managers\DisplayManager.h" />
     <ClInclude Include="Managers\InputManager.h" />
     <ClInclude Include="Managers\AudioManager.h" />
+    <ClInclude Include="Managers\LightManager.h" />
+    <ClInclude Include="Lighting\LightTypes.h" />
     <ClInclude Include="Misc\BulletDebugDraw.h" />
     <ClInclude Include="Misc\Camera.h" />
     <ClInclude Include="Components\ComponentCollider.h" />
@@ -497,6 +507,7 @@
     <ClInclude Include="Components\Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Managers\PhysicsManager.h" />
+    <ClInclude Include="Lighting\PointLight.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Misc\Sound.h" />
     <ClInclude Include="Managers\SteamManager.h" />
@@ -511,6 +522,7 @@
     <ClInclude Include="Objects\ShaderObject.h" />
     <ClInclude Include="Objects\ShaderObject_GL.h" />
     <ClInclude Include="Graphical\stb_image.h" />
+    <ClInclude Include="Systems\SystemLight.h" />
     <ClInclude Include="Systems\SystemRender.h" />
     <ClInclude Include="Misc\toml.hpp" />
     <ClInclude Include="Misc\TomlReader.h" />
@@ -520,6 +532,7 @@
     <ClInclude Include="Graphical\Vertex.h" />
     <ClInclude Include="Graphical\Window.h" />
     <ClInclude Include="Graphical\Window_GL.h" />
+    <ClInclude Include="TestLight.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Shaders\3.1.1.debug_quad.vert">

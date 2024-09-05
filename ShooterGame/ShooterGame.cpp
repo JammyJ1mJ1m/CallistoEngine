@@ -17,6 +17,11 @@ void ShooterGame::Initialise(Window* pWindow)
 	mRenderer = pWindow->GetRenderer();
 	mRenderSystem = new SystemRender(mRenderer);
 
+	mLightManager = &LightManager::GetInstance();
+
+	// huh?
+	//mLightSystem = new SystemLight();
+
 	// other game setup logic
 	mGameState = Playing;
 
@@ -39,7 +44,7 @@ void ShooterGame::OnKeyboard(int key, bool down)
 	if (key >= sizeof(_keyStates))
 	{
 		std::cout << "Key code out of keystate bounds" << std::endl;
-		// return; //If the key is out of bounds, DO NOT continue as memory will be corrupted
+		return; //If the key is out of bounds, DO NOT continue as memory will be corrupted
 	}
 
 	mInputManager->SetKeyState(key, down);

@@ -1,4 +1,8 @@
 #include "ComponentShaderDefault.h"
+#include "Math/Vector.h"
+#include <vector>
+#include "TestLight.h"
+#include "Managers/LightManager.h"
 
 ComponentShaderDefault::ComponentShaderDefault(Camera* pCam, const char* pVert, const char* pFrag)
 {
@@ -38,9 +42,15 @@ void ComponentShaderDefault::Update(glm::mat4 pMat)
 	// set projection
 	mShaderObject->SetMat4("projection", mCamera->GetProjection());
 
-	glm::vec3 pos;
-	pos.x = mCamera->GetPosition().GetX();
-	pos.y = mCamera->GetPosition().GetY();
-	pos.z = mCamera->GetPosition().GetZ();
+	const std::vector<TestLight*>& lights = LightManager::GetInstance().GetLights();
+
+	mShaderObject->SetVec3("light.position", lights[0]->GetComponent<ComponentTransform>()->GetPosition());
+	mShaderObject->SetVec3("light.diffuse", Vector3f(1, 0, 1));
+
+	//glm::vec3 pos;
+	Vector3f pos;
+	pos.SetX(mCamera->GetPosition().GetX());
+	pos.SetY( mCamera->GetPosition().GetY());
+	pos.SetZ( mCamera->GetPosition().GetZ());
 	mShaderObject->SetVec3("viewPos", pos);
 }

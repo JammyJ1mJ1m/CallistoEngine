@@ -11,11 +11,18 @@
 // #include "Managers/InputManager.h"
 #include "Managers/GameInputManager.h"
 
+//#include "Systems/SystemLight.h"
+#include "Managers/LightManager.h"
+
 
 class ShooterGame : public Game
 {
 	GameState mGameState;
 	SystemRender* mRenderSystem;
+
+	//SystemLight* mLightSystem;
+	LightManager* mLightManager;
+
 
 	// non singleton, make sure that this doesn't get copied / or a new one is created. 
 

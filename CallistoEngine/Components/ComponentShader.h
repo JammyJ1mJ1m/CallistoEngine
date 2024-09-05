@@ -25,7 +25,7 @@ protected:
 public:
 	//virtual ComponentShader(Camera* pCam, const char* pVert, const char* pFrag) = 0;
 
-	
+	ShaderObject* GetShaderObject() const { return mShaderObject; };
 	virtual ~ComponentShader() = default;
 	virtual void Render() = 0;
 	virtual void Update(glm::mat4 pMat) = 0;

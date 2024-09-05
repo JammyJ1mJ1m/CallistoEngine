@@ -82,10 +82,10 @@ void ShaderObject_GL::SetMat4(const char* pName, glm::mat4 pMatrix)
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(pMatrix));
 }
 
-void ShaderObject_GL::SetVec3(const char* pName, glm::vec3 pVec)
+void ShaderObject_GL::SetVec3(const char* pName, const Vector3f& pVec)
 {
 	unsigned int loc = glGetUniformLocation(shaderProgram, pName);
-	glUniform3f(loc, pVec.x, pVec.y, pVec.z);
+	glUniform3f(loc, pVec.GetX(), pVec.GetY(), pVec.GetZ());
 
 }
 

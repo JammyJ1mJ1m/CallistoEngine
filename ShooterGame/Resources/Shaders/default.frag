@@ -10,14 +10,29 @@ in vec2 TexCoord;
 uniform sampler2D ourTexture;
 uniform vec3 viewPos;
 
-
+struct Light {
+    vec3 position;  
+//  
+//    vec3 ambient;
+    vec3 diffuse;
+//    vec3 specular;
+//	
+//    float constant;
+//    float linear;
+//    float quadratic;
+}; 
+//
+uniform Light light;
 
 vec4 calculatePointLight(int i)
 {
     // generate point lighting using input texture as ambient
      
-    vec3 lightPos = vec3(-8.0f, 15.0f, 15.0f);
-    vec3 lightColor = vec3(1.0, 1.0, 1.0);
+//    vec3 lightPos = vec3(-8.0f, 15.0f, 15.0f);
+vec3 lightPos = light.position;
+
+//    vec3 lightColor = vec3(1.0, 1.0, 1.0);
+    vec3 lightColor = light.diffuse;
     vec3 specColor = vec3(1.0, 0.0, 1.0);
     vec3 objectColor = texture(ourTexture, TexCoord).rgb;
     // ambient

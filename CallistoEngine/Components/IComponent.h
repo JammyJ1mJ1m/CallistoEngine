@@ -12,6 +12,7 @@ public:
         COMPONENT_SCRIPT =      6 ,
         COMPONENT_AUDIO =       7 ,
         COMPONENT_ANIMATION =   8 ,
+        COMPONENT_LIGHT =       9 ,
     };
 
     virtual ComponentTypes GetType() const = 0;

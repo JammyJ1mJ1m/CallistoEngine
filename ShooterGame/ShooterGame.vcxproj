@@ -238,6 +238,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entities\GunAK.h" />
+    <ClInclude Include="Entities\TestCube.h" />
     <ClInclude Include="GameCommands\BoostCommand.h" />
     <ClInclude Include="Components\ComponentShaderDefault.h" />
     <ClInclude Include="Components\ComponentShaderError.h" />
@@ -262,7 +263,6 @@
     <ClInclude Include="Entities\Player.h" />
     <ClInclude Include="ShooterGame.h" />
     <ClInclude Include="Entities\SkyBox.h" />
-    <ClInclude Include="Entities\TestCube.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\KeyCodeMap.csv" />
