@@ -19,6 +19,8 @@ void ShooterGame::Initialise(Window* pWindow)
 
 	mLightManager = &LightManager::GetInstance();
 
+	mSteamManager->UnlockAchievement("NEW_ACHIEVEMENT_0_4");
+
 	// huh?
 	//mLightSystem = new SystemLight();
 

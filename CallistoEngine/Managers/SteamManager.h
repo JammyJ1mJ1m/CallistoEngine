@@ -20,5 +20,7 @@ public:
 	};
 	int initSteam();
 	void UpdateSteamPresence(const char* pKey, const char* pValue);
+	void UnlockAchievement(const char* pAchievementID);
+	bool IsAchievementUnlocked(const char* pAchievementID);
 	//void SetSteamPresence(const char* details, const char* state, const char* largeImageKey, const char* largeImageText, const char* smallImageKey, const char* smallImageText);
 };

@@ -46,7 +46,7 @@ int SteamManager::initSteam()
 
 	if (!SteamAPI_Init())
 	{
-		printf("Fatal Error - Steam must be running to play this game (SteamAPI_Init() failed).\n");
+		std::cerr << "Fatal Error - Steam must be running to play this game (SteamAPI_Init() failed).\n";
 		return -1;
 	}
 	return 1;
@@ -58,4 +58,51 @@ void SteamManager::UpdateSteamPresence(const char* pKey, const char* pValue)
 	{
 		//SteamFriends()->SetRichPresence(pKey, pValue);
 	}
+}
+
+void SteamManager::UnlockAchievement(const char* pAchievementID)
+{
+	if(IsAchievementUnlocked(pAchievementID))
+		return;
+
+	if (!SteamUserStats() || !SteamUser()) {
+		std::cerr << "Steam not initialized properly.\n";
+		return;
+	}
+
+	// Set the achievement as unlocked
+	if (SteamUserStats()->SetAchievement(pAchievementID)) {
+		std::cout << "Achievement :: " << pAchievementID << " :: unlocked\n";
+
+
+		// Store the stats to notify Steam
+		if (SteamUserStats()->StoreStats()) {
+			std::cout << "Achievement :: " << pAchievementID << " :: status stored successfully\n";
+
+		}
+		else {
+			std::cerr << "Achievement :: " << pAchievementID << " :: Failed to store achievement status\n";
+
+		}
+	}
+	else {
+		std::cerr << "Achievement :: " << pAchievementID << " :: Failed to unlock achievement\n";
+
+	}
+}
+
+bool SteamManager::IsAchievementUnlocked(const char* pAchievementID)
+{
+	if (!SteamUserStats() || !SteamUser()) {
+		std::cerr << "Steam not initialized properly.\n";
+		return false;
+	}
+
+	bool unlocked = false;
+	SteamUserStats()->GetAchievement(pAchievementID, &unlocked);
+
+	if (unlocked)
+		std::cout << "Achievement :: " << pAchievementID << " :: already unlocked\n";
+
+	return unlocked;
 }
