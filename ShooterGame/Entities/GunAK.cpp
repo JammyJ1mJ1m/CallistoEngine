@@ -24,14 +24,15 @@ void GunAK::start()
 	newPos.SetZ(pos.z);
 
 	//ComponentCollider* collider = new ComponentCollider(vertices);
+	// AddComponent(collider);
 	//	int mass = 1;
 	//	ComponentRigidBody* rb = new ComponentRigidBody(collider, mass, pos);
 	//	AddComponent(rb);
 
 
-		//glm::vec3 newpos = pos + glm::vec3(0.0f, 0.0f, 0.0f);
-		//cub->SetPosition(glm::vec3(newpos));
-		AddChild(new TestCube(), Vector3f(0.0f, 0.0f, 0.0f));
+	//glm::vec3 newpos = pos + glm::vec3(0.0f, 0.0f, 0.0f);
+	//cub->SetPosition(glm::vec3(newpos));
+	AddChild(new TestCube(), Vector3f(0.0f, 0.0f, 0.0f));
 
 
 }
@@ -85,7 +86,7 @@ void GunAK::MoveForward() {
 	ComponentTransform* transform = GetComponent<ComponentTransform>();
 	if (transform) {
 		glm::vec3 pos = glm::vec3(transform->GetPosition().GetX(), transform->GetPosition().GetY(), transform->GetPosition().GetZ());
-		pos.z += 32.0f * Game::GetDeltaTime() ;  // Move forward along the Z-axis
+		pos.z += 32.0f * Game::GetDeltaTime();  // Move forward along the Z-axis
 		SetPosition(Vector3f(pos.x, pos.y, pos.z));
 	}
 	/*ComponentRigidBody* rb = GetComponent<ComponentRigidBody>();

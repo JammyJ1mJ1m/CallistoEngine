@@ -235,6 +235,7 @@
     <ClCompile Include="ShooterGame.cpp" />
     <ClCompile Include="Entities\SkyBox.cpp" />
     <ClCompile Include="Entities\TestCube.cpp" />
+    <ClCompile Include="Entities\TestLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entities\GunAK.h" />
@@ -263,6 +264,7 @@
     <ClInclude Include="Entities\Player.h" />
     <ClInclude Include="ShooterGame.h" />
     <ClInclude Include="Entities\SkyBox.h" />
+    <ClInclude Include="Entities\TestLight.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\KeyCodeMap.csv" />

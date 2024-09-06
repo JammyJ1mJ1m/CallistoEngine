@@ -3,16 +3,16 @@ class IComponent
 {
 public:
     enum class ComponentTypes {
-        COMPONENT_NONE = 0,
-        COMPONENT_TRANSFORM =   1 ,
-        COMPONENT_MODEL =       2 ,
-        COMPONENT_SHADER =      3 ,
-        COMPONENT_RIGIDBODY =   4 ,
-        COMPONENT_COLLIDER =    5 ,   
-        COMPONENT_SCRIPT =      6 ,
-        COMPONENT_AUDIO =       7 ,
-        COMPONENT_ANIMATION =   8 ,
-        COMPONENT_LIGHT =       9 ,
+        COMPONENT_NONE      = 1 << 0,
+        COMPONENT_TRANSFORM = 1 << 1 ,
+        COMPONENT_MODEL     = 1 << 2 ,
+        COMPONENT_SHADER    = 1 << 3 ,
+        COMPONENT_RIGIDBODY = 1 << 4 ,
+        COMPONENT_COLLIDER  = 1 << 5 ,   
+        COMPONENT_LIGHT     = 1 << 6 ,
+        COMPONENT_AUDIO     = 1 << 7 ,
+        COMPONENT_SCRIPT    = 1 << 8 ,
+        COMPONENT_ANIMATION = 1 << 9 ,
     };
 
     virtual ComponentTypes GetType() const = 0;

@@ -1,7 +1,7 @@
 #pragma once
 #include "Components\Entity.h"
 #include "Components/ComponentModel.h"
-//#include "ComponentShaderDefault.h"
+#include "ComponentShaderDefault.h"
 
 #include "Components/ComponentTransform.h"
 class Light;
@@ -12,7 +12,7 @@ class TestLight : public Entity
 
 public:
 	void SetPosition(const Vector3f& pPosition) override;
-	TestLight(Light* pLight);
+	TestLight();
 	~TestLight() = default;
 
 	//void SetPosition(glm::vec3 pPos);

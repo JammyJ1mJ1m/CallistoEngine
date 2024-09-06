@@ -11,6 +11,8 @@ protected:
 	Vector3f mDiffuse;
 	Vector3f mSpecular;
 
+	Vector3f mPosition;
+
 public:
 	/*Light();*/
 	~Light() = default;
@@ -24,5 +26,8 @@ public:
 	inline void SetAmbient(const Vector3f& pAmbient) { mAmbient = pAmbient; };
 	inline void SetDiffuse(const Vector3f& pDiffuse) { mDiffuse = pDiffuse; };
 	inline void SetSpecular(const Vector3f& pSpecular) { mSpecular = pSpecular; };
+
+	inline const Vector3f& GetPosition() { return mPosition; };
+	inline void SetPosition(const Vector3f& pPosition) { mPosition = pPosition; };
 };
 

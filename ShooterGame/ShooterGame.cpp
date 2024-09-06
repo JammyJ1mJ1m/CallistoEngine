@@ -19,7 +19,7 @@ void ShooterGame::Initialise(Window* pWindow)
 
 	mLightManager = &LightManager::GetInstance();
 
-	mSteamManager->UnlockAchievement("NEW_ACHIEVEMENT_0_4");
+	//mSteamManager->UnlockAchievement("NEW_ACHIEVEMENT_0_4");
 
 	// huh?
 	//mLightSystem = new SystemLight();
@@ -70,8 +70,8 @@ void ShooterGame::Render()
 	mWindow->GetMousePos(x, y);
 	mCamera->HandleMouse(x, y);
 
-	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
-	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
+	PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
+	PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
 }
 
 void ShooterGame::Run()

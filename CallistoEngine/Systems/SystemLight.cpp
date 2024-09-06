@@ -2,11 +2,11 @@
 #include "ComponentTransform.h"
 #include "ComponentShader.h"
 #include "../Math/Vector.h"
-#include "../TestLight.h"
+
 SystemLight::SystemLight()
 {
 	mLightManager = &LightManager::GetInstance();
-	mMask = (IComponent::ComponentTypes::COMPONENT_SHADER | IComponent::ComponentTypes::COMPONENT_MODEL | IComponent::ComponentTypes::COMPONENT_TRANSFORM);
+	mMask = ( IComponent::ComponentTypes::COMPONENT_TRANSFORM | IComponent::ComponentTypes::COMPONENT_LIGHT);
 }
 
 void SystemLight::Run(Entity* pEntity)
@@ -15,6 +15,10 @@ void SystemLight::Run(Entity* pEntity)
 	// after spending all day implementing the light manager, light system and light component
 	// I realised that I dont actually have a need for this system as I can just pass the lights 
 	// list from the light manager to the shader component and update the shader with the lights there
+
+	// Aha, new day new train of thought, I use this system to sync the light pos with the trasnform pos
+	// as the refactored manager generates light components rather than entire light entities, I think 
+	// its cleaner this way, and I can still use the light manager to get the list of lights
 
 
 
@@ -25,7 +29,7 @@ void SystemLight::Run(Entity* pEntity)
 	//		manager has a static get all components function
 	// =================================================================
 
-	const std::vector<TestLight*>& lights = mLightManager->GetLights();
+	//const std::vector<LightComponent*>& lights = mLightManager->GetLights();
 
 
 	// we still want to loop through all the normal entities and update the shaders with lights
@@ -33,19 +37,9 @@ void SystemLight::Run(Entity* pEntity)
 	if ((type & mMask) == mMask)
 	{
 		ComponentTransform* transform = pEntity->GetComponent<ComponentTransform>();
-		//glm::mat4 modelMatrix = transform->GetModelMatrix(); 
 		Vector3f position = transform->GetPosition();
 
-		ComponentShader* shader = pEntity->GetComponent<ComponentShader>();
-
-		//lights[0]->SetPosition(lights[0]->GetComponent<ComponentTransform>()->GetPosition());
-		shader->GetShaderObject()->SetVec3("light.position", lights[0]->GetComponent<ComponentTransform>()->GetPosition());
-		shader->GetShaderObject()->SetVec3("light.diffuse", Vector3f(1,0,1));
-
-
-
-		// sends over the uniforms, MVP etc
-		//shader->Update(modelMatrix);
-		//mRenderer->Render(pEntity);
+		LightComponent* light = pEntity->GetComponent<LightComponent>();
+		light->GetLight()->SetPosition(position );
 	}
 }

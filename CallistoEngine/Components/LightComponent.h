@@ -7,12 +7,13 @@
 class LightComponent : public IComponent
 {
 	LightType mLightType;
-	const Light* mLight;
+	Light* mLight;
 
 public:
-	LightComponent(const Light* pLight);
+	LightComponent(Light* pLight);
 	//LightComponent() = default;
 	~LightComponent() { delete mLight; };
+	Light* GetLight() const { return mLight; };
 
 	virtual ComponentTypes GetType() const;
 };

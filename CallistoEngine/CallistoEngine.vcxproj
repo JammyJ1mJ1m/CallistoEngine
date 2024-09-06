@@ -359,7 +359,6 @@
     <ClCompile Include="Graphical\VBO_GL.cpp" />
     <ClCompile Include="Graphical\Window.cpp" />
     <ClCompile Include="Graphical\Window_GL.cpp" />
-    <ClCompile Include="TestLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Commands\Command.h" />
@@ -532,7 +531,6 @@
     <ClInclude Include="Graphical\Vertex.h" />
     <ClInclude Include="Graphical\Window.h" />
     <ClInclude Include="Graphical\Window_GL.h" />
-    <ClInclude Include="TestLight.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Shaders\3.1.1.debug_quad.vert">

@@ -38,14 +38,14 @@ void ComponentShaderDefault::Update(glm::mat4 pMat)
 
 	// set view
 	mShaderObject->SetMat4("view", mCamera->GetView());
-
+		
 	// set projection
 	mShaderObject->SetMat4("projection", mCamera->GetProjection());
 
-	const std::vector<TestLight*>& lights = LightManager::GetInstance().GetLights();
+	const std::vector<LightComponent*>& lights = LightManager::GetInstance().GetLights();
 
-	mShaderObject->SetVec3("light.position", lights[0]->GetComponent<ComponentTransform>()->GetPosition());
-	mShaderObject->SetVec3("light.diffuse", Vector3f(1, 0, 1));
+	mShaderObject->SetVec3("light.position", lights[0]->GetLight()->GetPosition());
+	mShaderObject->SetVec3("light.diffuse", Vector3f(1, 1, 1));
 
 	//glm::vec3 pos;
 	Vector3f pos;

@@ -43,12 +43,8 @@ void ComponentTransform::UpdateModelMatrix(const glm::mat4& pParentMat)
 
 	glm::mat4 localMatrix = translation * rotationZ * rotationY * rotationX * scaling;
 
-	
-		// Compute the world matrix by combining the parent's world matrix with the local matrix
-		modelMatrix = pParentMat * localMatrix;
-	
-	
-	
+	// Compute the world matrix by combining the parent's world matrix with the local matrix
+	modelMatrix = pParentMat * localMatrix;
 }
 
 void ComponentTransform::Translate(glm::vec3 pTranslation)
@@ -89,10 +85,25 @@ void ComponentTransform::GetWorld()
 {
 	//TODO re implement this with a returned mat4
 
+	//// Reset the model matrix
+	//modelMatrix = glm::mat4(1.0f);
+
+	//// Apply scaling first
+
+	//// Apply rotation
+	//modelMatrix *= glm::mat4_cast(glm::quat(rotation));
+
+	//// Apply translation last
+	//modelMatrix += glm::translate(modelMatrix, position);
+	////modelMatrix = glm::scale(modelMatrix, scale);
+
+
+
 	modelMatrix = glm::mat4(1.0f);
-	modelMatrix = glm::translate(modelMatrix, position);
+	modelMatrix += glm::translate(modelMatrix, position);
 	modelMatrix *= glm::mat4(glm::quat(rotation));
-	modelMatrix *= glm::scale(modelMatrix, scale);
+	modelMatrix = glm::scale(modelMatrix, scale);
+
 }
 
 void ComponentTransform::SyncTransform(const btTransform& pTransform)

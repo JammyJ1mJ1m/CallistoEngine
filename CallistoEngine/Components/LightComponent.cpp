@@ -1,6 +1,6 @@
 #include "LightComponent.h"
 
-LightComponent::LightComponent(const Light* pLight)
+LightComponent::LightComponent(Light* pLight)
 {
     mLightType = pLight->GetType();
 	mLight = pLight;
@@ -8,5 +8,5 @@ LightComponent::LightComponent(const Light* pLight)
 
 IComponent::ComponentTypes LightComponent::GetType() const
 {
-    return ComponentTypes::COMPONENT_TRANSFORM;
+    return ComponentTypes::COMPONENT_LIGHT;
 }

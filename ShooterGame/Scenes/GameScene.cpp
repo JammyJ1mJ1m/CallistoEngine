@@ -25,6 +25,7 @@ ExpBarrel* expBarrel;
 Sound* sound;
 TestCube* testCube;
 GunAK* gun;
+TestLight* light;
 
 GameScene::GameScene()
 {
@@ -50,8 +51,8 @@ void GameScene::Initialise()
 
 	gun = new GunAK();
 	AddEntity(gun);
-	//Enemy* enemy = new Enemy();
-	//AddEntity(enemy);
+	Enemy* enemy = new Enemy();
+	AddEntity(enemy);
 
 
 
@@ -70,8 +71,9 @@ void GameScene::Initialise()
 
 	
 	// add the lights here
-	// HIGHLY advised to use the light manager to add / create lights
-	AddEntity(LightManager::GetInstance().CreatePointLight(1000, Vector3f(1.0f, 1.0f, 1.0f)));
+	 light = new TestLight();
+	AddEntity(light);
+
 }
 
 
@@ -184,7 +186,7 @@ void GameScene::Render(SystemRender* renderer)
 {
 	for (auto& enti : mEntities)
 	{
-		// mLightSystem->Run(enti);
+		mLightSystem->Run(enti);
 
 		if (enti->GetComponent<ComponentRigidBody>())
 		{
