@@ -38,7 +38,7 @@ public:
 
 	// pass in geometry to create a auto sized collider - cube in this case
 	//ComponentCollider(const std::vector<Vertex>& pVerts, const Vector3f& pPos);
-	ComponentCollider(const std::vector<Vertex>& pVerts/*, const Vector3f& pPos*/);
+	ComponentCollider(const std::vector<Vertex>& pVerts/*, const Vector3f& pPos*/, const float pScale = 1);
 	
 	// pass in geometry to create a auto sized collider - sphere in this case
 	ComponentCollider(const std::vector<Vertex>& pVerts, const ColliderType pType);

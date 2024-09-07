@@ -58,7 +58,7 @@ Vector<float, 3> ComponentCollider::FindLargest(const std::vector<Vertex>& pVert
 //	mColliderType = ColliderType::BOX;
 //}
 
-ComponentCollider::ComponentCollider(const std::vector<Vertex>& pVerts)
+ComponentCollider::ComponentCollider(const std::vector<Vertex>& pVerts, const float pScale )
 {
 	Vertex min = pVerts[0];
 	Vertex max = pVerts[0];
@@ -68,7 +68,7 @@ ComponentCollider::ComponentCollider(const std::vector<Vertex>& pVerts)
 
 	// now grab the half extents
 	btVector3 halfExtents = btVector3((largest.GetX() - smallest.GetX()), (largest.GetY() - smallest.GetY()), (largest.GetZ() - smallest.GetZ()));
-	mCollisionShape = new btBoxShape(halfExtents);
+	mCollisionShape = new btBoxShape(halfExtents * pScale);
 	mColliderType = ColliderType::BOX;
 }
 

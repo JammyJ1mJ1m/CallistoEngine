@@ -70,8 +70,8 @@ void ShooterGame::Render()
 	mWindow->GetMousePos(x, y);
 	mCamera->HandleMouse(x, y);
 
-	PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
-	PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
+	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
+	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
 }
 
 void ShooterGame::Run()

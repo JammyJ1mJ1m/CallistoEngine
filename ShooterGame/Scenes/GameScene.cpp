@@ -98,7 +98,7 @@ void GameScene::OnKeyboard(int key, bool down)
 		// realistically we would only ever pass the player here as the user input affects the player
 		// TODO maybe implemnent a type/tag to filter commands for specific entities
 		if (command != nullptr)
-			command->execute(gun);
+			command->execute(light);
 
 	}
 
