@@ -1,4 +1,5 @@
 #include "SteamManager.h"
+#include "../Game.h"
 
 int SteamManager::ReadAppID()
 {
@@ -22,11 +23,12 @@ SteamManager::SteamManager()
 
 int SteamManager::initSteam()
 {
-	/*SteamAPI_SetTryCatchCallbacks(true);
+	ReadAppID();
+	SteamAPI_SetTryCatchCallbacks(true);
 	SteamAPI_Init();
 	SteamAPI_RestartAppIfNecessary(GetAppID());
 	mIsInitialized = true;
-	UpdateSteamPresence("status", "Testing");*/
+	UpdateSteamPresence("status", "Testing");
 
 	/*else
 	{
@@ -34,7 +36,7 @@ int SteamManager::initSteam()
 		return -1;
 	}*/
 
-	if (SteamAPI_RestartAppIfNecessary(480)) // Replace with your App ID
+	if (SteamAPI_RestartAppIfNecessary(GetAppID())) // Replace with your App ID
 	{
 		std::cout << "Steam API initialized successfully!" << std::endl;
 		//		SteamFriends()->SetRichPresence("status", "Testing");
@@ -56,13 +58,13 @@ void SteamManager::UpdateSteamPresence(const char* pKey, const char* pValue)
 {
 	if (mIsInitialized)
 	{
-		//SteamFriends()->SetRichPresence(pKey, pValue);
+		SteamFriends()->SetRichPresence(pKey, pValue);
 	}
 }
 
 void SteamManager::UnlockAchievement(const char* pAchievementID)
 {
-	if(IsAchievementUnlocked(pAchievementID))
+	if (IsAchievementUnlocked(pAchievementID))
 		return;
 
 	if (!SteamUserStats() || !SteamUser()) {
@@ -74,20 +76,14 @@ void SteamManager::UnlockAchievement(const char* pAchievementID)
 	if (SteamUserStats()->SetAchievement(pAchievementID)) {
 		std::cout << "Achievement :: " << pAchievementID << " :: unlocked\n";
 
-
-		// Store the stats to notify Steam
-		if (SteamUserStats()->StoreStats()) {
+		if (SteamUserStats()->StoreStats())
 			std::cout << "Achievement :: " << pAchievementID << " :: status stored successfully\n";
 
-		}
-		else {
+		else
 			std::cerr << "Achievement :: " << pAchievementID << " :: Failed to store achievement status\n";
-
-		}
 	}
 	else {
 		std::cerr << "Achievement :: " << pAchievementID << " :: Failed to unlock achievement\n";
-
 	}
 }
 
@@ -121,7 +117,13 @@ void SteamManager::RunCallbacks()
 void SteamManager::OnGameOverlayActivated(GameOverlayActivated_t* pCallback)
 {
 	if (pCallback->m_bActive)
+	{
 		printf("Steam overlay now active\n");
+		Game::GetGame()->SetGameState(Paused);
+	}
 	else
+	{
+		Game::GetGame()->SetGameState(Playing);
 		printf("Steam overlay now inactive\n");
+	}
 }

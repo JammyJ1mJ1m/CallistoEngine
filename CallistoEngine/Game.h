@@ -19,6 +19,10 @@
 
 
 #include "Managers/SteamManager.h"
+#include "Managers/LightManager.h"
+#include "Managers/PhysicsManager.h"
+//#include "Misc/BulletDebugDraw.h"
+
 
 using MeshMap = std::map<std::string, Mesh*>;
 using MeshMapIterator = MeshMap::iterator;
@@ -35,6 +39,9 @@ class Game
 
 
 protected:
+	GameState mGameState;
+	LightManager* mLightManager;
+
 	DiscordManager* mDiscordManager;
 	SteamManager* mSteamManager;
 
@@ -66,16 +73,17 @@ public:
 	Game();
 	virtual ~Game()
 	{
-
 		delete mCamera;
 		delete mRenderSystem;
 		delete mInputManager;
-
 		delete mDiscordManager;
 		delete mSteamManager;
 	};
 
 	// Gets and sets
+	const GameState GetGameState() const { return mGameState; }
+	void SetGameState(const GameState& pState) { mGameState = pState; }
+
 	static Camera* GetGameCamera();
 	static Game* GetGame() { return theGame; }
 	AudioManager* GetAudioManager() { return mAudioManager; }
@@ -85,22 +93,25 @@ public:
 	Mesh* GetMesh(std::string name);
 	void AddMesh(std::string name, Mesh* mesh) { mMeshes[name] = mesh; }
 
-	
-
 
 	// methods
 	// pure virtuals
-	virtual void Initialise(Window* w) = 0;
 	virtual void OnKeyboard(int key, bool down) = 0;
-	virtual void Render() = 0;
-	virtual void Run() = 0; // same as derivedUpdate
 	virtual bool IsRunning() = 0;
 	virtual bool HandleInput() = 0;
 	virtual bool LoadMesh(const char* pFilePath, const char* pModelName, ResourceManager& pResourceManager) = 0;
 
-	virtual void SetTitle(const char* pName){ mWindow->SetTitle(pName); }
+	virtual void SetTitle(const char* pName) { mWindow->SetTitle(pName); }
 	const double CalculateDeltaTime();
 	const float GetFPS() { return fps; }
+
+	// Use this for proper game initialisation
+	void Initialise(Window* w)
+	{
+		BaseInitialise(w);
+		InitialiseGame();
+	}
+
 
 	// Use this method to run the game loop
 	void Update() {
@@ -109,14 +120,20 @@ public:
 	}
 
 	// Call this for proper drawing
-	void RenderFrame() {
+	void Render() {
 		BaseRender();
-		Render();
+		RenderFrame();
 	}
 
 	//virtual void derivedUpdate() = 0;
 
 private:
+	virtual void Run() = 0; // same as derivedUpdate
+	virtual void RenderFrame() = 0;
+	virtual void InitialiseGame() = 0;
+
+
+	void BaseInitialise(Window* w);
 	void BaseRun();
 	void BaseRender();
 };

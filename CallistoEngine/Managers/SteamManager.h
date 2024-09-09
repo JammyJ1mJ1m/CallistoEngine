@@ -30,4 +30,3 @@ public:
 	void RunCallbacks();
 	//void SetSteamPresence(const char* details, const char* state, const char* largeImageKey, const char* largeImageText, const char* smallImageKey, const char* smallImageText);
 };
-

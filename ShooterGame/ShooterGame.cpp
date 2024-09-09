@@ -5,26 +5,17 @@
 
 static BulletDebugDrawer_OpenGL* bulletDebugDraw;
 
-void ShooterGame::Initialise(Window* pWindow)
+void ShooterGame::InitialiseGame()
 {
+	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
+
+	mInputManager = new GameInputManager();
 	const char* tt = mSteamManager->GetSteamUserID();
 	std::cout << "Signed in as: " << tt << std::endl;
-	mHasWindowSizeChanged = false;
-	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
-	mAudioManager = &AudioManager::GetInstance();
-	mInputManager = new GameInputManager();
 
-	PhysicsManager::GetInstance();
-	mWindow = pWindow;
-	mRenderer = pWindow->GetRenderer();
-	mRenderSystem = new SystemRender(mRenderer);
-
-	mLightManager = &LightManager::GetInstance();
 
 	//mSteamManager->UnlockAchievement("NEW_ACHIEVEMENT_0_4");
-
-	// huh?
-	//mLightSystem = new SystemLight();
+	//mSteamManager->UpdateSteamPresence("status", "In testing"); // Not sure why this doesnt seem to be working
 
 	// other game setup logic
 	mGameState = Playing;
@@ -43,34 +34,29 @@ void ShooterGame::Initialise(Window* pWindow)
 	mSceneManager.PushScene(new GameScene());
 }
 
-void ShooterGame::OnKeyboard(int key, bool down)
-{
-	if (key >= sizeof(_keyStates))
-	{
-		std::cout << "Key code out of keystate bounds" << std::endl;
-		return; //If the key is out of bounds, DO NOT continue as memory will be corrupted
-	}
-
-	mInputManager->SetKeyState(key, down);
-}
-
-void ShooterGame::Render()
+void ShooterGame::RenderFrame()
 {
 	mSceneManager.Render(mRenderSystem);
 
 	// if you're looking for the physics debug draw, it's in the base game class ;)
+	
+	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
+//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
 }
+
 
 void ShooterGame::Run()
 {
 	if (mGameState == Paused)
 	{
 		// paused logic here
+		std::cout << "Paused" << std::endl;
+		Render();
 	}
 	if (mGameState == Playing)
 	{
 		mSceneManager.Update(mDeltaTime);
-		RenderFrame();
+		Render();
 		HandleInput();
 	}
 	if (mGameState == Quit)
@@ -82,6 +68,16 @@ void ShooterGame::Run()
 	}
 }
 
+void ShooterGame::OnKeyboard(int key, bool down)
+{
+	if (key >= sizeof(_keyStates))
+	{
+		std::cout << "Key code out of keystate bounds" << std::endl;
+		return; //If the key is out of bounds, DO NOT continue as memory will be corrupted
+	}
+
+	mInputManager->SetKeyState(key, down);
+}
 bool ShooterGame::HandleInput()
 {
 	// todo - move this to GAME SCENE
@@ -96,7 +92,6 @@ bool ShooterGame::HandleInput()
 		mDiscordManager->SetDiscordPresence("fullscreen", "test");
 	}
 	//mGameState = Quit;
-
 
 	if (mGameState == Playing)
 	{
@@ -117,5 +112,3 @@ bool ShooterGame::LoadMesh(const char* pFilePath, const char* pModelName, Resour
 
 	return false;
 }
-
-

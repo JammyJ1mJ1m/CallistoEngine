@@ -67,6 +67,19 @@ const double Game::CalculateDeltaTime()
 	return mDeltaTime;
 }
 
+void Game::BaseInitialise(Window* w)
+{
+	mWindow = w;
+	mRenderer = w->GetRenderer();
+	mRenderSystem = new SystemRender(mRenderer);
+	mHasWindowSizeChanged = false;
+
+	mAudioManager = &AudioManager::GetInstance();
+	PhysicsManager::GetInstance();
+	mLightManager = &LightManager::GetInstance();
+
+}
+
 void Game::BaseRun()
 {
 	mSteamManager->RunCallbacks();
@@ -86,6 +99,5 @@ void Game::BaseRender()
 	mWindow->GetMousePos(x, y);
 	mCamera->HandleMouse(x, y);
 
-	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
-//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
+
 }
