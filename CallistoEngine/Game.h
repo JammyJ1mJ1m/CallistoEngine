@@ -63,19 +63,10 @@ protected:
 	AudioManager* mAudioManager;
 
 public:
-	static Camera* GetGameCamera();
-	static Game* GetGame() { return theGame; }
-	AudioManager* GetAudioManager() { return mAudioManager; }
-	static const float GetDeltaTime() { return theGame->mDeltaTime; }
-
-	// get the input manager
-	InputManager* GetInputManager() { return mInputManager; }
-
-
 	Game();
-	virtual ~Game() 
+	virtual ~Game()
 	{
-	
+
 		delete mCamera;
 		delete mRenderSystem;
 		delete mInputManager;
@@ -84,20 +75,50 @@ public:
 		delete mSteamManager;
 	};
 
+	// Gets and sets
+	static Camera* GetGameCamera();
+	static Game* GetGame() { return theGame; }
+	AudioManager* GetAudioManager() { return mAudioManager; }
+	static const float GetDeltaTime() { return theGame->mDeltaTime; }
+	InputManager* GetInputManager() { return mInputManager; }
+
 	Mesh* GetMesh(std::string name);
 	void AddMesh(std::string name, Mesh* mesh) { mMeshes[name] = mesh; }
 
+	
+
+
 	// methods
+	// pure virtuals
 	virtual void Initialise(Window* w) = 0;
 	virtual void OnKeyboard(int key, bool down) = 0;
 	virtual void Render() = 0;
-	virtual void Run() = 0;
+	virtual void Run() = 0; // same as derivedUpdate
 	virtual bool IsRunning() = 0;
 	virtual bool HandleInput() = 0;
 	virtual bool LoadMesh(const char* pFilePath, const char* pModelName, ResourceManager& pResourceManager) = 0;
+
 	virtual void SetTitle(const char* pName){ mWindow->SetTitle(pName); }
 	const double CalculateDeltaTime();
 	const float GetFPS() { return fps; }
+
+	// Use this method to run the game loop
+	void Update() {
+		BaseRun();
+		Run();
+	}
+
+	// Call this for proper drawing
+	void RenderFrame() {
+		BaseRender();
+		Render();
+	}
+
+	//virtual void derivedUpdate() = 0;
+
+private:
+	void BaseRun();
+	void BaseRender();
 };
 
 inline Mesh* Game::GetMesh(std::string name)

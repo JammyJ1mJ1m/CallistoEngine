@@ -7,6 +7,8 @@ static BulletDebugDrawer_OpenGL* bulletDebugDraw;
 
 void ShooterGame::Initialise(Window* pWindow)
 {
+	const char* tt = mSteamManager->GetSteamUserID();
+	std::cout << "Signed in as: " << tt << std::endl;
 	mHasWindowSizeChanged = false;
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
 	mAudioManager = &AudioManager::GetInstance();
@@ -35,7 +37,7 @@ void ShooterGame::Initialise(Window* pWindow)
 	LoadMesh("Resources/Geometry/Guns/RPG/rpg.obj", "rpg", RM);
 	LoadMesh("Resources/Geometry/CardBox/box.obj", "cube", RM);
 	LoadMesh("Resources/Geometry/Barrel/expBarrel.obj", "barrel", RM);
-	LoadMesh("Resources/Geometry/Guns/AK/AK.obj", "AK", RM);
+	LoadMesh("Resources/Geometry/Guns/AK/AK3.obj", "AK", RM);
 	LoadMesh("Resources/Geometry/Guns/AK/magazineAK.obj", "AKmagazine", RM);
 
 	mSceneManager.PushScene(new GameScene());
@@ -54,24 +56,9 @@ void ShooterGame::OnKeyboard(int key, bool down)
 
 void ShooterGame::Render()
 {
-	mDiscordManager->UpdateDiscordPresence();
-	mRenderer->ClearScreen();
-
 	mSceneManager.Render(mRenderSystem);
 
-	if (mWindow->GetHasWindowSizeChanged())
-	{
-		mCamera->UpdateProjection(mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
-		mWindow->SetHasWindowSizeChanged(false);
-	}
-
-	// pass mouse x and y to the camera
-	float x, y;
-	mWindow->GetMousePos(x, y);
-	mCamera->HandleMouse(x, y);
-
-	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
-	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
+	// if you're looking for the physics debug draw, it's in the base game class ;)
 }
 
 void ShooterGame::Run()
@@ -83,14 +70,14 @@ void ShooterGame::Run()
 	if (mGameState == Playing)
 	{
 		mSceneManager.Update(mDeltaTime);
-		Render();
+		RenderFrame();
 		HandleInput();
 	}
 	if (mGameState == Quit)
 	{
 		// save the game first
 		// then quit
-		ShooterGame* game = this;
+		/*ShooterGame* game = this;*/
 		mWindow->Close();
 	}
 }
@@ -130,4 +117,5 @@ bool ShooterGame::LoadMesh(const char* pFilePath, const char* pModelName, Resour
 
 	return false;
 }
+
 

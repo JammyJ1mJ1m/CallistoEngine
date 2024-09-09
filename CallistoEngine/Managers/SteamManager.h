@@ -12,6 +12,8 @@ class SteamManager
 	const int GetAppID() { return mAppId; }
 	const void SetAppID(int pAppID) { mAppId = pAppID; }
 
+	STEAM_CALLBACK(SteamManager, OnGameOverlayActivated, GameOverlayActivated_t);
+
 public:
 	SteamManager();
 	~SteamManager()
@@ -22,5 +24,10 @@ public:
 	void UpdateSteamPresence(const char* pKey, const char* pValue);
 	void UnlockAchievement(const char* pAchievementID);
 	bool IsAchievementUnlocked(const char* pAchievementID);
+	// Gets the currently signed in user's Steam ID
+	const char* GetSteamUserID();
+
+	void RunCallbacks();
 	//void SetSteamPresence(const char* details, const char* state, const char* largeImageKey, const char* largeImageText, const char* smallImageKey, const char* smallImageText);
 };
+

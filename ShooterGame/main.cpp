@@ -41,11 +41,12 @@ int main()
 	game = _window->GetGame();
 	game->Initialise(_window);
 
+	//game->Update();
 
 	while (game->IsRunning())
 	{
 		game->CalculateDeltaTime();
-		game->Run();
+		game->Update();
 		_window->Update();
 	}
 	delete _window;

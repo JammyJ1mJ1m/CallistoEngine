@@ -66,3 +66,26 @@ const double Game::CalculateDeltaTime()
 
 	return mDeltaTime;
 }
+
+void Game::BaseRun()
+{
+	mSteamManager->RunCallbacks();
+}
+
+void Game::BaseRender()
+{
+	mRenderer->ClearScreen();
+	mDiscordManager->UpdateDiscordPresence();
+	if (mWindow->GetHasWindowSizeChanged())
+	{
+		mCamera->UpdateProjection(mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
+		mWindow->SetHasWindowSizeChanged(false);
+	}
+
+	float x, y;
+	mWindow->GetMousePos(x, y);
+	mCamera->HandleMouse(x, y);
+
+	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
+//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
+}

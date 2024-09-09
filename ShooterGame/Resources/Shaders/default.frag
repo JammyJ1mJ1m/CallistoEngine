@@ -23,6 +23,7 @@ struct Light {
 }; 
 //
 uniform Light light;
+uniform float time;
 
 vec4 calculatePointLight(int i)
 {
@@ -42,6 +43,27 @@ vec3 lightPos = light.position;
     vec3 norm = normalize(Normal);
     vec3 lightDir = normalize(lightPos - FragPos);
     float diff = max(dot(norm, lightDir), 0.0);
+
+    // adjust the diffuse for toon
+//    float stepSize = 0.3 * sin( time) + 0.5   ;
+//    float stepSize = 0.33;
+//
+//    for (float i = 0.0; i < 1.0; i += stepSize)
+//	{
+//		if (diff > i && diff < i + stepSize)
+//		{
+//			diff = i;
+//			break;
+//		}
+//     }
+
+if(diff > 0.66)
+diff=1;
+else if(diff > 0.33)
+diff=0.66;
+else
+diff=0.33;
+
     vec3 diffuse = diff * lightColor;
     
     // specular
@@ -52,8 +74,24 @@ vec3 lightPos = light.position;
     float spec = 0.0;
     vec3 halfwayDir = normalize(lightDir + viewDir);  
     spec = pow(max(dot(norm, halfwayDir), 0.0), 32.0);
+
+//   for (float i = 0.0; i < 1.0; i += stepSize)
+//	{
+//		if (spec > i && spec < i + stepSize)
+//		{
+//			spec = i;
+//			break;
+//		}
+//     }
     
-    vec3 specular = specularStrength * spec * lightColor;  
+    if(spec > 0.66)
+spec=1;
+else if(spec > 0.33)
+spec=0.66;
+else
+spec=0.33;
+
+    vec3 specular = specularStrength * spec * specColor;  
         
     vec3 result = (ambient + diffuse + specular) * objectColor;
     return vec4(result, 1.0);

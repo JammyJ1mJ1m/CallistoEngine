@@ -47,6 +47,8 @@ void ComponentShaderDefault::Update(glm::mat4 pMat)
 	mShaderObject->SetVec3("light.position", lights[0]->GetLight()->GetPosition());
 	mShaderObject->SetVec3("light.diffuse", Vector3f(1, 1, 1));
 
+	mShaderObject->SetFloat("time", glfwGetTime());
+
 	//glm::vec3 pos;
 	Vector3f pos;
 	pos.SetX(mCamera->GetPosition().GetX());

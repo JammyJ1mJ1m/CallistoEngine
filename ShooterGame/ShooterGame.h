@@ -50,7 +50,7 @@ public:
 
 	virtual bool LoadMesh(const char* pFilePath, const char* pModelName, ResourceManager& pResourceManager );
 
-
+	
 	virtual ~ShooterGame()
 	{
 		// delete all dynamically allocated memory

@@ -106,3 +106,22 @@ bool SteamManager::IsAchievementUnlocked(const char* pAchievementID)
 
 	return unlocked;
 }
+
+const char* SteamManager::GetSteamUserID()
+{
+	return SteamFriends()->GetPersonaName();
+}
+
+void SteamManager::RunCallbacks()
+{
+	SteamAPI_RunCallbacks();
+}
+
+
+void SteamManager::OnGameOverlayActivated(GameOverlayActivated_t* pCallback)
+{
+	if (pCallback->m_bActive)
+		printf("Steam overlay now active\n");
+	else
+		printf("Steam overlay now inactive\n");
+}
