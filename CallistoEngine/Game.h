@@ -71,14 +71,7 @@ protected:
 
 public:
 	Game();
-	virtual ~Game()
-	{
-		delete mCamera;
-		delete mRenderSystem;
-		delete mInputManager;
-		delete mDiscordManager;
-		delete mSteamManager;
-	};
+	virtual ~Game();
 
 	// Gets and sets
 	const GameState GetGameState() const { return mGameState; }
