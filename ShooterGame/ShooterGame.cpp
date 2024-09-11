@@ -30,6 +30,7 @@ void ShooterGame::InitialiseGame()
 	LoadMesh("Resources/Geometry/Barrel/expBarrel.obj", "barrel", RM);
 	LoadMesh("Resources/Geometry/Guns/AK/AK3.obj", "AK", RM);
 	LoadMesh("Resources/Geometry/Guns/AK/magazineAK.obj", "AKmagazine", RM);
+	LoadMesh("Resources/Geometry/error.obj", "error", RM);
 
 	mSceneManager.PushScene(new GameScene());
 }
@@ -38,10 +39,8 @@ void ShooterGame::RenderFrame()
 {
 	mSceneManager.Render(mRenderSystem);
 
-	// if you're looking for the physics debug draw, it's in the base game class ;)
-	
 	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
-//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
+	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
 }
 
 

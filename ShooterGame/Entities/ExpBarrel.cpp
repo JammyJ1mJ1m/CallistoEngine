@@ -11,7 +11,7 @@ void ExpBarrel::start()
     AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
     // sAddComponent(new ComponentShaderScanLines(ShooterGame::GetGameCamera(), "Resources/Shaders/ScanLines.vert", "Resources/Shaders/ScanLines.frag"));
 
-	glm::vec3 pos = glm::vec3(-10.0f, 40.0f, 0.0f);
+    Vector3f pos(-10.0f, 40.0f, 0.0f);
 	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1, 1, 1)));
 	//mEntities.push_back(tri);
 

@@ -6,6 +6,7 @@
 #include "ComponentTransform.h"
 #include "componentCollider.h"
 #include "Entity.h"
+#include "../Math/Vector.h"
 
 class ComponentRigidBody : public IComponent
 {
@@ -19,7 +20,7 @@ class ComponentRigidBody : public IComponent
 	public:
 		ComponentRigidBody();
 		//ComponentRigidBody(btCollisionShape* pShape, btScalar pMass, const btVector3& pInertia, const btTransform& pTransform);
-		ComponentRigidBody(ComponentCollider* pCollider, btScalar pMass,  const glm::vec3& pPos, bool gravityEnabled = true);
+		ComponentRigidBody(ComponentCollider* pCollider, btScalar pMass,  const Vector3f& pPos, bool gravityEnabled = true);
 		~ComponentRigidBody() ;
 
 		inline btRigidBody* GetRigidBody() { return mRigidBody; }

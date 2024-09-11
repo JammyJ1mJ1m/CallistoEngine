@@ -3,6 +3,7 @@
 //#include <BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h>
 //#include "Bullet/BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"	
 #include "Components/ComponentCollider.h"
+#include "Math/Vector.h"
 
 
 
@@ -10,13 +11,13 @@ void Enemy::start()
 {
 	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("cube"), "Resources/textures/CardBox.mtl"));
 	AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
-	glm::vec3 pos = glm::vec3(0.0f, 5.0f, 0.0f);
+	Vector3f pos(0.0f, 5.0f, 0.0f);
 	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f)));
 
-	Vector3f newPos;
-	newPos.SetX(pos.x);
-	newPos.SetY(pos.y);
-	newPos.SetZ(pos.z);
+	//Vector3f newPos;
+	//newPos.SetX(pos.x);
+	//newPos.SetY(pos.y);
+	//newPos.SetZ(pos.z);
 	ComponentCollider* collider = new ComponentCollider(Game::GetGame()->GetMesh("cube")->GetVertices(),GetComponent<ComponentTransform>()->GetScale().s	 );
 
 	//pos[0] = collider->GetCenter().GetX();

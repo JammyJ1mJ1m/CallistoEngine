@@ -15,7 +15,7 @@ void TestLight::start()
 	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("tester"), "Resources/textures/TestCube.mtl"));
 	AddComponent(new ComponentShaderDefault(Game::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
 
-	glm::vec3 pos = glm::vec3(00, 10.0f, 0.0f);
+	Vector3f pos(00, 10.0f, 0.0f);
 	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f)));
 
 	//PointLight* light = new PointLight(7.0f, Vector3f(1.0f, 0.5f, 1.0f));

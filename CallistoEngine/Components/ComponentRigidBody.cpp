@@ -14,7 +14,7 @@ ComponentRigidBody::ComponentRigidBody()
 }
 
 
-ComponentRigidBody::ComponentRigidBody(ComponentCollider* pCollider, btScalar pMass, const glm::vec3& pPos, bool gravityEnabled)
+ComponentRigidBody::ComponentRigidBody(ComponentCollider* pCollider, btScalar pMass, const Vector3f& pPos, bool gravityEnabled)
 {
 	mMass = pMass;
 	mInertia = btVector3();
@@ -24,7 +24,7 @@ ComponentRigidBody::ComponentRigidBody(ComponentCollider* pCollider, btScalar pM
 
 	btTransform transform;
 	transform.setIdentity();
-	transform.setOrigin(btVector3(pPos.x, pPos.y, pPos.z));
+	transform.setOrigin(btVector3(pPos.GetX(), pPos.GetY(), pPos.GetZ()));
 
 	mTransform = transform;
 	mMotionState = new btDefaultMotionState(mTransform);

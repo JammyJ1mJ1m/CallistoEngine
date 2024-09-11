@@ -9,7 +9,8 @@
 class ComponentTransform : public IComponent
 {
 
-	glm::vec3 position;
+	//glm::vec3 position;
+	Vector3f position;
 	glm::vec3 rotation;
 	glm::vec3 scale;
 
@@ -17,11 +18,11 @@ class ComponentTransform : public IComponent
 
 public:
 	ComponentTransform();
-	ComponentTransform(glm::vec3 pPos, glm::vec3 pRot, glm::vec3 pScale );
+	ComponentTransform(Vector3f& pPos, glm::vec3 pRot, glm::vec3 pScale );
 	~ComponentTransform() = default;
 
 	//inline const glm::vec3& GetPosition() { return position; }
-	inline const Vector3f& GetPosition() { return Vector3f(position.x,position.y,position.z); }
+	inline const Vector3f& GetPosition() { return position; }
 	inline const glm::vec3& GetRotation() { return rotation; }
 	inline const glm::vec3& GetScale() { return scale; }
 
@@ -30,10 +31,10 @@ public:
 
 	inline void SetPosition(const Vector3f& pPosition)
 	{
-		position.x = pPosition.GetX(); 
-		position.y = pPosition.GetY();
-		position.z = pPosition.GetZ();
-		
+		//position.x = pPosition.GetX(); 
+		//position.y = pPosition.GetY();
+		//position.z = pPosition.GetZ();
+		position = pPosition;
 		UpdateModelMatrix(); 
 	}
 

@@ -4,13 +4,14 @@
 #include "Components/ComponentCollider.h"
 #include "TestCube.h"
 #include "Components/ComponentTransform.h"
+#include "Math/Vector.h"
 
 void GunAK::start()
 {
 	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("AK"), "Resources/textures/GunAK3.mtl"));
 	AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
 
-	glm::vec3 pos = glm::vec3(0.0f, 3.0f, 0.0f);
+	Vector3f pos = Vector3f(0.0f, 3.0f, 0.0f);
 	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1, 1, 1)));
 	//mEntities.push_back(tri);
 
@@ -18,10 +19,10 @@ void GunAK::start()
 	std::vector<Vertex> vertices = Game::GetGame()->GetMesh("AK")->GetVertices();
 	std::vector<int> indices = Game::GetGame()->GetMesh("AK")->GetIndices();
 
-	Vector3f newPos;
-	newPos.SetX(pos.x);
-	newPos.SetY(pos.y);
-	newPos.SetZ(pos.z);
+	//Vector3f newPos;
+	//newPos.SetX(pos.x);
+	//newPos.SetY(pos.y);
+	//newPos.SetZ(pos.z);
 
 	//ComponentCollider* collider = new ComponentCollider(vertices);
 	// AddComponent(collider);
