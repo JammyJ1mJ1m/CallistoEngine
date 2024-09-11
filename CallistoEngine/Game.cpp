@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Managers/InputManager.h"
 
 Game* Game::theGame = nullptr;
 
@@ -34,6 +35,15 @@ Game::Game() :
 	mSteamManager = new SteamManager();
 	mSteamManager->initSteam();
 }
+
+Game::~Game()
+{
+	delete mCamera;
+	delete mRenderSystem;
+	delete mInputManager;
+	delete mDiscordManager;
+	delete mSteamManager;
+};
 
 const double Game::CalculateDeltaTime()
 {
