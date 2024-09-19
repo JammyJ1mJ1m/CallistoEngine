@@ -23,3 +23,13 @@ void SystemRender::Run(Entity* pEntity)
 		mRenderer->Render(pEntity);
 	}
 }
+
+void SystemRender::DrawPP()
+{
+	mRenderer->DrawPP();
+}
+
+void SystemRender::StartPP()
+{
+	mRenderer->StartPP();
+}

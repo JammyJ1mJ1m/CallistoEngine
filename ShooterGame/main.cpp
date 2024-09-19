@@ -1,24 +1,24 @@
 #ifdef _DEBUG
 	#define _CRTDBG_MAP_ALLOC
-	#include <cstdlib>
 	#include <crtdbg.h>
+	#include <cstdlib>
 #endif
 
 #include "main.h"
 #pragma comment(lib, "CallistoEngine.lib")
+#include "Managers/DisplayManager.h"
 #include "ShooterGame.h"
-#include "time.h"
-#include "chrono"
-#include <sstream>
 #include "Misc/toml.hpp"
 #include <iostream>
-#include "Managers/DisplayManager.h"
+#include <sstream>
 #include <stdio.h>
+#include <fstream>
+#include "time.h"
+#include "chrono"
 
 #if OPENGL
 #include "Graphical/Window_GL.h"
 #endif
-#include <fstream>
 #if OPENGL	
 
 // this is part of the game

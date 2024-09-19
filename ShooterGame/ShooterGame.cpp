@@ -2,16 +2,22 @@
 #include "GameScene.h"
 #include "Managers/PhysicsManager.h"
 #include "Misc/BulletDebugDraw.h"
+#include "Graphical/PostProcessor.h"
 
 static BulletDebugDrawer_OpenGL* bulletDebugDraw;
 
 void ShooterGame::InitialiseGame()
 {
+	// give shaders to the post processor //
+	PostProcessor& pp = PostProcessor::GetInstance();
+	pp.LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Matrix.frag");
+	//	//	//	//	//	//	//	//	//	//
+
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
 
 	mInputManager = new GameInputManager();
-	const char* tt = mSteamManager->GetSteamUserID();
-	std::cout << "Signed in as: " << tt << std::endl;
+	/*const char* tt = mSteamManager->GetSteamUserID();
+	std::cout << "Signed in as: " << tt << std::endl;*/
 
 
 	//mSteamManager->UnlockAchievement("NEW_ACHIEVEMENT_0_4");
@@ -28,7 +34,7 @@ void ShooterGame::InitialiseGame()
 	LoadMesh("Resources/Geometry/Guns/RPG/rpg.obj", "rpg", RM);
 	LoadMesh("Resources/Geometry/CardBox/box.obj", "cube", RM);
 	LoadMesh("Resources/Geometry/Barrel/expBarrel.obj", "barrel", RM);
-	LoadMesh("Resources/Geometry/Guns/AK/AK3.obj", "AK", RM);
+	LoadMesh("Resources/Geometry/Guns/AK/AK.obj", "AK", RM);
 	LoadMesh("Resources/Geometry/Guns/AK/magazineAK.obj", "AKmagazine", RM);
 	LoadMesh("Resources/Geometry/error.obj", "error", RM);
 

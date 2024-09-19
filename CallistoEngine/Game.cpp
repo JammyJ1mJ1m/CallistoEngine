@@ -32,8 +32,8 @@ Game::Game() :
 	mDiscordManager->initDiscord();
 
 	// TODO: renable this at a later date, this avoids spamming my steam friends with dev testing notifs
-	mSteamManager = new SteamManager();
-	mSteamManager->initSteam();
+	//mSteamManager = new SteamManager();
+	//mSteamManager->initSteam();
 }
 
 Game::~Game()
@@ -47,15 +47,11 @@ Game::~Game()
 
 const double Game::CalculateDeltaTime()
 {
-
 	++frameCount;
 
 	double temp_time = clock();
 	mDeltaTime = (temp_time - mLastFrameTime) / CLOCKS_PER_SEC;
 	mLastFrameTime = temp_time;
-
-
-
 
 	//deltaTime = calculateDeltaTime(lastFrameTime);
 

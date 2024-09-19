@@ -173,7 +173,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>OPENGL;DIRECTX;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OPENGL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)CallistoEngine</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -272,6 +272,11 @@
     <None Include="Resources\Shaders\basicLight.vert" />
     <None Include="Resources\Shaders\BulletLineShader.frag" />
     <None Include="Resources\Shaders\BulletLineShader.vert" />
+    <None Include="Resources\Shaders\PP\Blur.frag" />
+    <None Include="Resources\Shaders\PP\EdgeDetection.frag" />
+    <None Include="Resources\Shaders\PP\Matrix.frag" />
+    <None Include="Resources\Shaders\PP\PP.vert" />
+    <None Include="Resources\Shaders\PP\Sharpen.frag" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Config\settings.toml" />

@@ -39,6 +39,11 @@ public:
 	virtual void Destroy() = 0;
 	virtual void ClearScreen() = 0;
 	virtual void SwapBuffers() = 0;
+	virtual void DrawPP() = 0;
+	virtual void BindRBO(int W, int H) = 0;
+
+	// use this once at the start of the frame to clear / bind everything thats needed
+	virtual void StartPP() = 0;
 
 };
 

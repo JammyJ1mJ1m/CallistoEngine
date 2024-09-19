@@ -63,6 +63,7 @@ public:
 
 	const bool GetHasWindowSizeChanged() { return mHasWindowSizeChanged; }
 	const void SetHasWindowSizeChanged(bool value) { mHasWindowSizeChanged = value; }
+	
 	const bool GetIsFullscreen() { return mIsFullscreen; }
 	void SetIsFullscreen(bool value) { mIsFullscreen = value; }
 

@@ -25,9 +25,9 @@ int SteamManager::initSteam()
 {
 	ReadAppID();
 	SteamAPI_SetTryCatchCallbacks(true);
-	SteamAPI_Init();
+	bool steamOpen = SteamAPI_Init();
 	SteamAPI_RestartAppIfNecessary(GetAppID());
-	mIsInitialized = true;
+	//mIsInitialized = true;
 	UpdateSteamPresence("status", "Testing");
 
 	/*else
@@ -42,7 +42,7 @@ int SteamManager::initSteam()
 		//		SteamFriends()->SetRichPresence("status", "Testing");
 
 		//return 1;
-		mIsInitialized = true;
+		//mIsInitialized = true;
 
 	}
 
@@ -51,6 +51,8 @@ int SteamManager::initSteam()
 		std::cerr << "Fatal Error - Steam must be running to play this game (SteamAPI_Init() failed).\n";
 		return -1;
 	}
+	mIsInitialized = true;
+
 	return 1;
 }
 
@@ -105,7 +107,11 @@ bool SteamManager::IsAchievementUnlocked(const char* pAchievementID)
 
 const char* SteamManager::GetSteamUserID()
 {
-	return SteamFriends()->GetPersonaName();
+	if (mIsInitialized) 
+		return SteamFriends()->GetPersonaName(); 
+	else 
+		return "No username";
+	
 }
 
 void SteamManager::RunCallbacks()

@@ -13,6 +13,8 @@ class SystemRender : public ISystem
 	~SystemRender() = default;
 	virtual void Run(Entity* Entity);
 
-	
+	void DrawPP();
+	void StartPP();
+
 };
 

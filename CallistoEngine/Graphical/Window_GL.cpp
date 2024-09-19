@@ -3,6 +3,7 @@
 #include "Window_GL.h"
 #include <iostream>
 #include "DisplayManager.h"
+#include "PostProcessor.h"
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
@@ -12,46 +13,6 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 
 	instance->SetLastMouseX((float)xpos);
 	instance->SetLastMouseY((float)ypos);
-
-	//if ( instance->GetFirstMouse())
-	//{
-	//	instance->SetFirstMouse(false);
-	//}
-
-	//float xoffset = xpos - instance->GetLastMouseX();
-	//float yoffset = instance->GetLastMouseY() - ypos;
-	//instance->SetLastMouseX((float)xpos);
-	//instance->SetLastMouseY((float)ypos);
-
-	//// string stream mouse x and y into a string
-	//std::stringstream ss;
-	//ss << "Mouse X: " << xpos << " Mouse Y: " << ypos;
-	//std::string s = ss.str();
-
-
-	//instance->SetTitle(s.c_str());
-
-	//float sensitivity = 0.1f;
-	//xoffset *= sensitivity;
-	//yoffset *= sensitivity;
-
-	//instance->SetYaw(instance->GetYaw() + xoffset); 
-	//instance->SetPitch(instance->GetPitch() + yoffset); 
-	////pitch += yoffset;
-	//float pitch = instance->GetPitch();
-	//float yaw = instance->GetYaw();
-
-	//if (pitch > 89.0f)
-	//	pitch = 89.0f;
-	//if (pitch < -89.0f)
-	//	pitch = -89.0f;
-
-	//glm::vec3 direction;
-	//direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-	//direction.y = sin(glm::radians(pitch));
-	//direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-	//
-	//cameraFront = glm::normalize(direction);
 }
 
 // when the window position changes
@@ -79,6 +40,11 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 		instance->mWindowHeight = height;
 		//instance->SetDimensions(width, height);
 		instance->SetHasWindowSizeChanged(true);
+
+		// bind the RBO
+		instance->_renderer->BindRBO(width,height);
+		// also want to update the post processing size
+		PostProcessor::GetInstance().UpdateSize(width, height);
 		glViewport(0, 0, width, height);
 	}
 }
@@ -134,6 +100,7 @@ int Window_GL::Initialise(const char* pTitle)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	//glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); -- use this when doing fullscreen borderless
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -195,11 +162,12 @@ int Window_GL::Initialise(const char* pTitle)
 		return -1;
 	}
 
-	_renderer->Initialise(0, 0);
+	_renderer->Initialise(GetWindowWidth(), GetWindowHeight());
 
 	glfwGetWindowPos(mGlfwWindow, &mWindowPosX, &mWindowPosY);
 
 	glfwPollEvents();
+
 	return 0;
 
 }
@@ -238,6 +206,8 @@ void Window_GL::SetWindowPosY(const int pY)
 
 const void Window_GL::SetFullscreen()
 {
+	glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+
 	GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 	const GLFWvidmode* mode = glfwGetVideoMode(monitor);
 	mWindowWidth = mode->width;

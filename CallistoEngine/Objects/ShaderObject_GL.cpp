@@ -63,7 +63,7 @@ ShaderObject_GL::ShaderObject_GL(const char* pVertexPath, const char* pFragPath)
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 }
 
 const void ShaderObject_GL::UseProgram()

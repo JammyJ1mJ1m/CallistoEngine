@@ -22,7 +22,7 @@ resolution = "800x800"
 fullscreen = false
 vsync = true
 fov = 90
-cursor = false
+cursor = true
 
 [settings.graphics]
 texture_quality = "high" # low, medium, high, ultra

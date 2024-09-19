@@ -184,6 +184,9 @@ void GameScene::Update(double deltaTime)
 
 void GameScene::Render(SystemRender* renderer)
 {
+	//renderer->StartPP();
+
+	// TODO: refactor this into systems, syncing RB doesnt need to be here
 	for (auto& enti : mEntities)
 	{
 		mLightSystem->Run(enti);
@@ -201,4 +204,6 @@ void GameScene::Render(SystemRender* renderer)
 			renderer->Run(child);
 		}
 	}
+	// draw PP here
+	renderer->DrawPP();
 }

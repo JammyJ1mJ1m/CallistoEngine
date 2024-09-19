@@ -8,7 +8,7 @@
 
 void GunAK::start()
 {
-	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("AK"), "Resources/textures/GunAK3.mtl"));
+	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("AK"), "Resources/textures/GunAK.mtl"));
 	AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
 
 	Vector3f pos = Vector3f(0.0f, 3.0f, 0.0f);

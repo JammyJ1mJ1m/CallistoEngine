@@ -309,6 +309,7 @@
       <PreprocessorDefinitions>DIRECTX;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>
@@ -338,6 +339,7 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="Managers\PhysicsManager.cpp" />
     <ClCompile Include="Lighting\PointLight.cpp" />
+    <ClCompile Include="Graphical\PostProcessor.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Misc\Sound.cpp" />
     <ClCompile Include="Managers\SteamManager.cpp" />
@@ -507,6 +509,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Managers\PhysicsManager.h" />
     <ClInclude Include="Lighting\PointLight.h" />
+    <ClInclude Include="Graphical\PostProcessor.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Misc\Sound.h" />
     <ClInclude Include="Managers\SteamManager.h" />

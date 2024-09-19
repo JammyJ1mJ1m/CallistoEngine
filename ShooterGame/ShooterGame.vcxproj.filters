@@ -183,6 +183,11 @@
     <None Include="Resources\Shaders\basicLight.frag" />
     <None Include="Resources\Shaders\basicLight.vert" />
     <None Include="Config\KeyCodeMap.csv" />
+    <None Include="Resources\Shaders\PP\Sharpen.frag" />
+    <None Include="Resources\Shaders\PP\EdgeDetection.frag" />
+    <None Include="Resources\Shaders\PP\Blur.frag" />
+    <None Include="Resources\Shaders\PP\PP.vert" />
+    <None Include="Resources\Shaders\PP\Matrix.frag" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Config\settings.toml" />

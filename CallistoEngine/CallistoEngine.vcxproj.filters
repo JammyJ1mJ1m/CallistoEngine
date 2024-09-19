@@ -162,6 +162,9 @@
     <ClCompile Include="Managers\LightManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Graphical\PostProcessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Managers\SceneManager.h">
@@ -672,6 +675,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Lighting\LightTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphical\PostProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -94,6 +94,10 @@ spec=0.33;
     vec3 specular = specularStrength * spec * specColor;  
         
     vec3 result = (ambient + diffuse + specular) * objectColor;
+
+    // matrix colour 
+//    result = vec3(pow(result.x, 7.0 / 5.0), result.y, pow(result.z, 8.0 / 5.0));
+
     return vec4(result, 1.0);
 }
 
