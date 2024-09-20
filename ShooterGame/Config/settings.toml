@@ -18,11 +18,11 @@ alt_move_right = "right"
 boost = "left_shift"
 
 [settings.display]
-resolution = "800x800"
+resolution = "1423x800"
 fullscreen = false
 vsync = true
 fov = 90
-cursor = true
+cursor = false
 
 [settings.graphics]
 texture_quality = "high" # low, medium, high, ultra

@@ -108,7 +108,7 @@ void PostProcessor::UpdateSize(const int pWidth, const int pHeight)
 void PostProcessor::CreateScreenBuffer()
 {
 	Window* window = Window::TheWindow;
-	// 2. Create texture to store scene
+
 	glGenTextures(1, &textureColorbuffer);
 	glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, window->GetWindowWidth(), window->GetWindowHeight(), 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
@@ -116,8 +116,7 @@ void PostProcessor::CreateScreenBuffer()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer, 0);
-	
-	// Ensure the framebuffer is complete
+
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
 }

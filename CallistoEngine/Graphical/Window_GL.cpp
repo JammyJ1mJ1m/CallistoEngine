@@ -38,14 +38,15 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	if (instance) {
 		instance->mWindowWidth = width;
 		instance->mWindowHeight = height;
-		//instance->SetDimensions(width, height);
 		instance->SetHasWindowSizeChanged(true);
 
-		// bind the RBO
-		instance->_renderer->BindRBO(width,height);
+		glViewport(0, 0, width, height);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
+		// re calculate the RBO
+		instance->_renderer->BindRBO(width, height);
 		// also want to update the post processing size
 		PostProcessor::GetInstance().UpdateSize(width, height);
-		glViewport(0, 0, width, height);
 	}
 }
 
@@ -207,7 +208,6 @@ void Window_GL::SetWindowPosY(const int pY)
 const void Window_GL::SetFullscreen()
 {
 	glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
-
 	GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 	const GLFWvidmode* mode = glfwGetVideoMode(monitor);
 	mWindowWidth = mode->width;

@@ -199,6 +199,7 @@ void Renderer_GL::Initialise(int width, int height)
 
 void Renderer_GL::CreateRBO(int width, int height)
 {
+	glDeleteRenderbuffers(1, &rbo);
 	glGenRenderbuffers(1, &rbo);
 	glBindRenderbuffer(GL_RENDERBUFFER, rbo);
 	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
@@ -207,9 +208,14 @@ void Renderer_GL::CreateRBO(int width, int height)
 	// Check framebuffer completeness
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
+void Renderer_GL::BindRBO(int W, int H) 
+{
+	CreateRBO(W,H);
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+}
 
 void Renderer_GL::SwapBuffers()
 {
@@ -239,8 +245,3 @@ void Renderer_GL::StartPP()
 {
 }
 
-void Renderer_GL::BindRBO(int W, int H) 
-{
-	CreateRBO(W,H);
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-}
