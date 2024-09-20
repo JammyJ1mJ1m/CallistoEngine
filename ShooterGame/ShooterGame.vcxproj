@@ -273,6 +273,7 @@
     <None Include="Resources\Shaders\BulletLineShader.frag" />
     <None Include="Resources\Shaders\BulletLineShader.vert" />
     <None Include="Resources\Shaders\PP\Blur.frag" />
+    <None Include="Resources\Shaders\PP\defaultPP.frag" />
     <None Include="Resources\Shaders\PP\EdgeDetection.frag" />
     <None Include="Resources\Shaders\PP\Matrix.frag" />
     <None Include="Resources\Shaders\PP\PP.vert" />

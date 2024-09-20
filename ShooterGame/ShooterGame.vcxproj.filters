@@ -188,6 +188,7 @@
     <None Include="Resources\Shaders\PP\Blur.frag" />
     <None Include="Resources\Shaders\PP\PP.vert" />
     <None Include="Resources\Shaders\PP\Matrix.frag" />
+    <None Include="Resources\Shaders\PP\defaultPP.frag" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Config\settings.toml" />

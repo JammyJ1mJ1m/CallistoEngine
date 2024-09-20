@@ -38,21 +38,27 @@ void ComponentShaderDefault::Update(glm::mat4 pMat)
 
 	// set view
 	mShaderObject->SetMat4("view", mCamera->GetView());
-		
+
 	// set projection
 	mShaderObject->SetMat4("projection", mCamera->GetProjection());
 
 	const std::vector<LightComponent*>& lights = LightManager::GetInstance().GetLights();
 
-	mShaderObject->SetVec3("light.position", lights[0]->GetLight()->GetPosition());
-	mShaderObject->SetVec3("light.diffuse", Vector3f(1, 1, 1));
+	// get all the lights and update
+	for (size_t i = 0; i < lights.size(); i++)
+	{
+		std::string lightPosName = "light[" + std::to_string(i) + "].position";
+		std::string lightDiffuseName = "light[" + std::to_string(i) + "].diffuse";
+		mShaderObject->SetVec3(lightPosName.c_str(), lights[i]->GetLight()->GetPosition());
+		mShaderObject->SetVec3(lightDiffuseName.c_str(), lights[i]->GetLight()->GetDiffuse());
+	}
 
 	mShaderObject->SetFloat("time", glfwGetTime());
 
 	//glm::vec3 pos;
 	Vector3f pos;
 	pos.SetX(mCamera->GetPosition().GetX());
-	pos.SetY( mCamera->GetPosition().GetY());
-	pos.SetZ( mCamera->GetPosition().GetZ());
+	pos.SetY(mCamera->GetPosition().GetY());
+	pos.SetZ(mCamera->GetPosition().GetZ());
 	mShaderObject->SetVec3("viewPos", pos);
 }

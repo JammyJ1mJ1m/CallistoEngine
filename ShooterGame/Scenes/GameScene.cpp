@@ -72,7 +72,24 @@ void GameScene::Initialise()
 	
 	// add the lights here
 	 light = new TestLight();
+	 LightComponent* lc1 = light->GetComponent<LightComponent>();
+	 Light* l1 = lc1->GetLight();/// ;
+	 l1->SetDiffuse(Vector3f(0, 0, 1));
 	AddEntity(light);
+
+	TestLight* light3 = new TestLight();
+	light3->SetPosition(Vector3f(-10, 10, -50));
+	LightComponent* lc3 = light3->GetComponent<LightComponent>();
+	lc3->GetLight()->SetDiffuse(Vector3f(0, 1, 0));
+	AddEntity(light3);
+
+	TestLight* light2 = new TestLight();
+	light2->SetPosition(Vector3f(-10, 10, 50));
+	LightComponent* lc2 = light2->GetComponent<LightComponent>();
+	lc2->GetLight()->SetDiffuse(Vector3f(1, 0, 0));
+	AddEntity(light2);
+
+
 
 }
 

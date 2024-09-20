@@ -10,7 +10,7 @@ void ShooterGame::InitialiseGame()
 {
 	// give shaders to the post processor //
 	PostProcessor& pp = PostProcessor::GetInstance();
-	pp.LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Matrix.frag");
+	pp.LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/defaultPP.frag");
 	//	//	//	//	//	//	//	//	//	//
 
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
