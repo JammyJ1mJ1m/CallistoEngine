@@ -16,6 +16,7 @@ class InputManager
 {
 	
 	bool mKeys[mKeyCount];
+	bool mPrevKeys[mKeyCount];
 	
 public:
 	InputManager();
@@ -23,7 +24,14 @@ public:
 
 	const bool* GetKeys() { return mKeys; }
 	const bool GetKey(int key) { return mKeys[key]; }
-	void SetKeyState(int key, bool down) { mKeys[key] = down; }
+	const bool GetKeyDown(int key);
+	void SetKeyState(int key, bool down) 
+	{ 
+		mPrevKeys[key] = mKeys[key];
+		mKeys[key] = down;
+	}
+
+	void UpdatePrevKeyStates();
 	//const void GetMousePosition(int& x, int& y);
 
 

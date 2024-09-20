@@ -9,12 +9,9 @@ static BulletDebugDrawer_OpenGL* bulletDebugDraw;
 void ShooterGame::InitialiseGame()
 {
 	// give shaders to the post processor //
-	PostProcessor& pp = PostProcessor::GetInstance();
-	pp.LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/defaultPP.frag");
-	//	//	//	//	//	//	//	//	//	//
+	PostProcessor::GetInstance().LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Matrix.frag");
 
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
-
 	mInputManager = new GameInputManager();
 	/*const char* tt = mSteamManager->GetSteamUserID();
 	std::cout << "Signed in as: " << tt << std::endl;*/
@@ -82,6 +79,7 @@ void ShooterGame::OnKeyboard(int key, bool down)
 	}
 
 	mInputManager->SetKeyState(key, down);
+
 }
 bool ShooterGame::HandleInput()
 {
@@ -91,7 +89,7 @@ bool ShooterGame::HandleInput()
 	if (mInputManager->GetKey(256))  // Esc
 		mGameState = Quit;
 
-	if (mInputManager->GetKey(280))  // caps
+	if (mInputManager->GetKeyDown(280))  // caps
 	{
 		mWindow->ToggleFullscreen(true);
 		mDiscordManager->SetDiscordPresence("fullscreen", "test");
@@ -102,7 +100,7 @@ bool ShooterGame::HandleInput()
 	{
 		mSceneManager.OnKeyboard(-1, true);
 	}
-
+	mInputManager->UpdatePrevKeyStates();
 	return false;
 }
 

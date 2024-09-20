@@ -45,9 +45,9 @@ int main()
 
 	while (game->IsRunning())
 	{
+		_window->Update();
 		game->CalculateDeltaTime();
 		game->Update();
-		_window->Update();
 	}
 	delete _window;
 	return 0;

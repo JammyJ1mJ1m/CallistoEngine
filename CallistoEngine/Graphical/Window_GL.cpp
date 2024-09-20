@@ -237,10 +237,20 @@ const void Window_GL::ToggleFullscreen(bool pState)
 
 		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
-		glfwSetWindowMonitor(mGlfwWindow, monitor, 0, 0, mode->width, mode->height, 0);
+		glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+		glfwWindowHint(GLFW_FLOATING, GLFW_TRUE);
+
+		//glfwSetWindowMonitor(mGlfwWindow, monitor, 0, 0, mode->width, mode->height, 0); - exclusive fullscreen
+		glfwSetWindowMonitor(mGlfwWindow, monitor, 0, 0, mode->width, mode->height, mode->refreshRate); // windowed fullscreen
+
 	}
 	else
 	{
+		glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);
+		glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+		glfwWindowHint(GLFW_FLOATING, GLFW_FALSE);
+
 		int xy = 0;
 		glfwSetWindowMonitor(mGlfwWindow, nullptr, GetWindowPosX(), GetWindowPosY(), mWindowWidthBackup, mWindowHeightBackup, 0);
 		int x = GetWindowPosX();
