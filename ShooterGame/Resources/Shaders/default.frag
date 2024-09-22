@@ -112,7 +112,7 @@ vec4 color = vec4(0,0,0,1);
         for(int i = 0; i < NR_POINT_LIGHTS; i++)
         color += calculatePointLight(i); //, norm, FragPos, viewDir
 
-        FragColor = normalize( color);
+        FragColor = normalize( color) * 3;
     
     //FragColor = vec4(FragPos,1);
     //FragColor = calculatePointLight(0);

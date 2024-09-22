@@ -1,0 +1,25 @@
+# main settings file for the game / engine
+
+[gun]
+
+[gun.transform]
+positionX = -10
+positionY = 5
+positionZ = 0
+
+[gun.model]
+modelPath = "Resources/Geometry/Guns/RPG/rpg.obj"
+moldeMaterial = "Resources/Geometry/Guns/RPG/GunRPG.mtl"
+
+[gun.specifics]
+gunName = "RPG"
+magCount = 5
+magSize = 30
+fireRate = 0.2
+
+# used for defining the mag as a child object
+[gun.mag]
+hasChild = true
+childName = "rpgRocket"
+childPath = "Resources/Geometry/Guns/RPG/rpgRocket.obj"
+

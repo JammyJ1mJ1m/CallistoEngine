@@ -3,13 +3,14 @@
 #include "Managers/PhysicsManager.h"
 #include "Misc/BulletDebugDraw.h"
 #include "Graphical/PostProcessor.h"
+#include "GunLoader.h"
 
 static BulletDebugDrawer_OpenGL* bulletDebugDraw;
 
 void ShooterGame::InitialiseGame()
 {
 	// give shaders to the post processor //
-	PostProcessor::GetInstance().LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Matrix.frag");
+	PostProcessor::GetInstance().LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/defaultPP.frag");
 
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
 	mInputManager = new GameInputManager();
@@ -28,12 +29,30 @@ void ShooterGame::InitialiseGame()
 	ResourceManager& RM = ResourceManager::getInstance();
 	LoadMesh("Resources/Geometry/Floor/FloorTwo.obj", "ship", RM);
 	LoadMesh("Resources/Geometry/CardBox/box.obj", "tester", RM);
-	LoadMesh("Resources/Geometry/Guns/RPG/rpg.obj", "rpg", RM);
+	//LoadMesh("Resources/Geometry/Guns/RPG/rpg.obj", "rpg", RM);
 	LoadMesh("Resources/Geometry/CardBox/box.obj", "cube", RM);
-	LoadMesh("Resources/Geometry/Barrel/expBarrel.obj", "barrel", RM);
-	LoadMesh("Resources/Geometry/Guns/AK/AK.obj", "AK", RM);
+	//LoadMesh("Resources/Geometry/Barrel/expBarrel.obj", "barrel", RM);
+
+	//LoadMesh("Resources/Geometry/Guns/AK/AK.obj", "AK", RM);
 	LoadMesh("Resources/Geometry/Guns/AK/magazineAK.obj", "AKmagazine", RM);
+
 	LoadMesh("Resources/Geometry/error.obj", "error", RM);
+
+	GunLoader& gLoader = GunLoader::GetInstance();
+
+	gLoader.ConstructFromDisk("GameObjects/AK/RayGun.toml");
+	gLoader.ConstructFromDisk("GameObjects/AK/AK.toml");
+	gLoader.ConstructFromDisk("GameObjects/AK/Glock.toml");
+
+	gLoader.ConstructFromDisk("GameObjects/AK/RPG.toml");
+
+	const GunsToLoad meshes = gLoader.GetMeshesToLoad();
+
+	for (auto& mesh : meshes)
+	{
+		LoadMesh(mesh.first.c_str(), mesh.second.c_str(), RM);
+	}
+
 
 	mSceneManager.PushScene(new GameScene());
 }

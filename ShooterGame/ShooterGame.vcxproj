@@ -210,7 +210,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entities\Gun.cpp" />
     <ClCompile Include="Entities\GunAK.cpp" />
+    <ClCompile Include="Entities\GunMagazine.cpp" />
     <ClCompile Include="GameCommands\BoostCommand.cpp" />
     <ClCompile Include="Components\ComponentShaderDefault.cpp" />
     <ClCompile Include="Components\ComponentShaderError.cpp" />
@@ -222,6 +224,8 @@
     <ClCompile Include="GameCommands\MoveCamRightCommand.cpp" />
     <ClCompile Include="GameCommands\RotateLeftCommand.cpp" />
     <ClCompile Include="GameCommands\RotateRightCommand.cpp" />
+    <ClCompile Include="GunInformation.cpp" />
+    <ClCompile Include="GunLoader.cpp" />
     <ClCompile Include="Managers\GameInputManager.cpp" />
     <ClCompile Include="Scenes\GameScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -238,7 +242,9 @@
     <ClCompile Include="Entities\TestLight.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Entities\Gun.h" />
     <ClInclude Include="Entities\GunAK.h" />
+    <ClInclude Include="Entities\GunMagazine.h" />
     <ClInclude Include="Entities\TestCube.h" />
     <ClInclude Include="GameCommands\BoostCommand.h" />
     <ClInclude Include="Components\ComponentShaderDefault.h" />
@@ -252,6 +258,8 @@
     <ClInclude Include="GameCommands\MoveCamRightCommand.h" />
     <ClInclude Include="GameCommands\RotateLeftCommand.h" />
     <ClInclude Include="GameCommands\RotateRightCommand.h" />
+    <ClInclude Include="GunInformation.h" />
+    <ClInclude Include="GunLoader.h" />
     <ClInclude Include="Managers\GameInputManager.h" />
     <ClInclude Include="Scenes\GameScene.h" />
     <ClInclude Include="main.h" />
@@ -268,6 +276,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\KeyCodeMap.csv" />
+    <None Include="GameObjects\AK\AK.toml" />
+    <None Include="GameObjects\AK\Glock.toml" />
+    <None Include="GameObjects\AK\RayGun.toml" />
+    <None Include="GameObjects\AK\RPG.toml" />
     <None Include="Resources\Shaders\basicLight.frag" />
     <None Include="Resources\Shaders\basicLight.vert" />
     <None Include="Resources\Shaders\BulletLineShader.frag" />

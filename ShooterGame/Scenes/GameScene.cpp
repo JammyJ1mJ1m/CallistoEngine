@@ -20,6 +20,8 @@
 
 #include "Misc/Sound.h"
 
+#include "GunLoader.h"
+
 Player* player;
 ExpBarrel* expBarrel;
 Sound* sound;
@@ -49,11 +51,22 @@ void GameScene::Initialise()
 	player = new Player();
 	AddEntity(player);
 
-	gun = new GunAK();
-	AddEntity(gun);
+	//gun = new GunAK();
+	//AddEntity(gun);
+
 	Enemy* enemy = new Enemy();
 	AddEntity(enemy);
 
+	GunLoader& gLoader = GunLoader::GetInstance();
+
+	const GunMap meshes = gLoader.GetGunsToLoad();
+
+	for (auto& mesh : meshes)
+	{
+		Gun* newGun = new Gun();
+		newGun->Initialise(mesh.first);
+		AddEntity(newGun);
+	}
 
 
 	//expBarrel = new ExpBarrel();
@@ -74,17 +87,17 @@ void GameScene::Initialise()
 	 light = new TestLight();
 	 LightComponent* lc1 = light->GetComponent<LightComponent>();
 	 Light* l1 = lc1->GetLight();/// ;
-	 l1->SetDiffuse(Vector3f(0, 0, 1));
+	 l1->SetDiffuse(Vector3f(1, 1, 1));
 	AddEntity(light);
 
 	TestLight* light3 = new TestLight();
-	light3->SetPosition(Vector3f(-10, 10, -50));
+	light3->SetPosition(Vector3f(-10, 20, -50));
 	LightComponent* lc3 = light3->GetComponent<LightComponent>();
 	lc3->GetLight()->SetDiffuse(Vector3f(0, 1, 0));
 	AddEntity(light3);
 
 	TestLight* light2 = new TestLight();
-	light2->SetPosition(Vector3f(-10, 10, 50));
+	light2->SetPosition(Vector3f(-10, 20, 50));
 	LightComponent* lc2 = light2->GetComponent<LightComponent>();
 	lc2->GetLight()->SetDiffuse(Vector3f(1, 0, 0));
 	AddEntity(light2);

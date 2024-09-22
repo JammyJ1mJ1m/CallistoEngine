@@ -93,6 +93,18 @@
     <ClCompile Include="Entities\TestLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GunLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\Gun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GunInformation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\GunMagazine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -176,6 +188,18 @@
     <ClInclude Include="Entities\TestLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GunLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Gun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GunInformation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\GunMagazine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\BulletLineShader.frag" />
@@ -189,6 +213,10 @@
     <None Include="Resources\Shaders\PP\PP.vert" />
     <None Include="Resources\Shaders\PP\Matrix.frag" />
     <None Include="Resources\Shaders\PP\defaultPP.frag" />
+    <None Include="GameObjects\AK\AK.toml" />
+    <None Include="GameObjects\AK\RayGun.toml" />
+    <None Include="GameObjects\AK\Glock.toml" />
+    <None Include="GameObjects\AK\RPG.toml" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Config\settings.toml" />
