@@ -40,11 +40,13 @@ void ShooterGame::InitialiseGame()
 
 	GunLoader& gLoader = GunLoader::GetInstance();
 
-	gLoader.ConstructFromDisk("GameObjects/AK/RayGun.toml");
-	gLoader.ConstructFromDisk("GameObjects/AK/AK.toml");
-	gLoader.ConstructFromDisk("GameObjects/AK/Glock.toml");
+	gLoader.ReadManifest("GameObjects/AK/gunManifest.txt");
 
-	gLoader.ConstructFromDisk("GameObjects/AK/RPG.toml");
+	//gLoader.ConstructFromDisk("GameObjects/AK/RayGun.toml");
+	//gLoader.ConstructFromDisk("GameObjects/AK/AK.toml");
+	//gLoader.ConstructFromDisk("GameObjects/AK/Glock.toml");
+
+	//gLoader.ConstructFromDisk("GameObjects/AK/RPG.toml");
 
 	const GunsToLoad meshes = gLoader.GetMeshesToLoad();
 

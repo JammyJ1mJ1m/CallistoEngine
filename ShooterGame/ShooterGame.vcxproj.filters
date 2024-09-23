@@ -221,5 +221,6 @@
   <ItemGroup>
     <Text Include="Config\settings.toml" />
     <Text Include="steam_appid.txt" />
+    <Text Include="GameObjects\AK\gunManifest.txt" />
   </ItemGroup>
 </Project>

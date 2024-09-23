@@ -1,5 +1,7 @@
 #include "GunLoader.h"
 #include "Game.h"
+#include <fstream>
+#include <string>
 
 GunLoader* GunLoader::mInstance = nullptr;
 
@@ -11,11 +13,29 @@ GunLoader::~GunLoader()
 	}
 }
 
+void GunLoader::ReadManifest(const char* pPath)
+{
+	// open the manifest
+	std::string line;
+	std::ifstream myfile(pPath);
+	if (myfile.is_open())
+	{
+		// loop through and construct each gun
+		while (getline(myfile, line)) {
+			if (line.find('#') == std::string::npos)
+				ConstructFromDisk(line.c_str());
+			//std::cout << line << std::endl;
+		}
+		myfile.close();
+	}
+	else std::cerr << "GunLoader :: Unable to open file :: " << pPath << "\n";
+
+}
+
 void GunLoader::ConstructFromDisk(const char* pPath)
 {
 	GunInformation* loadedGunInfo = new GunInformation();;
 
-	// Gun* gun = new Gun();
 	TomlReader reader;
 	toml::table config = reader.ReadFile(pPath);
 
@@ -25,18 +45,10 @@ void GunLoader::ConstructFromDisk(const char* pPath)
 		return;
 	}
 
-	// Accessing display settings
 	auto transform = config["gun"]["transform"];
 	loadedGunInfo->setPosition(Vector3f(*transform["positionX"].value<float>(),
 		*transform["positionY"].value<float>(),
 		*transform["positionZ"].value<float>()));
-
-	//float posX = *transform["positionX"].value<float>();
-	//float posY = *transform["positionY"].value<float>();
-	//float posZ = *transform["positionZ"].value<float>();
-	//gun->SetPosition(Vector3f(posX, posY, posZ));
-
-
 
 	auto model = config["gun"]["model"];
 	loadedGunInfo->setModelPath(*model["modelPath"].value<std::string>());
@@ -62,9 +74,7 @@ void GunLoader::ConstructFromDisk(const char* pPath)
 	{
 		mMeshesToLoad[loadedGunInfo->getChildPath()] = loadedGunInfo->getChildName();
 	}
-	// gun->AddComponent(new ComponentModel(Game::GetGame()->GetMesh(gunName), modelMat));
 
 	mMeshesToLoad[loadedGunInfo->getModelPath()] = loadedGunInfo->getGunName();
 	mGuns[loadedGunInfo] = loadedGunInfo->getGunName();
-
 }

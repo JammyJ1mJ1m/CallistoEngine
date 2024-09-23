@@ -15,6 +15,7 @@ class GunLoader
 	GunMap mGuns;
 
 	GunLoader() = default;
+	void ConstructFromDisk(const char* pPath);
 public:
 
 	static GunLoader& GetInstance()
@@ -27,7 +28,7 @@ public:
 
 	~GunLoader();
 
-	void ConstructFromDisk(const char* pPath);
+	void ReadManifest(const char* pPath);
 	const GunsToLoad GetMeshesToLoad() { return mMeshesToLoad; };
 	const GunMap GetGunsToLoad() { return mGuns; };
 

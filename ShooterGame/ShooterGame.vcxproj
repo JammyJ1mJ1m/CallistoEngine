@@ -293,6 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Config\settings.toml" />
+    <Text Include="GameObjects\AK\gunManifest.txt" />
     <Text Include="steam_appid.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,0 +1,7 @@
+# paste the file path and its name for each gun config
+# such as:
+# objects/guns/gun.toml
+GameObjects/AK/RayGun.toml
+GameObjects/AK/AK.toml
+GameObjects/AK/Glock.toml
+GameObjects/AK/RPG.toml
