@@ -22,8 +22,6 @@ private:
 	float mMoveSpeedModifier;
 	float pitch;
 	float yaw;
-	float mWidth;
-	float mHeight;
 	float mFov;
 
 	//Camera() {}	// Constructor? (the {} brackets) are needed here.
@@ -37,6 +35,8 @@ private:
 
 public:
 
+	float mWidth;
+	float mHeight;
 
 	//Camera(const Camera&) = delete;
 	Camera& operator=(const Camera&) = delete;

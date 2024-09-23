@@ -105,6 +105,9 @@
     <ClCompile Include="Entities\GunMagazine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\MainMenuScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -200,6 +203,9 @@
     <ClInclude Include="Entities\GunMagazine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\MainMenuScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\BulletLineShader.frag" />
@@ -217,10 +223,21 @@
     <None Include="GameObjects\AK\RayGun.toml" />
     <None Include="GameObjects\AK\Glock.toml" />
     <None Include="GameObjects\AK\RPG.toml" />
+    <None Include="Resources\Shaders\Text\text.vert" />
+    <None Include="Resources\Shaders\Text\text.frag" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Config\settings.toml" />
     <Text Include="steam_appid.txt" />
     <Text Include="GameObjects\AK\gunManifest.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resources\Fonts\Antonio\Antonio-Bold.ttf" />
+    <Font Include="Resources\Fonts\Antonio\Antonio-ExtraLight.ttf" />
+    <Font Include="Resources\Fonts\Antonio\Antonio-Light.ttf" />
+    <Font Include="Resources\Fonts\Antonio\Antonio-Medium.ttf" />
+    <Font Include="Resources\Fonts\Antonio\Antonio-Regular.ttf" />
+    <Font Include="Resources\Fonts\Antonio\Antonio-SemiBold.ttf" />
+    <Font Include="Resources\Fonts\Antonio\Antonio-Thin.ttf" />
   </ItemGroup>
 </Project>

@@ -102,6 +102,7 @@ void GameScene::Initialise()
 	lc2->GetLight()->SetDiffuse(Vector3f(1, 0, 0));
 	AddEntity(light2);
 
+	text1 = new GUIText("Hello world!", Vector3f(1, 1, 1), 64);
 
 
 }
@@ -235,5 +236,8 @@ void GameScene::Render(SystemRender* renderer)
 		}
 	}
 	// draw PP here
+	text1->Render(50, 50, Game::GetGame()->GetGameCamera()->mWidth, Game::GetGame()->GetGameCamera()->mHeight);
+	text1->Render(50, 700, Game::GetGame()->GetGameCamera()->mWidth, Game::GetGame()->GetGameCamera()->mHeight);
 	renderer->DrawPP();
+
 }

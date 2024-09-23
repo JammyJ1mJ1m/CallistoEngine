@@ -97,7 +97,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)x64\OpenGL - debug;$(SolutionDir)Dependencies\inc\Bullet;$(ProjectDir)Components;$(ProjectDir)Entities;$(ProjectDir)Scenes;$(ProjectDir)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)x64\OpenGL - debug;$(SolutionDir)Dependencies\inc\Bullet;$(ProjectDir)Components;$(ProjectDir)Entities;$(ProjectDir)Scenes;$(ProjectDir);$(SolutionDir)Dependencies\inc\freetype</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SolutionDir)x64\OpenGL - debug;$(SolutionDir)Dependencies\lib\Bullet</LibraryPath>
     <TargetName>Shooter Game</TargetName>
   </PropertyGroup>
@@ -236,6 +236,7 @@
     <ClCompile Include="GameCommands\MoveLeftCommand.cpp" />
     <ClCompile Include="GameCommands\MoveRightCommand.cpp" />
     <ClCompile Include="Entities\Player.cpp" />
+    <ClCompile Include="Scenes\MainMenuScene.cpp" />
     <ClCompile Include="ShooterGame.cpp" />
     <ClCompile Include="Entities\SkyBox.cpp" />
     <ClCompile Include="Entities\TestCube.cpp" />
@@ -270,6 +271,7 @@
     <ClInclude Include="GameCommands\MoveLeftCommand.h" />
     <ClInclude Include="GameCommands\MoveRightCommand.h" />
     <ClInclude Include="Entities\Player.h" />
+    <ClInclude Include="Scenes\MainMenuScene.h" />
     <ClInclude Include="ShooterGame.h" />
     <ClInclude Include="Entities\SkyBox.h" />
     <ClInclude Include="Entities\TestLight.h" />
@@ -290,11 +292,22 @@
     <None Include="Resources\Shaders\PP\Matrix.frag" />
     <None Include="Resources\Shaders\PP\PP.vert" />
     <None Include="Resources\Shaders\PP\Sharpen.frag" />
+    <None Include="Resources\Shaders\Text\text.frag" />
+    <None Include="Resources\Shaders\Text\text.vert" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Config\settings.toml" />
     <Text Include="GameObjects\AK\gunManifest.txt" />
     <Text Include="steam_appid.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resources\Fonts\Antonio\Antonio-Bold.ttf" />
+    <Font Include="Resources\Fonts\Antonio\Antonio-ExtraLight.ttf" />
+    <Font Include="Resources\Fonts\Antonio\Antonio-Light.ttf" />
+    <Font Include="Resources\Fonts\Antonio\Antonio-Medium.ttf" />
+    <Font Include="Resources\Fonts\Antonio\Antonio-Regular.ttf" />
+    <Font Include="Resources\Fonts\Antonio\Antonio-SemiBold.ttf" />
+    <Font Include="Resources\Fonts\Antonio\Antonio-Thin.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

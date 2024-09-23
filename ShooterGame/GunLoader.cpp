@@ -24,7 +24,6 @@ void GunLoader::ReadManifest(const char* pPath)
 		while (getline(myfile, line)) {
 			if (line.find('#') == std::string::npos)
 				ConstructFromDisk(line.c_str());
-			//std::cout << line << std::endl;
 		}
 		myfile.close();
 	}
