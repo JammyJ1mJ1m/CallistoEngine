@@ -2,10 +2,17 @@
 #include "Scenes/Scene.h"
 #include "Systems/SystemLight.h"
 #include "GUI/GUIText.h"
+#include "GUI/GUIContainer.h"
+#include "GUI/GUIImage.h"
 
 class MainMenuScene final : public Scene
 {
 	GUIText* text1;
+	GUIText* text2;
+
+	GUIContainer* container1;
+
+	GUIImage* image1;
 
 public:
 	MainMenuScene();

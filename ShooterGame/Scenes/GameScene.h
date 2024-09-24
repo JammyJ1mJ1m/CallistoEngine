@@ -2,12 +2,21 @@
 #include "Scenes/Scene.h"
 #include "Systems/SystemLight.h"
 #include "GUI/GUIText.h"
+#include "GUI/GUIContainer.h"
+#include "GUI/GUIImage.h"
 
 class GameScene final : public Scene
 {
 	bool isExploded;
 	SystemLight* mLightSystem;
+
+
 	GUIText* text1;
+	GUIText* text2;
+
+	GUIContainer* container1;
+
+	GUIImage* image1;
 
 	public:
 	GameScene();

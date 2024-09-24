@@ -292,6 +292,8 @@
     <None Include="Resources\Shaders\PP\Matrix.frag" />
     <None Include="Resources\Shaders\PP\PP.vert" />
     <None Include="Resources\Shaders\PP\Sharpen.frag" />
+    <None Include="Resources\Shaders\Text\Image.frag" />
+    <None Include="Resources\Shaders\Text\Image.vert" />
     <None Include="Resources\Shaders\Text\text.frag" />
     <None Include="Resources\Shaders\Text\text.vert" />
   </ItemGroup>

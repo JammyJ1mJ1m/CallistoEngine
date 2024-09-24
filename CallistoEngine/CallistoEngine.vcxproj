@@ -321,6 +321,8 @@
   <ItemGroup>
     <ClCompile Include="Commands\Command.cpp" />
     <ClCompile Include="Components\LightComponent.cpp" />
+    <ClCompile Include="GUI\GUIImage.cpp" />
+    <ClCompile Include="GUI\GUIContainer.cpp" />
     <ClCompile Include="GUI\GUIElement.cpp" />
     <ClCompile Include="GUI\GUIText.cpp" />
     <ClCompile Include="GUI\GUIManager.cpp" />
@@ -368,6 +370,8 @@
   <ItemGroup>
     <ClInclude Include="Commands\Command.h" />
     <ClInclude Include="Components\LightComponent.h" />
+    <ClInclude Include="GUI\GUIImage.h" />
+    <ClInclude Include="GUI\GUIContainer.h" />
     <ClInclude Include="GUI\GUIElement.h" />
     <ClInclude Include="GUI\GUIText.h" />
     <ClInclude Include="GUI\GUIManager.h" />

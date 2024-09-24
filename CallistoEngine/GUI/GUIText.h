@@ -7,11 +7,12 @@
 #include "../Math/Vector.h"
 
 #include "../inc/freetype/ft2build.h"
+#include "GUIElement.h"
 
 //#include "ft2build.h"
 #include FT_FREETYPE_H  
 
-class GUIText
+class GUIText : public GUIElement
 {
 	struct TextCharacter {
 		unsigned int TextureID;  // ID handle of the glyph texture
@@ -25,7 +26,7 @@ class GUIText
 	ShaderObject_GL* mShaderObject;
 	unsigned int VAO, VBO;
 
-	Vector3f mPosition;
+	//Vector3f mPosition;
 	Vector3f mFontColour;
 	std::string mText;
 
@@ -35,9 +36,11 @@ class GUIText
 
 	int mFontSize;
 public:
-	GUIText(const char* pText,const Vector3f& pCol,const int pFontSize = 48);
+	GUIText(const char* pText,const Vector3f& pCol,  const Vector3f& pPos, const int pFontSize = 48);
 	~GUIText() = default;
 	bool Initialise();
-	void Render(int pX, int pY, int width, int height);
+	//void Render(int pX, int pY, int width, int height);
+	void Render() override;
+
 };
 

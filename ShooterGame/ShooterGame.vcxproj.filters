@@ -225,6 +225,8 @@
     <None Include="GameObjects\AK\RPG.toml" />
     <None Include="Resources\Shaders\Text\text.vert" />
     <None Include="Resources\Shaders\Text\text.frag" />
+    <None Include="Resources\Shaders\Text\Image.frag" />
+    <None Include="Resources\Shaders\Text\Image.vert" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Config\settings.toml" />

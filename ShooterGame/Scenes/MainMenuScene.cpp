@@ -14,20 +14,13 @@
 #include "TestCube.h"
 #include "GunAK.h"
 #include "TestLight.h"
-
 #include "Managers/PhysicsManager.h"
 #include "Managers/InputManager.h"
-
 #include "Misc/Sound.h"
-
 #include "GunLoader.h"
-
-
-
 
 MainMenuScene::MainMenuScene()
 {
-
 }
 
 MainMenuScene::~MainMenuScene()
@@ -39,12 +32,22 @@ MainMenuScene::~MainMenuScene()
 /// </summary>
 void MainMenuScene::Initialise()
 {
+	text1 = new GUIText("Hello world!", Vector3f(1, 1, 1), Vector3f(50, 50, 1), 64);
+	text2 = new GUIText("Hallo welt!",Vector3f(1,1,1), Vector3f(50, 700, 1), 64);
 
-	text1 = new GUIText("Hello world!",Vector3f(1,1,1), 64);
+	container1 = new GUIContainer(Vector3f(50, 50));
+	container1->AddElement(text1);
+	container1->AddElement(text2);
+
+	image1 = new GUIImage(Vector3f(1, 1, 1));
+	image1->Initialise(1131, 178, 0.5);
+	image1->SetPosition(Vector3f(1131 /2 , 178 /2 , 0));
+	image1->SetRelativePosition(Vector3f(1131/2, 178 /2, 0));
+	container1->AddElement(image1);
+
 	//sound->SetLooping(true);
 	//sound->Play3D(0,0,0);
 	//Game::GetGame()->GetAudioManager()->Play2DSound("Resources/Sounds/hyperloop-by-infraction.mp3", true);
-
 }
 
 
@@ -63,6 +66,23 @@ void MainMenuScene::OnKeyboard(int key, bool down)
 	//	if (command != nullptr)
 	//		command->execute(light);
 	//}
+	GameInputManager* inputManager = static_cast<GameInputManager*>(Game::GetGame()->GetInputManager());
+	float amount = 50.0;
+	float dt = Game::GetDeltaTime();
+
+	if (inputManager->GetKey(GLFW_KEY_LEFT))
+	{
+		container1->SetPosition(container1->GetPosition() + Vector3f(-amount * dt, 0, 0));
+	}
+	if (inputManager->GetKey(GLFW_KEY_RIGHT))
+		container1->SetPosition(container1->GetPosition() + Vector3f(amount * dt, 0, 0));
+
+	if (inputManager->GetKey(GLFW_KEY_UP))
+	{
+		container1->SetPosition(container1->GetPosition() + Vector3f( 0, amount * dt, 0));
+	}
+	if (inputManager->GetKey(GLFW_KEY_DOWN))
+		container1->SetPosition(container1->GetPosition() + Vector3f( 0, -amount * dt, 0));
 
 }
 
@@ -134,5 +154,8 @@ void MainMenuScene::Render(SystemRender* renderer)
 	//}
 	// draw PP here
 	renderer->DrawPP();
-	text1->Render(50, 50, Game::GetGame()->GetGameCamera()->mWidth, Game::GetGame()->GetGameCamera()->mHeight);
+	container1->Render();
+	image1->Render();
+	//text1->Render();
+	//text2->Render();
 }

@@ -57,8 +57,8 @@ void ShooterGame::InitialiseGame()
 	}
 
 
-	mSceneManager.PushScene(new GameScene());
-	//mSceneManager.PushScene(new MainMenuScene());
+	//mSceneManager.PushScene(new GameScene());
+	mSceneManager.PushScene(new MainMenuScene());
 }
 
 void ShooterGame::RenderFrame()
