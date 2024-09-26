@@ -163,8 +163,8 @@ void Renderer_GL::Resize(int pWidth, int pHeight)
 	mMainTarget->Create(pWidth, pHeight);
 	mFinalTarget->Resize(pWidth, pHeight);
 
-	//for (PostProcess* postProPass : postProcessShaders)
-	//	postProPass->Resize(pWidth, pHeight);
+	for (PostProcessEffect* postProPass : postProcessShaders)
+		postProPass->Resize(pWidth, pHeight);
 
 
 	// glBindFramebuffer(GL_FRAMEBUFFER, 0);

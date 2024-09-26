@@ -110,7 +110,7 @@ void GameScene::Initialise()
 	container1->AddElement(text2);
 
 	image1 = new GUIImage(Vector3f(1, 1, 1));
-	image1->Initialise(1131, 178, 0.5);
+	image1->Initialise(1131, 578, 0.5);
 	image1->SetPosition(Vector3f(5, 5, 0));
 	image1->SetRelativePosition(Vector3f(5, 5, 0));
 	container1->AddElement(image1);

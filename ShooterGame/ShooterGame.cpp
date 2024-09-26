@@ -18,6 +18,14 @@ void ShooterGame::InitialiseGame()
 	pp1->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Matrix.frag", "Matrix");
 	mRenderer->AddEffect(pp1);
 
+	PostProcessEffect* pp2 = new PostProcessEffect();
+	pp2->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/EdgeDetection.frag", "Edge");
+	mRenderer->AddEffect(pp2);
+
+	PostProcessEffect* pp3 = new PostProcessEffect();
+	pp3->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Sharpen.frag", "Blur");
+	mRenderer->AddEffect(pp3);
+
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
 	mInputManager = new GameInputManager();
 	/*const char* tt = mSteamManager->GetSteamUserID();
@@ -62,8 +70,8 @@ void ShooterGame::InitialiseGame()
 	}
 
 
-	// mSceneManager.PushScene(new GameScene());
-	mSceneManager.PushScene(new MainMenuScene());
+	 mSceneManager.PushScene(new GameScene());
+	//mSceneManager.PushScene(new MainMenuScene());
 }
 
 void ShooterGame::RenderFrame()

@@ -9,7 +9,7 @@ void PostProcessEffect::Create()
 
 void PostProcessEffect::Render()
 {
-	//target->Activate();
+	target->Activate();
 	shader->UseProgram();
 
 	////Set shader variables

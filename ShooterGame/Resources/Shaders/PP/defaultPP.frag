@@ -9,7 +9,7 @@ void main()
     vec3 color = texture(screenTexture, TexCoords).rgb;
 
     color = vec3(color.x, color.y, color.z);
-    color = vec3(1,0,0);
+//    color = vec3(1,0,0);
    
 
     FragColor = vec4(color, 1.0);

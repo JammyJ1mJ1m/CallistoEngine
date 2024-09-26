@@ -10,9 +10,6 @@ void main()
 
     color = vec3(pow(color.x, 7.0 / 5.0), color.y, pow(color.z, 8.0 / 5.0));
    
-   if(color == vec3(0,0,0))
-   {
-   color = vec3(1,0,0);
-   }
+
     FragColor = vec4(color, 1.0);
 }
