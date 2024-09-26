@@ -10,6 +10,8 @@
 #include <assimp/postprocess.h>
 #include <vector>
 
+#include "../Objects/ShaderObject_GL.h"
+
 class Mesh;
 
 class ResourceManager
@@ -17,6 +19,11 @@ class ResourceManager
 
 	std::unordered_map <int, std::string> mTextures;
 	std::unordered_map <Mesh*, std::string> mMeshs;
+	std::unordered_map <ShaderObject*, std::string> mShaders;
+
+	// shader src, shader path
+	std::unordered_map <std::string, std::string> mShadersSources;
+
 
 	// credits https://stackoverflow.com/a/1008289/12954717
 	// singleton class that is thread safe and lazy initialized
@@ -55,6 +62,7 @@ public:
 
 
 	std::string LoadShader(const char* pFile);
+	ShaderObject* CreateShader(const char* pVertex, const char* pFrag, const char* pShaderID);
 
 	int LoadTexture(const std::string pFile);
 	int LoadCubemap(const std::vector<std::string> pFaces);

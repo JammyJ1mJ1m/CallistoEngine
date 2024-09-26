@@ -5,13 +5,18 @@
 #include "Graphical/PostProcessor.h"
 #include "GunLoader.h"
 #include "MainMenuScene.h"
+#include "Graphical/PostProcessEffect.h"
 
 static BulletDebugDrawer_OpenGL* bulletDebugDraw;
 
 void ShooterGame::InitialiseGame()
 {
 	// give shaders to the post processor //
-	PostProcessor::GetInstance().LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Matrix.frag");
+	//PostProcessor::GetInstance().LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Matrix.frag");
+
+	PostProcessEffect* pp1 = new PostProcessEffect();
+	pp1->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Matrix.frag", "Matrix");
+	mRenderer->AddEffect(pp1);
 
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
 	mInputManager = new GameInputManager();
@@ -57,7 +62,7 @@ void ShooterGame::InitialiseGame()
 	}
 
 
-	//mSceneManager.PushScene(new GameScene());
+	// mSceneManager.PushScene(new GameScene());
 	mSceneManager.PushScene(new MainMenuScene());
 }
 

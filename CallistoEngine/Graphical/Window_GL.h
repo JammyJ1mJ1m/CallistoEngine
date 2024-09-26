@@ -27,6 +27,15 @@ class Window_GL : public Window
 	float mPitch;
 
 
+	// events - cant put these in the base class as most of them require glfw specific window
+	static void OnMaximise(GLFWwindow* window, int maximized);
+	static void OnMouse(GLFWwindow* window, double xpos, double ypos);
+	static void OnWindowPos(GLFWwindow* window, int xpos, int ypos);
+	static void OnResize(GLFWwindow* window, int width, int height);
+	static void OnKey(GLFWwindow* window, int key, int scancode, int action, int mods);
+	static void OnClose(GLFWwindow* window);
+
+
 public:
 	const bool GetFirstMouse() { return mFirstMouse; }
 	void SetFirstMouse(bool pState) { mFirstMouse = pState; }
@@ -37,12 +46,6 @@ public:
 	void SetLastMouseY(float pY) { mLastMouseY = pY; }
 
 	virtual const void GetMousePos(float& pX, float& pY) override { pX = mLastMouseX; pY = mLastMouseY; }
-
-	//const float GetYaw() { return mYaw; }
-	//const float GetPitch() { return mPitch; }
-	//void SetYaw(float pYaw) { mYaw = pYaw; }
-	//void SetPitch(float pPitch) { mPitch = pPitch; }
-
 
 	void SetLastKey(int pKey ) { lastPressedKey = pKey; }
 	Window_GL(Game* game, const int width, const int height);
@@ -61,9 +64,7 @@ public:
 	virtual const void SetWindowed();
 	virtual const void ToggleFullscreen(bool pState);
 
-
-
 	virtual ~Window_GL();
 };
-	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	//static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 #endif // OPENGL

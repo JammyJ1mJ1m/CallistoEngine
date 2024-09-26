@@ -24,12 +24,23 @@ void SystemRender::Run(Entity* pEntity)
 	}
 }
 
-void SystemRender::DrawPP()
+//void SystemRender::DrawPP()
+//{
+//	mRenderer->DrawPP();
+//}
+
+void SystemRender::Begin()
 {
-	mRenderer->DrawPP();
+	mRenderer->Begin();
 }
 
-void SystemRender::StartPP()
+void SystemRender::End()
 {
-	mRenderer->StartPP();
+	mRenderer->End();
 }
+
+void SystemRender::PostProcess()
+{
+	mRenderer->Postprocess();
+}
+

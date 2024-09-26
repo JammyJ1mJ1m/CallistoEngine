@@ -26,7 +26,7 @@ public:
 	bool Initialise();
 	void LoadShader(const char* pVertexPath, const char* pFragPath);
 	//PostProcessor(const char* pShaderPath);
-	void UpdateSize(const int pWidth, const int pHeight);
+	void Resize(const int pWidth, const int pHeight);
 	void CreateScreenBuffer();
 	void DrawPP();
 	~PostProcessor() = default;

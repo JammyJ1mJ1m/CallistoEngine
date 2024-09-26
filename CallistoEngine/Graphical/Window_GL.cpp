@@ -5,7 +5,21 @@
 #include "DisplayManager.h"
 #include "PostProcessor.h"
 
-void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+void Window_GL::OnMaximise(GLFWwindow* window, int maximized)
+{
+	if (maximized)
+	{
+		// The window was maximized
+
+	}
+	else
+	{
+		// The window was restored
+
+	}
+}
+
+void Window_GL::OnMouse(GLFWwindow* window, double xpos, double ypos)
 {
 	Window_GL* instance = static_cast<Window_GL*>(glfwGetWindowUserPointer(window));
 	if (!instance) { return; }
@@ -16,7 +30,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 }
 
 // when the window position changes
-void window_pos_callback(GLFWwindow* window, int xpos, int ypos)
+void Window_GL::OnWindowPos(GLFWwindow* window, int xpos, int ypos)
 {
 	Window_GL* instance = static_cast<Window_GL*>(glfwGetWindowUserPointer(window));
 	if (instance) {
@@ -28,7 +42,7 @@ void window_pos_callback(GLFWwindow* window, int xpos, int ypos)
 }
 
 // when the window size changes
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+void Window_GL::OnResize(GLFWwindow* window, int width, int height)
 {
 	if (width == 0 || height == 0) {
 		return;
@@ -38,20 +52,18 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	if (instance) {
 		instance->mWindowWidth = width;
 		instance->mWindowHeight = height;
-		instance->SetHasWindowSizeChanged(true);
+		//instance->SetHasWindowSizeChanged(true);
+
 
 		glViewport(0, 0, width, height);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
-		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
-		// re calculate the RBO
-		instance->_renderer->BindRBO(width, height);
-		// also want to update the post processing size
-		PostProcessor::GetInstance().UpdateSize(width, height);
+
+		// Resize the renderer which will also resize all the PP
+		instance->_renderer->Resize(width, height);
 	}
 }
 
 // when keys are pressed
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void Window_GL::OnKey(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	Window_GL* instance = dynamic_cast<Window_GL*>(Window::TheWindow);
 	if (instance == nullptr) { return throw; }
@@ -68,6 +80,12 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	}
 }
 
+void Window_GL::OnClose(GLFWwindow* window)
+{
+	Window_GL* instance = static_cast<Window_GL*>(glfwGetWindowUserPointer(window));
+	instance->GetGame()->SetGameState(Quit);
+}
+
 Window_GL::Window_GL(Game* game, const int width, const int height)
 {
 	mWindowWidth = width;
@@ -80,16 +98,16 @@ Window_GL::Window_GL(Game* game, const int width, const int height)
 	mYaw = -90.0f;
 	mPitch = 0.0f;
 	mGlfwWindow = nullptr;
-
 }
 
 int Window_GL::Initialise(const char* pTitle)
 {
+
 	mWindowPosX = 0;
 	mWindowPosY = 0;
 
 	SetTitle(pTitle);
-	_renderer = new Renderer_GL();
+	_renderer = &Renderer_GL::GetInstance();
 
 	DisplayManager& displayManager = DisplayManager::GetInstance();
 
@@ -101,26 +119,18 @@ int Window_GL::Initialise(const char* pTitle)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	
+	// window transparency
+	//glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);
 	//glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); -- use this when doing fullscreen borderless
-#ifdef __APPLE__
-	glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#endif
-	// glfw window creation
-	// --------------------
 
 
-
-	// this setting will be passed from display manager
 	if (displayManager.GetFullscreen())
-	{
 		SetFullscreen();
-	}
 	else
-	{
 		SetWindowed();
 		//_GlfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
-	}
+	
 	if (mGlfwWindow == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -129,31 +139,23 @@ int Window_GL::Initialise(const char* pTitle)
 	}
 	glfwMakeContextCurrent(mGlfwWindow);
 
-	void key_callback(GLFWwindow * window, int key, int scancode, int action, int mods);
-	glfwSetKeyCallback(mGlfwWindow, key_callback);
-
 	glfwSetWindowUserPointer(mGlfwWindow, this);
 
 	// this setting will be passed from display manager
 	if (!displayManager.GetVSync() ? false : true)
 		glfwSwapInterval(0); // disable vsync
 
-
-	void framebuffer_size_callback(GLFWwindow * window, int width, int height);
-
-	glfwSetFramebufferSizeCallback(mGlfwWindow, framebuffer_size_callback);
-
-	void window_pos_callback(GLFWwindow * window, int xpos, int ypos);
-	glfwSetWindowPosCallback(mGlfwWindow, window_pos_callback);
-
 	if (displayManager.GetCursorEnabled())
 		glfwSetInputMode(mGlfwWindow, GLFW_CURSOR, GLFW_CURSOR);
 	else
 		glfwSetInputMode(mGlfwWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-	void mouse_callback(GLFWwindow * window, double xpos, double ypos);
-	glfwSetCursorPosCallback(mGlfwWindow, mouse_callback);
-
+	glfwSetKeyCallback(mGlfwWindow, OnKey);
+	glfwSetFramebufferSizeCallback(mGlfwWindow, OnResize);
+	glfwSetWindowPosCallback(mGlfwWindow, OnWindowPos);
+	glfwSetCursorPosCallback(mGlfwWindow, OnMouse);
+	glfwSetWindowCloseCallback(mGlfwWindow, OnClose);
+	glfwSetWindowMaximizeCallback(mGlfwWindow, OnMaximise);
 
 	// glad: load all OpenGL function pointers
 	// ---------------------------------------
@@ -168,6 +170,9 @@ int Window_GL::Initialise(const char* pTitle)
 	glfwGetWindowPos(mGlfwWindow, &mWindowPosX, &mWindowPosY);
 
 	glfwPollEvents();
+
+	// window transparency
+	//glfwSetWindowOpacity(mGlfwWindow, 0.5f);
 
 	return 0;
 

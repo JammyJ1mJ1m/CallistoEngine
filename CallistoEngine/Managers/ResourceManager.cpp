@@ -4,9 +4,17 @@
 #include "../Graphical/Mesh.h"
 
 
-
 std::string ResourceManager::LoadShader(const char* pFile)
 {
+	bool fileExists = false;
+	// Search for a specific value
+	for (const auto& pair : mShadersSources) {
+		if (pair.second == pFile) {
+			std::cout << "Shader src :: " << pFile << " :: already loaded" << std::endl;
+			return pair.first;  // Assuming each value is unique, exit loop if found
+		}
+	}
+
 	// 1. retrieve the vertex/fragment source code from filePath
 	std::string shaderCode;
 
@@ -29,6 +37,7 @@ std::string ResourceManager::LoadShader(const char* pFile)
 
 		// convert stream into string
 		shaderCode = shaderStringStream.str() + "\0";
+		mShadersSources[shaderCode] = pFile;
 		return shaderCode;
 
 	}
@@ -40,6 +49,29 @@ std::string ResourceManager::LoadShader(const char* pFile)
 		return emp;
 	}
 }
+
+ShaderObject* ResourceManager::CreateShader(const char* pVertex, const char* pFrag, const char* pShaderID)
+{
+	bool fileExists = false;
+	// Search for a specific value
+	for (const auto& pair : mShaders) {
+		if (pair.second == pShaderID) {
+			std::cout << "Shader :: " << pShaderID << " :: already loaded" << std::endl;
+			return pair.first;  // Assuming each value is unique, exit loop if found
+		}
+	}
+
+	//std::string vertexShader = LoadShader(pVertex);
+	//std::string fragShader = LoadShader(pFrag);
+
+	ShaderObject_GL* shader = new ShaderObject_GL(pVertex, pFrag);
+
+	mShaders[shader] = pShaderID;
+	return shader;
+}
+
+
+
 
 #if OPENGL	
 #include <glad/glad.h>
@@ -129,7 +161,7 @@ int ResourceManager::LoadCubemap(const std::vector<std::string> pFaces)
 						0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data
 					);
 				}
-				
+
 				stbi_image_free(data);
 			}
 			else
@@ -167,7 +199,7 @@ Mesh* ResourceManager::LoadMesh(const std::string pFile)
 
 		Assimp::Importer importer;
 
-		const aiScene* const scene = importer.ReadFile( pFile,
+		const aiScene* const scene = importer.ReadFile(pFile,
 			aiProcess_Triangulate | aiProcess_CalcTangentSpace);
 		try
 		{
