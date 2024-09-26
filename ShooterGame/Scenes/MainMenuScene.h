@@ -9,6 +9,7 @@ class MainMenuScene final : public Scene
 {
 	GUIText* text1;
 	GUIText* text2;
+	GUIText* text3;
 
 	GUIContainer* container1;
 

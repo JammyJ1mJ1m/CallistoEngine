@@ -1,5 +1,6 @@
 #include "GUIImage.h"
 #include "../Managers/ResourceManager.h"
+#include "../Graphical/Window.h"
 
 float GUIImage::CalculateAspectRatio(const int pWidth, const int pHeight)
 {
@@ -17,8 +18,8 @@ void GUIImage::Initialise(int width, int height, float scale)
 	height *= scale;
 	width *= scale;
 
-	float offsetX = width / 2;
-	float offsetY = height / 2;
+	//float offsetX = width / 2;
+	//float offsetY = height / 2;
 
 	const char* mFontShaderVert = "Resources/Shaders/Text/Image.vert";
 
@@ -31,14 +32,14 @@ void GUIImage::Initialise(int width, int height, float scale)
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(1423), 0.0f, static_cast<float>(800));
 	glUniformMatrix4fv(glGetUniformLocation(mShaderObject->GetShaderProgram(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
-	mTextureHandle = ResourceManager::getInstance().LoadTexture("Resources/textures/GUI/border.png");
+	mTextureHandle = ResourceManager::getInstance().LoadTexture("Resources/textures/GUI/3DTestTrans.png");
 
 	float quadVertices[] = {
-		// Positions				// Texture Coords
-		-offsetX,  offsetY, 0.0f,  0.0f, 1.0f, // Top-left
-		 offsetX,  offsetY, 0.0f,  1.0f, 1.0f, // Top-right
-		 offsetX, -offsetY, 0.0f,  1.0f, 0.0f, // Bottom-right
-		-offsetX, -offsetY, 0.0f,  0.0f, 0.0f  // Bottom-left
+		// Positions          // Texture Coords
+		   0.0f,   height, 0.0f,  0.0f, 1.0f, // Top-left
+		   width,  height, 0.0f,  1.0f, 1.0f, // Top-right
+		   width,  0.0f,   0.0f,  1.0f, 0.0f, // Bottom-right
+		   0.0f,   0.0f,   0.0f,  0.0f, 0.0f  // Bottom-left
 	};
 
 	unsigned int quadIndices[] = {
@@ -73,11 +74,16 @@ void GUIImage::Initialise(int width, int height, float scale)
 
 void GUIImage::Render()
 {
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	// Use the shader program
 	mShaderObject->UseProgram();
+	int wHeight = Window::TheWindow->GetWindowHeight();
+	int wWidth = Window::TheWindow->GetWindowWidth();
 
+	//glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(wWidth), 0.0f, static_cast<float>(wHeight));
+	//glUniformMatrix4fv(glGetUniformLocation(mShaderObject->GetShaderProgram(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	// Bind the texture
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, mTextureHandle);
@@ -88,4 +94,5 @@ void GUIImage::Render()
 	glBindVertexArray(mVAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
+
 }

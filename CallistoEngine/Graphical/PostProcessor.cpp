@@ -99,8 +99,10 @@ void PostProcessor::LoadShader(const char* pVertexPath, const char* pFragPath)
 }
 
 
-void PostProcessor::UpdateSize(const int pWidth, const int pHeight)
+void PostProcessor::Resize(const int pWidth, const int pHeight)
 {
+	glBindTexture(GL_TEXTURE_2D, 0);
+
 	glDeleteTextures(1, &textureColorbuffer);
 	CreateScreenBuffer();
 }
@@ -114,8 +116,8 @@ void PostProcessor::CreateScreenBuffer()
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, window->GetWindowWidth(), window->GetWindowHeight(), 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glBindTexture(GL_TEXTURE_2D, 0);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer, 0);
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
@@ -131,6 +133,9 @@ void PostProcessor::DrawPP()
 	glBindVertexArray(quadVAO);
 	glBindTexture(GL_TEXTURE_2D, textureColorbuffer);	// Screen quad texture (the scene)
 	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
 
 }
 

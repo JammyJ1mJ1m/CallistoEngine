@@ -321,12 +321,14 @@
   <ItemGroup>
     <ClCompile Include="Commands\Command.cpp" />
     <ClCompile Include="Components\LightComponent.cpp" />
+    <ClCompile Include="Graphical\FinalTarget.cpp" />
     <ClCompile Include="GUI\GUIImage.cpp" />
     <ClCompile Include="GUI\GUIContainer.cpp" />
     <ClCompile Include="GUI\GUIElement.cpp" />
     <ClCompile Include="GUI\GUIText.cpp" />
     <ClCompile Include="GUI\GUIManager.cpp" />
     <ClCompile Include="Lighting\Light.cpp" />
+    <ClCompile Include="Graphical\MainRenderTarget.cpp" />
     <ClCompile Include="Managers\DiscordManager.cpp" />
     <ClCompile Include="Managers\DisplayManager.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
@@ -345,6 +347,8 @@
     <ClCompile Include="Managers\PhysicsManager.cpp" />
     <ClCompile Include="Lighting\PointLight.cpp" />
     <ClCompile Include="Graphical\PostProcessor.cpp" />
+    <ClCompile Include="Graphical\RenderTarget.cpp" />
+    <ClCompile Include="Graphical\PostProcessEffect.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Misc\Sound.cpp" />
     <ClCompile Include="Managers\SteamManager.cpp" />
@@ -370,12 +374,14 @@
   <ItemGroup>
     <ClInclude Include="Commands\Command.h" />
     <ClInclude Include="Components\LightComponent.h" />
+    <ClInclude Include="Graphical\FinalTarget.h" />
     <ClInclude Include="GUI\GUIImage.h" />
     <ClInclude Include="GUI\GUIContainer.h" />
     <ClInclude Include="GUI\GUIElement.h" />
     <ClInclude Include="GUI\GUIText.h" />
     <ClInclude Include="GUI\GUIManager.h" />
     <ClInclude Include="Lighting\Light.h" />
+    <ClInclude Include="Graphical\MainRenderTarget.h" />
     <ClInclude Include="Managers\DiscordManager.h" />
     <ClInclude Include="Discord\discord_register.h" />
     <ClInclude Include="Discord\discord_rpc.h" />
@@ -520,6 +526,8 @@
     <ClInclude Include="Managers\PhysicsManager.h" />
     <ClInclude Include="Lighting\PointLight.h" />
     <ClInclude Include="Graphical\PostProcessor.h" />
+    <ClInclude Include="Graphical\RenderTarget.h" />
+    <ClInclude Include="Graphical\PostProcessEffect.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Misc\Sound.h" />
     <ClInclude Include="Managers\SteamManager.h" />

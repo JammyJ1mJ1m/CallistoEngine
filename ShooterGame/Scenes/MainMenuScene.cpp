@@ -32,15 +32,17 @@ MainMenuScene::~MainMenuScene()
 /// </summary>
 void MainMenuScene::Initialise()
 {
-	text1 = new GUIText("Hello world!", Vector3f(1, 1, 1), Vector3f(50, 50, 1), 64);
-	text2 = new GUIText("Hallo welt!",Vector3f(1,1,1), Vector3f(50, 700, 1), 64);
+	text1 = new GUIText("First", Vector3f(1, 1, 1), Vector3f(50, 500, 1), 64);
+	text2 = new GUIText("Second", Vector3f(1, 1, 1), Vector3f(50, 300, 1), 64);
+	text3 = new GUIText("third",Vector3f(1,1,1), Vector3f(50, 100, 1), 64);
 
 	container1 = new GUIContainer(Vector3f(50, 50));
 	container1->AddElement(text1);
 	container1->AddElement(text2);
+	container1->AddElement(text3);
 
 	image1 = new GUIImage(Vector3f(1, 1, 1));
-	image1->Initialise(1131, 178, 0.5);
+	image1->Initialise(1131, 478, 0.5);
 	image1->SetPosition(Vector3f(1131 /2 , 178 /2 , 0));
 	image1->SetRelativePosition(Vector3f(1131/2, 178 /2, 0));
 	container1->AddElement(image1);
@@ -132,6 +134,8 @@ void MainMenuScene::Update(double deltaTime)
 
 void MainMenuScene::Render(SystemRender* renderer)
 {
+	renderer->Begin();
+
 	//renderer->StartPP();
 
 	// TODO: refactor this into systems, syncing RB doesnt need to be here
@@ -153,9 +157,13 @@ void MainMenuScene::Render(SystemRender* renderer)
 	//	//}
 	//}
 	// draw PP here
-	renderer->DrawPP();
-	container1->Render();
-	image1->Render();
+	//renderer->DrawPP();
+
+	renderer->End();
+	renderer->PostProcess();
+
+	// container1->Render();
+	//image1->Render();
 	//text1->Render();
 	//text2->Render();
 }

@@ -110,7 +110,7 @@ void GameScene::Initialise()
 	container1->AddElement(text2);
 
 	image1 = new GUIImage(Vector3f(1, 1, 1));
-	image1->Initialise(1131, 178, 0.5);
+	image1->Initialise(1131, 578, 0.5);
 	image1->SetPosition(Vector3f(5, 5, 0));
 	image1->SetRelativePosition(Vector3f(5, 5, 0));
 	container1->AddElement(image1);
@@ -227,6 +227,8 @@ void GameScene::Update(double deltaTime)
 void GameScene::Render(SystemRender* renderer)
 {
 	//renderer->StartPP();
+	
+	renderer->Begin();
 
 	// TODO: refactor this into systems, syncing RB doesnt need to be here
 	for (auto& enti : mEntities)
@@ -249,7 +251,9 @@ void GameScene::Render(SystemRender* renderer)
 	// draw PP here
 	//text1->Render(50, 50, Game::GetGame()->GetGameCamera()->mWidth, Game::GetGame()->GetGameCamera()->mHeight);
 	//text1->Render(50, 700, Game::GetGame()->GetGameCamera()->mWidth, Game::GetGame()->GetGameCamera()->mHeight);
-	renderer->DrawPP();
+	renderer->End();
+	renderer->PostProcess();
+
 	container1->Render();
 	image1->Render();
 }
