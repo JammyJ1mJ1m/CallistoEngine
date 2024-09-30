@@ -40,6 +40,7 @@ public:
 	~GUIText() = default;
 	bool Initialise();
 	//void Render(int pX, int pY, int width, int height);
+	void Resize(const int pWidth, const int pHeight) override;
 	void Render() override;
 
 };

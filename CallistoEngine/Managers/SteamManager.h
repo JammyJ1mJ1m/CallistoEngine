@@ -14,8 +14,19 @@ class SteamManager
 
 	STEAM_CALLBACK(SteamManager, OnGameOverlayActivated, GameOverlayActivated_t);
 
-public:
 	SteamManager();
+	static SteamManager* mInstance;
+
+public:
+
+	static SteamManager& GetInstance()
+	{
+		if (mInstance == nullptr)
+			mInstance = new SteamManager();
+
+		return *mInstance;
+	}
+
 	~SteamManager()
 	{
 		SteamAPI_Shutdown();

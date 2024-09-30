@@ -16,6 +16,7 @@ public:
 	void SetRelativePosition(const Vector3f& pRelativePos) { mRelativePosition = pRelativePos; }
 	const Vector3f& GetRelativePosition() const { return mRelativePosition; }
 
+	virtual void Resize(const int pWidth, const int pHeight) = 0;
 	virtual void Render() = 0;
 
 	~GUIElement();

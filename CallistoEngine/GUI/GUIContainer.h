@@ -24,5 +24,7 @@ public:
 
 	void SetPosition(const Vector3f& pPos);
 	void UpdateChildren();
+
+	void Resize(const int pWidth, const int pHeight) override;
 	void Render() override;
 };

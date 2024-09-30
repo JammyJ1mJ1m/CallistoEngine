@@ -41,11 +41,11 @@ void MainMenuScene::Initialise()
 	container1->AddElement(text2);
 	container1->AddElement(text3);
 
-	image1 = new GUIImage(Vector3f(1, 1, 1));
-	image1->Initialise(1131, 478, 0.5);
-	image1->SetPosition(Vector3f(1131 /2 , 178 /2 , 0));
-	image1->SetRelativePosition(Vector3f(1131/2, 178 /2, 0));
-	container1->AddElement(image1);
+	//image1 = new GUIImage(Vector3f(1, 1, 1));
+	//image1->Initialise(1131, 478, 0.5);
+	//image1->SetPosition(Vector3f(1131 /2 , 178 /2 , 0));
+	//image1->SetRelativePosition(Vector3f(1131/2, 178 /2, 0));
+	//container1->AddElement(image1);
 
 	//sound->SetLooping(true);
 	//sound->Play3D(0,0,0);

@@ -31,6 +31,10 @@ void GUIContainer::UpdateChildren()
 	}
 }
 
+void GUIContainer::Resize(const int pWidth, const int pHeight)
+{
+}
+
 void GUIContainer::Render()
 {
 	for (auto& element : mElements)

@@ -22,6 +22,10 @@
 
 #include "GunLoader.h"
 
+#include <sstream>
+
+#include "GUI/GUIManager.h"
+
 Player* player;
 ExpBarrel* expBarrel;
 Sound* sound;
@@ -43,6 +47,7 @@ GameScene::~GameScene()
 /// </summary>
 void GameScene::Initialise()
 {
+#pragma region Initial entity stuff
 	mLightSystem = new SystemLight();
 	SkyBox* skybox = new SkyBox();
 	AddEntity(skybox);
@@ -74,15 +79,17 @@ void GameScene::Initialise()
 
 	//testCube = new TestCube();
 	//AddEntity(testCube);
+#pragma endregion
 
-	sound = new Sound("Resources/Sounds/explosion.wav");
+#pragma region Sounds stuff
+	//sound = new Sound("Resources/Sounds/explosion.wav");
 	//sound->SetLooping(true);
 	//sound->Play3D(0,0,0);
 
 	//Game::GetGame()->GetAudioManager()->PlaySound("Resources/Sounds/hyperloop-by-infraction.mp3", true);
+#pragma endregion
 
-
-	
+#pragma region Lights
 	// add the lights here
 	 light = new TestLight();
 	 LightComponent* lc1 = light->GetComponent<LightComponent>();
@@ -101,21 +108,30 @@ void GameScene::Initialise()
 	LightComponent* lc2 = light2->GetComponent<LightComponent>();
 	lc2->GetLight()->SetDiffuse(Vector3f(1, 0, 0));
 	AddEntity(light2);
+#pragma endregion
 
-	text1 = new GUIText("Hello world!", Vector3f(1, 1, 1), Vector3f(50, 50, 1), 64);
-	text2 = new GUIText("Hallo welt!", Vector3f(1, 1, 1), Vector3f(50, 700, 1), 64);
+#pragma region UI Stuff
+	const char* tt = SteamManager::GetInstance().GetSteamUserID();
+	
+	std::stringstream ss;
+	ss << "Logged in as: " << tt;
+	std::string name = ss.str();
 
-	container1 = new GUIContainer(Vector3f(50, 50));
+	text1 = new GUIText(name.c_str(), Vector3f(1, 1, 1), Vector3f(0, Game::GetGame()->GetGameCamera()->mHeight - 20, 1), 20);
+	text2 = new GUIText("Hallo welt!", Vector3f(1, 1, 1), Vector3f(0, 0, 1), 32);
+
+	container1 = new GUIContainer(Vector3f(0, 0));
 	container1->AddElement(text1);
 	container1->AddElement(text2);
 
-	image1 = new GUIImage(Vector3f(1, 1, 1));
-	image1->Initialise(1131, 578, 0.5);
-	image1->SetPosition(Vector3f(5, 5, 0));
-	image1->SetRelativePosition(Vector3f(5, 5, 0));
-	container1->AddElement(image1);
+	image1 = new GUIImage(565, 289, 0.5);
+	image1->Initialise(10,10);
+	image1->SetPosition(Vector3f(50, 10, 0));
+	image1->SetRelativePosition(Vector3f(50, 10, 0));
+	container1->AddElement(image1);	
 
-
+	GUIManager::GetInstance().AddElement(image1);
+#pragma endregion
 }
 
 
@@ -221,6 +237,12 @@ void GameScene::Update(double deltaTime)
 	//player->GetComponent<ComponentRigidBody>()->GetMotionState()->getWorldTransform(pos);
 	//std::cout << pos.getOrigin().x() << " " << pos.getOrigin().y() << " " << pos.getOrigin().z() << std::endl;
 	//player->GetComponent<ComponentRigidBody>()->SyncWithTransform(player->GetComponent<ComponentTransform>());
+
+	if (Game::GetGame()->GetHasWindowChanged())
+	{
+		image1->Resize(Game::GetGame()->GetGameCamera()->mWidth, Game::GetGame()->GetGameCamera()->mHeight);
+
+	}
 
 }
 

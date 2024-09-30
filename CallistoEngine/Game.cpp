@@ -32,8 +32,8 @@ Game::Game() :
 	mDiscordManager->initDiscord();
 
 	// TODO: renable this at a later date, this avoids spamming my steam friends with dev testing notifs
-	//mSteamManager = new SteamManager();
-	//mSteamManager->initSteam();
+	mSteamManager = &SteamManager::GetInstance();// new SteamManager();
+	mSteamManager->initSteam();
 }
 
 Game::~Game()

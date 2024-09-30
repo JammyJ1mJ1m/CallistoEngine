@@ -86,6 +86,7 @@ public:
 	Mesh* GetMesh(std::string name);
 	void AddMesh(std::string name, Mesh* mesh) { mMeshes[name] = mesh; }
 
+	const bool GetHasWindowChanged() { return mHasWindowSizeChanged; }
 
 	// methods
 	// pure virtuals

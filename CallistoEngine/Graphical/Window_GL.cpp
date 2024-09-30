@@ -4,6 +4,7 @@
 #include <iostream>
 #include "DisplayManager.h"
 #include "PostProcessor.h"
+#include "../GUI/GUIManager.h"
 
 void Window_GL::OnMaximise(GLFWwindow* window, int maximized)
 {
@@ -52,13 +53,17 @@ void Window_GL::OnResize(GLFWwindow* window, int width, int height)
 	if (instance) {
 		instance->mWindowWidth = width;
 		instance->mWindowHeight = height;
-		//instance->SetHasWindowSizeChanged(true);
+		instance->SetHasWindowSizeChanged(true);
 
 
 		glViewport(0, 0, width, height);
 
 		// Resize the renderer which will also resize all the PP
 		instance->_renderer->Resize(width, height);
+		GUIManager::GetInstance().Resize(width, height);
+		//instance->GetGame()->GetGameCamera()->UpdateProjection(width, height);
+
+
 	}
 }
 
@@ -71,12 +76,12 @@ void Window_GL::OnKey(GLFWwindow* window, int key, int scancode, int action, int
 	if (action == GLFW_PRESS) {
 		instance->SetLastKey(key);
 		instance->OnKeyboard(key, true);
-		std::cout << "Key pressed: " << key << std::endl;
+		//std::cout << "Key pressed: " << key << std::endl;
 	}
 	else if (action == GLFW_RELEASE) {
 		instance->SetLastKey(-1);
 		instance->OnKeyboard(key, false);
-		std::cout << "Key released: " << key << std::endl;
+		//std::cout << "Key released: " << key << std::endl;
 	}
 }
 

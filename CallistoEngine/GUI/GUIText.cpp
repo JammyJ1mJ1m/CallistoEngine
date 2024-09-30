@@ -123,6 +123,10 @@ bool GUIText::Initialise()
 	return true;
 }
 
+void GUIText::Resize(const int pWidth, const int pHeight)
+{
+}
+
 void GUIText::Render()
 {
 	int pX = mPosition.GetX();

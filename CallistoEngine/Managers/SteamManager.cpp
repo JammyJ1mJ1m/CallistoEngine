@@ -1,5 +1,6 @@
 #include "SteamManager.h"
 #include "../Game.h"
+SteamManager* SteamManager::mInstance = nullptr;
 
 int SteamManager::ReadAppID()
 {

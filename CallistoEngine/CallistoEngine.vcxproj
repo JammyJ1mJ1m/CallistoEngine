@@ -147,7 +147,7 @@
     <LibraryPath>$(SolutionDir)Dependencies\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL - release|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)Objects;$(ProjectDir)Components;$(ProjectDir)Managers;$(ProjectDir)Managers\</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)Objects;$(ProjectDir)Components;$(ProjectDir)Managers;$(ProjectDir)Managers\;$(SolutionDir)Dependencies\inc\freetype;$(SolutionDir)Dependencies\inc\freetype\freetype</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DirectX|x64'">
