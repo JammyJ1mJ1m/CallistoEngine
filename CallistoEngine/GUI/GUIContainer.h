@@ -7,6 +7,10 @@ class GUIContainer : public GUIElement
 {
 	std::vector<GUIElement*> mElements;
 
+protected:
+	void ResizeChild(const int pWidth, const int pHeight) override;
+	bool InitialiseChild() override;
+
 public:
 	// use this class to bundle gui elements together
 	GUIContainer(const Vector3f& pPos);
@@ -25,6 +29,6 @@ public:
 	void SetPosition(const Vector3f& pPos);
 	void UpdateChildren();
 
-	void Resize(const int pWidth, const int pHeight) override;
+	
 	void Render() override;
 };

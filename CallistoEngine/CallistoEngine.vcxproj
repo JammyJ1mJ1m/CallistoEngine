@@ -378,6 +378,7 @@
     <ClInclude Include="GUI\GUIImage.h" />
     <ClInclude Include="GUI\GUIContainer.h" />
     <ClInclude Include="GUI\GUIElement.h" />
+    <ClInclude Include="GUI\GUIOrigin.h" />
     <ClInclude Include="GUI\GUIText.h" />
     <ClInclude Include="GUI\GUIManager.h" />
     <ClInclude Include="Lighting\Light.h" />

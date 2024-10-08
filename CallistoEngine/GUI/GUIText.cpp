@@ -3,20 +3,27 @@
 #include "../Graphical/Renderer_GL.h"
 #include <filesystem>
 #include <string>
+#include "GUIManager.h"
+#include "../Game.h"
+
 //#include "../Managers/ResourceManager.h"
 
-GUIText::GUIText(const char* pText, const Vector3f& pCol, const Vector3f& pPos, const int pFontSize) :
+GUIText::GUIText(const char* pText, const Vector3f& pCol, const Vector3f& pPos, GUIOrigin pOrigin, const int pFontSize) :
 	mFontSize(pFontSize)
 {
 	SetPosition(pPos);
 	SetRelativePosition(pPos);
 	mFontColour = pCol;
 	mText = pText;
+	mScale = 1;
+	mOrigin = pOrigin;
 	Initialise();
 }
 
-bool GUIText::Initialise()
+bool GUIText::InitialiseChild()
 {
+
+
 	// img = ResourceManager::getInstance().LoadTexture("Resources/textures/Default.png");
 
 	mFontShaderVert = "Resources/Shaders/Text/text.vert";
@@ -27,8 +34,10 @@ bool GUIText::Initialise()
 	mShaderObject->UseProgram();
 
 	// TODO  grab the window sizes
-	projection = glm::ortho(0.0f, static_cast<float>(1423), 0.0f, static_cast<float>(800));
-	glUniformMatrix4fv(glGetUniformLocation(mShaderObject->GetShaderProgram(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	glUniformMatrix4fv(glGetUniformLocation(mShaderObject->GetShaderProgram(), "projection"), 1, GL_FALSE, glm::value_ptr(GUIManager::GetInstance().GetUIProjection()));
+
+	//projection = glm::ortho(0.0f, static_cast<float>(1423), 0.0f, static_cast<float>(800));
+	//glUniformMatrix4fv(glGetUniformLocation(mShaderObject->GetShaderProgram(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
 
 
@@ -123,19 +132,20 @@ bool GUIText::Initialise()
 	return true;
 }
 
-void GUIText::Resize(const int pWidth, const int pHeight)
+void GUIText::ResizeChild(const int pWidth, const int pHeight)
 {
+
+
+	mShaderObject->UseProgram();
+	glUniformMatrix4fv(glGetUniformLocation(mShaderObject->GetShaderProgram(), "projection"), 1, GL_FALSE, glm::value_ptr(GUIManager::GetInstance().GetUIProjection()));
+
 }
 
 void GUIText::Render()
 {
 	int pX = mPosition.GetX();
 	int pY = mPosition.GetY();
-	// projection = glm::ortho(0.0f, static_cast<float>(width), 0.0f, static_cast<float>(height));
 
-	 //glUniformMatrix4fv(glGetUniformLocation(mShaderObject->GetShaderProgram(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-
-	float scale = 1;
 	mShaderObject->UseProgram();
 
 	glEnable(GL_BLEND);
@@ -145,18 +155,18 @@ void GUIText::Render()
 	glActiveTexture(GL_TEXTURE0);
 	glBindVertexArray(VAO);
 
-	// iterate through all characters
-	std::string::const_iterator c;
-	for (c = mText.begin(); c != mText.end(); c++)
+	// Iterate through all characters and render
+	for (auto c = mText.begin(); c != mText.end(); c++)
 	{
 		TextCharacter ch = mTextCharacters[*c];
 
-		float xpos = pX + ch.Bearing.x * scale;
-		float ypos = pY - (ch.Size.y - ch.Bearing.y) * scale;
+		float xpos = pX + ch.Bearing.x * mScale;
+		float ypos = pY - (ch.Size.y - ch.Bearing.y) * mScale;
 
-		float w = ch.Size.x * scale;
-		float h = ch.Size.y * scale;
-		// update VBO for each character
+		float w = ch.Size.x * mScale;
+		float h = ch.Size.y * mScale;
+
+		// Update VBO for each character
 		float vertices[6][4] = {
 			{ xpos,     ypos + h,   0.0f, 0.0f },
 			{ xpos,     ypos,       0.0f, 1.0f },
@@ -166,17 +176,22 @@ void GUIText::Render()
 			{ xpos + w, ypos,       1.0f, 1.0f },
 			{ xpos + w, ypos + h,   1.0f, 0.0f }
 		};
-		// render glyph texture over quad
+
+		// Render the glyph texture over the quad
 		glBindTexture(GL_TEXTURE_2D, ch.TextureID);
-		// update content of VBO memory
+
+		// Update the content of VBO memory
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
 		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		// render quad
+
+		// Render the quad
 		glDrawArrays(GL_TRIANGLES, 0, 6);
-		// now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-		pX += (ch.Advance >> 6) * scale; // bitshift by 6 to get value in pixels (2^6 = 64)
+
+		// Advance cursor to the next character
+		pX += (ch.Advance >> 6) * mScale;  // bitshift by 6 to get value in pixels (2^6 = 64)
 	}
+
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }

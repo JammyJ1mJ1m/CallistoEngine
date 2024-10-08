@@ -8,6 +8,7 @@
 
 #include "../inc/freetype/ft2build.h"
 #include "GUIElement.h"
+#include "GUIOrigin.h"
 
 //#include "ft2build.h"
 #include FT_FREETYPE_H  
@@ -33,15 +34,20 @@ class GUIText : public GUIElement
 	glm::mat4 projection;
 
 	std::map<char, TextCharacter> mTextCharacters;
+	//float mScale;
+	Vector3f mInitialPosition;
+
 
 	int mFontSize;
-public:
-	GUIText(const char* pText,const Vector3f& pCol,  const Vector3f& pPos, const int pFontSize = 48);
-	~GUIText() = default;
-	bool Initialise();
-	//void Render(int pX, int pY, int width, int height);
-	void Resize(const int pWidth, const int pHeight) override;
-	void Render() override;
+protected:
+	void ResizeChild(const int pWidth, const int pHeight) override;
+	bool InitialiseChild() override;
 
+public:
+	GUIText(const char* pText,const Vector3f& pCol,  const Vector3f& pPos, GUIOrigin pOrigin, const int pFontSize = 48);
+	~GUIText() = default;
+	//void Render(int pX, int pY, int width, int height);
+
+	void Render() override;
 };
 

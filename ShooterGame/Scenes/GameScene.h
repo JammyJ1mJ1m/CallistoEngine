@@ -18,6 +18,9 @@ class GameScene final : public Scene
 
 	GUIImage* image1;
 
+	float mElapsed;
+	float mTimeToSpawn;
+
 	public:
 	GameScene();
 	virtual ~GameScene();

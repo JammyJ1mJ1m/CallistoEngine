@@ -5,6 +5,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "GUIElement.h"
 
+
 class GUIManager
 {
 	std::vector<GUIElement*> mGUIElements;

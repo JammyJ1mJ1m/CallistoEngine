@@ -10,25 +10,29 @@ class GUIImage : public GUIElement
 {
 	unsigned int mTextureHandle;
 	unsigned int mVAO, mVBO, mEBO;
-	Vector3f mColor;
+	Vector4f mColor;
 	ShaderObject_GL* mShaderObject;
-	
+
 	//glm::mat4 mProjction;
 
-	float mScale;
+	//float mScale;
 	float mAspectRatio;
 	float mImageWidth;
 	float mImageHeight;
 	float mMaxWidth;
 	float mMaxHeight;
-	
+
 
 	float CalculateAspectRatio(const int pWidth, const int pHeight);
 	void CalculateVertices(float width, float height);
+	void InitialiseImage(const int pMaxWidth, const int pMaxHeight);
+
+protected:
+	void ResizeChild(const int pWidth, const int pHeight) override;
+	bool InitialiseChild() override;
+
 public:
-	GUIImage(const Vector3f& pCol);
-	GUIImage(const int pWidth, const int pHeight, const float pScale);
-	~GUIImage() = default;
+	GUIImage(const Vector4f& pCol);
 
 	/// <summary>
 	/// Initialises the image based on the width, height and its max dimensions
@@ -36,9 +40,13 @@ public:
 	/// </summary>
 	/// <param name="pMaxWidth">Between 1-100, a percentage of how much screen to cover</param>
 	/// <param name="pMaxHeight">Between 1-100, a percentage of how much screen to cover</param>
-	void Initialise(const int pMaxWidth, const int pMaxHeight);
-	
-	void Resize(const int pWidth, const int pHeight) override;
+	GUIImage(const int pWidth, const int pHeight, const float pScale, const int pMaxWidth, const int pMaxHeight);
+	~GUIImage() = default;
+
+	inline void SetColor(const Vector4f& pCol) { mColor = pCol; }
+
+
+
 
 	void Render() override;
 };

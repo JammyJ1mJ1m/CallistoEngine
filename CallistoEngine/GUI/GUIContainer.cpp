@@ -31,8 +31,13 @@ void GUIContainer::UpdateChildren()
 	}
 }
 
-void GUIContainer::Resize(const int pWidth, const int pHeight)
+void GUIContainer::ResizeChild(const int pWidth, const int pHeight)
 {
+}
+
+bool GUIContainer::InitialiseChild()
+{
+	return false;
 }
 
 void GUIContainer::Render()

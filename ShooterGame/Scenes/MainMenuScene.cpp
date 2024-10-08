@@ -32,9 +32,9 @@ MainMenuScene::~MainMenuScene()
 /// </summary>
 void MainMenuScene::Initialise()
 {
-	text1 = new GUIText("First", Vector3f(1, 1, 1), Vector3f(50, 500, 1), 64);
-	text2 = new GUIText("Second", Vector3f(1, 1, 1), Vector3f(50, 300, 1), 64);
-	text3 = new GUIText("third",Vector3f(1,1,1), Vector3f(50, 100, 1), 64);
+	text1 = new GUIText("First", Vector3f(1, 1, 1), Vector3f(50, 500, 1), GUIOrigin::_BOTTOM, 64);
+	text2 = new GUIText("Second", Vector3f(1, 1, 1), Vector3f(50, 300, 1), GUIOrigin::_BOTTOM, 64);
+	text3 = new GUIText("third",Vector3f(1,1,1), Vector3f(50, 100, 1), GUIOrigin::_BOTTOM, 64);
 
 	container1 = new GUIContainer(Vector3f(50, 50));
 	container1->AddElement(text1);

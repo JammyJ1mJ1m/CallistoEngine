@@ -734,6 +734,9 @@
     <ClInclude Include="Graphical\PostProcessEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GUI\GUIOrigin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="x64\Debug\assimp-vc142-mt.dll" />

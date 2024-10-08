@@ -25,6 +25,7 @@
 #include <sstream>
 
 #include "GUI/GUIManager.h"
+//#include <chrono>
 
 Player* player;
 ExpBarrel* expBarrel;
@@ -47,6 +48,7 @@ GameScene::~GameScene()
 /// </summary>
 void GameScene::Initialise()
 {
+	mTimeToSpawn = 0.1;
 #pragma region Initial entity stuff
 	mLightSystem = new SystemLight();
 	SkyBox* skybox = new SkyBox();
@@ -91,10 +93,10 @@ void GameScene::Initialise()
 
 #pragma region Lights
 	// add the lights here
-	 light = new TestLight();
-	 LightComponent* lc1 = light->GetComponent<LightComponent>();
-	 Light* l1 = lc1->GetLight();/// ;
-	 l1->SetDiffuse(Vector3f(1, 1, 1));
+	light = new TestLight();
+	LightComponent* lc1 = light->GetComponent<LightComponent>();
+	Light* l1 = lc1->GetLight();/// ;
+	l1->SetDiffuse(Vector3f(1, 1, 1));
 	AddEntity(light);
 
 	TestLight* light3 = new TestLight();
@@ -112,25 +114,26 @@ void GameScene::Initialise()
 
 #pragma region UI Stuff
 	const char* tt = SteamManager::GetInstance().GetSteamUserID();
-	
+
 	std::stringstream ss;
 	ss << "Logged in as: " << tt;
 	std::string name = ss.str();
 
-	text1 = new GUIText(name.c_str(), Vector3f(1, 1, 1), Vector3f(0, Game::GetGame()->GetGameCamera()->mHeight - 20, 1), 20);
-	text2 = new GUIText("Hallo welt!", Vector3f(1, 1, 1), Vector3f(0, 0, 1), 32);
+	text1 = new GUIText(name.c_str(), Vector3f(1, 1, 1), Vector3f(700, 700, 1), GUIOrigin::TOP_RIGHT, 20);
+	//text2 = new GUIText("Hallo welt!", Vector3f(1, 1, 1), Vector3f(0, 0, 1), 32);
 
 	container1 = new GUIContainer(Vector3f(0, 0));
-	container1->AddElement(text1);
-	container1->AddElement(text2);
+	//container1->AddElement(text1);
+	//container1->AddElement(text2);
 
-	image1 = new GUIImage(565, 289, 0.5);
-	image1->Initialise(10,10);
-	image1->SetPosition(Vector3f(50, 10, 0));
-	image1->SetRelativePosition(Vector3f(50, 10, 0));
-	container1->AddElement(image1);	
+	image1 = new GUIImage(1131, 178, 1, 15, 15);
+	image1->SetColor(Vector4f(1, 0, 1,0.25));
+	image1->SetPosition(Vector3f(10, 40, 0));
+	image1->SetRelativePosition(Vector3f(10, 40, 0));
+	container1->AddElement(image1);
 
 	GUIManager::GetInstance().AddElement(image1);
+	GUIManager::GetInstance().AddElement(text1);
 #pragma endregion
 }
 
@@ -161,8 +164,9 @@ void GameScene::OnKeyboard(int key, bool down)
 	}
 
 	// TODO replace these with commands
-	if (inputManager->GetKey(GLFW_KEY_R))
+	if (inputManager->GetKey(GLFW_KEY_R) && mElapsed >= mTimeToSpawn)
 	{
+		mElapsed = 0;
 		AddEntity(new Enemy());
 		int entityCount = GetEntityCount();
 		std::cout << "Entity count: " << entityCount << std::endl;
@@ -199,7 +203,7 @@ void GameScene::OnKeyboard(int key, bool down)
 void GameScene::Update(double deltaTime)
 {
 	// testCube->Rotate(1, deltaTime);
-
+	mElapsed += deltaTime;
 
 	// move all this to a audio system
 	ALfloat listenerPos[] = {
@@ -249,7 +253,7 @@ void GameScene::Update(double deltaTime)
 void GameScene::Render(SystemRender* renderer)
 {
 	//renderer->StartPP();
-	
+
 	renderer->Begin();
 
 	// TODO: refactor this into systems, syncing RB doesnt need to be here
@@ -265,7 +269,7 @@ void GameScene::Render(SystemRender* renderer)
 		}
 		//enti->UpdateChildPositions();
 		renderer->Run(enti);
-		for(auto& child : enti->GetChildren())
+		for (auto& child : enti->GetChildren())
 		{
 			renderer->Run(child);
 		}
@@ -276,6 +280,7 @@ void GameScene::Render(SystemRender* renderer)
 	renderer->End();
 	renderer->PostProcess();
 
-	container1->Render();
+	text1->Render();
+	//container1->Render();
 	image1->Render();
 }

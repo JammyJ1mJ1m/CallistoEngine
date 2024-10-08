@@ -132,7 +132,11 @@ bool ShooterGame::HandleInput()
 	if (mInputManager->GetKeyDown(280))  // caps
 	{
 		mWindow->ToggleFullscreen(true);
-		mDiscordManager->SetDiscordPresence("fullscreen", "test");
+
+		if (mWindow->GetIsFullscreen())
+			mDiscordManager->SetDiscordPresence("fullscreen", "test");
+		else
+			mDiscordManager->SetDiscordPresence("Making game", "In Game", "cglarge", "AAAA", "asset1", "Look at his smile");
 	}
 	//mGameState = Quit;
 

@@ -47,21 +47,28 @@ void GUIImage::CalculateVertices(float width, float height)
 	glBindVertexArray(0);
 }
 
-GUIImage::GUIImage(const Vector3f& pCol)
+GUIImage::GUIImage(const Vector4f& pCol)
 {
 	mColor = pCol;
 
 }
 
-GUIImage::GUIImage(const int pWidth, const int pHeight, const float pScale) :
+GUIImage::GUIImage(const int pWidth, const int pHeight, const float pScale, const int pMaxWidth, const int pMaxHeight) :
 	mImageWidth(pWidth),
 	mImageHeight(pHeight),
-	mScale(pScale)
+	mMaxWidth(pMaxWidth),
+	mMaxHeight(pMaxHeight)
 {
-	mColor = Vector3f();
+	mScale = pScale;
+	mColor = Vector4f();
+	Initialise();
 }
-
-void GUIImage::Initialise(const int pMaxWidth, const int pMaxHeight)
+bool GUIImage::InitialiseChild()
+{
+	InitialiseImage(mMaxWidth, mMaxHeight);
+	return true;
+}
+void GUIImage::InitialiseImage(const int pMaxWidth, const int pMaxHeight)
 {
 	if (pMaxWidth < 1)
 		mMaxWidth = 1;
@@ -111,14 +118,14 @@ void GUIImage::Initialise(const int pMaxWidth, const int pMaxHeight)
 	glUniformMatrix4fv(glGetUniformLocation(mShaderObject->GetShaderProgram(), "projection"), 1, GL_FALSE, glm::value_ptr(GUIManager::GetInstance().GetUIProjection()));
 
 	// Load the texture
-	mTextureHandle = ResourceManager::getInstance().LoadTexture("Resources/textures/GUI/border.png");
+	mTextureHandle = ResourceManager::getInstance().LoadTexture("Resources/textures/GUI/whiteBarInfill.png");
 
 	// Calculate vertices based on the adjusted image size
 	CalculateVertices(mImageWidth, mImageHeight);
 }
 
 
-void GUIImage::Resize(const int pWidth, const int pHeight)
+void GUIImage::ResizeChild(const int pWidth, const int pHeight)
 {
 	// Calculate the aspect ratio of the image
 	float imageAspectRatio = static_cast<float>(mImageWidth) / mImageHeight;
@@ -168,6 +175,7 @@ void GUIImage::Render()
 	glUniform1i(glGetUniformLocation(mShaderObject->GetShaderProgram(), "texture1"), 0); // Set the texture unit
 
 	glUniform3f(glGetUniformLocation(mShaderObject->GetShaderProgram(), "translation"), mPosition.x, mPosition.y, 0.0f);
+	glUniform4f(glGetUniformLocation(mShaderObject->GetShaderProgram(), "color"), mColor.GetX(), mColor.GetY(), mColor.GetZ(), mColor.GetW());
 	// Bind the VAO and draw the quad
 	glBindVertexArray(mVAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
