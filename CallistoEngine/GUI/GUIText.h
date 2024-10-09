@@ -9,6 +9,7 @@
 #include "../inc/freetype/ft2build.h"
 #include "GUIElement.h"
 #include "GUIOrigin.h"
+#include <vector>
 
 //#include "ft2build.h"
 #include FT_FREETYPE_H  
@@ -37,11 +38,15 @@ class GUIText : public GUIElement
 	//float mScale;
 	Vector3f mInitialPosition;
 
+	std::vector<std::vector<float>> mTextQuads;
+	float mTextWidth;
+
 
 	int mFontSize;
 protected:
 	void ResizeChild(const int pWidth, const int pHeight) override;
 	bool InitialiseChild() override;
+	void CalculateFaces();
 
 public:
 	GUIText(const char* pText,const Vector3f& pCol,  const Vector3f& pPos, GUIOrigin pOrigin, const int pFontSize = 48);

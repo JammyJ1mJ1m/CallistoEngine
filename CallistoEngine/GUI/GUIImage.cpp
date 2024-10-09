@@ -53,50 +53,56 @@ GUIImage::GUIImage(const Vector4f& pCol)
 
 }
 
-GUIImage::GUIImage(const int pWidth, const int pHeight, const float pScale, const int pMaxWidth, const int pMaxHeight) :
-	mImageWidth(pWidth),
-	mImageHeight(pHeight),
-	mMaxWidth(pMaxWidth),
-	mMaxHeight(pMaxHeight)
+GUIImage::GUIImage(const int pWidth, const int pHeight, const float pScale, const int pMaxWidth, const int pMaxHeight) 
 {
+	mElementDimensions.SetX(pWidth);
+	mElementDimensions.SetY(pHeight);
+	mElementMaxDimensions.SetX(pMaxWidth);
+	mElementMaxDimensions.SetY(pMaxHeight);
+
 	mScale = pScale;
 	mColor = Vector4f();
 	Initialise();
 }
 bool GUIImage::InitialiseChild()
 {
-	InitialiseImage(mMaxWidth, mMaxHeight);
+	InitialiseImage(mElementMaxDimensions.GetX(), mElementMaxDimensions.GetY());
 	return true;
 }
 void GUIImage::InitialiseImage(const int pMaxWidth, const int pMaxHeight)
 {
+	float maxWidth = mElementMaxDimensions.GetX();
+	float maxHeight = mElementMaxDimensions.GetY();
+
 	if (pMaxWidth < 1)
-		mMaxWidth = 1;
+		maxWidth = 1;
 	else if (pMaxWidth > 100)
-		mMaxWidth = 100;
+		maxWidth = 100;
 	else
-		mMaxWidth = pMaxWidth;
+		maxWidth = pMaxWidth;
 
 	if (pMaxHeight < 1)
-		mMaxHeight = 1;
+		maxHeight = 1;
 	else if (pMaxHeight > 100)
-		mMaxHeight = 100;
+		maxHeight = 100;
 	else
-		mMaxHeight = pMaxHeight;
+		maxHeight = pMaxHeight;
 
-	mMaxWidth /= 100;
-	mMaxHeight /= 100;
+	maxWidth /= 100;
+	maxHeight /= 100;
+	mElementMaxDimensions.SetX(maxWidth);
+	mElementMaxDimensions.SetY(maxHeight);
 
 	// Get the current window dimensions
 	int windowWidth = Window::TheWindow->GetWindowWidth();
 	int windowHeight = Window::TheWindow->GetWindowHeight();
 
 	// Calculate initial size as a fraction of the window size
-	float initialWidth = windowWidth * mMaxWidth; // 50% of the window width
-	float initialHeight = windowHeight * mMaxHeight; // 50% of the window height
+	float initialWidth = windowWidth * maxWidth; // 50% of the window width
+	float initialHeight = windowHeight * maxHeight; // 50% of the window height
 
 	// Maintain aspect ratio while scaling
-	float imageAspectRatio = static_cast<float>(mImageWidth) / mImageHeight;
+	float imageAspectRatio = static_cast<float>(mElementDimensions.GetX()) / mElementDimensions.GetY();
 	if (initialWidth / initialHeight > imageAspectRatio) {
 		initialWidth = initialHeight * imageAspectRatio;
 	}
@@ -105,8 +111,8 @@ void GUIImage::InitialiseImage(const int pMaxWidth, const int pMaxHeight)
 	}
 
 	// Update the image dimensions with the scaled values
-	mImageWidth = static_cast<int>(initialWidth);
-	mImageHeight = static_cast<int>(initialHeight);
+	mElementDimensions.SetX(static_cast<int>(initialWidth));
+	mElementDimensions.SetY(static_cast<int>(initialHeight));
 
 	const char* mFontShaderVert = "Resources/Shaders/Text/Image.vert";
 	const char* mFontShaderFrag = "Resources/Shaders/Text/Image.frag";
@@ -121,18 +127,18 @@ void GUIImage::InitialiseImage(const int pMaxWidth, const int pMaxHeight)
 	mTextureHandle = ResourceManager::getInstance().LoadTexture("Resources/textures/GUI/whiteBarInfill.png");
 
 	// Calculate vertices based on the adjusted image size
-	CalculateVertices(mImageWidth, mImageHeight);
+	CalculateVertices(mElementDimensions.GetX(), mElementDimensions.GetY());
 }
 
 
 void GUIImage::ResizeChild(const int pWidth, const int pHeight)
 {
 	// Calculate the aspect ratio of the image
-	float imageAspectRatio = static_cast<float>(mImageWidth) / mImageHeight;
+	float imageAspectRatio = static_cast<float>(mElementDimensions.GetX()) / mElementDimensions.GetY();
 
 	// Calculate new scale factor based on window size, ensuring that the image doesn't exceed a fraction of the window size
-	float maxWidth = pWidth * mMaxWidth;   // Maximum width is 50% of the window width
-	float maxHeight = pHeight * mMaxHeight; // Maximum height is 50% of the window height
+	float maxWidth = pWidth * mElementMaxDimensions.GetX();   // Maximum width is 50% of the window width
+	float maxHeight = pHeight * mElementMaxDimensions.GetY(); // Maximum height is 50% of the window height
 
 	// Maintain aspect ratio while scaling
 	float newWidth = maxWidth;
@@ -160,9 +166,9 @@ void GUIImage::Render()
 	int windowWidth = Window::TheWindow->GetWindowWidth();
 	int windowHeight = Window::TheWindow->GetWindowHeight();
 
-	float newScale = std::min(static_cast<float>(windowWidth) / mImageWidth, static_cast<float>(windowHeight) / mImageHeight);
-	float newWidth = mImageWidth * newScale;
-	float newHeight = mImageHeight * newScale;
+	float newScale = std::min(static_cast<float>(windowWidth) / mElementDimensions.GetX(), static_cast<float>(windowHeight) / mElementDimensions.GetY());
+	float newWidth = mElementDimensions.GetX() * newScale;
+	float newHeight = mElementDimensions.GetY() * newScale;
 
 	//mProjction = glm::ortho(0.0f, static_cast<float>(windowWidth), 0.0f, static_cast<float>(windowHeight));
 	glUniformMatrix4fv(glGetUniformLocation(mShaderObject->GetShaderProgram(), "projection"), 1, GL_FALSE, glm::value_ptr(GUIManager::GetInstance().GetUIProjection()));

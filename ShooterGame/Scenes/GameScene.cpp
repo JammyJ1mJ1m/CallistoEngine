@@ -119,7 +119,7 @@ void GameScene::Initialise()
 	ss << "Logged in as: " << tt;
 	std::string name = ss.str();
 
-	text1 = new GUIText(name.c_str(), Vector3f(1, 1, 1), Vector3f(700, 700, 1), GUIOrigin::TOP_RIGHT, 20);
+	text1 = new GUIText(name.c_str(), Vector3f(1, 1, 1), Vector3f(5, 5, 1), GUIOrigin::BOTTOM_LEFT, 20);
 	//text2 = new GUIText("Hallo welt!", Vector3f(1, 1, 1), Vector3f(0, 0, 1), 32);
 
 	container1 = new GUIContainer(Vector3f(0, 0));
@@ -127,7 +127,7 @@ void GameScene::Initialise()
 	//container1->AddElement(text2);
 
 	image1 = new GUIImage(1131, 178, 1, 15, 15);
-	image1->SetColor(Vector4f(1, 0, 1,0.25));
+	image1->SetColor(Vector4f(1, 0, 1,1));
 	image1->SetPosition(Vector3f(10, 40, 0));
 	image1->SetRelativePosition(Vector3f(10, 40, 0));
 	container1->AddElement(image1);

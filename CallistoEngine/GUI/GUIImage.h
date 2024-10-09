@@ -17,10 +17,10 @@ class GUIImage : public GUIElement
 
 	//float mScale;
 	float mAspectRatio;
-	float mImageWidth;
-	float mImageHeight;
-	float mMaxWidth;
-	float mMaxHeight;
+	//float mImageWidth;
+	//float mImageHeight;
+	//float mMaxWidth;
+	//float mMaxHeight;
 
 
 	float CalculateAspectRatio(const int pWidth, const int pHeight);

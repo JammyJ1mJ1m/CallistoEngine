@@ -12,9 +12,18 @@ protected:
 	Vector3f mPosition;
 	Vector3f mRelativePosition;
 	float mScale;
+	Vector2f mElementDimensions;
+	Vector2f mElementMaxDimensions;
 
-	GUIElement() : mPositionOffset(0, 0, 0), mPosition(0, 0, 0), mRelativePosition(0, 0, 0) {};
-	
+	GUIElement() :
+		mOrigin(GUIOrigin::BOTTOM_LEFT),
+		mPositionOffset(0, 0, 0),
+		mPosition(0, 0, 0),
+		mRelativePosition(0, 0, 0),
+		mElementDimensions(0, 0),
+		mElementMaxDimensions(0, 0)
+	{};
+
 	void ResizeBase(const int pWidth, const int pHeight);
 	bool InitialiseBase();
 
@@ -43,7 +52,7 @@ public:
 	virtual bool Initialise()
 	{
 		InitialiseBase();
-			InitialiseChild();
+		InitialiseChild();
 		return true;
 	}
 

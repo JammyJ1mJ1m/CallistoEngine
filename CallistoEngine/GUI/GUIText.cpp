@@ -48,22 +48,22 @@ bool GUIText::InitialiseChild()
 	if (FT_Init_FreeType(&ft))
 	{
 		std::cout << "ERROR::FREETYPE: Could not init FreeType Library" << std::endl;
-		return -1;
+		return false;
 	}
 
 	// find path to font
-	std::string font_name = "Resources/Fonts/Antonio/Antonio-Bold.ttf";
+	std::string font_name = "Resources/Fonts/Orbitron-Regular.TTF";
 	if (font_name.empty())
 	{
 		std::cout << "ERROR::FREETYPE: Failed to load font_name" << std::endl;
-		return -1;
+		return false;
 	}
 
 	// load font as face
 	FT_Face face;
 	if (FT_New_Face(ft, font_name.c_str(), 0, &face)) {
 		std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
-		return -1;
+		return false;
 	}
 	else {
 		// set size to load glyphs as
@@ -129,31 +129,17 @@ bool GUIText::InitialiseChild()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
+	CalculateFaces();
+
 	return true;
 }
 
-void GUIText::ResizeChild(const int pWidth, const int pHeight)
-{
-
-
-	mShaderObject->UseProgram();
-	glUniformMatrix4fv(glGetUniformLocation(mShaderObject->GetShaderProgram(), "projection"), 1, GL_FALSE, glm::value_ptr(GUIManager::GetInstance().GetUIProjection()));
-
-}
-
-void GUIText::Render()
+void GUIText::CalculateFaces()
 {
 	int pX = mPosition.GetX();
 	int pY = mPosition.GetY();
-
-	mShaderObject->UseProgram();
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	glUniform3f(glGetUniformLocation(mShaderObject->GetShaderProgram(), "textColor"), mFontColour.GetX(), mFontColour.GetY(), mFontColour.GetZ());
-	glActiveTexture(GL_TEXTURE0);
-	glBindVertexArray(VAO);
+	int textWidth = 0;
+	mTextQuads.clear();
 
 	// Iterate through all characters and render
 	for (auto c = mText.begin(); c != mText.end(); c++)
@@ -166,30 +152,58 @@ void GUIText::Render()
 		float w = ch.Size.x * mScale;
 		float h = ch.Size.y * mScale;
 
-		// Update VBO for each character
-		float vertices[6][4] = {
-			{ xpos,     ypos + h,   0.0f, 0.0f },
-			{ xpos,     ypos,       0.0f, 1.0f },
-			{ xpos + w, ypos,       1.0f, 1.0f },
+		// Flattened vertex array
+		std::vector<float> vertices = {
+			xpos,     ypos + h,   0.0f, 0.0f,
+			xpos,     ypos,       0.0f, 1.0f,
+			xpos + w, ypos,       1.0f, 1.0f,
 
-			{ xpos,     ypos + h,   0.0f, 0.0f },
-			{ xpos + w, ypos,       1.0f, 1.0f },
-			{ xpos + w, ypos + h,   1.0f, 0.0f }
+			xpos,     ypos + h,   0.0f, 0.0f,
+			xpos + w, ypos,       1.0f, 1.0f,
+			xpos + w, ypos + h,   1.0f, 0.0f
 		};
 
-		// Render the glyph texture over the quad
-		glBindTexture(GL_TEXTURE_2D, ch.TextureID);
-
-		// Update the content of VBO memory
-		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-		// Render the quad
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+		mTextQuads.push_back(vertices);  // Add the quad's vertices to the list
 
 		// Advance cursor to the next character
 		pX += (ch.Advance >> 6) * mScale;  // bitshift by 6 to get value in pixels (2^6 = 64)
+		mTextWidth = xpos + w;
+	}
+
+	mTextWidth -= mPosition.GetX();
+}
+
+void GUIText::ResizeChild(const int pWidth, const int pHeight)
+{
+	CalculateFaces();
+	mShaderObject->UseProgram();
+	glUniformMatrix4fv(glGetUniformLocation(mShaderObject->GetShaderProgram(), "projection"), 1, GL_FALSE, glm::value_ptr(GUIManager::GetInstance().GetUIProjection()));
+
+}
+
+void GUIText::Render()
+{
+	mShaderObject->UseProgram();
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glUniform3f(glGetUniformLocation(mShaderObject->GetShaderProgram(), "textColor"), mFontColour.GetX(), mFontColour.GetY(), mFontColour.GetZ());
+	glActiveTexture(GL_TEXTURE0);
+	glBindVertexArray(VAO);
+
+	for (size_t i = 0; i < mTextQuads.size(); i++)
+	{
+		const std::vector<float>& quadVertices = mTextQuads[i];
+		TextCharacter ch = mTextCharacters[mText[i]];
+
+		glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, quadVertices.size() * sizeof(float), &quadVertices[0]);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 	}
 
 	glBindVertexArray(0);
