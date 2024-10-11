@@ -1,6 +1,7 @@
 #include "PostProcessEffect.h"
 
 #include "Renderer_GL.h"
+#include "../Game.h"
 
 void PostProcessEffect::Create()
 {
@@ -14,7 +15,7 @@ void PostProcessEffect::Render()
 
 	////Set shader variables
 	OnActivate();
-
+	shader->SetFloat("width", Game::GetGame()->GetGameCamera()->mWidth);
 
 	//shader->SetFloat("albedo", 0);
 	//shader->SetFloat("depth", 1);

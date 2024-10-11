@@ -11,6 +11,8 @@ class Material
 	bool mIsCubemap;
 
 	int mDiffuseMap;
+	int mEmissionMap;
+	int mSpecularMap;
 	int mNormalMap;
 	int mCubemap;
 
@@ -23,9 +25,13 @@ public:
 	Material(std::string pFile, const bool pIsCubemap = false);
 	~Material() = default;
 
-	const int& GetDiffuseMap()  { return mDiffuseMap; }
-	const int& GetNormalMap()  { return mNormalMap; }
+	const int& GetDiffuseMap() { return mDiffuseMap; }
+	const int& GetEmissionMap()  { return mEmissionMap; }
+	const int& GetNormalMap() { return mNormalMap; }
+	const int& GetSpecularMap()  { return mSpecularMap; }
 	const int& GetCubemap() { return mCubemap; }
+
+	void UnbindTextures();
 
 	void Draw();
 

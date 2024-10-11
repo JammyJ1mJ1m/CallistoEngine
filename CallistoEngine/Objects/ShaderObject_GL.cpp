@@ -94,3 +94,8 @@ void ShaderObject_GL::SetFloat(const char* pName, float pFloat)
 	unsigned int loc = glGetUniformLocation(shaderProgram, pName);
 	glUniform1f(loc, pFloat);
 }
+
+void ShaderObject_GL::SetInt(const char* pName, int pInt)
+{
+	glUniform1i(glGetUniformLocation(shaderProgram, pName), pInt);
+}

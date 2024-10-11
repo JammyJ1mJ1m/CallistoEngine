@@ -22,5 +22,7 @@ public:
 	virtual void SetMat4(const char* pName, glm::mat4 pMatrix);
 	virtual void SetVec3(const char* pName, const Vector3f& pVec);
 	virtual void SetFloat(const char* pName, float pFloat);
+	void SetInt(const char* pName, int pInt) override;
+
 
 };

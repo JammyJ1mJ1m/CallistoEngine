@@ -25,8 +25,9 @@ void ShooterGame::InitialiseGame()
 	//mRenderer->AddEffect(pp2);
 
 	//PostProcessEffect* pp3 = new PostProcessEffect();
-	//pp3->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Sharpen.frag", "Blur");
+	//pp3->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Blur.frag", "Blur");
 	//mRenderer->AddEffect(pp3);
+
 
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
 	mInputManager = new GameInputManager();
@@ -54,19 +55,10 @@ void ShooterGame::InitialiseGame()
 
 	LoadMesh("Resources/Geometry/error.obj", "error", RM);
 
-	GunLoader& gLoader = GunLoader::GetInstance();
 
-	gLoader.ReadManifest("GameObjects/AK/gunManifest.txt");
+	GunLoader::GetInstance().ReadManifest("GameObjects/AK/gunManifest.txt");
 
-	//gLoader.ConstructFromDisk("GameObjects/AK/RayGun.toml");
-	//gLoader.ConstructFromDisk("GameObjects/AK/AK.toml");
-	//gLoader.ConstructFromDisk("GameObjects/AK/Glock.toml");
-
-	//gLoader.ConstructFromDisk("GameObjects/AK/RPG.toml");
-
-	const GunsToLoad meshes = gLoader.GetMeshesToLoad();
-
-	for (auto& mesh : meshes)
+	for (auto& mesh : GunLoader::GetInstance().GetMeshesToLoad())
 	{
 		LoadMesh(mesh.first.c_str(), mesh.second.c_str(), RM);
 	}

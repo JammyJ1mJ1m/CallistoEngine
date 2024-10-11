@@ -20,6 +20,7 @@ class ShaderObject
 	virtual void SetMat4(const char* pName, glm::mat4 pMatrix) = 0;
 	virtual void SetVec3(const char* pName, const Vector3f& pVec) = 0;
 	virtual void SetFloat(const char* pName, float pFloat) = 0;
+	virtual void SetInt(const char* pName, int pInt) = 0;
 
 };
 

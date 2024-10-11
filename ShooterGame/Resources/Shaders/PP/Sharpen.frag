@@ -11,9 +11,13 @@ uniform sampler2D screenTexture;
     float offsetY = 1.0 / texSize.y;
 
 
+uniform float width;
+
+//const float offset = 1.0 / 1423.0;  
+
 void main()
 {
-float offset = 1.0 / 300;  
+float offset = 1/width;
 
     vec2 offsets[9] = vec2[](
         vec2(-offset,  offset), // top-left

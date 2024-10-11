@@ -53,7 +53,7 @@ GUIImage::GUIImage(const Vector4f& pCol)
 
 }
 
-GUIImage::GUIImage(const int pWidth, const int pHeight, const float pScale, const int pMaxWidth, const int pMaxHeight) 
+GUIImage::GUIImage(const int pWidth, const int pHeight, const float pScale, const int pMaxWidth, const int pMaxHeight)
 {
 	mElementDimensions.SetX(pWidth);
 	mElementDimensions.SetY(pHeight);
@@ -137,8 +137,8 @@ void GUIImage::ResizeChild(const int pWidth, const int pHeight)
 	float imageAspectRatio = static_cast<float>(mElementDimensions.GetX()) / mElementDimensions.GetY();
 
 	// Calculate new scale factor based on window size, ensuring that the image doesn't exceed a fraction of the window size
-	float maxWidth = pWidth * mElementMaxDimensions.GetX();   // Maximum width is 50% of the window width
-	float maxHeight = pHeight * mElementMaxDimensions.GetY(); // Maximum height is 50% of the window height
+	float maxWidth = pWidth  * mElementMaxDimensions.GetX() ;   // Maximum width is 50% of the window width
+	float maxHeight = pHeight  * mElementMaxDimensions.GetY() ; // Maximum height is 50% of the window height
 
 	// Maintain aspect ratio while scaling
 	float newWidth = maxWidth;
@@ -151,7 +151,7 @@ void GUIImage::ResizeChild(const int pWidth, const int pHeight)
 	}
 
 	// Update the quad vertices with the new dimensions while maintaining aspect ratio
-	CalculateVertices(newWidth, newHeight);
+	CalculateVertices(newWidth * mScale, newHeight * mScale);
 }
 
 

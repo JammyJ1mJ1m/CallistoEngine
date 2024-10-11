@@ -53,6 +53,18 @@ void Material::LoadMaterial(std::string pFile)
 			checkDir(line, pFile);
 			mNormalMap = manager.LoadTexture(line.c_str());
 		}
+		if (CheckLine(line, "map_Ke"))
+		{
+			checkDir(line, pFile);
+			mEmissionMap = manager.LoadTexture(line.c_str());
+		}
+
+
+		if (CheckLine(line, "map_Ks"))
+		{
+			checkDir(line, pFile);
+			mSpecularMap = manager.LoadTexture(line.c_str());
+		}
 	}
 
 	// if none of the textures are found, load the default texture
@@ -62,6 +74,17 @@ void Material::LoadMaterial(std::string pFile)
 		fileStram.clear();
 		fileStram.open("Resources/Textures/Default.mtl");
 		mDiffuseMap = manager.LoadTexture("Resources/Textures/Default.png");
+	}
+
+	if (mEmissionMap < 0)
+	{
+		mEmissionMap = manager.LoadTexture("Resources/Textures/DefaultEmission.png");
+	}
+
+	if (mSpecularMap < 0)
+
+	{
+		mSpecularMap = manager.LoadTexture("Resources/Textures/DefaultEmission.png");
 	}
 	fileStram.close();
 
@@ -130,6 +153,13 @@ Material::Material(std::string pFile, const bool pIsCubemap)
 
 }
 
+void Material::UnbindTextures()
+{
+	glBindTexture(GL_TEXTURE0, 0);
+	glBindTexture(GL_TEXTURE1, 0);
+	glBindTexture(GL_TEXTURE2, 0);
+}
+
 void Material::Draw()
 {
 #if OPENGL
@@ -147,6 +177,12 @@ void Material::Draw()
 		{
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, GetDiffuseMap());
+
+			glActiveTexture(GL_TEXTURE1);
+			glBindTexture(GL_TEXTURE_2D, GetEmissionMap());
+
+			glActiveTexture(GL_TEXTURE2);
+			glBindTexture(GL_TEXTURE_2D, GetSpecularMap());
 		}
 	}
 #endif
