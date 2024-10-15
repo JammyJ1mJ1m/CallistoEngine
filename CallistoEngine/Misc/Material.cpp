@@ -84,7 +84,7 @@ void Material::LoadMaterial(std::string pFile)
 	if (mSpecularMap < 0)
 
 	{
-		mSpecularMap = manager.LoadTexture("Resources/Textures/DefaultEmission.png");
+		mSpecularMap = manager.LoadTexture("Resources/Textures/DefaultSpecular.png");
 	}
 	fileStram.close();
 
@@ -167,7 +167,7 @@ void Material::Draw()
 	if (mIsCubemap)
 	{
 		glDepthFunc(GL_LEQUAL);
-		glActiveTexture(GL_TEXTURE0);
+		glActiveTexture(GL_TEXTURE16);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, GetCubemap());
 
 	}

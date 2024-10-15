@@ -140,6 +140,9 @@ void Renderer_GL::Initialise(int width, int height)
 
 	// 3. Create renderbuffer for depth and stencil
 	CreateRBO(width, height);
+	//glEnable(GL_CULL_FACE);
+	//glCullFace(GL_BACK);
+	//glFrontFace(GL_CW);
 }
 
 void Renderer_GL::CreateRBO(int width, int height)
@@ -182,6 +185,7 @@ void Renderer_GL::Render(Entity* entity)
 
 	ComponentModel* model = entity->GetComponent <ComponentModel>();
 	model->GetMesh()->Draw();
+	glDisable(GL_CULL_FACE);
 }
 
 void Renderer_GL::DrawPP()

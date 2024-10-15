@@ -210,6 +210,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Components\ComponentShaderWindow.cpp" />
     <ClCompile Include="Entities\Gun.cpp" />
     <ClCompile Include="Entities\GunAK.cpp" />
     <ClCompile Include="Entities\GunMagazine.cpp" />
@@ -243,6 +244,7 @@
     <ClCompile Include="Entities\TestLight.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\ComponentShaderWindow.h" />
     <ClInclude Include="Entities\Gun.h" />
     <ClInclude Include="Entities\GunAK.h" />
     <ClInclude Include="Entities\GunMagazine.h" />

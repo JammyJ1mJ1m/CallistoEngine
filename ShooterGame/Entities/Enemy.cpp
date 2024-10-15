@@ -5,14 +5,14 @@
 #include "Components/ComponentCollider.h"
 #include "Math/Vector.h"
 #include "Misc/Sound.h"
-
+#include "Components/ComponentShaderWindow.h"
 
 
 
 void Enemy::start()
 {
 	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("cube"), "Resources/textures/CardBox.mtl"));
-	AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
+	AddComponent(new ComponentShaderWindow(ShooterGame::GetGameCamera(), "Resources/Shaders/window.vert", "Resources/Shaders/window.frag"));
 	Vector3f pos(0.0f, 5.0f, 0.0f);
 	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f)));
 

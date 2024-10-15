@@ -1,10 +1,10 @@
-#include "ComponentShaderDefault.h"
+#include "ComponentShaderWindow.h"
 #include "Math/Vector.h"
 #include <vector>
 #include "TestLight.h"
 #include "Managers/LightManager.h"
 
-ComponentShaderDefault::ComponentShaderDefault(Camera* pCam, const char* pVert, const char* pFrag)
+ComponentShaderWindow::ComponentShaderWindow(Camera* pCam, const char* pVert, const char* pFrag)
 {
 	mCamera = pCam;
 #if OPENGL
@@ -16,16 +16,16 @@ ComponentShaderDefault::ComponentShaderDefault(Camera* pCam, const char* pVert, 
 
 
 
-void ComponentShaderDefault::Render()
+void ComponentShaderWindow::Render()
 {
 }
 
-ComponentShaderDefault::~ComponentShaderDefault()
+ComponentShaderWindow::~ComponentShaderWindow()
 {
 	delete mShaderObject;
 }
 
-void ComponentShaderDefault::Update(glm::mat4 pMat)
+void ComponentShaderWindow::Update(glm::mat4 pMat)
 {
 
 	//mShaderObject->SetWorldMatrix("transform", pMat, mCamera);
@@ -33,6 +33,8 @@ void ComponentShaderDefault::Update(glm::mat4 pMat)
 	UseProgram();
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
+
+
 	// set model
 	mShaderObject->SetMat4("model", pMat);
 
