@@ -59,7 +59,7 @@ vec3 lightPos = light[i].position;
 
 void main()
 {
-float alpha = 0.5;
+float alpha = 1;
      vec3 I = normalize(FragPos - viewPos);
     vec3 R = reflect(I, normalize(Normal));
     vec4 skyColor = vec4(texture(skybox, R).rgb, 0.0);
@@ -73,7 +73,7 @@ float alpha = 0.5;
     // Sample the emission texture
     vec3 emission = texture(emissionTex, TexCoord).rgb;
     color = normalize(color)*2;
-    color.a=0.5;
+    color.a=1;
 
     FragColor = color+ skyColor;
 }

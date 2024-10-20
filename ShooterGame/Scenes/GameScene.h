@@ -27,5 +27,5 @@ class GameScene final : public Scene
 	virtual void Initialise();
 	virtual void OnKeyboard(int key, bool down);
 	virtual void Update(double deltaTime);
-	virtual void Render(SystemRender* renderer);
+	virtual void Render(SystemRenderDeferred* renderer);
 };

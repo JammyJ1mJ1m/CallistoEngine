@@ -233,6 +233,10 @@
     <None Include="Resources\Shaders\Text\text.frag" />
     <None Include="Resources\Shaders\Text\Image.frag" />
     <None Include="Resources\Shaders\Text\Image.vert" />
+    <None Include="Resources\Shaders\gbuffer.frag" />
+    <None Include="Resources\Shaders\gbuffer.vert" />
+    <None Include="Resources\Shaders\deferredLighting.frag" />
+    <None Include="Resources\Shaders\deferredLighting.vert" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Config\settings.toml" />

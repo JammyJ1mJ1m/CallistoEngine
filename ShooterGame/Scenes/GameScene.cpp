@@ -7,6 +7,7 @@
 #include "Math/Vector.h"
 #include "Misc/Material.h"
 #include "Systems/SystemRender.h"
+#include "Systems/SystemRenderDeferred.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "SkyBox.h"
@@ -25,6 +26,7 @@
 #include <sstream>
 
 #include "GUI/GUIManager.h"
+
 //#include <chrono>
 
 Player* player;
@@ -51,8 +53,8 @@ void GameScene::Initialise()
 	mTimeToSpawn = 0.1;
 #pragma region Initial entity stuff
 	mLightSystem = new SystemLight();
-	SkyBox* skybox = new SkyBox();
-	AddEntity(skybox);
+	//SkyBox* skybox = new SkyBox();
+	//AddEntity(skybox);
 
 
 	player = new Player();
@@ -92,24 +94,52 @@ void GameScene::Initialise()
 #pragma endregion
 
 #pragma region Lights
+
+	// using this gives me 25 
+	int lightCount = 9;
+	// distance to use for width, dpeth of grid
+	int distance = 50;
+	float spacing = 25;
+	Vector3f lightpositions = Vector3f(-spacing, 5, -spacing);
+
+	for (size_t i = 0; i < lightCount ; i++)
+	{
+		for (size_t j = 0; j < lightCount ; j++)
+		{
+			TestLight* testLight= new TestLight();
+			LightComponent* lc= testLight->GetComponent<LightComponent>();
+			testLight->SetPosition(lightpositions);
+			Light* l = lc->GetLight();/// ;
+			l->SetDiffuse(Vector3f(1, 1, 1));
+			AddEntity(testLight);
+
+			lightpositions.SetX(lightpositions.GetX() + spacing);
+		}
+		lightpositions.SetX(0);
+
+		lightpositions.SetZ(lightpositions.GetZ() + spacing);
+
+		
+	}
+
 	// add the lights here
 	light = new TestLight();
 	LightComponent* lc1 = light->GetComponent<LightComponent>();
 	Light* l1 = lc1->GetLight();/// ;
-	l1->SetDiffuse(Vector3f(1, 1, 1));
+	l1->SetDiffuse(Vector3f(1, 0, 1));
 	AddEntity(light);
 
-	TestLight* light3 = new TestLight();
-	light3->SetPosition(Vector3f(-10, 20, -50));
-	LightComponent* lc3 = light3->GetComponent<LightComponent>();
-	lc3->GetLight()->SetDiffuse(Vector3f(0, 1, 0));
-	AddEntity(light3);
+	//TestLight* light3 = new TestLight();
+	//light3->SetPosition(Vector3f(-10, 20, -50));
+	//LightComponent* lc3 = light3->GetComponent<LightComponent>();
+	//lc3->GetLight()->SetDiffuse(Vector3f(0, 1, 0));
+	//AddEntity(light3);
 
-	TestLight* light2 = new TestLight();
-	light2->SetPosition(Vector3f(-10, 20, 50));
-	LightComponent* lc2 = light2->GetComponent<LightComponent>();
-	lc2->GetLight()->SetDiffuse(Vector3f(1, 0, 0));
-	AddEntity(light2);
+	//TestLight* light2 = new TestLight();
+	//light2->SetPosition(Vector3f(-10, 20, 50));
+	//LightComponent* lc2 = light2->GetComponent<LightComponent>();
+	//lc2->GetLight()->SetDiffuse(Vector3f(1, 0, 0));
+	//AddEntity(light2);
 #pragma endregion
 
 #pragma region UI Stuff
@@ -127,7 +157,7 @@ void GameScene::Initialise()
 	//container1->AddElement(text2);
 
 	image1 = new GUIImage(1131, 178, 1, 10, 10);
-	image1->SetColor(Vector4f(1, 0, 1,1));
+	image1->SetColor(Vector4f(1, 0, 1, 1));
 	image1->SetPosition(Vector3f(10, 40, 0));
 	image1->SetRelativePosition(Vector3f(10, 40, 0));
 	container1->AddElement(image1);
@@ -250,11 +280,15 @@ void GameScene::Update(double deltaTime)
 
 }
 
-void GameScene::Render(SystemRender* renderer)
+void GameScene::Render(SystemRenderDeferred* renderer)
 {
 	//renderer->StartPP();
 
 	renderer->Begin();
+
+	//################################################################
+	//	  fill out the g buffer with position, normal and colour
+	//################################################################
 
 	// TODO: refactor this into systems, syncing RB doesnt need to be here
 	for (auto& enti : mEntities)
@@ -265,7 +299,6 @@ void GameScene::Render(SystemRender* renderer)
 		{
 			enti->GetComponent<ComponentRigidBody>()->SyncWithTransform(enti->GetComponent<ComponentTransform>());
 			//enti->GetComponent<ComponentRigidBody>()->SyncWithTransform(enti);
-
 		}
 		//enti->UpdateChildPositions();
 		renderer->Run(enti);
@@ -274,13 +307,17 @@ void GameScene::Render(SystemRender* renderer)
 			renderer->Run(child);
 		}
 	}
-	// draw PP here
-	//text1->Render(50, 50, Game::GetGame()->GetGameCamera()->mWidth, Game::GetGame()->GetGameCamera()->mHeight);
-	//text1->Render(50, 700, Game::GetGame()->GetGameCamera()->mWidth, Game::GetGame()->GetGameCamera()->mHeight);
-	renderer->End();
-	renderer->PostProcess();
+	//################################################################
+	//					 render the lights
+	//################################################################
 
-	text1->Render();
-	//container1->Render();
-	image1->Render();
+	renderer->RunLighting();
+
+
+	// renderer->End();
+	// renderer->PostProcess();
+
+	//text1->Render();
+	////container1->Render();
+	//image1->Render();
 }

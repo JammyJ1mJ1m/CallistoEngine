@@ -17,7 +17,7 @@ public:
 
 	inline unsigned int GetTexture() const { return mFBT; }
 
-	void Resize(int width, int height);
+	virtual void Resize(int width, int height);
 
 	RenderTarget();
 	~RenderTarget();

@@ -322,6 +322,10 @@
     <ClCompile Include="Commands\Command.cpp" />
     <ClCompile Include="Components\LightComponent.cpp" />
     <ClCompile Include="Graphical\FinalTarget.cpp" />
+    <ClCompile Include="Graphical\GBuffer.cpp" />
+    <ClCompile Include="Graphical\NormalColourTarget.cpp" />
+    <ClCompile Include="Graphical\PositionColourTarget.cpp" />
+    <ClCompile Include="Graphical\SpecularAndColourTarget.cpp" />
     <ClCompile Include="GUI\GUIImage.cpp" />
     <ClCompile Include="GUI\GUIContainer.cpp" />
     <ClCompile Include="GUI\GUIElement.cpp" />
@@ -370,11 +374,16 @@
     <ClCompile Include="Graphical\VBO_GL.cpp" />
     <ClCompile Include="Graphical\Window.cpp" />
     <ClCompile Include="Graphical\Window_GL.cpp" />
+    <ClCompile Include="Systems\SystemRenderDeferred.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Commands\Command.h" />
     <ClInclude Include="Components\LightComponent.h" />
     <ClInclude Include="Graphical\FinalTarget.h" />
+    <ClInclude Include="Graphical\GBuffer.h" />
+    <ClInclude Include="Graphical\NormalColourTarget.h" />
+    <ClInclude Include="Graphical\PositionColourTarget.h" />
+    <ClInclude Include="Graphical\SpecularAndColourTarget.h" />
     <ClInclude Include="GUI\GUIImage.h" />
     <ClInclude Include="GUI\GUIContainer.h" />
     <ClInclude Include="GUI\GUIElement.h" />
@@ -553,6 +562,7 @@
     <ClInclude Include="Graphical\Vertex.h" />
     <ClInclude Include="Graphical\Window.h" />
     <ClInclude Include="Graphical\Window_GL.h" />
+    <ClInclude Include="Systems\SystemRenderDeferred.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Shaders\3.1.1.debug_quad.vert">

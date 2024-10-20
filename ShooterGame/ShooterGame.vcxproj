@@ -288,6 +288,10 @@
     <None Include="Resources\Shaders\basicLight.vert" />
     <None Include="Resources\Shaders\BulletLineShader.frag" />
     <None Include="Resources\Shaders\BulletLineShader.vert" />
+    <None Include="Resources\Shaders\deferredLighting.frag" />
+    <None Include="Resources\Shaders\deferredLighting.vert" />
+    <None Include="Resources\Shaders\gbuffer.frag" />
+    <None Include="Resources\Shaders\gbuffer.vert" />
     <None Include="Resources\Shaders\PP\Blur.frag" />
     <None Include="Resources\Shaders\PP\defaultPP.frag" />
     <None Include="Resources\Shaders\PP\EdgeDetection.frag" />

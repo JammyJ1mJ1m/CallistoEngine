@@ -38,7 +38,7 @@ void SceneManager::Update(double deltaTime)
 }
 
 /// Render current scene
-void SceneManager::Render(SystemRender* renderer)
+void SceneManager::Render(SystemRenderDeferred* renderer)
 {
 	Scene* currentScene = GetCurrentScene();
 	if (currentScene)

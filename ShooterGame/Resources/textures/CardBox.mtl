@@ -12,5 +12,5 @@ d 1.000000
 illum 2
 map_Kd Resources\\textures\\CardBox.png
 # map_Ke CardBox_specularEmission.png
-map_Ks CardBox_specular2.png
+
 

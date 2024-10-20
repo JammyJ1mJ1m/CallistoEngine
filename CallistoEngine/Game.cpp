@@ -16,6 +16,7 @@ Game::Game() :
 	mRenderer = nullptr;
 	mWindow = nullptr;
 	mRenderSystem = nullptr;
+	mDeferredRenderSystem = nullptr;
 	mHasWindowSizeChanged = false;
 
 	// initiallise _keyStates
@@ -27,7 +28,6 @@ Game::Game() :
 	theGame = this;
 	mDeltaTime = 0.0;
 	mLastFrameTime = 0.0;
-	mRenderSystem = nullptr;
 	mDiscordManager = new DiscordManager();
 	mDiscordManager->initDiscord();
 
@@ -78,6 +78,7 @@ void Game::BaseInitialise(Window* w)
 	mWindow = w;
 	mRenderer = w->GetRenderer();
 	mRenderSystem = new SystemRender(mRenderer);
+	mDeferredRenderSystem = new SystemRenderDeferred(mRenderer);
 	mHasWindowSizeChanged = false;
 
 	mAudioManager = &AudioManager::GetInstance();
@@ -93,7 +94,7 @@ void Game::BaseRun()
 
 void Game::BaseRender()
 {
-	mRenderer->ClearScreen();
+	// mRenderer->ClearScreen();
 	mDiscordManager->UpdateDiscordPresence();
 	if (mWindow->GetHasWindowSizeChanged())
 	{

@@ -43,7 +43,7 @@ std::string ResourceManager::LoadShader(const char* pFile)
 	}
 	catch (std::ifstream::failure e)
 	{
-		std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
+		std::cout << "ERROR :: SHADER :: FILE_NOT_SUCCESFULLY_READ :: " << pFile<< std::endl;
 		std::cout << e.what() << std::endl;
 		std::string emp = "empty";
 		return emp;

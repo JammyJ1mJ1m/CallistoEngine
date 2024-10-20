@@ -12,7 +12,7 @@ uniform sampler2D emissionTex;
 uniform sampler2D specularMap;
 uniform vec3 viewPos;
 
-#define NR_POINT_LIGHTS 3
+#define NR_POINT_LIGHTS 99
 
 struct Light {
     vec3 position;  

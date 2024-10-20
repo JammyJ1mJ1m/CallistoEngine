@@ -3,6 +3,7 @@
 #include <vector>
 
 class SystemRender;
+class SystemRenderDeferred;
 class Scene;
 class Game;
 
@@ -39,7 +40,7 @@ public:
 	void Update(double deltaTime);
 
 	/// Render current scene
-	void Render(SystemRender* renderer);
+	void Render(SystemRenderDeferred* renderer);
 
 	/// Pop the top scene. If no scenes remain, we should quit.
 	void PopScene() { _scenes.pop(); }

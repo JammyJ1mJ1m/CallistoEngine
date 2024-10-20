@@ -3,6 +3,7 @@
 #include "../Components/Entity.h"
 
 class SystemRender;
+class SystemRenderDeferred;
 class SceneManager;
 
 /// Represents an abstract scene, i.e. mode of the game
@@ -31,5 +32,5 @@ public:
 
 	virtual void Update(double deltaTime) = 0;
 
-	virtual void Render(SystemRender* renderer) = 0;
+	virtual void Render(SystemRenderDeferred* renderer) = 0;
 };

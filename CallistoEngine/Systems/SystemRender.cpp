@@ -1,6 +1,8 @@
 #include "SystemRender.h"
 #include "ComponentTransform.h"
 #include "ComponentShader.h"
+#include "../Misc/Camera.h"
+
 SystemRender::SystemRender(Renderer* pRenderer)
 {
 	mRenderer = pRenderer;

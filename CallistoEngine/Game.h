@@ -10,6 +10,7 @@
 #include "Managers/SceneManager.h"
 
 #include "Systems/SystemRender.h"
+#include "Systems/SystemRenderDeferred.h"
 #include "Managers/AudioManager.h"
 
 #include "Managers/DiscordManager.h"
@@ -61,6 +62,7 @@ protected:
 	//	RenderSystem mRenderSystem;
 
 	SystemRender* mRenderSystem;
+	SystemRenderDeferred* mDeferredRenderSystem;
 
 	SceneManager mSceneManager;
 

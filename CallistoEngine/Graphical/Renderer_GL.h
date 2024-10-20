@@ -13,14 +13,31 @@
 #include "FinalTarget.h"
 #include "PostProcessEffect.h"
 
+#include "PositionColourTarget.h"
+#include "NormalColourTarget.h"
+#include "SpecularAndColourTarget.h"
+
+#include "GBuffer.h"
+
 
 class Renderer_GL : public Renderer
 {
 	unsigned int shaderProgram;
 	unsigned int VAO;
 
+	// use this buffer as the gBuffer?
 	MainRenderTarget* mMainTarget;
+
 	FinalTarget* mFinalTarget;
+
+	// position color buffer
+	PositionColourTarget* positionColor;
+	// normal color buffer
+	NormalColourTarget* normalColour;
+	// color + specular color buffer
+	SpecularAndColourTarget* colorSpecular;
+
+	GBuffer* mGBuffer;
 
 	// PP stuff
 	GLuint framebuffer;
@@ -35,7 +52,7 @@ class Renderer_GL : public Renderer
 
 	void InitialisePP();
 
-	unsigned int depth, f, b;
+	unsigned int depth, frame;
 	PostProcessEffect finalPass;
 
 	std::vector<PostProcessEffect*> postProcessShaders;
@@ -43,8 +60,6 @@ class Renderer_GL : public Renderer
 	// Private constructor to prevent instantiation
 	Renderer_GL() = default;
 
-
-	void InitialiseScreenQuad();
 
 public:
 	void RenderScreenQuad() override;
@@ -59,12 +74,14 @@ public:
 	}
 
 
-	void SetID(unsigned int f) override { depth = GetDepth(); this->f = f; }
-	unsigned int GetID() const override { return f; }
+	void SetFrame(unsigned int pFrame) override { depth = GetDepth(); this->frame = pFrame; }
+	unsigned int GetFrame() const override { return frame; }
 	// void SetPixelated(unsigned int b) override { this->b = b; }
 	// unsigned int GetPixelated() const override { return b; }
 	inline unsigned int GetRawFrame() const override { return mMainTarget->GetTextureID(); }
-	unsigned int GetDepth() const override { return mMainTarget->GetDepthBufferID(); }
+	//unsigned int GetDepth() const override { return mMainTarget->GetDepthBufferID(); }
+	unsigned int GetDepth() const override { return mGBuffer->GetDepthBufferID(); }
+	virtual GBuffer* GetGBuffer() override { return mGBuffer; }
 
 	// void Resize(int width, int height);
 
@@ -75,13 +92,18 @@ public:
 
 
 	virtual void ClearScreen();
-	virtual void Destroy();
+	// virtual void Destroy();
 	virtual void Initialise(int width, int height);
-	virtual void SwapBuffers();
+	// virtual void SwapBuffers();
 	virtual void Render(Entity* entity);
-	virtual void DrawPP();
-	virtual void StartPP();
+	// virtual void DrawPP();
+	// virtual void StartPP();
 	virtual void Resize(int pWidth, int pHeight);
 	void CreateRBO(int width, int height);
+
+	void UnbindFrame() override;
+	void EnableDepthTest() const;
+	void DisableDepthTest() const;
+
 };
 

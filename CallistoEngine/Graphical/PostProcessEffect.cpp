@@ -21,7 +21,7 @@ void PostProcessEffect::Render()
 	//shader->SetFloat("depth", 1);
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, Renderer_GL::GetInstance().GetID());
+	glBindTexture(GL_TEXTURE_2D, Renderer_GL::GetInstance().GetFrame());
 
 	if (usesDepth)
 	{

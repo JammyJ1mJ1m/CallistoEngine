@@ -7,6 +7,7 @@
 #include "MainMenuScene.h"
 #include "Graphical/PostProcessEffect.h"
 #include "GUI/GUIManager.h"
+
 static BulletDebugDrawer_OpenGL* bulletDebugDraw;
 
 void ShooterGame::InitialiseGame()
@@ -72,7 +73,7 @@ void ShooterGame::InitialiseGame()
 
 void ShooterGame::RenderFrame()
 {
-	mSceneManager.Render(mRenderSystem);
+	mSceneManager.Render(mDeferredRenderSystem);
 
 	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
 	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();
