@@ -319,6 +319,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Graphical\PostProcessing\BloomEffect.cpp" />
     <ClCompile Include="Commands\Command.cpp" />
     <ClCompile Include="Components\LightComponent.cpp" />
     <ClCompile Include="Graphical\FinalTarget.cpp" />
@@ -350,7 +351,6 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="Managers\PhysicsManager.cpp" />
     <ClCompile Include="Lighting\PointLight.cpp" />
-    <ClCompile Include="Graphical\PostProcessor.cpp" />
     <ClCompile Include="Graphical\RenderTarget.cpp" />
     <ClCompile Include="Graphical\PostProcessEffect.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
@@ -377,6 +377,7 @@
     <ClCompile Include="Systems\SystemRenderDeferred.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Graphical\PostProcessing\BloomEffect.h" />
     <ClInclude Include="Commands\Command.h" />
     <ClInclude Include="Components\LightComponent.h" />
     <ClInclude Include="Graphical\FinalTarget.h" />
@@ -535,7 +536,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Managers\PhysicsManager.h" />
     <ClInclude Include="Lighting\PointLight.h" />
-    <ClInclude Include="Graphical\PostProcessor.h" />
     <ClInclude Include="Graphical\RenderTarget.h" />
     <ClInclude Include="Graphical\PostProcessEffect.h" />
     <ClInclude Include="Scenes\Scene.h" />

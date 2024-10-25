@@ -9,10 +9,10 @@ void ExpBarrel::start()
 {
     //AddComponent(new ComponentModel(Game::GetGame()->GetMesh("barrel"), "Resources/Geometry/Barrel/expBarrel.mtl"));
     AddComponent(new ComponentModel(Game::GetGame()->GetMesh("barrel"), "Resources/Geometry/Barrel/expBarrel.mtl"));
-    AddComponent(new ComponentShaderWindow(ShooterGame::GetGameCamera(), "Resources/Shaders/window.vert", "Resources/Shaders/window.frag"));
+    //AddComponent(new ComponentShaderWindow(ShooterGame::GetGameCamera(), "Resources/Shaders/window.vert", "Resources/Shaders/window.frag"));
     // sAddComponent(new ComponentShaderScanLines(ShooterGame::GetGameCamera(), "Resources/Shaders/ScanLines.vert", "Resources/Shaders/ScanLines.frag"));
 
-    Vector3f pos(-10.0f, 40.0f, 0.0f);
+    Vector3f pos(-10.0f, 10.0f, 0.0f);
 	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1, 1, 1)));
 	//mEntities.push_back(tri);
 

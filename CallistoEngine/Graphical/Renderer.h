@@ -13,6 +13,7 @@
 // Forward declarations
 class Entity;
 class PostProcessEffect;
+class MainRenderTarget;
 
 // Platform independent renderer base class
 // Basically represents a graphics context and its active shaders
@@ -26,7 +27,8 @@ protected:
 
 public:
 
-	virtual void SetFrame(unsigned int f) = 0;
+	virtual MainRenderTarget* GetMainTarget() = 0;
+	virtual void SetFrame(unsigned int f) = 0;;
 	virtual unsigned int GetFrame() const = 0;
 	// virtual void SetPixelated(unsigned int b) = 0;
 	// virtual unsigned int GetPixelated() const = 0;

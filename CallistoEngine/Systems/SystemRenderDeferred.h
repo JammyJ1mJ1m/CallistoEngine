@@ -2,6 +2,7 @@
 #include "ISystem.h"
 #include "../Graphical/Renderer.h"
 #include "../Objects/ShaderObject_GL.h"
+#include "../Graphical/RenderTarget.h"
 
 
 class SystemRenderDeferred : public ISystem

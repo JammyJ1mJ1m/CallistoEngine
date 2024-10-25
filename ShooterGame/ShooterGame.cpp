@@ -6,6 +6,8 @@
 #include "GunLoader.h"
 #include "MainMenuScene.h"
 #include "Graphical/PostProcessEffect.h"
+#include "Graphical/PostProcessing/BloomEffect.h"
+
 #include "GUI/GUIManager.h"
 
 static BulletDebugDrawer_OpenGL* bulletDebugDraw;
@@ -17,17 +19,28 @@ void ShooterGame::InitialiseGame()
 	// give shaders to the post processor //
 	//PostProcessor::GetInstance().LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Matrix.frag");
 
-	PostProcessEffect* pp1 = new PostProcessEffect();
-	pp1->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Matrix.frag", "Matrix");
-	mRenderer->AddEffect(pp1);
+
 
 	//PostProcessEffect* pp2 = new PostProcessEffect();
 	//pp2->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/EdgeDetection.frag", "Edge");
 	//mRenderer->AddEffect(pp2);
 
-	//PostProcessEffect* pp3 = new PostProcessEffect();
-	//pp3->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Blur.frag", "Blur");
-	//mRenderer->AddEffect(pp3);
+	PostProcessEffect* pp3 = new PostProcessEffect();
+	pp3->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Blur.frag", "Blur");
+	mRenderer->AddEffect(pp3);
+
+	BloomEffect* bloomEffect = new BloomEffect();
+	bloomEffect->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Bloom.frag", "Bloom");
+	mRenderer->AddEffect(bloomEffect);
+
+	//PostProcessEffect* pp4 = new PostProcessEffect();
+	//pp4->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Blur.frag", "Blur2");
+	//mRenderer->AddEffect(pp4);
+
+	PostProcessEffect* pp1 = new PostProcessEffect();
+	pp1->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Matrix.frag", "Matrix");
+	mRenderer->AddEffect(pp1);
+
 
 
 	bulletDebugDraw = new BulletDebugDrawer_OpenGL();
@@ -45,11 +58,11 @@ void ShooterGame::InitialiseGame()
 	mCamera = new Camera(glm::vec3(0.0f, 0.0f, 45.0f), mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
 
 	ResourceManager& RM = ResourceManager::getInstance();
-	LoadMesh("Resources/Geometry/Floor/FloorTwo.obj", "ship", RM);
+	LoadMesh("Resources/Geometry/Floor/SkyIsland.obj", "ship", RM);
 	LoadMesh("Resources/Geometry/CardBox/box.obj", "tester", RM);
 	//LoadMesh("Resources/Geometry/Guns/RPG/rpg.obj", "rpg", RM);
 	LoadMesh("Resources/Geometry/CardBox/box.obj", "cube", RM);
-	//LoadMesh("Resources/Geometry/Barrel/expBarrel.obj", "barrel", RM);
+	LoadMesh("Resources/Geometry/Barrel/expBarrel.obj", "barrel", RM);
 
 	//LoadMesh("Resources/Geometry/Guns/AK/AK.obj", "AK", RM);
 	LoadMesh("Resources/Geometry/Guns/AK/magazineAK.obj", "AKmagazine", RM);

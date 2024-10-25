@@ -22,7 +22,7 @@ void TestLight::start()
 
 	//AddComponent(new LightComponent(light));
 
-	AddComponent(LightManager::GetInstance().CreatePointLight(7.0f, Vector3f(1.0f, 0.0f, 1.0f)));
+	AddComponent(LightManager::GetInstance().CreatePointLight(158.0f, Vector3f(1.0f, 0.0f, 1.0f)));
 }
 
 TestLight::TestLight()

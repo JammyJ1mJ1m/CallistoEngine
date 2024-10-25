@@ -6,32 +6,6 @@
 
 void Renderer_GL::InitialisePP()
 {
-	//float quadVertices[] = {
-	//	// positions   // texCoords
-	//	-1.0f,  1.0f,  0.0f, 1.0f,
-	//	-1.0f, -1.0f,  0.0f, 0.0f,
-	//	 1.0f, -1.0f,  1.0f, 0.0f,
-
-	//	-1.0f,  1.0f,  0.0f, 1.0f,
-	//	 1.0f, -1.0f,  1.0f, 0.0f,
-	//	 1.0f,  1.0f,  1.0f, 1.0f
-	//};
-
-	//glGenVertexArrays(1, &quadVAO);
-	//glGenBuffers(1, &quadVBO);
-	//glBindVertexArray(quadVAO);
-	//glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
-	//glEnableVertexAttribArray(0);
-	//glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-	//glEnableVertexAttribArray(1);
-	//glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
-
-
-
-
-
-
 	if (quadVAO == 0)
 	{
 		float quadVertices[] = {
@@ -52,14 +26,10 @@ void Renderer_GL::InitialisePP()
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	}
-
-
 }
 
 void Renderer_GL::RenderScreenQuad()
 {
-	//glBindVertexArray(quadVAO);
-	//glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	glBindVertexArray(quadVAO);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -84,12 +54,14 @@ void Renderer_GL::Begin()
 void Renderer_GL::End()
 {
 	//glDisable(GL_DEPTH_TEST);
-	//mMainTarget->BindTextures();
+	mMainTarget->BindTextures();
 	mGBuffer->BindTextures();
 }
 
 void Renderer_GL::Postprocess()
 {
+	mMainTarget->BindTextures();
+
 	for (PostProcessEffect* postProPass : postProcessShaders)
 	{
 		if (postProPass->IsActive())
@@ -104,6 +76,16 @@ void Renderer_GL::AddEffect(PostProcessEffect* effect)
 {
 	postProcessShaders.push_back(effect); 
 	effect->Create();
+}
+
+void Renderer_GL::SetEffectStatus(const char* pName, const bool pBool) const
+{
+	for (auto& effect : postProcessShaders)
+	{
+		std::string nmame = effect->GetName();
+		if (nmame == pName)
+			effect->SetActive(pBool);
+	}
 }
 
 void Renderer_GL::ClearScreen()
@@ -142,7 +124,7 @@ void Renderer_GL::Initialise(int width, int height)
 	//// 1. Create framebuffer
 	//glGenFramebuffers(1, &framebuffer);
 	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-	//mMainTarget = new MainRenderTarget();
+	mMainTarget = new MainRenderTarget();
 	//mFinalTarget = new FinalTarget();
 
 	mGBuffer = new GBuffer();

@@ -73,7 +73,7 @@ public:
 		return *mInstance;
 	}
 
-
+	MainRenderTarget* GetMainTarget() override{ return mMainTarget; }
 	void SetFrame(unsigned int pFrame) override { depth = GetDepth(); this->frame = pFrame; }
 	unsigned int GetFrame() const override { return frame; }
 	// void SetPixelated(unsigned int b) override { this->b = b; }
@@ -89,6 +89,7 @@ public:
 	void End() override;
 	void Postprocess() override;
 	void AddEffect(PostProcessEffect* effect) override;
+	void SetEffectStatus(const char* pName, const bool pBool) const;
 
 
 	virtual void ClearScreen();

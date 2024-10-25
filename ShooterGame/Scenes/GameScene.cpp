@@ -26,6 +26,7 @@
 #include <sstream>
 
 #include "GUI/GUIManager.h"
+#include "Graphical/Renderer_GL.h"
 
 //#include <chrono>
 
@@ -53,8 +54,10 @@ void GameScene::Initialise()
 	mTimeToSpawn = 0.1;
 #pragma region Initial entity stuff
 	mLightSystem = new SystemLight();
-	//SkyBox* skybox = new SkyBox();
-	//AddEntity(skybox);
+
+
+	SkyBox* skybox = new SkyBox();
+	AddEntity(skybox);
 
 
 	player = new Player();
@@ -78,8 +81,8 @@ void GameScene::Initialise()
 	}
 
 
-	//expBarrel = new ExpBarrel();
-	//AddEntity(expBarrel);
+	expBarrel = new ExpBarrel();
+	AddEntity(expBarrel);
 
 	//testCube = new TestCube();
 	//AddEntity(testCube);
@@ -98,28 +101,33 @@ void GameScene::Initialise()
 	// using this gives me 25 
 	int lightCount = 9;
 	// distance to use for width, dpeth of grid
-	int distance = 50;
-	float spacing = 25;
-	Vector3f lightpositions = Vector3f(-spacing, 5, -spacing);
+	int distance = 200;
+	float spacing = 50;
+	Vector3f lightpositions = Vector3f(-distance, 5, -distance);
 
-	for (size_t i = 0; i < lightCount ; i++)
+	for (size_t i = 0; i < lightCount; i++)
 	{
-		for (size_t j = 0; j < lightCount ; j++)
+		for (size_t j = 0; j < lightCount; j++)
 		{
-			TestLight* testLight= new TestLight();
-			LightComponent* lc= testLight->GetComponent<LightComponent>();
+			TestLight* testLight = new TestLight();
+			LightComponent* lc = testLight->GetComponent<LightComponent>();
 			testLight->SetPosition(lightpositions);
 			Light* l = lc->GetLight();/// ;
-			l->SetDiffuse(Vector3f(1, 1, 1));
+
+			float rColor = static_cast<float>(((rand() % 100) / 200.0f) + 0.5); // between 0.5 and 1.0
+			float gColor = static_cast<float>(((rand() % 100) / 200.0f) + 0.5); // between 0.5 and 1.0
+			float bColor = static_cast<float>(((rand() % 100) / 200.0f) + 0.5); // between 0.5 and 1.0
+
+			l->SetDiffuse(Vector3f(rColor, gColor, bColor));
 			AddEntity(testLight);
 
 			lightpositions.SetX(lightpositions.GetX() + spacing);
 		}
-		lightpositions.SetX(0);
+		lightpositions.SetX(-distance);
 
 		lightpositions.SetZ(lightpositions.GetZ() + spacing);
 
-		
+
 	}
 
 	// add the lights here
@@ -165,6 +173,7 @@ void GameScene::Initialise()
 	GUIManager::GetInstance().AddElement(image1);
 	GUIManager::GetInstance().AddElement(text1);
 #pragma endregion
+	testCheck = false;
 }
 
 
@@ -222,11 +231,22 @@ void GameScene::OnKeyboard(int key, bool down)
 		auto strength = 100;
 		auto radius = 50;
 		expBarrel->applyExplosionForce(world, origin, strength, radius);
-		sound->Play3D(origin.x(), origin.y(), origin.z());
+		//sound->Play3D(origin.x(), origin.y(), origin.z());
 		//Game::GetGame()->GetAudioManager()->Play3DSound("Resources/Sounds/explosion.wav",origin.x(),origin.y(),origin.z(), false);
 
 		// remove expBarrel from mEntities
 		mEntities.erase(std::remove(mEntities.begin(), mEntities.end(), expBarrel), mEntities.end());
+	}
+
+
+
+	if (inputManager->GetKeyDown(GLFW_KEY_X))
+	{
+		Renderer_GL* instance = static_cast<Renderer_GL*>(&Renderer_GL::GetInstance());
+		instance->SetEffectStatus("Blur", testCheck);
+		instance->SetEffectStatus("Bloom", testCheck);
+		testCheck = !testCheck;
+		// Renderer_GL* gl = Renderer_GL::GetInstance();
 	}
 }
 
@@ -313,9 +333,9 @@ void GameScene::Render(SystemRenderDeferred* renderer)
 
 	renderer->RunLighting();
 
+	renderer->End();
+	renderer->PostProcess();
 
-	// renderer->End();
-	// renderer->PostProcess();
 
 	//text1->Render();
 	////container1->Render();

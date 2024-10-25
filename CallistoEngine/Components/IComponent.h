@@ -26,4 +26,17 @@ public:
     friend IComponent::ComponentTypes operator|(IComponent::ComponentTypes lhs, IComponent::ComponentTypes rhs) {
         return static_cast<IComponent::ComponentTypes>(static_cast<int>(lhs) | static_cast<int>(rhs));
     }
+
+    friend IComponent::ComponentTypes operator~(IComponent::ComponentTypes type) {
+        return static_cast<IComponent::ComponentTypes>(~static_cast<int>(type));
+    }
+
+    // Method to exclude COMPONENT_SHADER from the mask
+    static bool HasComponent(IComponent::ComponentTypes mask, IComponent::ComponentTypes component) {
+        return (mask & component) == component;
+    }
+
+    static IComponent::ComponentTypes ExcludeComponent(IComponent::ComponentTypes mask, IComponent::ComponentTypes component) {
+        return mask & ~component;
+    }
 };

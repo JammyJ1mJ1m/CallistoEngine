@@ -21,6 +21,8 @@ class GameScene final : public Scene
 	float mElapsed;
 	float mTimeToSpawn;
 
+	bool testCheck;
+
 	public:
 	GameScene();
 	virtual ~GameScene();

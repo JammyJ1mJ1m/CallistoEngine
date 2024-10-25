@@ -292,6 +292,7 @@
     <None Include="Resources\Shaders\deferredLighting.vert" />
     <None Include="Resources\Shaders\gbuffer.frag" />
     <None Include="Resources\Shaders\gbuffer.vert" />
+    <None Include="Resources\Shaders\PP\Bloom.frag" />
     <None Include="Resources\Shaders\PP\Blur.frag" />
     <None Include="Resources\Shaders\PP\defaultPP.frag" />
     <None Include="Resources\Shaders\PP\EdgeDetection.frag" />

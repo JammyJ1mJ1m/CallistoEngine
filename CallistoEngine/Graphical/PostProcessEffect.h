@@ -8,6 +8,7 @@ class PostProcessEffect
 private:
     // replace this with the vertices
     //Model* screenQuad;
+protected:
 
     bool isActive = true;
 
@@ -15,13 +16,12 @@ private:
 
     RenderTarget* target;
     ShaderObject* shader;
-    bool usesDepth = true;
 
     virtual void OnActivate() {}
-protected:
+    bool usesDepth = false;
 
 public:
-
+    const std::string& GetName() { return shaderName; }
     void Create();
 
     void Render();

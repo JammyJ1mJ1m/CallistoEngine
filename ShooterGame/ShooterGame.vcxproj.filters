@@ -237,6 +237,7 @@
     <None Include="Resources\Shaders\gbuffer.vert" />
     <None Include="Resources\Shaders\deferredLighting.frag" />
     <None Include="Resources\Shaders\deferredLighting.vert" />
+    <None Include="Resources\Shaders\PP\Bloom.frag" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Config\settings.toml" />

@@ -162,9 +162,6 @@
     <ClCompile Include="Managers\LightManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphical\PostProcessor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GUI\GUIElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -205,6 +202,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Systems\SystemRenderDeferred.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphical\PostProcessing\BloomEffect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -719,9 +719,6 @@
     <ClInclude Include="Lighting\LightTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphical\PostProcessor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GUI\GUIElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -765,6 +762,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Systems\SystemRenderDeferred.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphical\PostProcessing\BloomEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

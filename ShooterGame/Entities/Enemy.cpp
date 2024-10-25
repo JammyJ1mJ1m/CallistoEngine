@@ -11,13 +11,14 @@
 
 void Enemy::start()
 {
+	
 	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("cube"), "Resources/textures/CardBox.mtl"));
-	AddComponent(new ComponentShaderWindow(ShooterGame::GetGameCamera(), "Resources/Shaders/window.vert", "Resources/Shaders/window.frag"));
-	Vector3f pos(0.0f, 5.0f, 0.0f);
+	//AddComponent(new ComponentShaderWindow(ShooterGame::GetGameCamera(), "Resources/Shaders/window.vert", "Resources/Shaders/window.frag"));
+	Vector3f pos(-10.0f, 40.0f, 0.0f);
 	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f)));
 
 
-	ComponentCollider* collider = new ComponentCollider(Game::GetGame()->GetMesh("cube")->GetVertices(),GetComponent<ComponentTransform>()->GetScale().s	 );
+	ComponentCollider* collider = new ComponentCollider(2	 );
 	AddComponent(collider);
 
 	btScalar mass = 1.0;

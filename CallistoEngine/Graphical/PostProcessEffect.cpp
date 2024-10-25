@@ -17,11 +17,12 @@ void PostProcessEffect::Render()
 	OnActivate();
 	shader->SetFloat("width", Game::GetGame()->GetGameCamera()->mWidth);
 
-	//shader->SetFloat("albedo", 0);
+	shader->SetFloat("screenTexture", 0);
 	//shader->SetFloat("depth", 1);
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, Renderer_GL::GetInstance().GetFrame());
+	int id = Renderer_GL::GetInstance().GetFrame();
+	glBindTexture(GL_TEXTURE_2D, id);
 
 	if (usesDepth)
 	{
@@ -46,8 +47,6 @@ void PostProcessEffect::SetTarget(RenderTarget* target)
 
 PostProcessEffect::PostProcessEffect(const char* shader) : target(nullptr)
 {
-	//this->shader = AssetManager::Instance().GetShader(shader);
-	//screenQuad = AssetManager::Instance().GetModel("Assets/Models/plane.obj");
 }
 
 PostProcessEffect::~PostProcessEffect()
@@ -57,6 +56,7 @@ PostProcessEffect::~PostProcessEffect()
 
 void PostProcessEffect::LoadShader(const char* pVertexPath, const char* pFragPath, const char* pShaderID)
 {
+	shaderName = pShaderID;
 	ResourceManager& RM = ResourceManager::getInstance();
 	//std::string vertexShader = RM.LoadShader(pVertexPath);
 	//std::string fragShader = RM.LoadShader(pFragPath);
