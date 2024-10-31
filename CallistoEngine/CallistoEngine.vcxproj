@@ -369,6 +369,7 @@
     <ClCompile Include="Graphical\stb_image.cpp" />
     <ClCompile Include="Systems\SystemLight.cpp" />
     <ClCompile Include="Systems\SystemRender.cpp" />
+    <ClCompile Include="Systems\SystemRenderForward.cpp" />
     <ClCompile Include="Misc\TomlReader.cpp" />
     <ClCompile Include="Graphical\VBO.cpp" />
     <ClCompile Include="Graphical\VBO_GL.cpp" />
@@ -554,6 +555,7 @@
     <ClInclude Include="Graphical\stb_image.h" />
     <ClInclude Include="Systems\SystemLight.h" />
     <ClInclude Include="Systems\SystemRender.h" />
+    <ClInclude Include="Systems\SystemRenderForward.h" />
     <ClInclude Include="Misc\toml.hpp" />
     <ClInclude Include="Misc\TomlReader.h" />
     <ClInclude Include="Graphical\VBO.h" />

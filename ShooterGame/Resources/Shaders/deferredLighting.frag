@@ -14,12 +14,15 @@ struct Light {
     float Linear;
     float Quadratic;
 };
-const int NR_LIGHTS = 200;
+const int NR_LIGHTS = 255;
 uniform Light lights[NR_LIGHTS];
 uniform vec3 viewPos;
 
 void main()
 {             
+    // slap this bad boy into a uniform later for CPU control
+    float brightness = 2.0;
+
     // retrieve data from gbuffer
     vec3 FragPos = texture(gPosition, TexCoords).rgb;
     vec3 Normal = texture(gNormal, TexCoords).rgb;
@@ -27,7 +30,7 @@ void main()
     float Specular = texture(gAlbedoSpec, TexCoords).a;
     
     // then calculate lighting as usual
-    vec3 lighting  = Diffuse * 0.1; // hard-coded ambient component
+    vec3 lighting  = Diffuse * 0.25; // hard-coded ambient component
    
     vec3 viewDir  = normalize(viewPos - FragPos);
 
@@ -40,14 +43,15 @@ void main()
         vec3 diffuse = max(dot(Normal, lightDir), 0.0) * Diffuse * lights[i].Color;
         // specular
         vec3 halfwayDir = normalize(lightDir + viewDir);  
-        float spec = pow(max(dot(Normal, halfwayDir), 0.0), 16.0);
+        float spec = pow(max(dot(Normal, halfwayDir), 0.0), 256.0);
         vec3 specular = lights[i].Color * spec * Specular;
         // attenuation
         float distance = length(lights[i].Position - FragPos);
         float attenuation = 1.0 / (1.0 + lights[i].Linear * distance + lights[i].Quadratic * distance * distance);
-        diffuse *= attenuation;
-        specular *= attenuation;
-        lighting += diffuse ;//+ specular;     
+        diffuse *= attenuation * brightness;
+        specular *= attenuation * brightness;
+        lighting += diffuse + specular; 
+        
         
         
         // result = lightDir;
@@ -55,7 +59,6 @@ void main()
         // result = halfwayDir;
         // result = specular; // -- not working
     }
-
     FragColor = vec4(lighting, 1.0);
 
 }

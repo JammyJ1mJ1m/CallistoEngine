@@ -6,7 +6,7 @@
 #include "Components/ComponentTransform.h"
 #include "Components/ComponentRigidBody.h"
 #include "Misc/Material.h"
-#include "Systems/SystemRender.h"
+#include "Systems/SystemRenderForward.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "SkyBox.h"

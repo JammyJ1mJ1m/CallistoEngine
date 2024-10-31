@@ -25,13 +25,13 @@ void ShooterGame::InitialiseGame()
 	//pp2->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/EdgeDetection.frag", "Edge");
 	//mRenderer->AddEffect(pp2);
 
-	PostProcessEffect* pp3 = new PostProcessEffect();
-	pp3->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Blur.frag", "Blur");
-	mRenderer->AddEffect(pp3);
+	//PostProcessEffect* pp3 = new PostProcessEffect();
+	//pp3->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Blur.frag", "Blur");
+	//mRenderer->AddEffect(pp3);
 
-	BloomEffect* bloomEffect = new BloomEffect();
-	bloomEffect->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Bloom.frag", "Bloom");
-	mRenderer->AddEffect(bloomEffect);
+	//BloomEffect* bloomEffect = new BloomEffect();
+	//bloomEffect->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Bloom.frag", "Bloom");
+	//mRenderer->AddEffect(bloomEffect);
 
 	//PostProcessEffect* pp4 = new PostProcessEffect();
 	//pp4->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Blur.frag", "Blur2");
@@ -86,7 +86,7 @@ void ShooterGame::InitialiseGame()
 
 void ShooterGame::RenderFrame()
 {
-	mSceneManager.Render(mDeferredRenderSystem);
+	mSceneManager.Render(mRenderSystem);
 
 	//PhysicsManager::GetInstance().GetDynamicsWorld().setDebugDrawer(bulletDebugDraw);
 	//PhysicsManager::GetInstance().GetDynamicsWorld().debugDrawWorld();

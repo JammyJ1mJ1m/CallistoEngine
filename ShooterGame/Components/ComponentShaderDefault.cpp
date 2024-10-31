@@ -4,8 +4,9 @@
 #include "TestLight.h"
 #include "Managers/LightManager.h"
 
-ComponentShaderDefault::ComponentShaderDefault(Camera* pCam, const char* pVert, const char* pFrag)
+ComponentShaderDefault::ComponentShaderDefault(Entity* pParent, Camera* pCam, const char* pVert, const char* pFrag)
 {
+	SetParent(pParent);
 	mCamera = pCam;
 #if OPENGL
 	mShaderObject = new ShaderObject_GL(pVert, pFrag);
@@ -48,14 +49,19 @@ void ComponentShaderDefault::Update(glm::mat4 pMat)
 
 	const std::vector<LightComponent*>& lights = LightManager::GetInstance().GetLights();
 
-	// get all the lights and update
-	for (size_t i = 0; i < lights.size(); i++)
-	{
-		std::string lightPosName = "light[" + std::to_string(i) + "].position";
-		std::string lightDiffuseName = "light[" + std::to_string(i) + "].diffuse";
-		mShaderObject->SetVec3(lightPosName.c_str(), lights[i]->GetLight()->GetPosition());
-		mShaderObject->SetVec3(lightDiffuseName.c_str(), lights[i]->GetLight()->GetDiffuse());
-	}
+	const Entity* parent = GetParent();
+	Vector3f colour;
+	colour = parent->GetComponent<LightComponent>()->GetLight()->GetDiffuse();
+	mShaderObject->SetVec3("colour", colour);
+
+	//// get all the lights and update
+	//for (size_t i = 0; i < lights.size(); i++)
+	//{
+	//	std::string lightPosName = "light[" + std::to_string(i) + "].position";
+	//	std::string lightDiffuseName = "light[" + std::to_string(i) + "].diffuse";
+	//	mShaderObject->SetVec3(lightPosName.c_str(), lights[i]->GetLight()->GetPosition());
+	//	mShaderObject->SetVec3(lightDiffuseName.c_str(), lights[i]->GetLight()->GetDiffuse());
+	//}
 
 	mShaderObject->SetFloat("time", glfwGetTime());
 

@@ -40,7 +40,7 @@ void Renderer_GL::RenderScreenQuad()
 
 void Renderer_GL::Begin()
 {
-	ClearScreen();
+	// ClearScreen();
 	//glEnable(GL_DEPTH_TEST);
 	//mMainTarget->Activate();
 	mGBuffer->Activate();
@@ -51,11 +51,30 @@ void Renderer_GL::Begin()
 	gBuffer->GetShader()->SetMat4("view", Game::GetGame()->GetGameCamera()->GetView());
 }
 
+void Renderer_GL::BeginForward()
+{
+	int gfbo = GetGBuffer()->GetGBufferID();
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gfbo); // write to default framebuffer
+
+	glBindFramebuffer(GL_FRAMEBUFFER, gfbo);
+
+	EnableDepthTest();
+
+	mMainTarget->Activate();
+}
+
 void Renderer_GL::End()
 {
-	//glDisable(GL_DEPTH_TEST);
+
 	mMainTarget->BindTextures();
 	mGBuffer->BindTextures();
+}
+
+void Renderer_GL::EndForward()
+{
+
+	//glDisable(GL_DEPTH_TEST);
+	mMainTarget->BindTextures();
 }
 
 void Renderer_GL::Postprocess()
@@ -88,16 +107,10 @@ void Renderer_GL::SetEffectStatus(const char* pName, const bool pBool) const
 	}
 }
 
+// will clear the depth and colour bits
 void Renderer_GL::ClearScreen()
 {
-	// binds to the frame buffer for drawing the scene - later used in PP
-	
-	//	glBindFramebuffer(GL_FRAMEBUFFER, GetFrame());
-	//	
-
-	// glClearColor(0.0f, 0.0f, 0.0f, 1.0f); 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 }
 
 //void Renderer_GL::Destroy()
@@ -106,7 +119,7 @@ void Renderer_GL::ClearScreen()
 
 void Renderer_GL::Initialise(int width, int height)
 {
-	EnableDepthTest();
+
 	PostProcessEffect pp2 = PostProcessEffect();
 	pp2.LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/defaultPP.frag", "DefaultPP");
 	finalPass = pp2;
@@ -133,6 +146,7 @@ void Renderer_GL::Initialise(int width, int height)
 	InitialisePP();
 
 	CreateRBO(width, height);
+	EnableDepthTest();
 }
 
 void Renderer_GL::Render(Entity* entity)
@@ -189,18 +203,23 @@ void Renderer_GL::DisableDepthTest() const
 	glDisable(GL_DEPTH_TEST);
 }
 
-//void Renderer_GL::SwapBuffers()
-//{
-//}
+void Renderer_GL::CopyBuffer(const int pCopyFrom, const int pCopyTo)
+{
+	int width, height;
+	width = Game::GetGame()->GetGameCamera()->mWidth;
+	height = Game::GetGame()->GetGameCamera()->mHeight;
 
+	int bufferID = mGBuffer->GetGBufferID();
+	int albedoId = mGBuffer->GetAlbedoSpecTextureID();
+	int depthId = mGBuffer->GetDepthBufferID();
+	int normalsID = mGBuffer->GetNormalTextureID();
+	int posID = mGBuffer->GetPositionTextureID();
 
-//void Renderer_GL::DrawPP()
-//{
-//	PP->DrawPP();
-//
-//}
-//
-//void Renderer_GL::StartPP()
-//{
-//}
-
+	glBindFramebuffer(GL_READ_FRAMEBUFFER, pCopyFrom);
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, pCopyTo); // write to default framebuffer
+	// blit to default framebuffer. Note that this may or may not work as the internal formats of both the FBO and default framebuffer have to match.
+	// the internal formats are implementation defined. This works on all of my systems, but if it doesn't on yours you'll likely have to write to the 		
+	// depth buffer in another shader stage (or somehow see to match the default framebuffer's internal format with the FBO's internal format).
+	glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_DEPTH_BUFFER_BIT, GL_NEAREST);
+	UnbindFrame();
+}

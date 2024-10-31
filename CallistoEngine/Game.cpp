@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Managers/InputManager.h"
+#include "Scenes/Scene.h"
 
 Game* Game::theGame = nullptr;
 
@@ -15,8 +16,8 @@ Game::Game() :
 	mInputManager = nullptr;
 	mRenderer = nullptr;
 	mWindow = nullptr;
-	mRenderSystem = nullptr;
-	mDeferredRenderSystem = nullptr;
+	//mRenderSystemForward = nullptr;
+	//mDeferredRenderSystem = nullptr;
 	mHasWindowSizeChanged = false;
 
 	// initiallise _keyStates
@@ -40,6 +41,7 @@ Game::~Game()
 {
 	delete mCamera;
 	delete mRenderSystem;
+	//delete mRenderSystemForward;
 	delete mInputManager;
 	delete mDiscordManager;
 	delete mSteamManager;
@@ -78,7 +80,7 @@ void Game::BaseInitialise(Window* w)
 	mWindow = w;
 	mRenderer = w->GetRenderer();
 	mRenderSystem = new SystemRender(mRenderer);
-	mDeferredRenderSystem = new SystemRenderDeferred(mRenderer);
+	//mDeferredRenderSystem = new SystemRenderDeferred(mRenderer);
 	mHasWindowSizeChanged = false;
 
 	mAudioManager = &AudioManager::GetInstance();
@@ -94,7 +96,8 @@ void Game::BaseRun()
 
 void Game::BaseRender()
 {
-	// mRenderer->ClearScreen();
+	mRenderer->UnbindFrame();
+	mRenderer->ClearScreen();
 	mDiscordManager->UpdateDiscordPresence();
 	if (mWindow->GetHasWindowSizeChanged())
 	{
@@ -105,6 +108,4 @@ void Game::BaseRender()
 	float x, y;
 	mWindow->GetMousePos(x, y);
 	mCamera->HandleMouse(x, y);
-
-
 }

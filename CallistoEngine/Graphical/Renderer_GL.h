@@ -86,7 +86,9 @@ public:
 	// void Resize(int width, int height);
 
 	void Begin() override;
+	void BeginForward() override;
 	void End() override;
+	void EndForward() override;
 	void Postprocess() override;
 	void AddEffect(PostProcessEffect* effect) override;
 	void SetEffectStatus(const char* pName, const bool pBool) const;
@@ -105,6 +107,8 @@ public:
 	void UnbindFrame() override;
 	void EnableDepthTest() const;
 	void DisableDepthTest() const;
+
+	void CopyBuffer(const int pCopyFrom, const int pCopyTo) override;
 
 };
 

@@ -6,8 +6,12 @@
 #include "Components/ComponentRigidBody.h"
 #include "Math/Vector.h"
 #include "Misc/Material.h"
+
 #include "Systems/SystemRender.h"
-#include "Systems/SystemRenderDeferred.h"
+
+//#include "Systems/SystemRenderForward.h"
+//#include "Systems/SystemRenderDeferred.h"
+
 #include "Player.h"
 #include "Enemy.h"
 #include "SkyBox.h"
@@ -56,33 +60,33 @@ void GameScene::Initialise()
 	mLightSystem = new SystemLight();
 
 
-	SkyBox* skybox = new SkyBox();
-	AddEntity(skybox);
+	AddEntity(new SkyBox());
 
 
+	// floor
 	player = new Player();
 	AddEntity(player);
 
 	//gun = new GunAK();
 	//AddEntity(gun);
 
-	Enemy* enemy = new Enemy();
-	AddEntity(enemy);
+	//Enemy* enemy = new Enemy();
+	//AddEntity(enemy);
 
-	GunLoader& gLoader = GunLoader::GetInstance();
+	//GunLoader& gLoader = GunLoader::GetInstance();
 
-	const GunMap meshes = gLoader.GetGunsToLoad();
+	//const GunMap meshes = gLoader.GetGunsToLoad();
 
-	for (auto& mesh : meshes)
-	{
-		Gun* newGun = new Gun();
-		newGun->Initialise(mesh.first);
-		AddEntity(newGun);
-	}
+	//for (auto& mesh : meshes)
+	//{
+	//	Gun* newGun = new Gun();
+	//	newGun->Initialise(mesh.first);
+	//	AddEntity(newGun);
+	//}
 
 
-	expBarrel = new ExpBarrel();
-	AddEntity(expBarrel);
+	//expBarrel = new ExpBarrel();
+	//AddEntity(expBarrel);
 
 	//testCube = new TestCube();
 	//AddEntity(testCube);
@@ -93,17 +97,20 @@ void GameScene::Initialise()
 	//sound->SetLooping(true);
 	//sound->Play3D(0,0,0);
 
-	//Game::GetGame()->GetAudioManager()->PlaySound("Resources/Sounds/hyperloop-by-infraction.mp3", true);
+	//Game::GetGame()->GetAudioManager()->Play3D("Resources/Sounds/hyperloop-by-infraction.mp3", true);
 #pragma endregion
 
 #pragma region Lights
 
 	// using this gives me 25 
-	int lightCount = 9;
+	int lightCount = 2;
 	// distance to use for width, dpeth of grid
-	int distance = 200;
-	float spacing = 50;
+	int distance = 10;
+	float spacing = 10;
 	Vector3f lightpositions = Vector3f(-distance, 5, -distance);
+
+	/*for (size_t k = 0; k < lightCount; k++)
+	{*/
 
 	for (size_t i = 0; i < lightCount; i++)
 	{
@@ -126,9 +133,12 @@ void GameScene::Initialise()
 		lightpositions.SetX(-distance);
 
 		lightpositions.SetZ(lightpositions.GetZ() + spacing);
-
-
 	}
+	//	lightpositions.SetY(lightpositions.GetY() - spacing);
+	//	lightpositions.SetZ(-distance);
+
+	//}
+
 
 	// add the lights here
 	light = new TestLight();
@@ -137,43 +147,33 @@ void GameScene::Initialise()
 	l1->SetDiffuse(Vector3f(1, 0, 1));
 	AddEntity(light);
 
-	//TestLight* light3 = new TestLight();
-	//light3->SetPosition(Vector3f(-10, 20, -50));
-	//LightComponent* lc3 = light3->GetComponent<LightComponent>();
-	//lc3->GetLight()->SetDiffuse(Vector3f(0, 1, 0));
-	//AddEntity(light3);
-
-	//TestLight* light2 = new TestLight();
-	//light2->SetPosition(Vector3f(-10, 20, 50));
-	//LightComponent* lc2 = light2->GetComponent<LightComponent>();
-	//lc2->GetLight()->SetDiffuse(Vector3f(1, 0, 0));
-	//AddEntity(light2);
 #pragma endregion
 
 #pragma region UI Stuff
-	const char* tt = SteamManager::GetInstance().GetSteamUserID();
+	//const char* tt = SteamManager::GetInstance().GetSteamUserID();
 
-	std::stringstream ss;
-	ss << "Logged in as: " << tt;
-	std::string name = ss.str();
+	//std::stringstream ss;
+	//ss << "Logged in as: " << tt;
+	//std::string name = ss.str();
 
-	text1 = new GUIText(name.c_str(), Vector3f(1, 1, 1), Vector3f(5, 5, 1), GUIOrigin::BOTTOM_LEFT, 20);
-	//text2 = new GUIText("Hallo welt!", Vector3f(1, 1, 1), Vector3f(0, 0, 1), 32);
+	//text1 = new GUIText(name.c_str(), Vector3f(1, 1, 1), Vector3f(5, 5, 1), GUIOrigin::BOTTOM_LEFT, 20);
+	////text2 = new GUIText("Hallo welt!", Vector3f(1, 1, 1), Vector3f(0, 0, 1), 32);
 
-	container1 = new GUIContainer(Vector3f(0, 0));
-	//container1->AddElement(text1);
-	//container1->AddElement(text2);
+	//container1 = new GUIContainer(Vector3f(0, 0));
+	////container1->AddElement(text1);
+	////container1->AddElement(text2);
 
-	image1 = new GUIImage(1131, 178, 1, 10, 10);
-	image1->SetColor(Vector4f(1, 0, 1, 1));
-	image1->SetPosition(Vector3f(10, 40, 0));
-	image1->SetRelativePosition(Vector3f(10, 40, 0));
-	container1->AddElement(image1);
+	//image1 = new GUIImage(1131, 178, 1, 10, 10);
+	//image1->SetColor(Vector4f(1, 0, 1, 1));
+	//image1->SetPosition(Vector3f(10, 40, 0));
+	//image1->SetRelativePosition(Vector3f(10, 40, 0));
+	//container1->AddElement(image1);
 
-	GUIManager::GetInstance().AddElement(image1);
-	GUIManager::GetInstance().AddElement(text1);
+	//GUIManager::GetInstance().AddElement(image1);
+	//GUIManager::GetInstance().AddElement(text1);
 #pragma endregion
 	testCheck = false;
+
 }
 
 
@@ -300,17 +300,19 @@ void GameScene::Update(double deltaTime)
 
 }
 
-void GameScene::Render(SystemRenderDeferred* renderer)
+void GameScene::Render(SystemRender* pRenderer)
 {
+
 	//renderer->StartPP();
 
-	renderer->Begin();
+	//pRenderer->Begin();
 
 	//################################################################
 	//	  fill out the g buffer with position, normal and colour
 	//################################################################
 
-	// TODO: refactor this into systems, syncing RB doesnt need to be here
+	pRenderer->Render(mEntities);
+	// TODO: refactor this into systems, syncing RB doesnt need to be here - might need to be? preferably id only like to loop entities once a frame
 	for (auto& enti : mEntities)
 	{
 		mLightSystem->Run(enti);
@@ -320,24 +322,22 @@ void GameScene::Render(SystemRenderDeferred* renderer)
 			enti->GetComponent<ComponentRigidBody>()->SyncWithTransform(enti->GetComponent<ComponentTransform>());
 			//enti->GetComponent<ComponentRigidBody>()->SyncWithTransform(enti);
 		}
-		//enti->UpdateChildPositions();
-		renderer->Run(enti);
-		for (auto& child : enti->GetChildren())
-		{
-			renderer->Run(child);
-		}
+		////enti->UpdateChildPositions();
+		//pRenderer->Run(enti);
+		//for (auto& child : enti->GetChildren())
+		//{
+		//	pRenderer->Run(child);
+		//}
 	}
+
 	//################################################################
 	//					 render the lights
 	//################################################################
 
-	renderer->RunLighting();
+	//pRenderer->RunLighting();
 
-	renderer->End();
-	renderer->PostProcess();
+	//pRenderer->End();
+	//pRenderer->PostProcess();
 
 
-	//text1->Render();
-	////container1->Render();
-	//image1->Render();
 }

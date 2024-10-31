@@ -50,17 +50,21 @@ public:
 	// virtual void Draw(const Mesh* mesh, glm::mat4 MVM) = 0;
 	// virtual void Draw(GameObject* gob, glm::mat4 MVM);
 
+	// Renders a frame
 	virtual void Render(Entity* entity) = 0;
+	// Use to setup initial rendering settings
 	virtual void Initialise(int width, int height) = 0;
-	//virtual void Destroy() = 0;
+	// Clears the depth and colour bits
 	virtual void ClearScreen() = 0;
-	//virtual void SwapBuffers() = 0;
-	//virtual void DrawPP() = 0;
+	// Called when window size changes
 	virtual void Resize(int W, int H) = 0;
 
 	virtual void Begin() = 0;
 	virtual void End() = 0;
+	virtual void BeginForward() = 0;
+	virtual void EndForward() = 0;
 	virtual void Postprocess() = 0;
+	virtual void CopyBuffer(const int pCopyFrom, const int pCopyTo) = 0;
 
 	// use this once at the start of the frame to clear / bind everything thats needed
 	//virtual void StartPP() = 0;

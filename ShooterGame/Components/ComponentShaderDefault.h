@@ -4,7 +4,7 @@
 class ComponentShaderDefault : public ComponentShader
 {
 public:
-	ComponentShaderDefault(Camera* pCam, const char* pVert, const char* pFrag);
+	ComponentShaderDefault(Entity* pParent, Camera* pCam, const char* pVert, const char* pFrag);
 	~ComponentShaderDefault();
 	//~ComponentShaderDefault() = default;
 	virtual void Render();

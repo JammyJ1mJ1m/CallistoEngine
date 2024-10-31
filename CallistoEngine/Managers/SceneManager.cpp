@@ -5,8 +5,8 @@
 // Structors
 /******************************************************************************************************************/
 
-SceneManager::SceneManager(Game* game)
-	: _game(game)
+SceneManager::SceneManager(Game* pGame)
+	: mGame(pGame)
 {
 }
 
@@ -19,37 +19,37 @@ SceneManager::~SceneManager()
 
 /******************************************************************************************************************/
 
-void SceneManager::OnKeyboard(int key, bool down)
+void SceneManager::OnKeyboard(int pKey, bool pIsDown)
 {
 	Scene* currentScene = GetCurrentScene();
 	if (currentScene)
 	{
-		currentScene->OnKeyboard(key, down);
+		currentScene->OnKeyboard(pKey, pIsDown);
 	}
 }
 
-void SceneManager::Update(double deltaTime)
+void SceneManager::Update(double pDeltaTime)
 {
 	Scene* currentScene = GetCurrentScene();
 	if (currentScene)
 	{
-		currentScene->Update(deltaTime);
+		currentScene->Update(pDeltaTime);
 	}
 }
 
 /// Render current scene
-void SceneManager::Render(SystemRenderDeferred* renderer)
+void SceneManager::Render(SystemRender* pRenderer)
 {
 	Scene* currentScene = GetCurrentScene();
 	if (currentScene)
 	{
-		currentScene->Render(renderer);
+		currentScene->Render(pRenderer);
 	}
 }
 
-void SceneManager::PushScene(Scene* s)
+void SceneManager::PushScene(Scene* pScene)
 {
-	_scenes.push(s);
-	s->SetSceneManager(this);
-	s->Initialise();
+	mScenes.push(pScene);
+	pScene->SetSceneManager(this);
+	pScene->Initialise();
 }

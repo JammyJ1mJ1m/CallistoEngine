@@ -34,7 +34,6 @@ public:
 	/// Respond to input
 	void OnKeyboard(int pKey, bool pIsDown);
 
-
 	/// Update current scene
 	void Update(double pDeltaTime);
 
@@ -45,6 +44,6 @@ public:
 	void PopScene() { mScenes.pop(); }
 
 	/// Push a new scene
-	void PushScene(Scene* s);
+	void PushScene(Scene* pScene);
 };
 

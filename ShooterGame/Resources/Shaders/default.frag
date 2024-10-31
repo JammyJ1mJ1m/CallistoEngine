@@ -7,12 +7,14 @@ in vec3 FragPos;
 in vec3 Normal;
 in vec2 TexCoord;
 
+uniform vec3 colour;
+
 uniform sampler2D diffuseTex;
 uniform sampler2D emissionTex;
 uniform sampler2D specularMap;
 uniform vec3 viewPos;
 
-#define NR_POINT_LIGHTS 99
+#define NR_POINT_LIGHTS 1
 
 struct Light {
     vec3 position;  
@@ -70,18 +72,18 @@ vec3 lightPos = light[i].position;
 
 void main()
 {
-   vec4 color = vec4(0,0,0,1);
-
-    // Calculate lighting from all point lights
-    for(int i = 0; i < NR_POINT_LIGHTS; i++)
-        color += calculatePointLight(i);
-
-    // Sample the emission texture
-    vec3 emission = texture(emissionTex, TexCoord).rgb;
-    color = normalize(color)*2;
-    // Add emission to the final color
-    vec4 result = color;
-    result = result + vec4(emission,1);
-    FragColor =  vec4(color.rgb + (emission * 3), 1.0);
+//   vec4 color = vec4(0,0,0,1);
+//
+//    // Calculate lighting from all point lights
+//    for(int i = 0; i < NR_POINT_LIGHTS; i++)
+//        color += calculatePointLight(i);
+//
+//    // Sample the emission texture
+//    vec3 emission = texture(emissionTex, TexCoord).rgb;
+//    color = normalize(color)*2;
+//    // Add emission to the final color
+//    vec4 result = color;
+//    result = result + vec4(emission,1);
+    FragColor =  vec4(colour,1);
 
 }

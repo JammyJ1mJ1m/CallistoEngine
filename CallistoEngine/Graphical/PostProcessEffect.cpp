@@ -11,6 +11,8 @@ void PostProcessEffect::Create()
 void PostProcessEffect::Render()
 {
 	target->Activate();
+	Renderer_GL::GetInstance().ClearScreen();
+
 	shader->UseProgram();
 
 	////Set shader variables

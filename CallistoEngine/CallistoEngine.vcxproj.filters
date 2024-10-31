@@ -99,7 +99,7 @@
     <ClCompile Include="Components\ComponentTransform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\SystemRender.cpp">
+    <ClCompile Include="Systems\SystemRenderForward.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Systems\ISystem.cpp">
@@ -205,6 +205,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Graphical\PostProcessing\BloomEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\SystemRender.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -641,7 +644,7 @@
     <ClInclude Include="Components\ComponentTransform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\SystemRender.h">
+    <ClInclude Include="Systems\SystemRenderForward.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Systems\ISystem.h">
@@ -765,6 +768,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Graphical\PostProcessing\BloomEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\SystemRender.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

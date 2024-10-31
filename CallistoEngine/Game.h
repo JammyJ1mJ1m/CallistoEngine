@@ -1,29 +1,24 @@
 #pragma once
+#include <vector>
+#include <map>
 #include "Graphical/Window.h"
 #include "Graphical/Renderer.h"
-#include <vector>
 #include "Components/Entity.h"
 #include "Graphical/Mesh.h"
-#include <map>
-
 #include "Misc/Camera.h"
 #include "Managers/SceneManager.h"
 
 #include "Systems/SystemRender.h"
-#include "Systems/SystemRenderDeferred.h"
+//#include "Systems/SystemRenderForward.h"
+//#include "Systems/SystemRenderDeferred.h"
+
 #include "Managers/AudioManager.h"
-
 #include "Managers/DiscordManager.h"
-
 #include "Managers/ResourceManager.h"
 #include "chrono"
-
-
 #include "Managers/SteamManager.h"
 #include "Managers/LightManager.h"
 #include "Managers/PhysicsManager.h"
-//#include "Misc/BulletDebugDraw.h"
-
 
 using MeshMap = std::map<std::string, Mesh*>;
 using MeshMapIterator = MeshMap::iterator;
@@ -59,10 +54,10 @@ protected:
 	Renderer* mRenderer;
 	Window* mWindow;
 	MeshMap mMeshes;
-	//	RenderSystem mRenderSystem;
 
 	SystemRender* mRenderSystem;
-	SystemRenderDeferred* mDeferredRenderSystem;
+	//SystemRenderForward* mRenderSystemForward;
+	//SystemRenderDeferred* mDeferredRenderSystem;
 
 	SceneManager mSceneManager;
 
@@ -76,19 +71,19 @@ public:
 	virtual ~Game();
 
 	// Gets and sets
-	const GameState GetGameState() const { return mGameState; }
-	void SetGameState(const GameState& pState) { mGameState = pState; }
+	inline const GameState GetGameState() const { return mGameState; }
+	inline void SetGameState(const GameState& pState) { mGameState = pState; }
 
 	static Camera* GetGameCamera();
 	static Game* GetGame() { return theGame; }
-	AudioManager* GetAudioManager() { return mAudioManager; }
-	static const float GetDeltaTime() { return theGame->mDeltaTime; }
-	InputManager* GetInputManager() { return mInputManager; }
+	inline AudioManager* GetAudioManager() { return mAudioManager; }
+	inline static const float GetDeltaTime() { return theGame->mDeltaTime; }
+	inline InputManager* GetInputManager() { return mInputManager; }
 
 	Mesh* GetMesh(std::string name);
-	void AddMesh(std::string name, Mesh* mesh) { mMeshes[name] = mesh; }
+	inline void AddMesh(std::string name, Mesh* mesh) { mMeshes[name] = mesh; }
 
-	const bool GetHasWindowChanged() { return mHasWindowSizeChanged; }
+	inline const bool GetHasWindowChanged() { return mHasWindowSizeChanged; }
 
 	// methods
 	// pure virtuals
@@ -97,9 +92,9 @@ public:
 	virtual bool HandleInput() = 0;
 	virtual bool LoadMesh(const char* pFilePath, const char* pModelName, ResourceManager& pResourceManager) = 0;
 
-	virtual void SetTitle(const char* pName) { mWindow->SetTitle(pName); }
+	inline virtual void SetTitle(const char* pName) { mWindow->SetTitle(pName); }
 	const double CalculateDeltaTime();
-	const float GetFPS() { return fps; }
+	inline const float GetFPS() { return fps; }
 
 	// Use this for proper game initialisation
 	void Initialise(Window* w)
@@ -121,10 +116,9 @@ public:
 		RenderFrame();
 	}
 
-	//virtual void derivedUpdate() = 0;
 
 private:
-	virtual void Run() = 0; // same as derivedUpdate
+	virtual void Run() = 0;
 	virtual void RenderFrame() = 0;
 	virtual void InitialiseGame() = 0;
 

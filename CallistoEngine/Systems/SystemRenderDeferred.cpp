@@ -39,6 +39,7 @@ void SystemRenderDeferred::Run(Entity* pEntity)
 
 		GBuffer* gBuffer = mRenderer->GetGBuffer();
 		gBuffer->GetShader()->SetMat4("model", modelMatrix);
+		//gBuffer->GetShader()->SetVec3("viewPos", Game::GetGame()->GetGameCamera()->GetPosition());
 
 		mRenderer->Render(pEntity);
 
@@ -49,12 +50,14 @@ void SystemRenderDeferred::RunLighting()
 	mRenderer->UnbindFrame();
 	mRenderer->ClearScreen();
 	mRenderer->GetMainTarget()->Activate();
+	mRenderer->ClearScreen();
 	//################################################################
 	//					 render the lights
 	//################################################################
 	mLightingShader->UseProgram();
 	mRenderer->GetGBuffer()->BindTextures();
 
+	mLightingShader->SetVec3("viewPos", Game::GetGame()->GetGameCamera()->GetPosition());
 
 	const std::vector<LightComponent*>& lights = LightManager::GetInstance().GetLights();
 	float linear = 0.07f;
@@ -82,7 +85,6 @@ void SystemRenderDeferred::RunLighting()
 		mLightingShader->SetFloat(LightQuadName.c_str(), quadratic);
 
 	}
-	mLightingShader->SetVec3("viewPos", Game::GetGame()->GetGameCamera()->GetPosition());
 
 	
 	 mRenderer->RenderScreenQuad();
@@ -99,10 +101,16 @@ void SystemRenderDeferred::RunLighting()
 	//mLightingShader->SetFloat("lights[" + std::to_string(i) + "].Quadratic", quadratic);
 }
 
+void SystemRenderDeferred::CopyBuffer(const int pCopyFrom, const int pCopyTo)
+{
+	mRenderer->CopyBuffer(pCopyFrom, pCopyTo);
+}
+
 
 void SystemRenderDeferred::Begin()
 {
 	mRenderer->Begin();
+	//mRenderer->ClearScreen();
 }
 
 void SystemRenderDeferred::End()

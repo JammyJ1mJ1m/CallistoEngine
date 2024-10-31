@@ -2,38 +2,70 @@
 #include "ComponentTransform.h"
 #include "ComponentShader.h"
 #include "../Misc/Camera.h"
+#include "../Graphical/MainRenderTarget.h"
 
 SystemRender::SystemRender(Renderer* pRenderer)
 {
 	mRenderer = pRenderer;
-	mMask = (IComponent::ComponentTypes::COMPONENT_SHADER | IComponent::ComponentTypes::COMPONENT_MODEL | IComponent::ComponentTypes::COMPONENT_TRANSFORM);
+
+	mRenderSystemDeferred = new SystemRenderDeferred(mRenderer);
+	mRenderSystemForward = new SystemRenderForward(mRenderer);
+}
+
+SystemRender::~SystemRender()
+{
+	delete mRenderSystemForward;
+	delete mRenderSystemDeferred;
 }
 
 void SystemRender::Run(Entity* pEntity)
+{}
+
+void SystemRender::Render(std::vector<Entity*>& pEntities)
 {
-	IComponent::ComponentTypes t = pEntity->GetMask();
-	if ((t & mMask) == mMask)
+	mRenderSystemDeferred->Begin();
+
+	for (auto& enti : pEntities)
 	{
 
-		ComponentTransform* transform = pEntity->GetComponent<ComponentTransform>();
-		glm::mat4 modelMatrix = transform->GetModelMatrix(); 
-
-		ComponentShader* shader = pEntity->GetComponent<ComponentShader>();
-
-		// sends over the uniforms, MVP etc
-		shader->Update(modelMatrix);
-		mRenderer->Render(pEntity);
+		mRenderSystemDeferred->Run(enti);
+		for (auto& child : enti->GetChildren())
+		{
+			mRenderSystemDeferred->Run(child);
+		}
 	}
-}
 
-//void SystemRender::DrawPP()
-//{
-//	mRenderer->DrawPP();
-//}
+	mRenderSystemDeferred->RunLighting();
+
+	mRenderSystemDeferred->End();
+
+
+	bool render = true;
+	// blit the frame buffers
+	if (render)
+	{
+
+		int from = mRenderer->GetGBuffer()->GetGBufferID();
+		int to = mRenderer->GetMainTarget()->GetTextureID();
+
+		mRenderSystemDeferred->CopyBuffer(from,to);
+
+		mRenderSystemForward->Begin();
+
+		// render forward here
+		for (auto& enti : pEntities)
+		{
+			mRenderSystemForward->Run(enti);
+		}
+		mRenderSystemForward->End();
+		// after all renderinng is done now post process
+	}
+	PostProcess();
+}
 
 void SystemRender::Begin()
 {
-	mRenderer->Begin();
+	mRenderer->EndForward();
 }
 
 void SystemRender::End()

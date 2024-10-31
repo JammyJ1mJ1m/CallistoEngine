@@ -6,10 +6,10 @@
 void TestCube::start()
 {
 	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("AKmagazine"), "Resources/textures/GunAK.mtl"));
-	AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
+	AddComponent(new ComponentShaderDefault(this,ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
 
 	Vector3f pos(15.0f, 0.0f, 0.0f);
-	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1, 1, 1)));
+	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1, 3, 1)));
 }
 
 

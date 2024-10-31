@@ -3,7 +3,8 @@
 #include "../Components/Entity.h"
 
 class SystemRender;
-class SystemRenderDeferred;
+//class SystemRenderForward;
+//class SystemRenderDeferred;
 class SceneManager;
 
 /// Represents an abstract scene, i.e. mode of the game
@@ -11,7 +12,7 @@ class SceneManager;
 class Scene
 {
 protected:
-	SceneManager* _sceneManager;
+	SceneManager* mSceneManager;
 	std::vector<Entity*> mEntities; // The list of game objects
 
 public:
@@ -23,8 +24,8 @@ public:
 
 	int GetEntityCount() const { return mEntities.size(); }
 
-	void SetSceneManager(SceneManager* s) { _sceneManager = s; }
-	SceneManager* GetSceneManager()	const { return _sceneManager; }
+	void SetSceneManager(SceneManager* s) { mSceneManager = s; }
+	SceneManager* GetSceneManager()	const { return mSceneManager; }
 
 	virtual void Initialise() = 0;
 
@@ -32,5 +33,5 @@ public:
 
 	virtual void Update(double deltaTime) = 0;
 
-	virtual void Render(SystemRenderDeferred* renderer) = 0;
+	virtual void Render(SystemRender* renderer) = 0;
 };

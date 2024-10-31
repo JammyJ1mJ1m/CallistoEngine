@@ -21,6 +21,7 @@ public:
 	void End();
 	void PostProcess();
 	void RunLighting();
+	void CopyBuffer(const int pCopyFrom, const int pCopyTo);
 
 };
 

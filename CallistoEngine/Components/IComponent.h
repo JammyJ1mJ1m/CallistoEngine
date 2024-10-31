@@ -1,6 +1,10 @@
 #pragma once
+
+class Entity;
+
 class IComponent
 {
+    Entity* mParent;
 public:
     enum class ComponentTypes {
         COMPONENT_NONE      = 1 << 0,
@@ -14,6 +18,9 @@ public:
         COMPONENT_SCRIPT    = 1 << 8 ,
         COMPONENT_ANIMATION = 1 << 9 ,
     };
+
+    void SetParent(Entity* pEntity) { mParent = pEntity; }
+    const Entity* GetParent() { return mParent; }
 
     virtual ComponentTypes GetType() const = 0;
     IComponent() = default;
