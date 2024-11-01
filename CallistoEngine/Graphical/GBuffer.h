@@ -7,7 +7,7 @@ class GBuffer
 private:
     unsigned int mGFBO;
     unsigned int mPositionTexture, mNormalTexture, mAlbedoSpecTexture;
-    unsigned int mDepthRBO; 
+    unsigned int mDepthTexture; 
     ShaderObject_GL* mGeometryPassShader;
 
 public:
@@ -23,7 +23,7 @@ public:
     void Free();
 
     inline unsigned int GetGBufferID() const { return mGFBO; }
-    inline unsigned int GetDepthBufferID() const { return mDepthRBO; }
+    inline unsigned int GetDepthBufferID() const { return mDepthTexture; }
     inline unsigned int GetPositionTextureID() const { return mPositionTexture; }
     inline unsigned int GetNormalTextureID() const { return mNormalTexture; }
     inline unsigned int GetAlbedoSpecTextureID() const { return mAlbedoSpecTexture; }

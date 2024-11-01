@@ -166,13 +166,19 @@ void Material::Draw()
 
 	if (mIsCubemap)
 	{
+		glEnable(GL_CULL_FACE);
+		glCullFace(GL_FRONT);
+
 		glDepthFunc(GL_LEQUAL);
 		glActiveTexture(GL_TEXTURE16);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, GetCubemap());
 
+
 	}
 	else
 	{
+		glCullFace(GL_BACK);  // Cull back faces again
+		glDepthFunc(GL_LESS);
 		if (GetDiffuseMap() != 0)
 		{
 			glActiveTexture(GL_TEXTURE0);

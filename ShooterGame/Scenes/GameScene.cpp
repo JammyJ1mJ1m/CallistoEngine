@@ -73,16 +73,16 @@ void GameScene::Initialise()
 	//Enemy* enemy = new Enemy();
 	//AddEntity(enemy);
 
-	//GunLoader& gLoader = GunLoader::GetInstance();
+	GunLoader& gLoader = GunLoader::GetInstance();
 
-	//const GunMap meshes = gLoader.GetGunsToLoad();
+	const GunMap meshes = gLoader.GetGunsToLoad();
 
-	//for (auto& mesh : meshes)
-	//{
-	//	Gun* newGun = new Gun();
-	//	newGun->Initialise(mesh.first);
-	//	AddEntity(newGun);
-	//}
+	for (auto& mesh : meshes)
+	{
+		Gun* newGun = new Gun();
+		newGun->Initialise(mesh.first);
+		AddEntity(newGun);
+	}
 
 
 	//expBarrel = new ExpBarrel();
@@ -103,10 +103,10 @@ void GameScene::Initialise()
 #pragma region Lights
 
 	// using this gives me 25 
-	int lightCount = 2;
+	int lightCount = 15;
 	// distance to use for width, dpeth of grid
-	int distance = 10;
-	float spacing = 10;
+	int distance = 350;
+	float spacing = 50;
 	Vector3f lightpositions = Vector3f(-distance, 5, -distance);
 
 	/*for (size_t k = 0; k < lightCount; k++)

@@ -37,6 +37,25 @@ void SystemRender::Render(std::vector<Entity*>& pEntities)
 
 	mRenderSystemDeferred->RunLighting();
 
+
+	int mainTargetBufferID = mRenderer->GetMainTarget()->GetTextureID(); //   <-- i want to write to this buffers depth
+	int mainTargetDepthID = mRenderer->GetMainTarget()->GetDepthBufferID();
+
+	GBuffer* gBuff = mRenderer->GetGBuffer();
+
+	int bufferID = gBuff->GetGBufferID();
+	int albedoId = gBuff->GetAlbedoSpecTextureID();
+	int depthId = gBuff->GetDepthBufferID();
+	int normalsID = gBuff->GetNormalTextureID();
+	int posID = gBuff->GetPositionTextureID();
+
+
+	int from = mRenderer->GetGBuffer()->GetGBufferID();
+	int to = mRenderer->GetMainTarget()->GetTextureID();
+
+	mRenderSystemDeferred->CopyBuffer(from, to);
+
+
 	mRenderSystemDeferred->End();
 
 
@@ -44,11 +63,7 @@ void SystemRender::Render(std::vector<Entity*>& pEntities)
 	// blit the frame buffers
 	if (render)
 	{
-
-		int from = mRenderer->GetGBuffer()->GetGBufferID();
-		int to = mRenderer->GetMainTarget()->GetTextureID();
-
-		mRenderSystemDeferred->CopyBuffer(from,to);
+		
 
 		mRenderSystemForward->Begin();
 

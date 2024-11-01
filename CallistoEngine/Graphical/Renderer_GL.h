@@ -76,14 +76,10 @@ public:
 	MainRenderTarget* GetMainTarget() override{ return mMainTarget; }
 	void SetFrame(unsigned int pFrame) override { depth = GetDepth(); this->frame = pFrame; }
 	unsigned int GetFrame() const override { return frame; }
-	// void SetPixelated(unsigned int b) override { this->b = b; }
-	// unsigned int GetPixelated() const override { return b; }
 	inline unsigned int GetRawFrame() const override { return mMainTarget->GetTextureID(); }
-	//unsigned int GetDepth() const override { return mMainTarget->GetDepthBufferID(); }
 	unsigned int GetDepth() const override { return mGBuffer->GetDepthBufferID(); }
-	virtual GBuffer* GetGBuffer() override { return mGBuffer; }
-
-	// void Resize(int width, int height);
+	unsigned int GetMainDepth() const { return mMainTarget->GetDepthBufferID(); }
+	GBuffer* GetGBuffer() override { return mGBuffer; }
 
 	void Begin() override;
 	void BeginForward() override;
@@ -91,24 +87,18 @@ public:
 	void EndForward() override;
 	void Postprocess() override;
 	void AddEffect(PostProcessEffect* effect) override;
-	void SetEffectStatus(const char* pName, const bool pBool) const;
 
 
-	virtual void ClearScreen();
-	// virtual void Destroy();
-	virtual void Initialise(int width, int height);
-	// virtual void SwapBuffers();
-	virtual void Render(Entity* entity);
-	// virtual void DrawPP();
-	// virtual void StartPP();
-	virtual void Resize(int pWidth, int pHeight);
+	void ClearScreen() override;
+	void Initialise(int width, int height) override;
+	void Render(Entity* entity) override;
+	void Resize(int pWidth, int pHeight) override;
 	void CreateRBO(int width, int height);
-
 	void UnbindFrame() override;
 	void EnableDepthTest() const;
 	void DisableDepthTest() const;
+	void SetEffectStatus(const char* pName, const bool pBool) const;
 
 	void CopyBuffer(const int pCopyFrom, const int pCopyTo) override;
-
 };
 

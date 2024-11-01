@@ -53,10 +53,10 @@ void Renderer_GL::Begin()
 
 void Renderer_GL::BeginForward()
 {
-	int gfbo = GetGBuffer()->GetGBufferID();
-	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gfbo); // write to default framebuffer
+	//int gfbo = GetGBuffer()->GetGBufferID();
+	//glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gfbo); // write to default framebuffer
 
-	glBindFramebuffer(GL_FRAMEBUFFER, gfbo);
+	//glBindFramebuffer(GL_FRAMEBUFFER, gfbo);
 
 	EnableDepthTest();
 
@@ -129,7 +129,7 @@ void Renderer_GL::Initialise(int width, int height)
 	finalPass.SetTarget(mFinalTarget);
 
 
-	_clearColour = { 0.0f, 0.0f, 0.0f, 1.0f };
+	_clearColour = { 0.0f, 1.0f, 0.0f, 1.0f };
 	glClearColor(_clearColour.GetX(), _clearColour.GetY(), _clearColour.GetZ(), _clearColour.GetW());
 
 
@@ -209,11 +209,7 @@ void Renderer_GL::CopyBuffer(const int pCopyFrom, const int pCopyTo)
 	width = Game::GetGame()->GetGameCamera()->mWidth;
 	height = Game::GetGame()->GetGameCamera()->mHeight;
 
-	int bufferID = mGBuffer->GetGBufferID();
-	int albedoId = mGBuffer->GetAlbedoSpecTextureID();
-	int depthId = mGBuffer->GetDepthBufferID();
-	int normalsID = mGBuffer->GetNormalTextureID();
-	int posID = mGBuffer->GetPositionTextureID();
+
 
 	glBindFramebuffer(GL_READ_FRAMEBUFFER, pCopyFrom);
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, pCopyTo); // write to default framebuffer

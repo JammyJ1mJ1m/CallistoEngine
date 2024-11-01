@@ -8,12 +8,12 @@ class MainRenderTarget final
 private:
 	RenderTarget target;
 
-	unsigned int depthBuffer;
+	unsigned int mDepthTexture;
 
 	void Free();
 
 public:
-	inline unsigned int GetDepthBufferID() const { return depthBuffer; }
+	inline unsigned int GetDepthBufferID() const { return mDepthTexture; }
 	inline unsigned int GetTextureID() const { return target.GetTexture(); }
 
 	void Activate();

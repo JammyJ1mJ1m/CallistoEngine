@@ -12,7 +12,7 @@ GBuffer::GBuffer() :
     mPositionTexture(0),
     mNormalTexture(0),
     mAlbedoSpecTexture(0),
-    mDepthRBO(0)
+    mDepthTexture(0)
 {
         mGeometryPassShader = new ShaderObject_GL("Resources/Shaders/gbuffer.vert", "Resources/Shaders/gbuffer.frag");
 }
@@ -48,10 +48,10 @@ void GBuffer::Free()
         mAlbedoSpecTexture = 0;
     }
 
-    if (EXISTS(mDepthRBO))
+    if (EXISTS(mDepthTexture))
     {
-        glDeleteRenderbuffers(1, &mDepthRBO);
-        mDepthRBO = 0;
+        glDeleteRenderbuffers(1, &mDepthTexture);
+        mDepthTexture = 0;
     }
 }
 
@@ -121,14 +121,14 @@ void GBuffer::Resize(int width, int height)
     //glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, width, height);
     //glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, mDepthRBO);
 
-    glGenTextures(1, &mDepthRBO);
-    glBindTexture(GL_TEXTURE_2D, mDepthRBO);
+    glGenTextures(1, &mDepthTexture);
+    glBindTexture(GL_TEXTURE_2D, mDepthTexture);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, mDepthRBO, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, mDepthTexture, 0);
 
 
     unsigned int attachments[3] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };

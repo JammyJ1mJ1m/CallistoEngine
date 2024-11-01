@@ -48,7 +48,7 @@ void SystemRenderDeferred::Run(Entity* pEntity)
 void SystemRenderDeferred::RunLighting()
 {
 	mRenderer->UnbindFrame();
-	mRenderer->ClearScreen();
+	//mRenderer->ClearScreen();
 	mRenderer->GetMainTarget()->Activate();
 	mRenderer->ClearScreen();
 	//################################################################
