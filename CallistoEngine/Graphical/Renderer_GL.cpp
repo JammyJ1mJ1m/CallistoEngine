@@ -129,7 +129,7 @@ void Renderer_GL::Initialise(int width, int height)
 	finalPass.SetTarget(mFinalTarget);
 
 
-	_clearColour = { 0.0f, 1.0f, 0.0f, 1.0f };
+	_clearColour = { 0.0f, 0.0f, 0.0f, 0.0f };
 	glClearColor(_clearColour.GetX(), _clearColour.GetY(), _clearColour.GetZ(), _clearColour.GetW());
 
 

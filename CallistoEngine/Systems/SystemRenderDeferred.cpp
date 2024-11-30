@@ -57,7 +57,6 @@ void SystemRenderDeferred::RunLighting()
 	mLightingShader->UseProgram();
 	mRenderer->GetGBuffer()->BindTextures();
 
-	mLightingShader->SetVec3("viewPos", Game::GetGame()->GetGameCamera()->GetPosition());
 
 	const std::vector<LightComponent*>& lights = LightManager::GetInstance().GetLights();
 	float linear = 0.07f;
@@ -68,7 +67,8 @@ void SystemRenderDeferred::RunLighting()
 		std::string lightPosName = "lights[" + std::to_string(i) + "].Position";
 		std::string lightDiffuseName = "lights[" + std::to_string(i) + "].Color";
 
-		mLightingShader->SetVec3(lightPosName.c_str(),		lights[i]->GetLight()->GetPosition());
+		Vector3f posy = lights[i]->GetLight()->GetPosition();
+		mLightingShader->SetVec3(lightPosName.c_str(), posy);
 		Vector3f col = lights[i]->GetLight()->GetDiffuse();
 		mLightingShader->SetVec3(lightDiffuseName.c_str(),	lights[i]->GetLight()->GetDiffuse());
 
@@ -85,6 +85,7 @@ void SystemRenderDeferred::RunLighting()
 		mLightingShader->SetFloat(LightQuadName.c_str(), quadratic);
 
 	}
+	mLightingShader->SetVec3("viewPos", Game::GetGame()->GetGameCamera()->GetPosition());
 
 	
 	 mRenderer->RenderScreenQuad();

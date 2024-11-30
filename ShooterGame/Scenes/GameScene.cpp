@@ -103,48 +103,48 @@ void GameScene::Initialise()
 #pragma region Lights
 
 	// using this gives me 25 
-	int lightCount = 15;
-	// distance to use for width, dpeth of grid
-	int distance = 350;
-	float spacing = 50;
-	Vector3f lightpositions = Vector3f(-distance, 5, -distance);
+	//int lightCount = 1;
+	//// distance to use for width, dpeth of grid
+	//int distance = 350;
+	//float spacing = 50;
+	//Vector3f lightpositions = Vector3f(-distance, 5, -distance);
 
-	/*for (size_t k = 0; k < lightCount; k++)
-	{*/
+	///*for (size_t k = 0; k < lightCount; k++)
+	//{*/
 
-	for (size_t i = 0; i < lightCount; i++)
-	{
-		for (size_t j = 0; j < lightCount; j++)
-		{
-			TestLight* testLight = new TestLight();
-			LightComponent* lc = testLight->GetComponent<LightComponent>();
-			testLight->SetPosition(lightpositions);
-			Light* l = lc->GetLight();/// ;
+	//for (size_t i = 0; i < lightCount; i++)
+	//{
+	//	for (size_t j = 0; j < lightCount; j++)
+	//	{
+	//		TestLight* testLight = new TestLight();
+	//		LightComponent* lc = testLight->GetComponent<LightComponent>();
+	//		testLight->SetPosition(lightpositions);
+	//		Light* l = lc->GetLight();/// ;
 
-			float rColor = static_cast<float>(((rand() % 100) / 200.0f) + 0.5); // between 0.5 and 1.0
-			float gColor = static_cast<float>(((rand() % 100) / 200.0f) + 0.5); // between 0.5 and 1.0
-			float bColor = static_cast<float>(((rand() % 100) / 200.0f) + 0.5); // between 0.5 and 1.0
+	//		float rColor = static_cast<float>(((rand() % 100) / 200.0f) + 0.5); // between 0.5 and 1.0
+	//		float gColor = static_cast<float>(((rand() % 100) / 200.0f) + 0.5); // between 0.5 and 1.0
+	//		float bColor = static_cast<float>(((rand() % 100) / 200.0f) + 0.5); // between 0.5 and 1.0
 
-			l->SetDiffuse(Vector3f(rColor, gColor, bColor));
-			AddEntity(testLight);
+	//		l->SetDiffuse(Vector3f(rColor, gColor, bColor));
+	//		AddEntity(testLight);
 
-			lightpositions.SetX(lightpositions.GetX() + spacing);
-		}
-		lightpositions.SetX(-distance);
+	//		lightpositions.SetX(lightpositions.GetX() + spacing);
+	//	}
+	//	lightpositions.SetX(-distance);
 
-		lightpositions.SetZ(lightpositions.GetZ() + spacing);
-	}
-	//	lightpositions.SetY(lightpositions.GetY() - spacing);
-	//	lightpositions.SetZ(-distance);
-
+	//	lightpositions.SetZ(lightpositions.GetZ() + spacing);
 	//}
+	////	lightpositions.SetY(lightpositions.GetY() - spacing);
+	////	lightpositions.SetZ(-distance);
+
+	////}
 
 
 	// add the lights here
 	light = new TestLight();
 	LightComponent* lc1 = light->GetComponent<LightComponent>();
 	Light* l1 = lc1->GetLight();/// ;
-	l1->SetDiffuse(Vector3f(1, 0, 1));
+	l1->SetDiffuse(Vector3f(1, 1, 1));
 	AddEntity(light);
 
 #pragma endregion

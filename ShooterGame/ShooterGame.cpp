@@ -37,9 +37,9 @@ void ShooterGame::InitialiseGame()
 	//pp4->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Blur.frag", "Blur2");
 	//mRenderer->AddEffect(pp4);
 
-	PostProcessEffect* pp1 = new PostProcessEffect();
-	pp1->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Matrix.frag", "Matrix");
-	mRenderer->AddEffect(pp1);
+	//PostProcessEffect* pp1 = new PostProcessEffect();
+	//pp1->LoadShader("Resources/Shaders/PP/PP.vert", "Resources/Shaders/PP/Matrix.frag", "Matrix");
+	//mRenderer->AddEffect(pp1);
 
 
 

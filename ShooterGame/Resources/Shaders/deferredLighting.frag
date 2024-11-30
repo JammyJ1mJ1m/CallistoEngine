@@ -52,8 +52,9 @@ void main()
         specular *= attenuation * brightness;
         lighting += diffuse + specular; 
         
+        vec3 lightDir2 = normalize(lights[0].Position - FragPos);
         
-        
+        result = halfwayDir;
         // result = lightDir;
         // result = diffuse; // -- not working
         // result = halfwayDir;
