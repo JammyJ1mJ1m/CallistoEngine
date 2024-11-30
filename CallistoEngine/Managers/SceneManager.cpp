@@ -28,6 +28,15 @@ void SceneManager::OnKeyboard(int pKey, bool pIsDown)
 	}
 }
 
+void SceneManager::OnMessage(Message* msg)
+{
+	Scene* currentScene = GetCurrentScene();
+	if (currentScene)
+	{
+		currentScene->OnMessage(msg);
+	}
+}
+
 void SceneManager::Update(double pDeltaTime)
 {
 	Scene* currentScene = GetCurrentScene();

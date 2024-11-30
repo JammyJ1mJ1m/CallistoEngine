@@ -39,5 +39,8 @@ class ComponentRigidBody : public IComponent
 		// ******************************************************
 		// inherited stuff
 		virtual ComponentTypes GetType() const;
+
+		virtual void OnMessage(Message* msg);
+
 };
 

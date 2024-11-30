@@ -1,6 +1,8 @@
 #include "Entity.h"
 #include "ComponentRigidBody.h"
 
+#include "Message.h"
+
 Entity::Entity()
 {
 }
@@ -14,6 +16,68 @@ void Entity::AddComponent(IComponent* pComponent)
 {
 	mComponentList.push_back(pComponent);
 	UpdateMask(pComponent->GetType());
+}
+
+void Entity::OnMessage(Message* msg)
+{
+    // Dispatch message to all registered listeners
+    MessageListenerMapIterator i = _messageListeners.find(msg->GetMessageType());
+
+    // If we have registered listeners for this message
+    if (i != _messageListeners.end())
+    {
+        std::vector<IComponent*>& list = i->second;
+
+        for(auto& comp : mComponentList)
+        //for (ComponentListIterator j = list.begin();
+        //    j != list.end();
+        //    ++j)
+        {
+            // Send listener the message
+            comp->OnMessage(msg);
+        }
+    }
+}
+
+void Entity::RegisterListener(std::string msg, IComponent* goc)
+{
+    MessageListenerMapIterator i = _messageListeners.find(msg);
+
+    // Make entry and add listener
+    if (i == _messageListeners.end())
+    {
+        _messageListeners[msg] = std::vector<IComponent*>();
+        _messageListeners[msg].push_back(goc);
+    }
+    else
+    {
+        // Already have list; just add
+        _messageListeners[msg].push_back(goc);
+    }
+}
+
+
+void Entity::UnregisterListener(std::string msg, IComponent* goc)
+{
+    MessageListenerMapIterator i = _messageListeners.find(msg);
+
+    // Exists?
+    if (i != _messageListeners.end())
+    {
+        std::vector<IComponent*>& list = i->second;
+
+        for (auto& comp : mComponentList)
+
+        for (ComponentListIterator j = list.begin(); j != list.end(); ++j)
+        {
+            if (comp == goc)
+            {
+                // Found it - so remove the listener
+                list.erase(j);
+                break;
+            }
+        }
+    }
 }
 
 const void Entity::UpdateChildPositions()

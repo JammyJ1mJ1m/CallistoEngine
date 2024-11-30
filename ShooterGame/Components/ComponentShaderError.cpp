@@ -40,3 +40,7 @@ void ComponentShaderError::Update(glm::mat4 pMat)
 	mShaderObject->SetFloat("fTime", glfwGetTime());
 
 }
+
+void ComponentShaderError::OnMessage(Message* msg)
+{
+}

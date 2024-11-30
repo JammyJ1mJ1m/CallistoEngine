@@ -8,6 +8,7 @@ public:
 	//~ComponentShaderScanLines() = default;
 	virtual void Render();
 	virtual void Update(glm::mat4 pMat);
+	virtual void OnMessage(Message* msg);
 
 };
 

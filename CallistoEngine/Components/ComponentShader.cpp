@@ -9,6 +9,10 @@ void ComponentShader::Render()
 {
 }
 
+void ComponentShader::OnMessage(Message* msg)
+{
+}
+
 const void ComponentShader::UseProgram()
 {
 	mShaderObject->UseProgram();

@@ -12,3 +12,13 @@ Scene::~Scene()
 	}
 	mEntities.clear();
 }
+
+void Scene::OnMessage(Message* msg)
+{
+	for (int i = 0; i < (int)mEntities.size(); i++)
+	{
+		// check if the entity is a valid target
+			mEntities[i]->OnMessage(msg);
+		
+	}
+}

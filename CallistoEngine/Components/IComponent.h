@@ -1,9 +1,12 @@
 #pragma once
-
+#include "../Patterns/Observer.h"
+#include <string>
 class Entity;
+class Message;
 
-class IComponent
+class IComponent : public Observer
 {
+protected:
     Entity* mParent;
 public:
     enum class ComponentTypes {
@@ -16,7 +19,8 @@ public:
         COMPONENT_LIGHT     = 1 << 6 ,
         COMPONENT_AUDIO     = 1 << 7 ,
         COMPONENT_SCRIPT    = 1 << 8 ,
-        COMPONENT_ANIMATION = 1 << 9 ,
+        COMPONENT_ANIMATION = 1 << 9,
+        COMPONENT_TEST = 1 << 10 ,
     };
 
     void SetParent(Entity* pEntity) { mParent = pEntity; }
@@ -46,4 +50,7 @@ public:
     static IComponent::ComponentTypes ExcludeComponent(IComponent::ComponentTypes mask, IComponent::ComponentTypes component) {
         return mask & ~component;
     }
+
+    void BroadcastMessage(Message* msg);
+
 };

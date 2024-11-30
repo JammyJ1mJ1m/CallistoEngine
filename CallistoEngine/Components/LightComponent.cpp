@@ -10,3 +10,7 @@ IComponent::ComponentTypes LightComponent::GetType() const
 {
     return ComponentTypes::COMPONENT_LIGHT;
 }
+
+void LightComponent::OnMessage(Message* msg)
+{
+}

@@ -59,4 +59,7 @@ public:
 	void SyncTransform(const btTransform& pTransform);
 
 	virtual ComponentTypes GetType() const;
+
+	virtual void OnMessage(Message* msg);
+
 };

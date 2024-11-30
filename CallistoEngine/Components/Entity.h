@@ -1,12 +1,24 @@
 #pragma once
 #include "IComponent.h"
+#include <map>
 #include <vector>
 #include <memory>
 #include "../Math/Vector.h"
 #include "ComponentTransform.h"
 
+class Message;
+class IComponent;
+
+
+typedef std::map<std::string, std::vector<IComponent*> > MessageListenerMap;
+typedef std::map<std::string, std::vector<IComponent*> >::iterator MessageListenerMapIterator;
+typedef std::vector<IComponent*>::iterator ComponentListIterator;
+
 class Entity
 {
+	MessageListenerMap	_messageListeners;
+
+
 	std::vector<IComponent*> mComponentList;
 	std::vector<Entity*> mChildren;
 
@@ -21,12 +33,12 @@ class Entity
 
 	virtual void start() = 0;
 
-	protected:
+protected:
 
 public:
 	const void UpdateChildPositions();
 	const void AddChild(Entity* pChild, const Vector3f& pPos);
-	
+
 	const void AddChildren(std::vector<Entity*> pChildren) { mChildren.insert(mChildren.end(), pChildren.begin(), pChildren.end()); }
 	const std::vector<Entity*> GetChildren() { return mChildren; }
 	const Entity* GetChild(int pIndex) { return mChildren[pIndex]; }
@@ -75,5 +87,10 @@ public:
 	virtual void MoveBackward() = 0;
 	virtual void MoveLeft() = 0;
 	virtual void MoveRight() = 0;
+
+	virtual void OnMessage(Message* msg);
+	void RegisterListener(std::string msg, IComponent* goc);
+	void UnregisterListener(std::string msg, IComponent* goc);
+
 
 };

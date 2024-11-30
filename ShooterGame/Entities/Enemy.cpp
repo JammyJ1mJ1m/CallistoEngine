@@ -6,7 +6,8 @@
 #include "Math/Vector.h"
 #include "Misc/Sound.h"
 #include "Components/ComponentShaderWindow.h"
-
+#include "Messages/HelloWorldMessage.h"
+#include "Components/ExplodableComponent.h"
 
 
 void Enemy::start()
@@ -28,6 +29,10 @@ void Enemy::start()
 	Sound* sound = new Sound("Resources/Sounds/Pop.wav");
 
 	 sound->Play3D(pos.GetX(),pos.GetY(),pos.GetZ());
+
+	 ExplodableComponent* exp = new ExplodableComponent(this);
+
+	 AddComponent(exp);
 
 }
 
@@ -51,6 +56,15 @@ void Enemy::MoveLeft()
 
 void Enemy::MoveRight()
 {
+}
+
+void Enemy::OnMessage(Message* msg)
+{
+	if (msg->GetMessageType() == "HelloWorldMessage")
+	{
+		std::cout << "Hello world, messages!" << std::endl;
+	}
+	Entity::OnMessage(msg);
 }
 
 Enemy::Enemy()

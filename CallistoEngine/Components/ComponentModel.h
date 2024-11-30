@@ -15,5 +15,8 @@ public:
 	virtual ComponentTypes GetType() const;
 	const Mesh* GetMesh() { return mMesh; };
 	void SetMesh(Mesh* pMesh) { mMesh = pMesh; } ;
+
+	virtual void OnMessage(Message* msg);
+
 };
 

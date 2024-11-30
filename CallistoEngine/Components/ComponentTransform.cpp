@@ -122,3 +122,7 @@ IComponent::ComponentTypes ComponentTransform::GetType() const
 {
 	return ComponentTypes::COMPONENT_TRANSFORM;
 }
+
+void ComponentTransform::OnMessage(Message* msg)
+{
+}

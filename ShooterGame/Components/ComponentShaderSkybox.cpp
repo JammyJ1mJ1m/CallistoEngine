@@ -41,3 +41,7 @@ void ComponentShaderSkybox::Update(glm::mat4 pMat)
 	mShaderObject->SetMat4("projection", mCamera->GetProjection());
 
 }
+
+void ComponentShaderSkybox::OnMessage(Message* msg)
+{
+}

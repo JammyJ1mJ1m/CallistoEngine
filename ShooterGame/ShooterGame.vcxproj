@@ -214,6 +214,7 @@
     <ClCompile Include="Entities\Gun.cpp" />
     <ClCompile Include="Entities\GunAK.cpp" />
     <ClCompile Include="Entities\GunMagazine.cpp" />
+    <ClCompile Include="Components\ExplodableComponent.cpp" />
     <ClCompile Include="GameCommands\BoostCommand.cpp" />
     <ClCompile Include="Components\ComponentShaderDefault.cpp" />
     <ClCompile Include="Components\ComponentShaderError.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="Entities\GunAK.h" />
     <ClInclude Include="Entities\GunMagazine.h" />
     <ClInclude Include="Entities\TestCube.h" />
+    <ClInclude Include="Components\ExplodableComponent.h" />
     <ClInclude Include="GameCommands\BoostCommand.h" />
     <ClInclude Include="Components\ComponentShaderDefault.h" />
     <ClInclude Include="Components\ComponentShaderError.h" />

@@ -24,6 +24,7 @@ using MeshMap = std::map<std::string, Mesh*>;
 using MeshMapIterator = MeshMap::iterator;
 
 class InputManager;
+class Message;
 
 class Game
 {
@@ -116,6 +117,11 @@ public:
 		RenderFrame();
 	}
 
+	// Message system
+	void BroadcastMessage(Message* msg);
+
+	// The game can respond to messages too
+	virtual void ListenToMessage(Message* msg) {}
 
 private:
 	virtual void Run() = 0;

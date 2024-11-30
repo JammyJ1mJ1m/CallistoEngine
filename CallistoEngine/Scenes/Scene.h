@@ -6,6 +6,8 @@ class SystemRender;
 //class SystemRenderForward;
 //class SystemRenderDeferred;
 class SceneManager;
+class Message;
+
 
 /// Represents an abstract scene, i.e. mode of the game
 /// For example, MainMenu, Gameplay, GameOver etc
@@ -34,4 +36,7 @@ public:
 	virtual void Update(double deltaTime) = 0;
 
 	virtual void Render(SystemRender* renderer) = 0;
+
+	virtual void OnMessage(Message* msg);
+
 };

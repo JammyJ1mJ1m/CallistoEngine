@@ -319,6 +319,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Components\Message.cpp" />
     <ClCompile Include="Graphical\PostProcessing\BloomEffect.cpp" />
     <ClCompile Include="Commands\Command.cpp" />
     <ClCompile Include="Components\LightComponent.cpp" />
@@ -332,6 +333,7 @@
     <ClCompile Include="GUI\GUIElement.cpp" />
     <ClCompile Include="GUI\GUIText.cpp" />
     <ClCompile Include="GUI\GUIManager.cpp" />
+    <ClCompile Include="Messages\HelloWorldMessage.cpp" />
     <ClCompile Include="Lighting\Light.cpp" />
     <ClCompile Include="Graphical\MainRenderTarget.cpp" />
     <ClCompile Include="Managers\DiscordManager.cpp" />
@@ -353,6 +355,7 @@
     <ClCompile Include="Lighting\PointLight.cpp" />
     <ClCompile Include="Graphical\RenderTarget.cpp" />
     <ClCompile Include="Graphical\PostProcessEffect.cpp" />
+    <ClCompile Include="Patterns\ObserverSubject.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Misc\Sound.cpp" />
     <ClCompile Include="Managers\SteamManager.cpp" />
@@ -378,6 +381,7 @@
     <ClCompile Include="Systems\SystemRenderDeferred.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\Message.h" />
     <ClInclude Include="Graphical\PostProcessing\BloomEffect.h" />
     <ClInclude Include="Commands\Command.h" />
     <ClInclude Include="Components\LightComponent.h" />
@@ -392,6 +396,7 @@
     <ClInclude Include="GUI\GUIOrigin.h" />
     <ClInclude Include="GUI\GUIText.h" />
     <ClInclude Include="GUI\GUIManager.h" />
+    <ClInclude Include="Messages\HelloWorldMessage.h" />
     <ClInclude Include="Lighting\Light.h" />
     <ClInclude Include="Graphical\MainRenderTarget.h" />
     <ClInclude Include="Managers\DiscordManager.h" />
@@ -539,6 +544,8 @@
     <ClInclude Include="Lighting\PointLight.h" />
     <ClInclude Include="Graphical\RenderTarget.h" />
     <ClInclude Include="Graphical\PostProcessEffect.h" />
+    <ClInclude Include="Patterns\Observer.h" />
+    <ClInclude Include="Patterns\ObserverSubject.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Misc\Sound.h" />
     <ClInclude Include="Managers\SteamManager.h" />

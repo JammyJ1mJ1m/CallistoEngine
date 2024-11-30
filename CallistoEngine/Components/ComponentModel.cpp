@@ -23,3 +23,7 @@ IComponent::ComponentTypes ComponentModel::GetType() const
 {
 	return ComponentTypes::COMPONENT_MODEL;
 }
+
+void ComponentModel::OnMessage(Message* msg)
+{
+}

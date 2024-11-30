@@ -72,3 +72,7 @@ void ComponentShaderDefault::Update(glm::mat4 pMat)
 	pos.SetZ(mCamera->GetPosition().GetZ());
 	mShaderObject->SetVec3("viewPos", pos);
 }
+
+void ComponentShaderDefault::OnMessage(Message* msg)
+{
+}

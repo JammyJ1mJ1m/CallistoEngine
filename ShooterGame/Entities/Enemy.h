@@ -20,4 +20,7 @@ public:
 	 virtual void MoveBackward();
 	 virtual void MoveLeft();
 	 virtual void MoveRight();
+
+	 virtual void OnMessage(Message* msg);
+
 };

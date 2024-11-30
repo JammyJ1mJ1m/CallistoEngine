@@ -109,3 +109,10 @@ void Game::BaseRender()
 	mWindow->GetMousePos(x, y);
 	mCamera->HandleMouse(x, y);
 }
+
+void Game::BroadcastMessage(Message* msg)
+{
+	ListenToMessage(msg);
+
+	mSceneManager.OnMessage(msg);
+}

@@ -188,6 +188,10 @@ IComponent::ComponentTypes ComponentCollider::GetType() const
 	return ComponentTypes::COMPONENT_COLLIDER;
 }
 
+void ComponentCollider::OnMessage(Message* msg)
+{
+}
+
 ComponentCollider::~ComponentCollider()
 {
 	delete mCollisionShape;

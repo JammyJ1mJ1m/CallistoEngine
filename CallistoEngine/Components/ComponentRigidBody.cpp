@@ -89,6 +89,9 @@ IComponent::ComponentTypes ComponentRigidBody::GetType() const
 {
 	return ComponentTypes::COMPONENT_RIGIDBODY;
 }
+void ComponentRigidBody::OnMessage(Message* msg)
+{
+}
 ComponentRigidBody::~ComponentRigidBody()
 {
 	// remove RB from physcis manager

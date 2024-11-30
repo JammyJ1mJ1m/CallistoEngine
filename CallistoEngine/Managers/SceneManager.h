@@ -5,6 +5,7 @@
 class SystemRender;
 class Scene;
 class Game;
+class Message;
 
 /// Handles the Scenes for a game
 class SceneManager
@@ -33,6 +34,9 @@ public:
 
 	/// Respond to input
 	void OnKeyboard(int pKey, bool pIsDown);
+
+	void OnMessage(Message* msg);
+
 
 	/// Update current scene
 	void Update(double pDeltaTime);

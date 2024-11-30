@@ -32,6 +32,8 @@
 #include "GUI/GUIManager.h"
 #include "Graphical/Renderer_GL.h"
 
+#include "Messages/HelloWorldMessage.h"
+
 //#include <chrono>
 
 Player* player;
@@ -70,8 +72,8 @@ void GameScene::Initialise()
 	//gun = new GunAK();
 	//AddEntity(gun);
 
-	//Enemy* enemy = new Enemy();
-	//AddEntity(enemy);
+	Enemy* enemy = new Enemy();
+	AddEntity(enemy);
 
 	GunLoader& gLoader = GunLoader::GetInstance();
 
@@ -236,6 +238,11 @@ void GameScene::OnKeyboard(int key, bool down)
 
 		// remove expBarrel from mEntities
 		mEntities.erase(std::remove(mEntities.begin(), mEntities.end(), expBarrel), mEntities.end());
+	}
+
+	if (inputManager->GetKey(GLFW_KEY_B) && isExploded == false)
+	{
+		Game::GetGame()->BroadcastMessage(new HelloWorldMessage(nullptr,nullptr) );
 	}
 
 

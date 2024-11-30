@@ -40,3 +40,7 @@ void ComponentShaderScanLines::Update(glm::mat4 pMat)
 
 	mShaderObject->SetFloat("time", glfwGetTime());
 }
+
+void ComponentShaderScanLines::OnMessage(Message* msg)
+{
+}

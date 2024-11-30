@@ -16,5 +16,8 @@ public:
 	Light* GetLight() const { return mLight; };
 
 	virtual ComponentTypes GetType() const;
+
+	virtual void OnMessage(Message* msg);
+
 };
 

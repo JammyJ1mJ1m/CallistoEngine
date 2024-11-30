@@ -30,4 +30,7 @@ public:
 	virtual void Render() = 0;
 	virtual void Update(glm::mat4 pMat) = 0;
 
+	virtual void OnMessage(Message* msg);
+
+
 };
