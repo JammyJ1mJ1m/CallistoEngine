@@ -5,6 +5,7 @@
 
 Entity::Entity()
 {
+    mIsExpired = false;
 }
 
 Entity::Entity(const Entity& other)

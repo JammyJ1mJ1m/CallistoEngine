@@ -216,7 +216,7 @@
     <ClCompile Include="Patterns\ObserverSubject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Messages\HelloWorldMessage.cpp">
+    <ClCompile Include="Messages\ExplodeMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -791,7 +791,7 @@
     <ClInclude Include="Patterns\ObserverSubject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Messages\HelloWorldMessage.h">
+    <ClInclude Include="Messages\ExplodeMessage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

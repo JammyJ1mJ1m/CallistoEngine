@@ -5,6 +5,8 @@
 #include "ComponentShaderScanLines.h"
 #include "ComponentShaderError.h"
 #include "Components/ComponentTransform.h"
+#include "Messages/ExplodeMessage.h"
+#include "Components/ExplodableComponent.h"
 
 class ExpBarrel : public Entity
 {
@@ -16,11 +18,12 @@ public:
 	~ExpBarrel() = default;
 
 	void SetPosition(glm::vec3 pPos);
-	void applyExplosionForce(btDiscreteDynamicsWorld& world, const btVector3& explosionOrigin, btScalar explosionStrength, btScalar explosionRadius);
-	
+
 	virtual void MoveForward() ;
 	virtual void MoveBackward() ;
 	virtual void MoveLeft() ;
 	virtual void MoveRight() ;
+	virtual void OnMessage(Message* msg);
+
 };
 

@@ -13,10 +13,9 @@ class GameScene final : public Scene
 
 	GUIText* text1;
 	GUIText* text2;
-
 	GUIContainer* container1;
-
 	GUIImage* image1;
+
 
 	float mElapsed;
 	float mTimeToSpawn;

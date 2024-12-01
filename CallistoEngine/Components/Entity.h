@@ -31,11 +31,17 @@ class Entity
 		mMask = other.mMask;
 	}
 
+	// when true should be removed from entities list
+	bool mIsExpired;
+
 	virtual void start() = 0;
 
 protected:
 
 public:
+	inline void SetExpired() { mIsExpired = true; };
+	inline const bool GetExpired() { return mIsExpired; };
+
 	const void UpdateChildPositions();
 	const void AddChild(Entity* pChild, const Vector3f& pPos);
 

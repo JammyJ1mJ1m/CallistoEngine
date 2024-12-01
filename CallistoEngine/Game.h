@@ -19,6 +19,8 @@
 #include "Managers/SteamManager.h"
 #include "Managers/LightManager.h"
 #include "Managers/PhysicsManager.h"
+#include "Scenes/Scene.h"
+
 
 using MeshMap = std::map<std::string, Mesh*>;
 using MeshMapIterator = MeshMap::iterator;
@@ -109,6 +111,16 @@ public:
 	void Update() {
 		BaseRun();
 		Run();
+
+		// cleanup here
+		mSceneManager.GetCurrentScene();
+
+		Scene* currentScene = mSceneManager.GetCurrentScene();
+		if (!currentScene)
+			return;
+
+		currentScene->EntityCleanup();
+
 	}
 
 	// Call this for proper drawing

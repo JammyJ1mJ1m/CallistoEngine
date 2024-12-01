@@ -39,4 +39,6 @@ public:
 
 	virtual void OnMessage(Message* msg);
 
+	virtual void EntityCleanup();
+
 };

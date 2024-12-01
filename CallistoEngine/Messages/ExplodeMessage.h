@@ -4,15 +4,15 @@
 class Entity;
 
 
-class HelloWorldMessage : public Message
+class ExplodeMessage : public Message
 {
 protected:
 	Entity* mCollider;
 	Entity* mCollidee;
 
 public:
-	HelloWorldMessage(Entity* collider, Entity* collidee);
-	virtual ~HelloWorldMessage();
+	ExplodeMessage();
+	virtual ~ExplodeMessage();
 
 	Entity* GetCollider() const { return mCollider; }
 	Entity* GetCollidee() const { return mCollidee; }

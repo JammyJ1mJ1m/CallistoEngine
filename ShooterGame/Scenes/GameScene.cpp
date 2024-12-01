@@ -32,7 +32,7 @@
 #include "GUI/GUIManager.h"
 #include "Graphical/Renderer_GL.h"
 
-#include "Messages/HelloWorldMessage.h"
+#include "Messages/ExplodeMessage.h"
 
 //#include <chrono>
 
@@ -87,8 +87,8 @@ void GameScene::Initialise()
 	}
 
 
-	//expBarrel = new ExpBarrel();
-	//AddEntity(expBarrel);
+	expBarrel = new ExpBarrel();
+	AddEntity(expBarrel);
 
 	//testCube = new TestCube();
 	//AddEntity(testCube);
@@ -220,29 +220,12 @@ void GameScene::OnKeyboard(int key, bool down)
 
 		game->SetTitle(ss.str().c_str());
 	}
-	// key y is pressed
 
-	// g key pres
 
-	if (inputManager->GetKey(GLFW_KEY_Y) && isExploded == false)
+	if (inputManager->GetKeyDown(GLFW_KEY_Y) && isExploded == false)
 	{
 		isExploded = true;
-		// applyExplosionForce(PhysicsManager::GetInstance().GetWorld(), btVector3(0, 0, 0), 1000, 100);
-		btDiscreteDynamicsWorld& world = PhysicsManager::GetInstance().GetDynamicsWorld();
-		auto origin = btVector3(expBarrel->GetComponent<ComponentTransform>()->GetPosition().x, expBarrel->GetComponent<ComponentTransform>()->GetPosition().y, expBarrel->GetComponent<ComponentTransform>()->GetPosition().z);
-		auto strength = 100;
-		auto radius = 50;
-		expBarrel->applyExplosionForce(world, origin, strength, radius);
-		//sound->Play3D(origin.x(), origin.y(), origin.z());
-		//Game::GetGame()->GetAudioManager()->Play3DSound("Resources/Sounds/explosion.wav",origin.x(),origin.y(),origin.z(), false);
-
-		// remove expBarrel from mEntities
-		mEntities.erase(std::remove(mEntities.begin(), mEntities.end(), expBarrel), mEntities.end());
-	}
-
-	if (inputManager->GetKey(GLFW_KEY_B) && isExploded == false)
-	{
-		Game::GetGame()->BroadcastMessage(new HelloWorldMessage(nullptr,nullptr) );
+		Game::GetGame()->BroadcastMessage(new ExplodeMessage() );
 	}
 
 
