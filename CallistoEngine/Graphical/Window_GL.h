@@ -34,6 +34,8 @@ class Window_GL : public Window
 	static void OnResize(GLFWwindow* window, int width, int height);
 	static void OnKey(GLFWwindow* window, int key, int scancode, int action, int mods);
 	static void OnClose(GLFWwindow* window);
+	static void debugCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
+
 
 
 public:

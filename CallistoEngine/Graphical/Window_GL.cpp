@@ -6,6 +6,108 @@
 #include "PostProcessor.h"
 #include "../GUI/GUIManager.h"
 
+void Window_GL::debugCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam)
+{
+
+	if (strstr(message, "value is invalid; expected GL_INT or GL_UNSIGNED_INT64_NV") != nullptr)
+		return;
+
+	if (strstr(message, "Pixel transfer is synchronized with 3D rendering.") != nullptr)
+		return;
+
+
+	std::string msg = "[OpenGL]\n";
+
+	//Source of the debug message
+	switch (source)
+	{
+	case GL_DEBUG_SOURCE_API:
+		msg += "Source: API\n";
+		break;
+	case GL_DEBUG_SOURCE_WINDOW_SYSTEM:
+		msg += "Source: Window System\n";
+		break;
+	case GL_DEBUG_SOURCE_SHADER_COMPILER:
+		msg += "Source: Shader Compiler\n";
+		break;
+	case GL_DEBUG_SOURCE_THIRD_PARTY:
+		msg += "Source: Third Party\n";
+		break;
+	case GL_DEBUG_SOURCE_APPLICATION:
+		msg += "Source: Application\n";
+		break;
+	case GL_DEBUG_SOURCE_OTHER:
+		msg += "Source: Other\n";
+		break;
+	default:
+		msg += "Source: Unknown\n";
+		break;
+	};
+
+	//Type of the debug message
+	switch (type)
+	{
+	case GL_DEBUG_TYPE_ERROR:
+		msg += "Type: Error\n";
+		break;
+	case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
+		msg += "Type: Deprecated Behaviour\n";
+		break;
+	case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
+		msg += "Type: Undefined Behaviour\n";
+		break;
+	case GL_DEBUG_TYPE_PORTABILITY:
+		msg += "Type: Portability\n";
+		break;
+	case GL_DEBUG_TYPE_PERFORMANCE:
+		msg += "Type: Performance\n";
+		break;
+	case GL_DEBUG_TYPE_MARKER:
+		msg += "Type: Marker\n";
+		break;
+	case GL_DEBUG_TYPE_PUSH_GROUP:
+		msg += "Type: Push Group\n";
+		break;
+	case GL_DEBUG_TYPE_POP_GROUP:
+		msg += "Type: Pop Group\n";
+		break;
+	case GL_DEBUG_TYPE_OTHER:
+		msg += "Type: Other\n";
+		break;
+	default:
+		msg += "Type: Unknown\n";
+		break;
+	}
+
+	//Severity of the debug message
+	switch (severity)
+	{
+	case GL_DEBUG_SEVERITY_HIGH:
+		msg += "Severity: High\n";
+		break;
+	case GL_DEBUG_SEVERITY_MEDIUM:
+		msg += "Severity: Medium\n";
+		break;
+	case GL_DEBUG_SEVERITY_LOW:
+		msg += "Severity: Low\n";
+		break;
+	case GL_DEBUG_SEVERITY_NOTIFICATION:
+		msg += "Severity: Notification\n";
+		break;
+	default:
+		msg += "Severity: Unknown\n";
+		break;
+	}
+
+	msg += message;
+
+
+
+
+	std::cerr << msg << std::endl;
+}
+
+
 void Window_GL::OnMaximise(GLFWwindow* window, int maximized)
 {
 	if (maximized)
@@ -121,10 +223,11 @@ int Window_GL::Initialise(const char* pTitle)
 	// glfw: initialize and configure
    // ------------------------------
 	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	
+
+
 	// window transparency
 	//glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);
 	//glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); -- use this when doing fullscreen borderless
@@ -134,8 +237,8 @@ int Window_GL::Initialise(const char* pTitle)
 		SetFullscreen();
 	else
 		SetWindowed();
-		//_GlfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
-	
+	//_GlfwWindow = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
+
 	if (mGlfwWindow == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -162,6 +265,10 @@ int Window_GL::Initialise(const char* pTitle)
 	glfwSetWindowCloseCallback(mGlfwWindow, OnClose);
 	glfwSetWindowMaximizeCallback(mGlfwWindow, OnMaximise);
 
+
+
+
+
 	// glad: load all OpenGL function pointers
 	// ---------------------------------------
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -178,6 +285,11 @@ int Window_GL::Initialise(const char* pTitle)
 
 	// window transparency
 	//glfwSetWindowOpacity(mGlfwWindow, 0.5f);
+
+		// enable GL console debugging
+	glEnable(GL_DEBUG_OUTPUT);
+	glDebugMessageCallback(debugCallback, nullptr);
+	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, nullptr, GL_FALSE);
 
 	return 0;
 

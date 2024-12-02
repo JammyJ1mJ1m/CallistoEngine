@@ -78,13 +78,13 @@ void ShaderObject_GL::Render()
 
 void ShaderObject_GL::SetMat4(const char* pName, glm::mat4 pMatrix)
 {
-	unsigned int transformLoc = glGetUniformLocation(shaderProgram, pName);
+	GLint transformLoc = glGetUniformLocation(shaderProgram, pName);
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(pMatrix));
 }
 
 void ShaderObject_GL::SetVec3(const char* pName, const Vector3f& pVec)
 {
-	unsigned int loc = glGetUniformLocation(shaderProgram, pName);
+	GLint loc = glGetUniformLocation(shaderProgram, pName);
 	//glUniform3fv(loc, pVec.GetX(), pVec.GetY(), pVec.GetZ());
 	glUniform3fv(loc, 1, glm::value_ptr(glm::vec3(pVec.GetX(), pVec.GetY(), pVec.GetZ())));
 
@@ -93,11 +93,12 @@ void ShaderObject_GL::SetVec3(const char* pName, const Vector3f& pVec)
 
 void ShaderObject_GL::SetFloat(const char* pName, float pFloat)
 {
-	unsigned int loc = glGetUniformLocation(shaderProgram, pName);
-	glUniform1f(loc, pFloat);
+	GLint loc = glGetUniformLocation(shaderProgram, pName);
+
+	glUniform1f(loc, (GLfloat)pFloat);
 }
 
 void ShaderObject_GL::SetInt(const char* pName, int pInt)
 {
-	glUniform1i(glGetUniformLocation(shaderProgram, pName), pInt);
+	glUniform1i(glGetUniformLocation(shaderProgram, pName), (GLint)pInt);
 }
