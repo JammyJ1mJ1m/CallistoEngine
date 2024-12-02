@@ -83,23 +83,13 @@ Command* GameInputManager::HandleInput(int key)
 
 void GameInputManager::ReadControlsConfig(const std::string& pFilename)
 {
-	/*toml::table config;
-		config = toml::parse_file(pFilename);*/
-
 	TomlReader reader;
 	toml::table config = reader.ReadFile(pFilename.c_str());
 	if (config.empty())
 	{
 		std::cerr << "Input managager :: Error parsing file\n";
 		// setup some default values
-		mKeyBindingMap = {
-			{ 'W', "move_forward" },
-			{ 'S', "move_back" },
-			{ 'A', "move_left" },
-			{ 'D', "move_right" },
-			{ 'Q', "look_left" },
-			{ 'E', "look_right" }
-		};
+		LoadDefaultKeyBindings();
 		return;
 	}
 
@@ -138,14 +128,13 @@ void GameInputManager::ReadControlsConfig(const std::string& pFilename)
 	}
 }
 
-std::unordered_map<std::string, int> GameInputManager::LoadKeyCodeMap(const std::string& filename)
+KeysMap GameInputManager::LoadKeyCodeMap(const std::string& filename)
 {
-	std::unordered_map<std::string, int> keyCodeMap;
 	std::ifstream file(filename);
 
 	if (!file) {
 		std::cerr << "Failed to open key code map file: " << filename << std::endl;
-		return keyCodeMap;
+		return mKeysMap;
 	}
 
 	std::string line;
@@ -154,14 +143,14 @@ std::unordered_map<std::string, int> GameInputManager::LoadKeyCodeMap(const std:
 		std::string key;
 		int code;
 		if (std::getline(lineStream, key, ',') && (lineStream >> code)) {
-			keyCodeMap[key] = code;
+			mKeysMap[key] = code;
 		}
 		else {
 			std::cerr << "Invalid format in key code map file: " << line << std::endl;
 		}
 	}
 
-	return keyCodeMap;
+	return mKeysMap;
 }
 
 GameInputManager::~GameInputManager()
@@ -176,5 +165,4 @@ GameInputManager::~GameInputManager()
 	delete mAltRightKeyCommand;
 	//delete mRotateLeftCommand;
 	//delete mRotateRightCommand;
-
 }

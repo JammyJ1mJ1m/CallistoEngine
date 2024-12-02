@@ -132,10 +132,10 @@ bool ShooterGame::HandleInput()
 	// todo - move this to GAME SCENE
 	// float moveSensitivity = 16.0f * mDeltaTime;
 
-	if (mInputManager->GetKey(256))  // Esc
+	if (mInputManager->GetKey(CA_KEYS::ESCAPE))  // Esc
 		mGameState = Quit;
 
-	if (mInputManager->GetKeyDown(280))  // caps
+	if (mInputManager->GetKeyDown(CA_KEYS::CAPS_LOCK))  // caps
 	{
 		mWindow->ToggleFullscreen(true);
 

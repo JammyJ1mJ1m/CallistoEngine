@@ -34,7 +34,7 @@ void MainMenuScene::Initialise()
 {
 	text1 = new GUIText("First", Vector3f(1, 1, 1), Vector3f(50, 500, 1), GUIOrigin::_BOTTOM, 64);
 	text2 = new GUIText("Second", Vector3f(1, 1, 1), Vector3f(50, 300, 1), GUIOrigin::_BOTTOM, 64);
-	text3 = new GUIText("third",Vector3f(1,1,1), Vector3f(50, 100, 1), GUIOrigin::_BOTTOM, 64);
+	text3 = new GUIText("third", Vector3f(1, 1, 1), Vector3f(50, 100, 1), GUIOrigin::_BOTTOM, 64);
 
 	container1 = new GUIContainer(Vector3f(50, 50));
 	container1->AddElement(text1);
@@ -72,19 +72,20 @@ void MainMenuScene::OnKeyboard(int key, bool down)
 	float amount = 50.0;
 	float dt = Game::GetDeltaTime();
 
-	if (inputManager->GetKey(GLFW_KEY_LEFT))
+
+	if (inputManager->GetKey(CA_KEYS::LEFT))
 	{
 		container1->SetPosition(container1->GetPosition() + Vector3f(-amount * dt, 0, 0));
 	}
-	if (inputManager->GetKey(GLFW_KEY_RIGHT))
+	if (inputManager->GetKey(CA_KEYS::RIGHT))
 		container1->SetPosition(container1->GetPosition() + Vector3f(amount * dt, 0, 0));
 
-	if (inputManager->GetKey(GLFW_KEY_UP))
+	if (inputManager->GetKey(CA_KEYS::UP))
 	{
-		container1->SetPosition(container1->GetPosition() + Vector3f( 0, amount * dt, 0));
+		container1->SetPosition(container1->GetPosition() + Vector3f(0, amount * dt, 0));
 	}
-	if (inputManager->GetKey(GLFW_KEY_DOWN))
-		container1->SetPosition(container1->GetPosition() + Vector3f( 0, -amount * dt, 0));
+	if (inputManager->GetKey(CA_KEYS::DOWN))
+		container1->SetPosition(container1->GetPosition() + Vector3f(0, -amount * dt, 0));
 
 }
 

@@ -1,7 +1,8 @@
 #include "InputManager.h"
 
-InputManager::InputManager() 
+InputManager::InputManager()
 {
+
 	for (int i = 0; i < mKeyCount; i++)
 	{
 		mKeys[i] = false;
@@ -11,6 +12,18 @@ InputManager::InputManager()
 const bool InputManager::GetKeyDown(int key)
 {
 	return mKeys[key] && !mPrevKeys[key];
+}
+
+void InputManager::LoadDefaultKeyBindings()
+{
+	mKeyBindingMap = {
+		{ 'W', "move_forward" },
+		{ 'S', "move_back" },
+		{ 'A', "move_left" },
+		{ 'D', "move_right" },
+		{ 'Q', "look_left" },
+		{ 'E', "look_right" }
+	};
 }
 
 void InputManager::UpdatePrevKeyStates()

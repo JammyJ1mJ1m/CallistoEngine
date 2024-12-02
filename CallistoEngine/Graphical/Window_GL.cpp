@@ -76,7 +76,7 @@ void Window_GL::OnKey(GLFWwindow* window, int key, int scancode, int action, int
 	if (action == GLFW_PRESS) {
 		instance->SetLastKey(key);
 		instance->OnKeyboard(key, true);
-		//std::cout << "Key pressed: " << key << std::endl;
+		std::cout << "Key pressed: " << key << std::endl;
 	}
 	else if (action == GLFW_RELEASE) {
 		instance->SetLastKey(-1);

@@ -194,7 +194,7 @@ void GameScene::OnKeyboard(int key, bool down)
 	for (int i = 0; i < inputManager->GetKeysSize(); i++)
 	{
 		Command* command = nullptr;
-		if (inputManager->GetKey(i))
+		if (inputManager->GetKey((CA_KEYS)i))
 			command = inputManager->HandleInput(i);
 
 		// realistically we would only ever pass the player here as the user input affects the player
@@ -205,32 +205,30 @@ void GameScene::OnKeyboard(int key, bool down)
 	}
 
 	// TODO replace these with commands
-	if (inputManager->GetKey(GLFW_KEY_R) && mElapsed >= mTimeToSpawn)
+	if (inputManager->GetKey(CA_KEYS::R) && mElapsed >= mTimeToSpawn)
 	{
 		mElapsed = 0;
 		AddEntity(new Enemy());
 		int entityCount = GetEntityCount();
 		std::cout << "Entity count: " << entityCount << std::endl;
-		// get the game class
-		Game* game = Game::GetGame();
 
 		// update window title
 		std::stringstream ss;
 		ss << "Gamey game :: " << entityCount << " entities";
 
-		game->SetTitle(ss.str().c_str());
+		Game::GetGame()->SetTitle(ss.str().c_str());
 	}
 
 
-	if (inputManager->GetKeyDown(GLFW_KEY_Y) && isExploded == false)
+	if (inputManager->GetKeyDown(CA_KEYS::Y) && isExploded == false)
 	{
 		isExploded = true;
-		Game::GetGame()->BroadcastMessage(new ExplodeMessage() );
+		Game::GetGame()->BroadcastMessage(new ExplodeMessage());
 	}
 
 
 
-	if (inputManager->GetKeyDown(GLFW_KEY_X))
+	if (inputManager->GetKeyDown(CA_KEYS::X))
 	{
 		Renderer_GL* instance = static_cast<Renderer_GL*>(&Renderer_GL::GetInstance());
 		instance->SetEffectStatus("Blur", testCheck);

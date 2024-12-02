@@ -21,11 +21,7 @@ private:
     Command* mAltRightKeyCommand;
     Command* mBoostCommand;
 
-    // map of keys to commands
-    CommandMap mCommandMap;
-    
-    // map of commands to names
-    KeyBindingMap mKeyBindingMap; // Map of key to command name
+
 
 public:
     void BindKey(int key, const std::string& commandName);
@@ -39,7 +35,7 @@ public:
 
     //void AddCommand(const std::string& commandName, Command* command);
     void ReadControlsConfig(const std::string& filename);
-    std::unordered_map<std::string, int> LoadKeyCodeMap(const std::string& filename);
+    KeysMap LoadKeyCodeMap(const std::string& filename);
 
     GameInputManager();
 
