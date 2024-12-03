@@ -7,9 +7,9 @@
 
 LightManager* LightManager::mInstance = nullptr;
 
-LightComponent* LightManager::CreatePointLight(const float pDistance, const Vector3f& pColour)
+LightComponent* LightManager::CreatePointLight(const float pDistance, const Vector3f& pColour, const Vector3f& pPos)
 {
-	PointLight* pointLight = new PointLight(pDistance, pColour);
+	PointLight* pointLight = new PointLight(pDistance, pColour, pPos);
 	LightComponent* light = new LightComponent(pointLight);
 	mLights.push_back(light);
 

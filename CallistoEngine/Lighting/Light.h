@@ -12,6 +12,8 @@ protected:
 	Vector3f mSpecular;
 
 	Vector3f mPosition;
+	// used to offset the light from the object it is attached to
+	Vector3f mPositionOffset;
 
 public:
 	/*Light();*/
@@ -29,5 +31,7 @@ public:
 
 	inline const Vector3f& GetPosition() { return mPosition; };
 	inline void SetPosition(const Vector3f& pPosition) { mPosition = pPosition; };
+
+	inline const Vector3f& GetPositionOffset() { return mPositionOffset; };
 };
 

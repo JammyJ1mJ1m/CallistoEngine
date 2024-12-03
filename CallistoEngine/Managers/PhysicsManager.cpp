@@ -13,7 +13,7 @@ PhysicsManager::PhysicsManager(float pGrav)
 	mBroadphase = new btDbvtBroadphase();
 	mSolver = new btSequentialImpulseConstraintSolver();
 	mDynamicsWorld = new btDiscreteDynamicsWorld(mDispatcher, mBroadphase, mSolver, mCollisionConfiguration);
-	mDynamicsWorld->setGravity(btVector3(0,-19.8, 0));
+	mDynamicsWorld->setGravity(btVector3(0,0, 0));
 }
 
 

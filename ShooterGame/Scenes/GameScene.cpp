@@ -19,6 +19,7 @@
 #include "TestCube.h"
 #include "GunAK.h"
 #include "TestLight.h"
+#include "Ship.h"
 
 #include "Managers/PhysicsManager.h"
 #include "Managers/InputManager.h"
@@ -33,6 +34,9 @@
 #include "Graphical/Renderer_GL.h"
 
 #include "Messages/ExplodeMessage.h"
+#include "Messages/ThrustMessage.h"
+#include "Messages/RotateLMessage.h"
+#include "Components/Message.h"
 
 //#include <chrono>
 
@@ -42,6 +46,7 @@ Sound* sound;
 TestCube* testCube;
 GunAK* gun;
 TestLight* light;
+Ship* ship;
 
 GameScene::GameScene()
 {
@@ -64,31 +69,33 @@ void GameScene::Initialise()
 
 	AddEntity(new SkyBox());
 
-
 	// floor
-	player = new Player();
-	AddEntity(player);
+	//player = new Player();
+	//AddEntity(player);
 
 	//gun = new GunAK();
 	//AddEntity(gun);
 
-	Enemy* enemy = new Enemy();
-	AddEntity(enemy);
+	//Enemy* enemy = new Enemy();
+	//AddEntity(enemy);
 
-	GunLoader& gLoader = GunLoader::GetInstance();
+	ship = new Ship();
+	AddEntity(ship);
 
-	const GunMap meshes = gLoader.GetGunsToLoad();
+	//GunLoader& gLoader = GunLoader::GetInstance();
 
-	for (auto& mesh : meshes)
-	{
-		Gun* newGun = new Gun();
-		newGun->Initialise(mesh.first);
-		AddEntity(newGun);
-	}
+	//const GunMap meshes = gLoader.GetGunsToLoad();
+
+	//for (auto& mesh : meshes)
+	//{
+	//	Gun* newGun = new Gun();
+	//	newGun->Initialise(mesh.first);
+	//	AddEntity(newGun);
+	//}
 
 
-	expBarrel = new ExpBarrel();
-	AddEntity(expBarrel);
+	//expBarrel = new ExpBarrel();
+	//AddEntity(expBarrel);
 
 	//testCube = new TestCube();
 	//AddEntity(testCube);
@@ -200,7 +207,7 @@ void GameScene::OnKeyboard(int key, bool down)
 		// realistically we would only ever pass the player here as the user input affects the player
 		// TODO maybe implemnent a type/tag to filter commands for specific entities
 		if (command != nullptr)
-			command->execute(light);
+			command->execute(ship);
 
 	}
 
@@ -223,10 +230,21 @@ void GameScene::OnKeyboard(int key, bool down)
 	if (inputManager->GetKeyDown(CA_KEYS::Y) && isExploded == false)
 	{
 		isExploded = true;
-		Game::GetGame()->BroadcastMessage(new ExplodeMessage());
+		Message msg("explode");
+		Game::GetGame()->BroadcastMessage(&msg);
 	}
 
+	if (inputManager->GetKey(CA_KEYS::Q) )
+	{
+		Message msg("rotateR");
+		Game::GetGame()->BroadcastMessage(&msg);
+	}
 
+	if (inputManager->GetKey(CA_KEYS::E) )
+	{
+		Message msg("rotateL");
+		Game::GetGame()->BroadcastMessage( &msg);
+	}
 
 	if (inputManager->GetKeyDown(CA_KEYS::X))
 	{

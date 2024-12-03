@@ -17,10 +17,11 @@ ComponentRigidBody::ComponentRigidBody()
 ComponentRigidBody::ComponentRigidBody(ComponentCollider* pCollider, btScalar pMass, const Vector3f& pPos, bool gravityEnabled)
 {
 	mMass = pMass;
-	mInertia = btVector3();
+	mInertia = btVector3(0,0,0);
 
-	if (pCollider->GetColliderType() != ColliderType::MESH)
+		if (pCollider->GetColliderType() != ColliderType::MESH)
 		pCollider->GetCollisionShape()->calculateLocalInertia(mMass, mInertia);
+
 
 	btTransform transform;
 	transform.setIdentity();
@@ -34,6 +35,7 @@ ComponentRigidBody::ComponentRigidBody(ComponentCollider* pCollider, btScalar pM
 	mRigidBody = new btRigidBody(rigidBodyCI);
 
 	mRigidBody->setDamping(0.25, 0.25);  // Linear and angular damping
+	mRigidBody->setDamping(0.1, 0.1);
 	mRigidBody->setFriction(0.5);  // Set friction
 
 	if (!gravityEnabled) {
@@ -100,4 +102,31 @@ ComponentRigidBody::~ComponentRigidBody()
 	delete mRigidBody;
 	// delete mCollisionShape;
 	delete mMotionState;
+}
+
+void ComponentRigidBody::ApplyForce(const Vector3f& pForce)
+{
+	// wake up the rigidbody
+	mRigidBody->activate(true);
+
+	btVector3 force(pForce.GetX(), pForce.GetY(), pForce.GetZ() ); // Example force vector
+	mRigidBody->applyCentralForce(force);
+}
+
+void ComponentRigidBody::ApplyTorque(const Vector3f& pTorque)
+{
+	if (mRigidBody == nullptr)
+	{
+		std::cerr << "Error: RigidBody is not initialized.\n";
+		return;
+	}
+
+	// Wake up the rigid body if it's sleeping
+	mRigidBody->activate(true);
+
+	// Convert Vector3f to Bullet's btVector3
+	btVector3 torque(pTorque.GetX(), pTorque.GetY(), pTorque.GetZ());
+
+	// Apply torque
+	mRigidBody->applyTorque(torque);
 }

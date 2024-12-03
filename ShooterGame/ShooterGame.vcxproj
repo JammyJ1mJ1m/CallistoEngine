@@ -215,6 +215,7 @@
     <ClCompile Include="Entities\GunAK.cpp" />
     <ClCompile Include="Entities\GunMagazine.cpp" />
     <ClCompile Include="Components\ExplodableComponent.cpp" />
+    <ClCompile Include="Entities\Ship.cpp" />
     <ClCompile Include="GameCommands\BoostCommand.cpp" />
     <ClCompile Include="Components\ComponentShaderDefault.cpp" />
     <ClCompile Include="Components\ComponentShaderError.cpp" />
@@ -229,6 +230,8 @@
     <ClCompile Include="GunInformation.cpp" />
     <ClCompile Include="GunLoader.cpp" />
     <ClCompile Include="Managers\GameInputManager.cpp" />
+    <ClCompile Include="Messages\RotateLMessage.cpp" />
+    <ClCompile Include="Messages\ThrustMessage.cpp" />
     <ClCompile Include="Scenes\GameScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GameCommands\MoveCamForwardCommand.cpp" />
@@ -249,6 +252,7 @@
     <ClInclude Include="Entities\Gun.h" />
     <ClInclude Include="Entities\GunAK.h" />
     <ClInclude Include="Entities\GunMagazine.h" />
+    <ClInclude Include="Entities\Ship.h" />
     <ClInclude Include="Entities\TestCube.h" />
     <ClInclude Include="Components\ExplodableComponent.h" />
     <ClInclude Include="GameCommands\BoostCommand.h" />
@@ -266,6 +270,8 @@
     <ClInclude Include="GunInformation.h" />
     <ClInclude Include="GunLoader.h" />
     <ClInclude Include="Managers\GameInputManager.h" />
+    <ClInclude Include="Messages\RotateLMessage.h" />
+    <ClInclude Include="Messages\ThrustMessage.h" />
     <ClInclude Include="Scenes\GameScene.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="GameCommands\MoveCamForwardCommand.h" />

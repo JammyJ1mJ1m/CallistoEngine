@@ -14,8 +14,8 @@ class PointLight : public Light
 
 public:
 	PointLight();
-	PointLight(float pDistance, Vector3f& pAmb, Vector3f pDiff, Vector3f& pSpec);
-	PointLight(float pDistance, Vector3f pAmb);
+	PointLight(float pDistance, Vector3f& pAmb, Vector3f pDiff, Vector3f& pSpec, const Vector3f& pPos);
+	PointLight(float pDistance, Vector3f pAmb, const Vector3f& pPos);
 	~PointLight() = default;
 
 	inline const float GetConstant() { return mConstant; };

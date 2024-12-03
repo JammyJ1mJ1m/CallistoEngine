@@ -58,7 +58,7 @@ void ShooterGame::InitialiseGame()
 	mCamera = new Camera(glm::vec3(0.0f, 0.0f, 45.0f), mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
 
 	ResourceManager& RM = ResourceManager::getInstance();
-	LoadMesh("Resources/Geometry/Floor/SkyIsland.obj", "ship", RM);
+	// LoadMesh("Resources/Geometry/Floor/SkyIsland.obj", "ship", RM);
 	LoadMesh("Resources/Geometry/CardBox/box.obj", "tester", RM);
 	//LoadMesh("Resources/Geometry/Guns/RPG/rpg.obj", "rpg", RM);
 	LoadMesh("Resources/Geometry/CardBox/box.obj", "cube", RM);
@@ -66,6 +66,7 @@ void ShooterGame::InitialiseGame()
 
 	//LoadMesh("Resources/Geometry/Guns/AK/AK.obj", "AK", RM);
 	LoadMesh("Resources/Geometry/Guns/AK/magazineAK.obj", "AKmagazine", RM);
+	LoadMesh("Resources/Geometry/ship/ship.obj", "spaceship", RM);
 
 	LoadMesh("Resources/Geometry/error.obj", "error", RM);
 

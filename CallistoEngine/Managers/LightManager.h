@@ -27,7 +27,7 @@ public:
 	}
 
 	// creates a point light based Entity and returns it
-	LightComponent* CreatePointLight(const float pDistance, const Vector3f& pColour);
+	LightComponent* CreatePointLight(const float pDistance, const Vector3f& pColour, const Vector3f& pPos = Vector3f(0,0,0));
 	// LightComponent*s CreateSpotLight(const float pDistance,const float pAngle, const Vector3f& pColour);
 	// LightComponent* CreateDirectionalLight(const Vector3f& pDirection, const Vector3f& pColour);
 	// void CreatePointLight(const float pDistance, const Vector3f& pColour, const Vector3f& pDiffuse, const Vector3f& pSpecular);

@@ -10,6 +10,10 @@ class ComponentTransform : public IComponent
 {
 
 	//glm::vec3 position;
+	Vector3f mForward;
+	Vector3f mUp;
+	Vector3f mRight;
+
 	Vector3f position;
 	glm::vec3 rotation;
 	glm::vec3 scale;
@@ -25,6 +29,12 @@ public:
 	inline const Vector3f& GetPosition() { return position; }
 	inline const glm::vec3& GetRotation() { return rotation; }
 	inline const glm::vec3& GetScale() { return scale; }
+
+	Vector3f& GetForwardVector();
+	Vector3f& GetUpVector();
+	Vector3f& GetRightVector();
+	
+
 
 	//inline void SetPosition(glm::vec3 pPosition) { position = pPosition; UpdateModelMatrix(); }
 

@@ -114,10 +114,32 @@ void ComponentTransform::SyncTransform(const btTransform& pTransform)
 	btQuaternion bulletRotation = pTransform.getRotation();
 	rotation = glm::eulerAngles(glm::quat(bulletRotation.getW(), bulletRotation.getX(), bulletRotation.getY(), bulletRotation.getZ()));
 
-	UpdateModelMatrix();	
+	// Update the forward, up, and right vectors
+	glm::quat glmRotation = glm::quat(glm::vec3(rotation.x, rotation.y, rotation.z));
+	glm::vec3 forward = glm::normalize(glm::rotate(glmRotation, glm::vec3(0, 0, -1))); // Default forward vector
+	glm::vec3 up = glm::normalize(glm::rotate(glmRotation, glm::vec3(0, 1, 0)));       // Default up vector
+	glm::vec3 right = glm::normalize(glm::rotate(glmRotation, glm::vec3(1, 0, 0)));   // Default right vector
+
+	mForward = Vector3f(forward.x, forward.y, forward.z);
+	mUp = Vector3f(up.x, up.y, up.z);
+	mRight = Vector3f(right.x, right.y, right.z);
+
+	UpdateModelMatrix();
 }
 
+Vector3f& ComponentTransform::GetForwardVector() 
+{
+	return mForward;
+}
+Vector3f& ComponentTransform::GetUpVector()
+{
+	return mUp;
+}
 
+Vector3f& ComponentTransform::GetRightVector()
+{
+	return mRight;
+}
 IComponent::ComponentTypes ComponentTransform::GetType() const
 {
 	return ComponentTypes::COMPONENT_TRANSFORM;

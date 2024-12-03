@@ -36,6 +36,10 @@ class ComponentRigidBody : public IComponent
 		void SyncWithTransform(Entity* pEntity);
 		void SetPosition(const Vector3f pPos);
 
+		void ApplyForce(const Vector3f& pForce);
+		void ApplyImpulse(const Vector3f& pImpulse);
+		void ApplyTorque(const Vector3f& pTorque);
+
 		// ******************************************************
 		// inherited stuff
 		virtual ComponentTypes GetType() const;

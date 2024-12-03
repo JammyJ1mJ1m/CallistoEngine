@@ -40,6 +40,7 @@ void SystemLight::Run(Entity* pEntity)
 		Vector3f position = transform->GetPosition();
 
 		LightComponent* light = pEntity->GetComponent<LightComponent>();
-		light->GetLight()->SetPosition(position );
+		Vector3f lightOffset = light->GetLight()->GetPositionOffset();
+		light->GetLight()->SetPosition( position + lightOffset );
 	}
 }

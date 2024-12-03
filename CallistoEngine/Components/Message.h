@@ -6,10 +6,10 @@ class Message
 protected:
 	std::string mType;
 
+public:
 	Message(std::string type);
 	virtual ~Message();
 
-public:
 	std::string GetMessageType()		const { return mType; }
 
 };

@@ -17,22 +17,25 @@ PointLight::PointLight()
 	CalculateDistance(100.0f);
 }
 
-PointLight::PointLight(float pDistance, Vector3f& pAmb, Vector3f pDiff, Vector3f& pSpec)
+PointLight::PointLight(float pDistance, Vector3f& pAmb, Vector3f pDiff, Vector3f& pSpec, const Vector3f& pPosOffset)
 {
 	mAmbient = pAmb;
 	mDiffuse = pDiff;
 	mSpecular = pSpec;
+	mPositionOffset = pPosOffset;
 
 	CalculateDistance(pDistance);
 }
 
 
-PointLight::PointLight(float pDistance, Vector3f pAmb)
+PointLight::PointLight(float pDistance, Vector3f pAmb, const Vector3f& pPosOffset)
 {
 	mType = LightType::POINT;
 	mAmbient = pAmb;
 	mDiffuse = pAmb;
 	mSpecular = pAmb;
+	mPositionOffset = pPosOffset;
+
 
 	CalculateDistance(pDistance);
 }
