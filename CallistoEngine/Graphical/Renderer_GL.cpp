@@ -59,13 +59,13 @@ void Renderer_GL::BeginForward()
 	//glBindFramebuffer(GL_FRAMEBUFFER, gfbo);
 
 	EnableDepthTest();
+	mMainTarget->BindTextures();
 
 	mMainTarget->Activate();
 }
 
 void Renderer_GL::End()
 {
-
 	mMainTarget->BindTextures();
 	mGBuffer->BindTextures();
 }
@@ -145,7 +145,7 @@ void Renderer_GL::Initialise(int width, int height)
 
 	InitialisePP();
 
-	CreateRBO(width, height);
+	//CreateRBO(width, height);
 	EnableDepthTest();
 }
 
@@ -161,7 +161,7 @@ void Renderer_GL::Render(Entity* entity)
 
 void Renderer_GL::Resize(int pWidth, int pHeight)
 {
-	//mMainTarget->Create(pWidth, pHeight);
+	mMainTarget->Create(pWidth, pHeight);
 	mFinalTarget->Resize(pWidth, pHeight);
 	mGBuffer->Resize(pWidth,pHeight);
 
@@ -208,8 +208,6 @@ void Renderer_GL::CopyBuffer(const int pCopyFrom, const int pCopyTo)
 	int width, height;
 	width = Game::GetGame()->GetGameCamera()->mWidth;
 	height = Game::GetGame()->GetGameCamera()->mHeight;
-
-
 
 	glBindFramebuffer(GL_READ_FRAMEBUFFER, pCopyFrom);
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, pCopyTo); // write to default framebuffer

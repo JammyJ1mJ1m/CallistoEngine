@@ -15,6 +15,8 @@ private:
 public:
 	inline unsigned int GetDepthBufferID() const { return mDepthTexture; }
 	inline unsigned int GetTextureID() const { return target.GetTexture(); }
+	inline unsigned int GetBufferID() const { return target.GetBufferID(); }
+
 
 	void Activate();
 

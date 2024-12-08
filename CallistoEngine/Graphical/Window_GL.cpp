@@ -101,9 +101,6 @@ void Window_GL::debugCallback(GLenum source, GLenum type, GLuint id, GLenum seve
 
 	msg += message;
 
-
-
-
 	std::cerr << msg << std::endl;
 }
 
@@ -158,13 +155,13 @@ void Window_GL::OnResize(GLFWwindow* window, int width, int height)
 		instance->SetHasWindowSizeChanged(true);
 
 
-		glViewport(0, 0, width, height);
 
 		// Resize the renderer which will also resize all the PP
 		instance->_renderer->Resize(width, height);
 		GUIManager::GetInstance().Resize(width, height);
-		//instance->GetGame()->GetGameCamera()->UpdateProjection(width, height);
+		instance->GetGame()->GetGameCamera()->Resize(width, height);
 
+		glViewport(0, 0, width, height);
 
 	}
 }
@@ -178,7 +175,7 @@ void Window_GL::OnKey(GLFWwindow* window, int key, int scancode, int action, int
 	if (action == GLFW_PRESS) {
 		instance->SetLastKey(key);
 		instance->OnKeyboard(key, true);
-		std::cout << "Key pressed: " << key << std::endl;
+		// std::cout << "Key pressed: " << key << std::endl;
 	}
 	else if (action == GLFW_RELEASE) {
 		instance->SetLastKey(-1);

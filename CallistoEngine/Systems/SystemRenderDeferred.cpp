@@ -85,21 +85,14 @@ void SystemRenderDeferred::RunLighting()
 		mLightingShader->SetFloat(LightQuadName.c_str(), quadratic);
 
 	}
-	mLightingShader->SetVec3("viewPos", Game::GetGame()->GetGameCamera()->GetPosition());
+	Vector3f camPos = Game::GetGame()->GetGameCamera()->GetPosition();
+	mLightingShader->SetVec3("viewPos", camPos);
 
 	
 	 mRenderer->RenderScreenQuad();
 	 mRenderer->UnbindFrame();
 	 mRenderer->SetFrame(mRenderer->GetMainTarget()->GetTextureID());
-	// output the results to a texture - mMaintarget
 
-	//mLightingShader->SetVec3("lights[" + std::to_string(i) + "].Position", lightPositions[i]);
-	//mLightingShader->SetVec3("lights[" + std::to_string(i) + "].Color", lightColors[i]);
-	//// update attenuation parameters and calculate radius
-	//const float linear = 0.09f;
-	//const float quadratic = 0.032f;
-	//mLightingShader->SetFloat("lights[" + std::to_string(i) + "].Linear", linear);
-	//mLightingShader->SetFloat("lights[" + std::to_string(i) + "].Quadratic", quadratic);
 }
 
 void SystemRenderDeferred::CopyBuffer(const int pCopyFrom, const int pCopyTo)

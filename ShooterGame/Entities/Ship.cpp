@@ -6,6 +6,7 @@
 #include "Misc/Sound.h"
 #include "Components/ComponentShaderWindow.h"
 #include "messages/ThrustMessage.h"
+#include "Components/ShipControllerComponent.h"
 
 
 
@@ -31,7 +32,9 @@ void Ship::start()
 	ComponentRigidBody* rb = new ComponentRigidBody(collider, mass, pos);
 	AddComponent(rb);
 
-	AddComponent(LightManager::GetInstance().CreatePointLight(158.0f, Vector3f(1.0f, 0.0f, 1.0f), Vector3f(10,3,-20)));
+	 AddComponent(LightManager::GetInstance().CreatePointLight(158.0f, Vector3f(1.0f, 0.0f, 1.0f), Vector3f(10,3,-20)));
+
+	AddComponent(new ShipControllerComponent(this));
 }
 
 void Ship::SetPosition(const Vector3f& pPosition)
@@ -87,7 +90,7 @@ void Ship::MoveRight()
 
 void Ship::OnMessage(Message* msg)
 {
-	if (msg->GetMessageType() == "rotateR")
+	/*if (msg->GetMessageType() == "rotateR")
 	{
 		ComponentRigidBody* rb = GetComponent<ComponentRigidBody>();
 		rb->ApplyTorque(Vector3f(0.0f,2.0f, 0.0f));
@@ -96,7 +99,7 @@ void Ship::OnMessage(Message* msg)
 	{
 		ComponentRigidBody* rb = GetComponent<ComponentRigidBody>();
 		rb->ApplyTorque(Vector3f(0.0f, -2.0f, 0.0f));
-	}
+	}*/
 	Entity::OnMessage(msg);
 }
 

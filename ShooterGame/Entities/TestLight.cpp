@@ -12,10 +12,10 @@
 void TestLight::start()
 {
 	// wont need these two components later on for a basic light. Can include them for visual representation, i.e lamp model
-	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("tester"), "Resources/textures/TestCube.mtl"));
+	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("cube"), "Resources/textures/TestCube.mtl"));
 	AddComponent(new ComponentShaderDefault(this,Game::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
 
-	Vector3f pos(0.0f, 5.0f, 0.0f);
+	Vector3f pos(0.0f, 0.0f, 0.0f);
 	AddComponent(new ComponentTransform(pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f)));
 
 	//PointLight* light = new PointLight(7.0f, Vector3f(1.0f, 0.5f, 1.0f));

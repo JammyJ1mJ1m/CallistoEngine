@@ -5,7 +5,7 @@
 
 void Player::start()
 {
-	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("ship"), "Resources/textures/SkyIsland.mtl"));
+	AddComponent(new ComponentModel(Game::GetGame()->GetMesh("floor"), "Resources/textures/Floor.mtl"));
 	//AddComponent(new ComponentShaderDefault(ShooterGame::GetGameCamera(), "Resources/Shaders/default.vert", "Resources/Shaders/default.frag"));
 
 	Vector3f pos(0.0f, -5.0f, 0.0f);
@@ -13,8 +13,8 @@ void Player::start()
 	//mEntities.push_back(tri);
 
 	// create mesh colider shape
-	std::vector<Vertex> vertices = Game::GetGame()->GetMesh("ship")->GetVertices();
-	std::vector<int> indices = Game::GetGame()->GetMesh("ship")->GetIndices();
+	std::vector<Vertex> vertices = Game::GetGame()->GetMesh("floor")->GetVertices();
+	std::vector<int> indices = Game::GetGame()->GetMesh("floor")->GetIndices();
 
 	ComponentCollider* collider = new ComponentCollider(vertices, indices);
 	AddComponent(collider);

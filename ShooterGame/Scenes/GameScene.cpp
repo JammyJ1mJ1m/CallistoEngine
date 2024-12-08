@@ -70,8 +70,8 @@ void GameScene::Initialise()
 	AddEntity(new SkyBox());
 
 	// floor
-	//player = new Player();
-	//AddEntity(player);
+	player = new Player();
+	AddEntity(player);
 
 	//gun = new GunAK();
 	//AddEntity(gun);
@@ -148,13 +148,20 @@ void GameScene::Initialise()
 
 	////}
 
-
+	//TestLight * light2 = new TestLight();
+	//light2->SetPosition(Vector3f(0, 5, 0));
+	//LightComponent* lc2 = light2->GetComponent<LightComponent>();
+	//Light* l2 = lc2->GetLight();/// ;
+	//l2->SetDiffuse(Vector3f(1, 1, 1));
+	//AddEntity(light2);
 	// add the lights here
 	light = new TestLight();
+	light->SetPosition(Vector3f(-10 , 5, 0));
 	LightComponent* lc1 = light->GetComponent<LightComponent>();
 	Light* l1 = lc1->GetLight();/// ;
 	l1->SetDiffuse(Vector3f(1, 1, 1));
 	AddEntity(light);
+
 
 #pragma endregion
 
@@ -207,7 +214,7 @@ void GameScene::OnKeyboard(int key, bool down)
 		// realistically we would only ever pass the player here as the user input affects the player
 		// TODO maybe implemnent a type/tag to filter commands for specific entities
 		if (command != nullptr)
-			command->execute(ship);
+			command->execute(light);
 
 	}
 
@@ -303,7 +310,6 @@ void GameScene::Update(double deltaTime)
 		image1->Resize(Game::GetGame()->GetGameCamera()->mWidth, Game::GetGame()->GetGameCamera()->mHeight);
 
 	}
-
 }
 
 void GameScene::Render(SystemRender* pRenderer)

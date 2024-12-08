@@ -15,7 +15,9 @@ public:
 
 	void BindTextures();
 
+	inline unsigned int GetBufferID() const { return mFBO; }
 	inline unsigned int GetTexture() const { return mFBT; }
+
 
 	virtual void Resize(int width, int height);
 

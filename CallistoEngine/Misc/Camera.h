@@ -73,5 +73,6 @@ public:
 	/// <param name="near"> - Near plance distance</param>
 	/// <param name="far"> - Far plane distance</param>
 	void UpdateProjection(const float pWidth, const float pHeight, const float fov = 45.0f, const float near = 0.1f, const float far = 1000.0f);
+	void Resize(const float pWidth, const float pHeight);
 
 };

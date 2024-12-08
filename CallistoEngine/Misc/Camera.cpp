@@ -140,6 +140,13 @@ void Camera::UpdateProjection(const float pWidth, const float pHeight, const flo
 	projection = glm::perspective(glm::radians(fov), aspect, near, far);
 }
 
+void Camera::Resize(const float pWidth, const float pHeight)
+{
+	mWidth = pWidth;
+	mHeight = pHeight;
+	UpdateProjection(pWidth, pHeight, mFov, 0.1f, 1000.0f);
+}
+
 void Camera::HandleMouse(const float xpos, const float ypos)
 {
 	if (firstMouse)

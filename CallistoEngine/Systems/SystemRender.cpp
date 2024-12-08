@@ -38,33 +38,19 @@ void SystemRender::Render(std::vector<Entity*>& pEntities)
 	mRenderSystemDeferred->RunLighting();
 
 
-	int mainTargetBufferID = mRenderer->GetMainTarget()->GetTextureID(); //   <-- i want to write to this buffers depth
-	int mainTargetDepthID = mRenderer->GetMainTarget()->GetDepthBufferID();
-
-	GBuffer* gBuff = mRenderer->GetGBuffer();
-
-	int bufferID = gBuff->GetGBufferID();
-	int albedoId = gBuff->GetAlbedoSpecTextureID();
-	int depthId = gBuff->GetDepthBufferID();
-	int normalsID = gBuff->GetNormalTextureID();
-	int posID = gBuff->GetPositionTextureID();
-
-
 	int from = mRenderer->GetGBuffer()->GetGBufferID();
-	int to = mRenderer->GetMainTarget()->GetTextureID();
+	int to = mRenderer->GetMainTarget()->GetBufferID();
 
 	mRenderSystemDeferred->CopyBuffer(from, to);
 
 
-	mRenderSystemDeferred->End();
 
+	 mRenderSystemDeferred->End();
 
-	bool render = true;
+	bool render = false;
 	// blit the frame buffers
 	if (render)
 	{
-		
-
 		mRenderSystemForward->Begin();
 
 		// render forward here

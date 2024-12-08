@@ -28,7 +28,7 @@ void RenderTarget::Activate()
 void RenderTarget::BindTextures()
 {
 	Renderer_GL::GetInstance().SetFrame(mFBT);
-
+	// Activate();
 }
 
 void RenderTarget::Resize(int width, int height)
