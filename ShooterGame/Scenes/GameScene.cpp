@@ -47,6 +47,7 @@ TestCube* testCube;
 GunAK* gun;
 TestLight* light;
 Ship* ship;
+SkyBox* sky;
 
 GameScene::GameScene()
 {
@@ -66,8 +67,8 @@ void GameScene::Initialise()
 #pragma region Initial entity stuff
 	mLightSystem = new SystemLight();
 
-
-	AddEntity(new SkyBox());
+	sky = new SkyBox();
+	AddEntity(sky);
 
 	// floor
 	player = new Player();
@@ -265,6 +266,15 @@ void GameScene::OnKeyboard(int key, bool down)
 
 void GameScene::Update(double deltaTime)
 {
+	// get sky transform component
+	ComponentTransform* skyTransform = sky->GetComponent<ComponentTransform>();
+	// get the rotation
+	glm::vec3 rotation = skyTransform->GetRotation();
+
+	// rotate the sky
+	skyTransform->SetRotation(glm::vec3(rotation.x + ((0.05f * (3.141592 / 180.0f)) * deltaTime), rotation.y + ((0.05f * (3.141592 / 180.0f)) * deltaTime), rotation.z));
+
+
 	// testCube->Rotate(1, deltaTime);
 	mElapsed += deltaTime;
 

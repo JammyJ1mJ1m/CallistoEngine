@@ -79,7 +79,6 @@ void Game::BaseInitialise(Window* w)
 {
 	mWindow = w;
 	mRenderer = w->GetRenderer();
-	mRenderSystem = new SystemRender(mRenderer);
 	//mDeferredRenderSystem = new SystemRenderDeferred(mRenderer);
 	mHasWindowSizeChanged = false;
 
@@ -96,8 +95,7 @@ void Game::BaseRun()
 
 void Game::BaseRender()
 {
-	mRenderer->UnbindFrame();
-	mRenderer->ClearScreen();
+	//mRenderer->ClearScreen();
 	mDiscordManager->UpdateDiscordPresence();
 	if (mWindow->GetHasWindowSizeChanged())
 	{

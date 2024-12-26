@@ -273,6 +273,8 @@ int Window_GL::Initialise(const char* pTitle)
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
+	
+	glEnable(GL_DEPTH_TEST);
 
 	_renderer->Initialise(GetWindowWidth(), GetWindowHeight());
 

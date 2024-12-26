@@ -30,7 +30,7 @@ void ComponentShaderSkybox::Update(glm::mat4 pMat)
 
 
 	// set model
-	//mShaderObject->SetMat4("model", pMat);
+	mShaderObject->SetMat4("model", pMat);
 
 	// set view
 	glm::mat4 camView = mCamera->GetView();

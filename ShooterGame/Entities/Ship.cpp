@@ -32,7 +32,7 @@ void Ship::start()
 	ComponentRigidBody* rb = new ComponentRigidBody(collider, mass, pos);
 	AddComponent(rb);
 
-	 AddComponent(LightManager::GetInstance().CreatePointLight(158.0f, Vector3f(1.0f, 0.0f, 1.0f), Vector3f(10,3,-20)));
+	// AddComponent(LightManager::GetInstance().CreatePointLight(158.0f, Vector3f(1.0f, 0.0f, 1.0f), Vector3f(10,3,-20)));
 
 	AddComponent(new ShipControllerComponent(this));
 }

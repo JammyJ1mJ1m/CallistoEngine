@@ -55,7 +55,8 @@ void ShooterGame::InitialiseGame()
 	// other game setup logic
 	mGameState = Playing;
 
-	mCamera = new Camera(glm::vec3(0.0f, 0.0f, 45.0f), mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
+	mCamera = new Camera(glm::vec3(0.0f, 1.0f, 45.0f), mWindow->GetWindowWidth(), mWindow->GetWindowHeight());
+	mRenderSystem = new SystemRender(mRenderer);
 
 	ResourceManager& RM = ResourceManager::getInstance();
 	 LoadMesh("Resources/Geometry/Floor/FloorTwo.obj", "floor", RM);
@@ -133,6 +134,9 @@ bool ShooterGame::HandleInput()
 {
 	// todo - move this to GAME SCENE
 	// float moveSensitivity = 16.0f * mDeltaTime;
+
+	if (mInputManager->GetKeyDown(CA_KEYS::F1))  // Esc
+		mRenderer->CycleRenderMode();
 
 	if (mInputManager->GetKey(CA_KEYS::ESCAPE))  // Esc
 		mGameState = Quit;

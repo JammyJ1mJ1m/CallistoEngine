@@ -34,9 +34,8 @@ ComponentRigidBody::ComponentRigidBody(ComponentCollider* pCollider, btScalar pM
 
 	mRigidBody = new btRigidBody(rigidBodyCI);
 
-	mRigidBody->setDamping(0.25, 0.25);  // Linear and angular damping
-	mRigidBody->setDamping(0.1, 0.1);
-	mRigidBody->setFriction(0.5);  // Set friction
+	mRigidBody->setDamping(0, 0);  // Linear and angular damping
+	mRigidBody->setFriction(0.1);  // Set friction
 
 	if (!gravityEnabled) {
 		mRigidBody->setGravity(btVector3(0, 0.0, 0));

@@ -19,6 +19,7 @@ class MainRenderTarget;
 // Basically represents a graphics context and its active shaders
 class Renderer
 {
+	int mRenderMode;
 
 	// Data
 protected:
@@ -26,6 +27,8 @@ protected:
 	Vector4f _clearColour;
 
 public:
+	int GetRenderMode() { return mRenderMode; }
+	void CycleRenderMode();
 
 	virtual MainRenderTarget* GetMainTarget() = 0;
 	virtual void SetFrame(unsigned int f) = 0;;

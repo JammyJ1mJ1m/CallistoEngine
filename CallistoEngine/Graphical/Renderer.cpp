@@ -9,3 +9,10 @@ Renderer* Renderer::mInstance = nullptr;
 Renderer::~Renderer()
 {
 }
+
+void Renderer::CycleRenderMode()
+{
+	mRenderMode++;
+	if (mRenderMode > 4)
+		mRenderMode = 0;
+}

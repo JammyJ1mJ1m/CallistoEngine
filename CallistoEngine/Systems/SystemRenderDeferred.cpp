@@ -39,7 +39,7 @@ void SystemRenderDeferred::Run(Entity* pEntity)
 
 		GBuffer* gBuffer = mRenderer->GetGBuffer();
 		gBuffer->GetShader()->SetMat4("model", modelMatrix);
-		//gBuffer->GetShader()->SetVec3("viewPos", Game::GetGame()->GetGameCamera()->GetPosition());
+		// gBuffer->GetShader()->SetVec3("viewPos", Game::GetGame()->GetGameCamera()->GetPosition());
 
 		mRenderer->Render(pEntity);
 
@@ -47,10 +47,9 @@ void SystemRenderDeferred::Run(Entity* pEntity)
 }
 void SystemRenderDeferred::RunLighting()
 {
-	mRenderer->UnbindFrame();
-	//mRenderer->ClearScreen();
-	mRenderer->GetMainTarget()->Activate();
 	mRenderer->ClearScreen();
+	mRenderer->GetMainTarget()->Activate();
+	//mRenderer->ClearScreen();
 	//################################################################
 	//					 render the lights
 	//################################################################
@@ -67,13 +66,13 @@ void SystemRenderDeferred::RunLighting()
 		std::string lightPosName = "lights[" + std::to_string(i) + "].Position";
 		std::string lightDiffuseName = "lights[" + std::to_string(i) + "].Color";
 
-		Vector3f posy = lights[i]->GetLight()->GetPosition();
-		mLightingShader->SetVec3(lightPosName.c_str(), posy);
-		Vector3f col = lights[i]->GetLight()->GetDiffuse();
-		mLightingShader->SetVec3(lightDiffuseName.c_str(),	lights[i]->GetLight()->GetDiffuse());
-
 		std::string LightLinearName = "lights[" + std::to_string(i) + "].Linear";
 		std::string LightQuadName = "lights[" + std::to_string(i) + "].Quadratic";
+
+		
+		mLightingShader->SetVec3(lightPosName.c_str(), lights[i]->GetLight()->GetPosition());
+		mLightingShader->SetVec3(lightDiffuseName.c_str(),	lights[i]->GetLight()->GetDiffuse());
+
 
 		if (lights[i]->GetLight()->GetType() == LightType::POINT)
 		{
@@ -85,13 +84,14 @@ void SystemRenderDeferred::RunLighting()
 		mLightingShader->SetFloat(LightQuadName.c_str(), quadratic);
 
 	}
-	Vector3f camPos = Game::GetGame()->GetGameCamera()->GetPosition();
-	mLightingShader->SetVec3("viewPos", camPos);
+
+	mLightingShader->SetVec3("viewPos", Game::GetGame()->GetGameCamera()->GetPosition());
+	mLightingShader->SetInt("outputMode", mRenderer->GetRenderMode()); 
 
 	
 	 mRenderer->RenderScreenQuad();
 	 mRenderer->UnbindFrame();
-	 mRenderer->SetFrame(mRenderer->GetMainTarget()->GetTextureID());
+	//mRenderer->SetFrame(mRenderer->GetMainTarget()->GetTextureID());
 
 }
 

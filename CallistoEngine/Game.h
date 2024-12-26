@@ -104,6 +104,8 @@ public:
 	{
 		BaseInitialise(w);
 		InitialiseGame();
+		mRenderer->UnbindFrame();
+
 	}
 
 
