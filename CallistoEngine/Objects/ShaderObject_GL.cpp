@@ -100,5 +100,11 @@ void ShaderObject_GL::SetFloat(const char* pName, float pFloat)
 
 void ShaderObject_GL::SetInt(const char* pName, int pInt)
 {
-	glUniform1i(glGetUniformLocation(shaderProgram, pName), (GLint)pInt);
+	int location = glGetUniformLocation(shaderProgram, pName);
+	if (location == -1) {
+		std::cerr << "uniform not found!" << std::endl;
+	}
+	else {
+		glUniform1i(location, pInt);
+	}
 }

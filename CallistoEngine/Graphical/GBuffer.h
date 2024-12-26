@@ -6,7 +6,7 @@ class GBuffer
 {
 private:
     unsigned int mGFBO;
-    unsigned int mPositionTexture, mNormalTexture, mAlbedoSpecTexture;
+    unsigned int mPositionTexture, mNormalTexture, mAlbedoSpecTexture, mEmissionTexture;
     unsigned int mDepthTexture; 
     ShaderObject_GL* mGeometryPassShader;
 
@@ -27,6 +27,7 @@ public:
     inline unsigned int GetPositionTextureID() const { return mPositionTexture; }
     inline unsigned int GetNormalTextureID() const { return mNormalTexture; }
     inline unsigned int GetAlbedoSpecTextureID() const { return mAlbedoSpecTexture; }
+    inline unsigned int GetEmissionTextureID() const { return mEmissionTexture; }
     ShaderObject* GetShader() const { return mGeometryPassShader; }
 
 };

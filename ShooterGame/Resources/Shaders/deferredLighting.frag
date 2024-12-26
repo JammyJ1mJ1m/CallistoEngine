@@ -3,9 +3,10 @@ out vec4 FragColor;
 
 in vec2 TexCoords;
 
-uniform sampler2D gPosition;
-uniform sampler2D gNormal;
-uniform sampler2D gAlbedoSpec;
+uniform sampler2D gPosition;    // 0
+uniform sampler2D gNormal;      // 1
+uniform sampler2D gAlbedoSpec;  // 2
+uniform sampler2D gEmission;    // 3
 
 struct Light {
     vec3 Position;
@@ -27,6 +28,7 @@ void main()
     vec3 Normal = normalize(texture(gNormal, TexCoords).rgb);
     vec3 Diffuse = texture(gAlbedoSpec, TexCoords).rgb;
     float Specular = texture(gAlbedoSpec, TexCoords).a;
+    vec3 Emission = texture(gEmission, TexCoords).rgb;
 
     // Ambient
     vec3 lighting = Diffuse * 0.1; 
@@ -41,9 +43,9 @@ void main()
         vec3 diffuse = diff * Diffuse * lights[i].Color;
 
         // Specular
-     vec3 halfwayDir = normalize(lightDir + viewDir);
+        vec3 halfwayDir = normalize(lightDir + viewDir);
         float spec = pow(max(dot(Normal, halfwayDir), 0.0), 64.0); // Adjust shininess as needed
-        vec3 specular = spec * lights[i].Color * Specular;
+        vec3 specular = spec * vec3(1,0,0) ;
 
         // Attenuation
         float distance = length(lights[i].Position - FragPos);
@@ -51,28 +53,19 @@ void main()
         diffuse *= attenuation;
         // specular *= attenuation; // disable to exaggerate col
 
-        lighting += diffuse +specular;
+        lighting +=  specular ;
     }
-
-    switch(outputMode)
-    {
-		case 0:
-FragColor = vec4(lighting, 1.0);
-			return;
-		case 1:
-			FragColor = vec4(FragPos, 1.0);
-			return;
-		case 2:
-			FragColor = vec4(Normal, 1.0);
-			return;
-            case 3:
-			FragColor = vec4(Diffuse,1.0);
-			return;
-        case 4:
-FragColor = vec4(Specular,Specular,Specular, 1.0);
-			return;
-            }
+    
 
 
+
+switch(outputMode)
+{   case 0: FragColor = vec4(lighting, 1.0); break;
+    case 1: FragColor = vec4(FragPos, 1.0); break;
+    case 2: FragColor = vec4(Normal, 1.0); break;
+    case 3: FragColor = vec4(TexCoords,0.0, 1.0); break;
+    case 4: FragColor = vec4(Diffuse, 1.0); break;
+    case 5: FragColor = vec4(Emission, 1.0) ; break;
+}
 
 }

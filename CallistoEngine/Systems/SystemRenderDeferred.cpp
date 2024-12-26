@@ -17,6 +17,7 @@ SystemRenderDeferred::SystemRenderDeferred(Renderer* pRenderer)
 	mLightingShader->SetInt("gPosition", 0);
 	mLightingShader->SetInt("gNormal", 1);
 	mLightingShader->SetInt("gAlbedoSpec", 2);
+	mLightingShader->SetInt("gEmission", 3);
 }
 
 void SystemRenderDeferred::Run(Entity* pEntity)
@@ -39,7 +40,6 @@ void SystemRenderDeferred::Run(Entity* pEntity)
 
 		GBuffer* gBuffer = mRenderer->GetGBuffer();
 		gBuffer->GetShader()->SetMat4("model", modelMatrix);
-		// gBuffer->GetShader()->SetVec3("viewPos", Game::GetGame()->GetGameCamera()->GetPosition());
 
 		mRenderer->Render(pEntity);
 

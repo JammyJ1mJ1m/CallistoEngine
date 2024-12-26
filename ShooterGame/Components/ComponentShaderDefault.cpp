@@ -43,9 +43,9 @@ void ComponentShaderDefault::Update(glm::mat4 pMat)
 	// set projection
 	mShaderObject->SetMat4("projection", mCamera->GetProjection());
 
-	mShaderObject->SetInt("diffuseTex", 0);
-	mShaderObject->SetInt("emissionTex", 1);
-	mShaderObject->SetInt("specularMap", 2);
+	//mShaderObject->SetInt("diffuseTex", 0);
+	//mShaderObject->SetInt("emissionTex", 1);
+	//mShaderObject->SetInt("specularMap", 2);
 
 	const std::vector<LightComponent*>& lights = LightManager::GetInstance().GetLights();
 

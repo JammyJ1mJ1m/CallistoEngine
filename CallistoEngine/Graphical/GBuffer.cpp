@@ -15,6 +15,10 @@ GBuffer::GBuffer() :
     mDepthTexture(0)
 {
         mGeometryPassShader = new ShaderObject_GL("Resources/Shaders/gbuffer.vert", "Resources/Shaders/gbuffer.frag");
+        mGeometryPassShader->UseProgram();
+        mGeometryPassShader->SetInt("texture_diffuse1", 0);
+        mGeometryPassShader->SetInt("texture_specular1", 1);
+        mGeometryPassShader->SetInt("texture_emission1", 2);
 }
 
 GBuffer::~GBuffer()
@@ -48,6 +52,12 @@ void GBuffer::Free()
         mAlbedoSpecTexture = 0;
     }
 
+    if (EXISTS(mEmissionTexture))
+	{
+		glDeleteTextures(1, &mEmissionTexture);
+		mEmissionTexture = 0;
+	}
+
     if (EXISTS(mDepthTexture))
     {
         glDeleteRenderbuffers(1, &mDepthTexture);
@@ -60,16 +70,13 @@ void GBuffer::Activate()
 {
     glBindFramebuffer(GL_FRAMEBUFFER, mGFBO);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    //glBindRenderbuffer(GL_RENDERBUFFER, mDepthRBO);
 
-    //// Tell OpenGL which attachments to use
-    //unsigned int attachments[3] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };
-    //glDrawBuffers(3, attachments);
     mGeometryPassShader->UseProgram();
 }
 
 void GBuffer::BindTextures()
 {
+
     // Bind position texture to texture unit 0
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, mPositionTexture);
@@ -81,6 +88,9 @@ void GBuffer::BindTextures()
     // Bind albedo + specular texture to texture unit 2
     glActiveTexture(GL_TEXTURE2);
     glBindTexture(GL_TEXTURE_2D, mAlbedoSpecTexture);
+
+    glActiveTexture(GL_TEXTURE3);
+    glBindTexture(GL_TEXTURE_2D, mEmissionTexture);
 }
 
 
@@ -110,13 +120,21 @@ void GBuffer::Resize(int width, int height)
     // Albedo + Specular buffer
     glGenTextures(1, &mAlbedoSpecTexture);
     glBindTexture(GL_TEXTURE_2D, mAlbedoSpecTexture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, mAlbedoSpecTexture, 0);
 
-    unsigned int attachments[3] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };
-    glDrawBuffers(3, attachments);  
+    // Emission buffer
+    glGenTextures(1, &mEmissionTexture);
+    glBindTexture(GL_TEXTURE_2D, mEmissionTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT3, GL_TEXTURE_2D, mEmissionTexture, 0);
+
+    unsigned int attachments[4] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2, GL_COLOR_ATTACHMENT3};
+    glDrawBuffers(4, attachments);  
 
     glGenTextures(1, &mDepthTexture);
     glBindTexture(GL_TEXTURE_2D, mDepthTexture);

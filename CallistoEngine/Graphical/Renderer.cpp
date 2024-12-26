@@ -13,6 +13,6 @@ Renderer::~Renderer()
 void Renderer::CycleRenderMode()
 {
 	mRenderMode++;
-	if (mRenderMode > 4)
+	if (mRenderMode > 5)
 		mRenderMode = 0;
 }
